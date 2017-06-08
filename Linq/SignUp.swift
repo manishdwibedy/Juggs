@@ -36,7 +36,7 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     }
     
     @IBAction func logIn(_ sender: Any) {
-  
+        self.dismiss(animated: true, completion: nil)
     
     
     }
