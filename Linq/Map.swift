@@ -46,7 +46,7 @@ class Map: UIViewController {
 
         handleLocation()
         fetchAddress()
-        mapView.tintColor = UIColor(red: 93/255, green: 241/255, blue: 180/255, alpha: 1.0)
+        mapView.tintColor = UIColor.black
     
     }
 
@@ -151,7 +151,7 @@ class Map: UIViewController {
        
         searchBar.sizeToFit()
         
-        searchBar.placeholder = "Search for places"
+        searchBar.placeholder = "Search for Places, People, Gender, etc"
         navigationItem.titleView = resultSearchController?.searchBar
         
         resultSearchController?.hidesNavigationBarDuringPresentation = false
@@ -160,7 +160,15 @@ class Map: UIViewController {
         
         locationSearchTable.mapView = mapView
         
-            }
+        
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = .follow
+
+    
+    
+    
+    }
 
     
   /*  func convertAddress(address: String) {
@@ -296,7 +304,7 @@ extension Map : MKMapViewDelegate {
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         pinView?.pinTintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
-         // let blueGreenThemeColor = UIColor(red: 93/255, green: 241/255, blue: 180/255, alpha: 1.0)--- Color for private pins
+         // black - Color for private pins
         pinView?.canShowCallout = true
         let smallSquare = CGSize(width: 30, height: 30)
         let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))

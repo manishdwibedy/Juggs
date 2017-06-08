@@ -5,18 +5,21 @@
 //  Created by Quinton Askew on 5/29/17.
 //  Copyright © 2017 QuintonAskew. All rights reserved.
 //
+var unfilteredUsers = [User]()
+var filteredUsers = [User]()
+var moves = [Post]()
 
 import UIKit
 import MapKit
 
 
 class LocationSearchTable: UITableViewController {
+    
     var handleMapSearchDelegate:HandleMapSearch? = nil
     var matchingItems:[MKMapItem] = []
     var mapView: MKMapView? = nil
     
-    
-       func parseAddress(selectedItem:MKPlacemark) -> String {
+    func parseAddress(selectedItem:MKPlacemark) -> String {
         // put a space between "4" and "Melrose Place"
         let firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil) ? " " : ""
         // put a comma between street and city/state
@@ -39,43 +42,35 @@ class LocationSearchTable: UITableViewController {
         )
         return addressLine
     }
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
-
 extension LocationSearchTable : UISearchResultsUpdating {
-
     func updateSearchResults(for searchController: UISearchController) {
+    
+       
         
-        guard let mapView = mapView,
-                let searchBarText = searchController.searchBar.text else { return }
-        let mint = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
-                searchController.searchBar.barTintColor = UIColor.white
-            let request = MKLocalSearchRequest()
-            request.naturalLanguageQuery = searchBarText
-            request.region = mapView.region
-            let search = MKLocalSearch(request: request)
-            search.start { response, _ in
-                guard let response = response else {
-                    return
-                }
-                self.matchingItems = response.mapItems
-                self.tableView.reloadData()
+        
+        
+        
+        
+        
+        
+        
+         guard let mapView = mapView,
+            let searchBarText = searchController.searchBar.text else { return }
+        let request = MKLocalSearchRequest()
+        request.naturalLanguageQuery = searchBarText
+        request.region = mapView.region
+        let search = MKLocalSearch(request: request)
+        search.start { response, _ in
+            guard let response = response else {
+                return
             }
-        
-        
-        }
-
-
+            self.matchingItems = response.mapItems
+            self.tableView.reloadData()
+        } 
     }
-
+}
 
 extension LocationSearchTable {
     

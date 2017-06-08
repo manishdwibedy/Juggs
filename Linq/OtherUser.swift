@@ -18,7 +18,7 @@ class OtherUser: UIViewController {
     var gender = ""
     var state = ""
     var bio = ""
-    var imagePath = "https://firebasestorage.googleapis.com/v0/b/linq-506fb.appspot.com/o/Flyers%2Fcy8qJUiCIDcU1McEi1edh47pt9G3%2F-KlPBmAkWhmvw0clY_hB.jpg?alt=media&token=740ff20f-666e-4b5c-b114-1e012b518fd9"
+    var pathToImage = "https://firebasestorage.googleapis.com/v0/b/linq-506fb.appspot.com/o/Flyers%2FVzETPu4ANea2HurETO2DwIaMoT73%2F-KlPsr9smklsXVQyAj_p.jpg?alt=media&token=e0af9830-e606-43ae-b888-864f14e7e719"
     
     @IBOutlet weak var profileImageView: UIImageView!
     
@@ -80,7 +80,7 @@ class OtherUser: UIViewController {
     
     func setupProfile() {
         visuals()
-       // profileImageView.downloadImage(from: imagePath)
+        profileImageView.downloadImage(from: pathToImage) // not working
         ageLabel.text = age
         let from = city + ", " + state
         fromLabel.text = from

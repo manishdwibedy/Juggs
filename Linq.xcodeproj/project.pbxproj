@@ -216,6 +216,7 @@
 				D1A1FD5B1ED5F5E400C8BF4E /* World.swift */,
 				D1A1FD5F1ED6143200C8BF4E /* DiscoverTable.swift */,
 				D1A1FD5D1ED606B000C8BF4E /* CellForDiscover.swift */,
+				D1444CB81EE2E902004D6D11 /* OtherUser.swift */,
 				D153B2891EDCE29200C106DA /* Map.swift */,
 				D153B28B1EDCEEFE00C106DA /* LocationSearchTable.swift */,
 			);
@@ -262,7 +263,6 @@
 				D10420931EDBAF8400008458 /* TABS */,
 				D155D89C1EE1F2BC0040C153 /* Settings */,
 				D10420941EDBAFDF00008458 /* Description.swift */,
-				D1444CB81EE2E902004D6D11 /* OtherUser.swift */,
 				D1A1FD4F1ED5154A00C8BF4E /* NewMove.swift */,
 				D1177BDC1EE45B5F005C5B85 /* ArchiveTable.swift */,
 				D1177BE41EE4B429005C5B85 /* ArchiveDescription.swift */,

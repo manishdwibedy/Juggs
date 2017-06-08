@@ -111,15 +111,15 @@ class DiscoverTable: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellForDiscover = tableView.dequeueReusableCell(withIdentifier: "cellForDiscover", for: indexPath) as! CellForDiscover
         
-        cellForDiscover.nameLabel.text = self.users[indexPath.row].firstName + " " + self.users[indexPath.row].lastName
+        cellForDiscover.nameLabel.text = users[indexPath.row].firstName + " " + self.users[indexPath.row].lastName
         
-        cellForDiscover.fromLabel.text = self.users[indexPath.row].city + ", " + self.users[indexPath.row].state
+        cellForDiscover.fromLabel.text = users[indexPath.row].city + ", " + self.users[indexPath.row].state
         
-        cellForDiscover.userID = self.users[indexPath.row].userID
+        cellForDiscover.userID = users[indexPath.row].userID
         
-        cellForDiscover.profilePic.downloadImage(from: self.users[indexPath.row].imagePath!)
+        cellForDiscover.profilePic.downloadImage(from: users[(indexPath.row)].imagePath)
         
-        
+       
             
         
     
@@ -134,9 +134,9 @@ class DiscoverTable: UITableViewController {
     
     
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-  //      performSegue(withIdentifier: "showUser", sender: self)
-    //    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    performSegue(withIdentifier: "showUser", sender: self)
+        }
 
    
         
@@ -252,12 +252,14 @@ func checkFollowing(indexPath: IndexPath) {
                 let fullName = firstName! + " " + lastName!
                 destination.otherUserName = fullName
                 
+               
+                
                 destination.age = users[(self.tableView.indexPathForSelectedRow?.row)!].age
                 destination.city = users[(self.tableView.indexPathForSelectedRow?.row)!].city
                 destination.state = users[(self.tableView.indexPathForSelectedRow?.row)!].state
                 destination.gender = users[(self.tableView.indexPathForSelectedRow?.row)!].gender
                 destination.bio = users[(self.tableView.indexPathForSelectedRow!.row)].bio
-              //  destination.imagePath = users[(self.tableView.indexPathForSelectedRow?.row)!].imagePath!
+               // destination.pathToImage = users[(self.tableView.indexPathForSelectedRow?.row)!].imagePath // Not Working
                 
             }
             

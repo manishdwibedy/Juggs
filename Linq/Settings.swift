@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+
+//Account deletes (Auth wise), but user still showing in app.
 
 class Settings: UITableViewController {
 
@@ -46,7 +49,7 @@ class Settings: UITableViewController {
         return 3
     }
     
-    let numberOfRowsAtSection: [Int] = [6, 4, 2] // ROWS IN A SECTION
+    let numberOfRowsAtSection: [Int] = [6, 3, 3] // ROWS IN A SECTION
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -110,10 +113,94 @@ class Settings: UITableViewController {
             
         }
     
+        // Delete account
+        
+        if indexPath.section == 2 && indexPath.row == 2 {
+        
+            areYouSureAlert()
+            
+            
+        }
+        
     
     }
 
    
+ 
+    func areYouSureAlert() {
+        
+        let areYouSure = UIAlertController(title: "Warning", message: "Are you sure you would like to delete your account?", preferredStyle: .alert)
+        
+        
+        let Delete = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+            
+            self.deleteAccount()
+            
+            
+        }
+        
+        let Cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            
+        }
+        
+        areYouSure.addAction(Delete)
+        areYouSure.addAction(Cancel)
+        self.present(areYouSure, animated: true, completion:nil)
+        
+        
+        
+        
+        
+    }
+    
+    func errorMessage() {
+        let error = UIAlertController(title: "Sorry", message: "There was an error procesing your request.", preferredStyle: .alert)
+        
+        let errorOK = UIAlertAction(title: "Ok", style: .default) { (action) in
+        }
+        
+        
+        error.addAction(errorOK)
+        
+        
+        self.present(error, animated: true, completion:nil)
+    }
+    
+    
+    
+    func deletedAlert() {
+        
+        let success = UIAlertController(title: nil, message: "Your account has been deleted.", preferredStyle: .alert)
+        
+        let OK = UIAlertAction(title: "Ok", style: .default) { (action) in
+       
+            self.performSegue(withIdentifier: "signOutFromSettings", sender: self)
+        }
+    
+        success.addAction(OK)
+        self.present(success, animated: true, completion:nil)
+    }
+    
+    func deleteAccount() {
+        
+        let user = Auth.auth().currentUser
+        
+        user?.delete { error in
+            if error != nil {
+                // An error happened.
+                self.errorMessage()
+            } else {
+                // Account deleted.
+                self.deletedAlert()
+            
+            }
+        }
+        
+        
+        
+    }
+    
+
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)

@@ -32,7 +32,7 @@ class MovesTableViewCell: UITableViewCell, CLLocationManagerDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        retrieveAddress()
+       // retrieveAddress()
         self.unlikeBtn.isHidden = true
         self.flamedBtn.isHidden = true
     }
@@ -215,6 +215,7 @@ class MovesTableViewCell: UITableViewCell, CLLocationManagerDelegate {
         let userLocation:CLLocation = locations[0] as CLLocation
        // let mylat = userLocation.coordinate.latitude
         //let mylon = userLocation.coordinate.longitude
+        retrieveAddress()
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(addressAfterConversion) {
             placemarks, error in
