@@ -99,7 +99,7 @@ class Settings: UITableViewController {
         if indexPath.section == 2 && indexPath.row == 1 {
             let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
             
-            let logout = UIAlertAction(title: "Sign Out", style: .default, handler: { (ACTION) in
+            let logout = UIAlertAction(title: "Log Out", style: .default, handler: { (ACTION) in
                 self.performSegue(withIdentifier: "signOutFromSettings", sender: self)
                 print("Logged Out")
             })

@@ -20,7 +20,7 @@ class MessageCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.userImageView.translatesAutoresizingMaskIntoConstraints = false
+        self.userImageView.translatesAutoresizingMaskIntoConstraints = true
         self.userImageView.clipsToBounds = true
         self.userImageView.layer.cornerRadius = 20
     

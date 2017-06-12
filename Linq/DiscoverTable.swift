@@ -18,7 +18,7 @@ class DiscoverTable: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        
+       self.tabBarController?.tabBar.barTintColor = UIColor.black 
         self.navigationController?.navigationBar.isHidden = true
         self.tableView.rowHeight = 350
        retrieveUsers()

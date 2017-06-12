@@ -22,15 +22,21 @@ class ForgotPassword: UIViewController {
     
     }
     
-    @IBAction func backToLogin(_ sender: Any) {
+ 
    
+    @IBAction func LogIn(_ sender: Any) {
+ 
         self.performSegue(withIdentifier: "unwindToLogin", sender: self)
+    
     }
+    
    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.forgotPasswordTF.isHidden = false
         
     }
  

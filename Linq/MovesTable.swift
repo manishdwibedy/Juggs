@@ -22,13 +22,16 @@ class MovesTable: UITableViewController {
         super.viewDidLoad()
         
         
-        
-        
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.tintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
-        self.tabBarController?.tabBar.barTintColor = UIColor.white
+        self.tabBarController?.tabBar.barTintColor = UIColor.black
         self.tabBarController?.tabBar.tintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
        self.tableView.reloadData()
        fetchPosts()
+        
+        let backgroundImage = #imageLiteral(resourceName: "Backgroundloginsignup")
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
        
     }
 
@@ -58,17 +61,19 @@ class MovesTable: UITableViewController {
                                              let AP = value["AP"] as? String
                                                let address = value["Address"] as? String
                                                let author = value["Author"] as? String
-                                               let capacity = value["Capacity"] as? Int
+                                               let capacity = value["Capacity"] as? Int!
                                                let date = value["Date"] as? String
                                                let description = value["Description"] as? String
-                                               let likes = value["Likes"] as? Int
-                                               let flameCount = value["FlameCount"] as? Int
+                                               let likes = value["Likes"] as? Int!
+                                               let flameCount = value["FlameCount"] as? Int!
                                                let pathToImage = value["PathToImage"] as? String
                                                let postID = value["PostID"] as? String
                                                let movePrivate = value["Private"] as? String
                                                let time = value["Time"] as? String
                                                let titleForEvent = value["NameOfMove"] as? String
-                                                
+                
+                
+                
                                                 newPost.AP = AP
                                                 newPost.address = address
                                                 newPost.author = author
@@ -132,8 +137,8 @@ class MovesTable: UITableViewController {
        // moveCell.userImageView.downloadImage(from: pathToUserImage)
         moveCell.nameLabel.text = posts[indexPath.row].author
         moveCell.likeCountLabel.text = "\(posts[indexPath.row].likes!) Likes"
-        moveCell.capacityLabel.text = "\(posts[indexPath.row].capacity) Capacity"
-        moveCell.flameCountLabel.text = "\(posts[indexPath.row].flameCount) Would Linq"
+        moveCell.capacityLabel.text = "Capacity: 0 of \(posts[indexPath.row].capacity!)"
+        moveCell.flameCountLabel.text = "\(posts[indexPath.row].flameCount!) Juggs"
         moveCell.flyerImage.downloadImage(from: posts[(indexPath.row)].pathToImage)
         moveCell.postID = posts[indexPath.row].postID
         return moveCell

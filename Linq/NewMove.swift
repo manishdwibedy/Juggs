@@ -58,7 +58,18 @@ class NewMove: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
    
     @IBAction func moveSubmitted(_ sender: Any) {
    
-        guard let time = timeTF.text,let ampm = amfmTF.text, let date = dateTF.text, let street = streetAddyTF.text, let city = cityTF.text, let state = stateTF.text, let country = usTF.text, let zip = zipTF.text, let capacity = capacityTF.text, let descriptionForMove = descriptionTV.text, let nameOfMove = nameOfMoveTF.text else{
+        
+        if timeTF.text == "" || amfmTF.text == "" || dateTF.text == "" || timeTF.text == "" || streetAddyTF.text == "" || cityTF.text == "" || stateTF.text == "" || zipTF.text == "" || capacityTF.text == "" || descriptionTV.text == "" {
+            
+            emptyFieldsAlert()
+            
+        }else{
+        
+        
+        
+        
+        
+        guard let time = timeTF.text,let ampm = amfmTF.text, let date = dateTF.text, let street = streetAddyTF.text, let city = cityTF.text, let state = stateTF.text, let zip = zipTF.text, let capacity = capacityTF.text, let descriptionForMove = descriptionTV.text, let nameOfMove = nameOfMoveTF.text else{
             print(" Form isnt valid")
             
             return
@@ -121,7 +132,7 @@ class NewMove: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         
     }
     
-    
+}
     
     
     func forSwitch() -> Bool {
@@ -171,7 +182,7 @@ class NewMove: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         
         // ACTION SHEET FOR PHOTO SELECTION
         
-        let alert = UIAlertController(title: "Choose an Image", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let alert = UIAlertController(title: "Select a Flyer", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         
         let camera = UIAlertAction(title: "Camera", style: .default, handler: { (ACTION) in
             
@@ -394,6 +405,88 @@ class NewMove: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         dateTF.text = dateFormatter.string(from: sender.date)
         
     }
+    
+    
+    func emptyFieldsAlert() {
+        
+        
+        let alert = UIAlertController(title: nil, message: "All fields require action.", preferredStyle: .alert)
+        
+        let OK = UIAlertAction(title: "Ok", style: .default) { (action) in
+            
+        }
+        
+        alert.addAction(OK)
+        self.present(alert, animated: true, completion:nil)
+        
+    }
+    
+    
+    
+    func textField(_ textFieldToChange: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        
+        
+        let startingLength = textFieldToChange.text?.characters.count ?? 0
+        
+    if textFieldToChange == streetAddyTF {
+            
+            let characterCountLimit = 40;
+            
+            let lengthToAdd = string.characters.count
+            let lengthToReplace = range.length
+            
+            let newLength = startingLength + lengthToAdd - lengthToReplace
+            
+            return newLength <= characterCountLimit
+            
+            
+            
+        }else if textFieldToChange == cityTF {
+            
+            let characterCountLimit = 21;
+            
+            let lengthToAdd = string.characters.count
+            let lengthToReplace = range.length
+            
+            let newLength = startingLength + lengthToAdd - lengthToReplace
+            
+            return newLength <= characterCountLimit
+            
+            
+            
+        }else if textFieldToChange == zipTF {
+            
+            let characterCountLimit = 5;
+            
+            let lengthToAdd = string.characters.count
+            let lengthToReplace = range.length
+            
+            let newLength = startingLength + lengthToAdd - lengthToReplace
+            
+            return newLength <= characterCountLimit
+            
+            
+        }else if textFieldToChange == nameOfMoveTF {
+            
+            let characterCountLimit = 24;
+            
+            let lengthToAdd = string.characters.count
+            let lengthToReplace = range.length
+            
+            let newLength = startingLength + lengthToAdd - lengthToReplace
+            
+            return newLength <= characterCountLimit
+            
+            
+        }
+        
+        return true
+    }
+  
+    
+    
+    
     
     
     

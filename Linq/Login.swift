@@ -30,14 +30,7 @@ class Login: UIViewController {
                 self.present(homeVC, animated: true, completion: nil)
                 
             }
-            
-            
         }
-        
-        
-        
-        
-    
     }
    
     @IBAction func signUp(_ sender: Any) {

@@ -43,7 +43,7 @@ class Map: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.tabBarController?.tabBar.barTintColor = UIColor.black
         handleLocation()
         fetchAddress()
         mapView.tintColor = UIColor.black

@@ -86,7 +86,7 @@ class OtherUser: UIViewController {
         fromLabel.text = from
         genderLabel.text = gender
         bioTV.text = bio
-        
+        self.tabBarController?.tabBar.barTintColor = UIColor.black
         
     }
 

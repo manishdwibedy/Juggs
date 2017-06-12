@@ -33,7 +33,7 @@ class World: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tabBarController?.tabBar.barTintColor = UIColor.black
         segmentedControl.selectedSegmentIndex = 1
         self.tabBarController?.tabBar.tintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
           self.tabBarController?.tabBar.barTintColor = UIColor.white

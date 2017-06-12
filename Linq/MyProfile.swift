@@ -39,11 +39,12 @@ class MyProfile: UIViewController {
     func visuals()  {
         
         self.tabBarController?.tabBar.tintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
-        
-        self.profilePic.clipsToBounds = true
+      //  self.profilePic.layer.borderColor = cgColor.
+     
+            self.profilePic.clipsToBounds = true
         self.profilePic.layer.cornerRadius = profilePic.frame.size.width/2.5
         self.profilePic.layer.borderWidth = 6
-          self.tabBarController?.tabBar.barTintColor = UIColor.white
+          self.tabBarController?.tabBar.barTintColor = UIColor.black
         
         
     }

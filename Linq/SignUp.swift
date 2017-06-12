@@ -13,7 +13,7 @@ import FirebaseStorage
 
 
 
-class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
+class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var ageTF: UITextField!
@@ -45,6 +45,10 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     var userStorage: StorageReference!
     var ref: DatabaseReference!
     
+    
+    var stateList = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN","IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND",  "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
+
+    var genderList = ["Female", "Male"]
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -55,20 +59,16 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         imageView.isUserInteractionEnabled = true
         
         let storageRef = Storage.storage().reference()
-        let urlToStorage = "gs://linq-506fb.appspot.com"
+        let urlToStorage = "gs://jugg-88ab9.appspot.com/" // gs://linq-506fb.appspot.com/
         storageRef.storage.reference(forURL: urlToStorage)
         userStorage = storageRef.child("Users")
         
         ref = Database.database().reference()
         
         delegate()
+        pickerViews()
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     /////////   TAP PLACEHOLDER PHOTO TO SELECT AN IMAGE  /////////
     
@@ -268,6 +268,127 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         }
         return true
     }
+    
+    func textField(_ textFieldToChange: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        
+        
+        let startingLength = textFieldToChange.text?.characters.count ?? 0
+        
+        if textFieldToChange == ageTF {
+            
+            let characterCountLimit = 2;
+            
+            let lengthToAdd = string.characters.count
+            let lengthToReplace = range.length
+            
+            let newLength = startingLength + lengthToAdd - lengthToReplace
+            
+            return newLength <= characterCountLimit
+            
+            
+            
+        }else if textFieldToChange == cityTF {
+            
+            let characterCountLimit = 21;
+            
+            let lengthToAdd = string.characters.count
+            let lengthToReplace = range.length
+            
+            let newLength = startingLength + lengthToAdd - lengthToReplace
+            
+            return newLength <= characterCountLimit
+            
+            
+            
+        }else if textFieldToChange == firstNameTF {
+            
+            let characterCountLimit = 20;
+            
+            let lengthToAdd = string.characters.count
+            let lengthToReplace = range.length
+            
+            let newLength = startingLength + lengthToAdd - lengthToReplace
+            
+            return newLength <= characterCountLimit
+            
+            
+        }else if textFieldToChange == lastNameTF {
+            
+            let characterCountLimit = 20;
+            
+            let lengthToAdd = string.characters.count
+            let lengthToReplace = range.length
+            
+            let newLength = startingLength + lengthToAdd - lengthToReplace
+            
+            return newLength <= characterCountLimit
+            
+            
+        }
+        
+        return true
+    }
+    
+    
+    func pickerViews() {
+        
+        let pickerView = UIPickerView()
+        
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        //pickerView.backgroundColor = UIColor.white
+        pickerView.tag = 0
+        pickerView.showsSelectionIndicator = true
+        pickerView.backgroundColor = UIColor.clear
+        
+        stateTF.inputView = pickerView
+        
+        
+        let pickerView2 = UIPickerView()
+        
+        pickerView2.delegate = self
+        pickerView2.dataSource = self
+        pickerView.backgroundColor = UIColor.clear
+        pickerView2.tag = 1
+        pickerView2.showsSelectionIndicator = true
+        genderTF.inputView = pickerView2
+        
+        
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        if(pickerView.tag == 0) {
+            return stateList.count
+        }else if(pickerView.tag == 1) {
+            return genderList.count
+        }
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if(pickerView.tag == 0) {
+            return stateList[row]
+        }else if(pickerView.tag == 1) {
+            return genderList[row]
+        }
+        return ""
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if (pickerView.tag == 0) {
+            stateTF.text = stateList[row]
+        }else if(pickerView.tag == 1) {
+            genderTF.text = genderList[row]
+        }
+        self.view.endEditing(true)
+    }
+
     
     
     

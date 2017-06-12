@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>257398808566-i1aqq5j7t04mnitb9m4gl4f1a7co3osf.apps.googleusercontent.com</string>
+	<string>838532947997-84irtrh72g9spnu8vun4njgeqtig0h04.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.257398808566-i1aqq5j7t04mnitb9m4gl4f1a7co3osf</string>
+	<string>com.googleusercontent.apps.838532947997-84irtrh72g9spnu8vun4njgeqtig0h04</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAUqGf0RNw98GESrsWYh_PyHwav_ZL7yZ8</string>
+	<string>AIzaSyBnDowZrqd0-kXNF2FjYzFd5XkVuY8lLS8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>257398808566</string>
+	<string>838532947997</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.QuintonAskew.Linq</string>
+	<string>com.QuintonAskew.Jugg</string>
 	<key>PROJECT_ID</key>
-	<string>linq-506fb</string>
+	<string>jugg-88ab9</string>
 	<key>STORAGE_BUCKET</key>
-	<string>linq-506fb.appspot.com</string>
+	<string>jugg-88ab9.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:257398808566:ios:a10df6515de5162a</string>
+	<string>1:838532947997:ios:5db0e6536e806a19</string>
 	<key>DATABASE_URL</key>
-	<string>https://linq-506fb.firebaseio.com</string>
+	<string>https://jugg-88ab9.firebaseio.com</string>
 </dict>
 </plist>
