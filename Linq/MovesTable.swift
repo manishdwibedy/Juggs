@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-
+import SDWebImage
 class MovesTable: UITableViewController {
 
    
@@ -139,7 +139,9 @@ class MovesTable: UITableViewController {
         moveCell.likeCountLabel.text = "\(posts[indexPath.row].likes!) Likes"
         moveCell.capacityLabel.text = "Capacity: 0 of \(posts[indexPath.row].capacity!)"
         moveCell.flameCountLabel.text = "\(posts[indexPath.row].flameCount!) Juggs"
-        moveCell.flyerImage.downloadImage(from: posts[(indexPath.row)].pathToImage)
+        moveCell.flyerImage.sd_setImage(with: URL(string: "\(String(describing: posts[(indexPath.row)].pathToImage!))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
+
+    //    moveCell.flyerImage.downloadImage(from: posts[(indexPath.row)].pathToImage)
         moveCell.postID = posts[indexPath.row].postID
         return moveCell
     }

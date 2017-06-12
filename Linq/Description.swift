@@ -89,6 +89,8 @@ class Description: UIViewController {
     
         moveTitle.text = moveName
         flyerImageView.downloadImage(from: pathToImage)
+        flyerImageView.sd_setImage(with: URL(string: "\(String(describing: pathToImage))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
+
         let timePlusAMPM = time + " " + amOrPM
         timeLabel.text = timePlusAMPM
         dateLabel.text = date
