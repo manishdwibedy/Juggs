@@ -23,12 +23,12 @@ class CellForDiscover: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.swipeView.isHidden = true
-        self.swipeView.isUserInteractionEnabled = true
+       // self.swipeView.isHidden = true
+       // self.swipeView.isUserInteractionEnabled = true
         
-        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
-        swipe.direction = UISwipeGestureRecognizerDirection.left
-        self.swipeView.addGestureRecognizer(swipe)
+//        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
+//        swipe.direction = UISwipeGestureRecognizerDirection.left
+//        self.swipeView.addGestureRecognizer(swipe)
         
     }
     

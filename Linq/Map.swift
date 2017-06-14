@@ -40,12 +40,11 @@ class Map: UIViewController {
     let addRadiusCircle = CLLocation()
     var circle: MKCircle?
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.barTintColor = UIColor.black
         handleLocation()
-        fetchAddress()
+     //   fetchAddress()
         mapView.tintColor = UIColor.black
     
     }
@@ -209,13 +208,9 @@ extension Map : CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-     
-        
-        
-        
         if locations.first != nil {
             
-         //   print("target position : =  \(location.coordinate)")
+           // print("target position : =  \(location.coordinate)")
            // print(locationManager.location!.coordinate.latitude)
          
             locationManager.stopUpdatingLocation()
@@ -224,9 +219,6 @@ extension Map : CLLocationManagerDelegate {
             
             
         }
-        
-       
-        
         
         let location = CLLocation(latitude: locationManager.location!.coordinate.latitude, longitude: locationManager.location!.coordinate.longitude)
         addRadiusCircle(location)

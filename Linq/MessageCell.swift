@@ -20,9 +20,13 @@ class MessageCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.userImageView.translatesAutoresizingMaskIntoConstraints = true
+        self.userImageView.translatesAutoresizingMaskIntoConstraints = true        
         self.userImageView.clipsToBounds = true
-        self.userImageView.layer.cornerRadius = 20
+        self.userImageView.layer.cornerRadius = userImageView.frame.size.width/2
+        self.userImageView.layer.borderWidth = 4
+        let blueGreenThemeColor = UIColor.white
+        self.userImageView.layer.borderColor = blueGreenThemeColor.cgColor
+
     
     }
 

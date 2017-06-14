@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-
+import SDWebImage
 class DiscoverTable: UITableViewController {
 
     
@@ -17,8 +17,11 @@ class DiscoverTable: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-       self.tabBarController?.tabBar.barTintColor = UIColor.black 
+        let backgroundImage = #imageLiteral(resourceName: "Backgroundloginsignup")
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
+
+       self.tabBarController?.tabBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.isHidden = true
         self.tableView.rowHeight = 350
        retrieveUsers()
@@ -39,7 +42,7 @@ class DiscoverTable: UITableViewController {
     
     
     func retrieveUsers() {
-        
+        Globals.ShowSpinner(testStr: "")
         let ref = Database.database().reference()
         
         ref.child("Users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
@@ -79,7 +82,7 @@ class DiscoverTable: UITableViewController {
                     
                 }
             }
-            
+            Globals.HideSpinner()
             self.tableView.reloadData()
             
         })
@@ -117,29 +120,17 @@ class DiscoverTable: UITableViewController {
         
         cellForDiscover.userID = users[indexPath.row].userID
         
-        cellForDiscover.profilePic.downloadImage(from: users[(indexPath.row)].imagePath)
-        
+     //   cellForDiscover.profilePic.downloadImage(from: users[(indexPath.row)].imagePath)
        
-            
-        
-    
-        
-        
-        
-        
-        
-        
+        cellForDiscover.profilePic.sd_setImage(with: URL(string: "\(String(describing: users[(indexPath.row)].imagePath!))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
+
         return cellForDiscover
     }
-    
-    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     performSegue(withIdentifier: "showUser", sender: self)
         }
 
-   
-        
  /*   func followUser(row: Int) {
         
             
@@ -259,16 +250,12 @@ func checkFollowing(indexPath: IndexPath) {
                 destination.state = users[(self.tableView.indexPathForSelectedRow?.row)!].state
                 destination.gender = users[(self.tableView.indexPathForSelectedRow?.row)!].gender
                 destination.bio = users[(self.tableView.indexPathForSelectedRow!.row)].bio
-               // destination.pathToImage = users[(self.tableView.indexPathForSelectedRow?.row)!].imagePath // Not Working
+                destination.pathToImage = users[(self.tableView.indexPathForSelectedRow!.row)].imagePath
+                // Not Working
                 
             }
-            
         }
-
-        
     }
- 
-    
 }
 
 

@@ -12,6 +12,7 @@ import Firebase
 class MyProfile: UIViewController {
 
     @IBOutlet weak var profilePic: UIImageView!
+    @IBOutlet weak var BackprofilePic: UIImageView!
     
     @IBOutlet weak var ageLabel: UILabel!
     
@@ -39,12 +40,14 @@ class MyProfile: UIViewController {
     func visuals()  {
         
         self.tabBarController?.tabBar.tintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
-      //  self.profilePic.layer.borderColor = cgColor.
+        
      
-            self.profilePic.clipsToBounds = true
-        self.profilePic.layer.cornerRadius = profilePic.frame.size.width/2.5
-        self.profilePic.layer.borderWidth = 6
-          self.tabBarController?.tabBar.barTintColor = UIColor.black
+        self.profilePic.clipsToBounds = true
+        self.profilePic.layer.cornerRadius = profilePic.frame.size.width/2
+        self.profilePic.layer.borderWidth = 4
+        let blueGreenThemeColor = UIColor.white
+        self.profilePic.layer.borderColor = blueGreenThemeColor.cgColor
+        self.tabBarController?.tabBar.barTintColor = UIColor.black
         
         
     }

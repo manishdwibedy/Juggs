@@ -101,6 +101,8 @@ class Settings: UITableViewController {
             
             let logout = UIAlertAction(title: "Log Out", style: .default, handler: { (ACTION) in
                 self.performSegue(withIdentifier: "signOutFromSettings", sender: self)
+                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(false, key: "IS_LOGIN")
+
                 print("Logged Out")
             })
             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (ACTION) in

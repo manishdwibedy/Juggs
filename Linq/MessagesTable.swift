@@ -17,7 +17,10 @@ class MessagesTable: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        let backgroundImage = #imageLiteral(resourceName: "Backgroundloginsignup")
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
+
        fetchUsers()
     }
 
@@ -79,9 +82,7 @@ class MessagesTable: UITableViewController {
         override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageCell
 
-        
-            
-        cell.userImageView.downloadImage(from: self.users[indexPath.row].imagePath!)
+            cell.userImageView.sd_setImage(with: URL(string: "\(String(describing: users[(indexPath.row)].imagePath!))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
         
             let firstName = self.users[indexPath.row].firstName
             let lastName = self.users[indexPath.row].lastName

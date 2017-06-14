@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		04F81A3F0AC3825E1DD99A9B /* Pods_LinqTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 947853379B7843EC362EDEAD /* Pods_LinqTests.framework */; };
+		178741981EF1453700FB1B01 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178741971EF1453700FB1B01 /* Globals.swift */; };
+		178741A41EF17D7300FB1B01 /* Inbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178741A31EF17D7300FB1B01 /* Inbox.swift */; };
+		178741A61EF17DAB00FB1B01 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178741A51EF17DAB00FB1B01 /* Message.swift */; };
 		7E43BB5217089F9C4EEE2E8C /* Pods_Linq.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21E4CEDE691B9F6B277FD50 /* Pods_Linq.framework */; };
 		884FDEC32C3676CE14F292D6 /* Pods_LinqUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6772CE4CE681BF3EBE99DB78 /* Pods_LinqUITests.framework */; };
 		D10420951EDBAFDF00008458 /* Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10420941EDBAFDF00008458 /* Description.swift */; };
@@ -22,10 +25,8 @@
 		D11AFBD11EEDBE5F002CF979 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D11AFBD01EEDBE5F002CF979 /* GoogleService-Info.plist */; };
 		D1444CB91EE2E902004D6D11 /* OtherUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1444CB81EE2E902004D6D11 /* OtherUser.swift */; };
 		D153B27F1EDC493400C106DA /* NotificationBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D153B27E1EDC493400C106DA /* NotificationBox.swift */; };
-		D153B2811EDC4A2F00C106DA /* Inbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D153B2801EDC4A2F00C106DA /* Inbox.swift */; };
 		D153B2831EDC50F200C106DA /* MessagesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D153B2821EDC50F200C106DA /* MessagesTable.swift */; };
 		D153B2851EDC514E00C106DA /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D153B2841EDC514E00C106DA /* MessageCell.swift */; };
-		D153B2871EDCAC6500C106DA /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D153B2861EDCAC6500C106DA /* Message.swift */; };
 		D153B28A1EDCE29200C106DA /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = D153B2891EDCE29200C106DA /* Map.swift */; };
 		D153B28C1EDCEEFE00C106DA /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D153B28B1EDCEEFE00C106DA /* LocationSearchTable.swift */; };
 		D155D89E1EE1F3110040C153 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D155D89D1EE1F3110040C153 /* ProfileImage.swift */; };
@@ -72,6 +73,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		178741971EF1453700FB1B01 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		178741A31EF17D7300FB1B01 /* Inbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inbox.swift; sourceTree = "<group>"; };
+		178741A51EF17DAB00FB1B01 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		25C4DAD3AA65FAE4A7C9F089 /* Pods-LinqTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinqTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LinqTests/Pods-LinqTests.release.xcconfig"; sourceTree = "<group>"; };
 		6772CE4CE681BF3EBE99DB78 /* Pods_LinqUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinqUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A60E25F1E62E7C2B1CE1773 /* Pods-LinqUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinqUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LinqUITests/Pods-LinqUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,14 +92,12 @@
 		D1177BE41EE4B429005C5B85 /* ArchiveDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchiveDescription.swift; sourceTree = "<group>"; };
 		D1177BE61EE5F24F005C5B85 /* ForgotPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
 		D1177BE81EE61E55005C5B85 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		D11AFBCF1EEDB316002CF979 /* Linq.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Linq.entitlements; sourceTree = "<group>"; };
 		D11AFBD01EEDBE5F002CF979 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D11AFBD21EEF7E0E002CF979 /* Linq.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Linq.entitlements; sourceTree = "<group>"; };
 		D1444CB81EE2E902004D6D11 /* OtherUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherUser.swift; sourceTree = "<group>"; };
 		D153B27E1EDC493400C106DA /* NotificationBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationBox.swift; sourceTree = "<group>"; };
-		D153B2801EDC4A2F00C106DA /* Inbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inbox.swift; sourceTree = "<group>"; };
 		D153B2821EDC50F200C106DA /* MessagesTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesTable.swift; sourceTree = "<group>"; };
 		D153B2841EDC514E00C106DA /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
-		D153B2861EDCAC6500C106DA /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		D153B2891EDCE29200C106DA /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		D153B28B1EDCEEFE00C106DA /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		D155D89D1EE1F3110040C153 /* ProfileImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
@@ -161,6 +163,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1787419E1EF17A4200FB1B01 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
 		189DA139ACB0D2FE6895D861 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,13 +197,14 @@
 		D10420921EDB6FC600008458 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				178741971EF1453700FB1B01 /* Globals.swift */,
 				D1A1FD591ED5DA5400C8BF4E /* User.swift */,
 				D1A1FD641ED651F800C8BF4E /* Post.swift */,
 				D10420961EDBB2FA00008458 /* Desc.swift */,
-				D153B2861EDCAC6500C106DA /* Message.swift */,
 				D1FF3ACB1EE3B70200C47640 /* Invitation.swift */,
 				D1177BE21EE46FB2005C5B85 /* Request.swift */,
 				D1177BE01EE45B8F005C5B85 /* Archive.swift */,
+				178741A51EF17DAB00FB1B01 /* Message.swift */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -259,7 +269,7 @@
 		D1A1FD161ED3C90300C8BF4E /* Linq */ = {
 			isa = PBXGroup;
 			children = (
-				D11AFBCF1EEDB316002CF979 /* Linq.entitlements */,
+				D11AFBD21EEF7E0E002CF979 /* Linq.entitlements */,
 				D1A1FD611ED6448F00C8BF4E /* Intro */,
 				D10420921EDB6FC600008458 /* Objects */,
 				D10420931EDBAF8400008458 /* TABS */,
@@ -310,9 +320,10 @@
 		D1FF3AC81EE3B65C00C47640 /* Box */ = {
 			isa = PBXGroup;
 			children = (
+				1787419E1EF17A4200FB1B01 /* New Group */,
 				D153B27E1EDC493400C106DA /* NotificationBox.swift */,
-				D153B2801EDC4A2F00C106DA /* Inbox.swift */,
 				D153B2821EDC50F200C106DA /* MessagesTable.swift */,
+				178741A31EF17D7300FB1B01 /* Inbox.swift */,
 				D153B2841EDC514E00C106DA /* MessageCell.swift */,
 				D1FF3AC61EE3B1D000C47640 /* Invitations.swift */,
 				D1FF3AC91EE3B6AC00C47640 /* InvitationCell.swift */,
@@ -399,6 +410,7 @@
 					D1A1FD131ED3C90300C8BF4E = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 8MG83XTPNG;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -415,12 +427,14 @@
 					D1A1FD291ED3C90300C8BF4E = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = XJG2CX6SLB;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = D1A1FD131ED3C90300C8BF4E;
 					};
 					D1A1FD341ED3C90400C8BF4E = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = XJG2CX6SLB;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = D1A1FD131ED3C90300C8BF4E;
 					};
@@ -517,7 +531,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		3FEC3507BDBA1F55BC4A65BA /* [CP] Check Pods Manifest.lock */ = {
@@ -532,7 +546,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6B14B204C933C337BC51C9A4 /* [CP] Check Pods Manifest.lock */ = {
@@ -547,7 +561,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		84969DC8A0098C16BDE3E473 /* [CP] Embed Pods Frameworks */ = {
@@ -620,23 +634,25 @@
 				D1FF3ACA1EE3B6AC00C47640 /* InvitationCell.swift in Sources */,
 				D153B27F1EDC493400C106DA /* NotificationBox.swift in Sources */,
 				D1A1FD4E1ED4B9EF00C8BF4E /* Settings.swift in Sources */,
+				178741A41EF17D7300FB1B01 /* Inbox.swift in Sources */,
 				D1A1FD5E1ED606B000C8BF4E /* CellForDiscover.swift in Sources */,
 				D1177BE71EE5F24F005C5B85 /* ForgotPassword.swift in Sources */,
 				D1177BE31EE46FB2005C5B85 /* Request.swift in Sources */,
 				D1A1FD1C1ED3C90300C8BF4E /* MyProfile.swift in Sources */,
 				D1A1FD501ED5154A00C8BF4E /* NewMove.swift in Sources */,
+				178741981EF1453700FB1B01 /* Globals.swift in Sources */,
 				D1FF3ACE1EE3BBB700C47640 /* RequestCell.swift in Sources */,
 				D153B28C1EDCEEFE00C106DA /* LocationSearchTable.swift in Sources */,
 				D155D8A01EE2003B0040C153 /* UpdateAccount.swift in Sources */,
 				D1A1FD651ED651F800C8BF4E /* Post.swift in Sources */,
 				D1177BE11EE45B8F005C5B85 /* Archive.swift in Sources */,
-				D153B2811EDC4A2F00C106DA /* Inbox.swift in Sources */,
 				D1A1FD671ED929E500C8BF4E /* MovesTable.swift in Sources */,
 				D1177BDF1EE45B7B005C5B85 /* ArchiveCell.swift in Sources */,
 				D1A1FD601ED6143200C8BF4E /* DiscoverTable.swift in Sources */,
 				D1A1FD5C1ED5F5E400C8BF4E /* World.swift in Sources */,
 				D153B28A1EDCE29200C106DA /* Map.swift in Sources */,
 				D153B2851EDC514E00C106DA /* MessageCell.swift in Sources */,
+				178741A61EF17DAB00FB1B01 /* Message.swift in Sources */,
 				D1A1FD181ED3C90300C8BF4E /* AppDelegate.swift in Sources */,
 				D1A1FD691ED92D6700C8BF4E /* MovesTableViewCell.swift in Sources */,
 				D153B2831EDC50F200C106DA /* MessagesTable.swift in Sources */,
@@ -648,7 +664,6 @@
 				D1177BE51EE4B429005C5B85 /* ArchiveDescription.swift in Sources */,
 				D1FF3AC71EE3B1D000C47640 /* Invitations.swift in Sources */,
 				D1FF3ACC1EE3B70200C47640 /* Invitation.swift in Sources */,
-				D153B2871EDCAC6500C106DA /* Message.swift in Sources */,
 				D1A1FD4C1ED460D600C8BF4E /* SignUp.swift in Sources */,
 				D1A1FD5A1ED5DA5400C8BF4E /* User.swift in Sources */,
 				D1177BDD1EE45B5F005C5B85 /* ArchiveTable.swift in Sources */,
@@ -807,11 +822,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Linq/Linq.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8MG83XTPNG;
 				INFOPLIST_FILE = Linq/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.QuintonAskew.Jugg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -822,11 +839,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Linq/Linq.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8MG83XTPNG;
 				INFOPLIST_FILE = Linq/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.QuintonAskew.Jugg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

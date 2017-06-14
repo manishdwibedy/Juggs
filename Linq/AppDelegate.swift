@@ -10,6 +10,7 @@
 
 import UIKit
 import Firebase
+import FirebaseMessaging
 import IQKeyboardManagerSwift
 
 @UIApplicationMain
@@ -60,9 +61,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let color = UIColor.black
         navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         navigationBarAppearace.tintColor = color
+        var ISLOGIN :Bool? = Globals.sharedInstance.getValueFromUserDefaultsForKey_Path("IS_LOGIN") as? Bool
+        if ISLOGIN == nil {
+            Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(false, key: "IS_LOGIN")
+        }
 
 
+        let notificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
+        let notificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
+        application.registerForRemoteNotifications()
+        application.registerUserNotificationSettings(notificationSettings)
+        
+        
         return true
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        print("MessageID : \(String(describing: userInfo["gcm_message_id"]))")
+        print(userInfo)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

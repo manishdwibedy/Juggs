@@ -43,14 +43,12 @@ class MovesTable: UITableViewController {
     */
     
     func fetchPosts() {
-        
+        Globals.ShowSpinner(testStr: "")
         let ref = Database.database().reference()
-  
-                        
-        ref.child("Flyers").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
-       
+      //  let userID : String = (Auth.auth().currentUser?.uid)!
+        
+        ref.child("Flyers") .queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
             let posts = snapshot.value as! [String : AnyObject]
-       
             self.posts.removeAll()
             
             for(_,value) in posts {
@@ -103,19 +101,11 @@ class MovesTable: UITableViewController {
                                     
                                     self.tableView.reloadData()
                                     
-                                    
+                                   Globals.HideSpinner()
                              //  }
                           // }
                         })
                           self.tableView.reloadData()
-                   // }
-                    
-               // }
-                
-           // }
-            
-        // })
-        
         ref.removeAllObservers()
     }
     

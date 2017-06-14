@@ -13,7 +13,8 @@ pod 'Firebase/Storage’
 pod 'Firebase/Messaging'
 pod 'IQKeyboardManagerSwift'
 pod 'SDWebImage', '~>3.8'
-
+pod 'SwiftSpinner'
+pod 'JSQMessagesViewController'
   target 'LinqTests' do
     inherit! :search_paths
     # Pods for testing

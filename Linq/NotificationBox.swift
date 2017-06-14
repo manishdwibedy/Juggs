@@ -34,7 +34,7 @@ class NotificationBox: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.selectedSegmentIndex = 1
         self.tabBarController?.tabBar.tintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
      self.tabBarController?.tabBar.barTintColor = UIColor.black        
     }

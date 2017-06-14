@@ -160,7 +160,7 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         }
         
         if rpassword == confirmPWTF.text {
-            
+            Globals.ShowSpinner(testStr: "")
             Auth.auth().createUser(withEmail: remail, password: rpassword, completion: {(user,error)in
                 
                 if let error = error {
@@ -179,11 +179,11 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                         imageRef.downloadURL(completion: { (url, er) in
                             if er != nil {
                                 print(er!.localizedDescription)
-                
+                                
                             }
                             
                             if let url = url {
-                            
+                                
                                 let userInfo: [String : Any] = ["UID" : user.uid,
                                                                 "First Name" : rfirstName,
                                                                 "Last Name" : rlastName,
@@ -193,34 +193,28 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                                                                 "Gender" : rgender,
                                                                 "State" : rstate,
                                                                 "urlToImage" : url.absoluteString,
-                                            
+                                                                
                                                                 ]
-                            
+                                
                                 self.ref.child("Users").child(user.uid).setValue(userInfo)
                                 
                                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
-                                 self.present(vc, animated: true, completion: nil)
-                                }
-                            
-                                    })
-               
-                                        })
-                    
-                            uploadTask.resume()
-                                            }
-                    
-                                                })
-            
-                                    }else{
-            
-            
-            
-            
-            
-            
+                                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(true, key: "IS_LOGIN")
+                                Globals.HideSpinner()
+                                self.present(vc, animated: true, completion: nil)
                             }
-    
+                            
+                        })
+                        
+                    })
+                    uploadTask.resume()
                 }
+            })
+            
+        }else{
+        }
+        
+    }
     
    
     

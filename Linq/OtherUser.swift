@@ -18,9 +18,11 @@ class OtherUser: UIViewController {
     var gender = ""
     var state = ""
     var bio = ""
-    var pathToImage = "https://firebasestorage.googleapis.com/v0/b/linq-506fb.appspot.com/o/Flyers%2FVzETPu4ANea2HurETO2DwIaMoT73%2F-KlPsr9smklsXVQyAj_p.jpg?alt=media&token=e0af9830-e606-43ae-b888-864f14e7e719"
+    var pathToImage = ""
     
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var BackprofileImageView: UIImageView!
+
     
     @IBOutlet weak var ageLabel: UILabel!
     
@@ -80,7 +82,10 @@ class OtherUser: UIViewController {
     
     func setupProfile() {
         visuals()
-        profileImageView.downloadImage(from: pathToImage) // not working
+        
+        profileImageView.sd_setImage(with: URL(string: "\(String(describing: pathToImage))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
+
+      //  profileImageView.downloadImage(from: pathToImage) // not working
         ageLabel.text = age
         let from = city + ", " + state
         fromLabel.text = from
@@ -91,15 +96,13 @@ class OtherUser: UIViewController {
     }
 
     func visuals() {
+        
         self.navigationItem.title = otherUserName
         self.profileImageView.clipsToBounds = true
-        self.profileImageView.layer.cornerRadius = profileImageView.frame.size.width/2.5
-        self.profileImageView.layer.borderWidth = 6
+        self.profileImageView.layer.cornerRadius = profileImageView.frame.size.width/2
+        self.profileImageView.layer.borderWidth = 4
         let blueGreenThemeColor = UIColor(red: 93/255, green: 241/255, blue: 180/255, alpha: 1.0)
         self.profileImageView.layer.borderColor = blueGreenThemeColor.cgColor
-        
-        
-        
         
     }
     

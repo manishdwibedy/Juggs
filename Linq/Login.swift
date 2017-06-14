@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-
 class Login: UIViewController {
 
     @IBOutlet weak var emailTF: UITextField!
@@ -16,7 +15,7 @@ class Login: UIViewController {
     @IBOutlet weak var logInBtn: UIButton!
     @IBOutlet weak var signUpBtn: UIButton!
     @IBAction func loggedIn(_ sender: Any) {
-    
+        Globals.ShowSpinner(testStr: "")
         guard emailTF.text != "", pwTF.text! != "" else {return}
         Auth.auth().signIn(withEmail: emailTF.text!, password: pwTF.text!) { (user, error) in
             
@@ -26,7 +25,10 @@ class Login: UIViewController {
             
             if user != nil {
                 
+                
                 let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
+                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(true, key: "IS_LOGIN")
+                Globals.HideSpinner()
                 self.present(homeVC, animated: true, completion: nil)
                 
             }
@@ -42,10 +44,17 @@ class Login: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
-
+    override func viewDidAppear(_ animated: Bool) {
+        let ISLOGIN :Bool? = Globals.sharedInstance.getValueFromUserDefaultsForKey_Path("IS_LOGIN") as? Bool
+        if ISLOGIN! {
+            let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
+            self.present(homeVC, animated: true, completion: nil)
+        }
+    }
+    
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

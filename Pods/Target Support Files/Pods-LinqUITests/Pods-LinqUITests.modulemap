@@ -1,0 +1,6 @@
+framework module Pods_LinqUITests {
+  umbrella header "Pods-LinqUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
