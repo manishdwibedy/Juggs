@@ -9,12 +9,17 @@
 import UIKit
 import Firebase
 import SDWebImage
+
+var postToArchive = [Post]()
+var timeAsString: String!
+
 class MovesTable: UITableViewController {
 
    
     
     var posts = [Post]()
     var following = [String]()
+    
     
     
     
@@ -94,7 +99,7 @@ class MovesTable: UITableViewController {
                                                 
                                                 self.posts.append(newPost)
                                             
-                                            
+                                                timeAsString = time
                                         }
                                         
                                     }
@@ -143,14 +148,46 @@ class MovesTable: UITableViewController {
     
     
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    func timer() {
+        
+        _ = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(MovesTable.removePostAppendArchive), userInfo: nil, repeats: true)
+        
+        
+        let currentDate = NSDate()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: currentDate as Date)
+        
+        
+        
     }
-    */
+    
+    func removePostAppendArchive() {
+        
+        // Do something...
+        let ref = Database.database().reference()
+        ref.child("Flyers").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
+            let posts = snapshot.value as! [String : AnyObject]
+            self.posts.removeAll()
+            for(_,value) in posts {
+                let dateStarted = value["Date"] as? String
+                let time = value["Time"] as? String
+                let amPM = value["AP"] as? String
+                
+            }
+            
+            
+            
+        })
+        
+        
+        
+        
+        print("it works")
+        
+    }
+    
 
+    
     /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

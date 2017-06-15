@@ -80,7 +80,7 @@ class NewMove: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
     
         let uid = Auth.auth().currentUser?.uid
         let ref = Database.database().reference()
-        let storage = Storage.storage().reference(forURL: "gs://linq-506fb.appspot.com")
+        let storage = Storage.storage().reference(forURL: "gs://jugg-88ab9.appspot.com")
         
         let key = ref.child("Flyers").childByAutoId().key
         let flyerRef = storage.child("Flyers").child(uid!).child("\(key).jpg")

@@ -11,8 +11,6 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 
-
-
 class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var imageView: UIImageView!
@@ -152,8 +150,8 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     
     
     func validation() {
-        
-        guard let remail = emailTF.text,let rpassword = pwTF.text,let rfirstName = firstNameTF.text, let rlastName = lastNameTF.text, let rage = ageTF.text, let rbio = bioTV.text, let rcity = cityTF.text, let rstate = stateTF.text, let rgender = genderTF.text else {
+      
+        guard let remail = emailTF.text,let rpassword = pwTF.text,var rfirstName = firstNameTF.text, let rlastName = lastNameTF.text, let rage = ageTF.text, let rbio = bioTV.text, let rcity = cityTF.text, let rstate = stateTF.text, let rgender = genderTF.text else {
             print(" Form isnt valid")
             
             return
@@ -170,8 +168,7 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                 if let user = user {
                     
                     let changeRequest = Auth.auth().currentUser!.createProfileChangeRequest()
-                    let fullName = rfirstName + " " + rlastName
-                    changeRequest.displayName = fullName
+                    rfirstName = rfirstName + " "
                     changeRequest.commitChanges(completion: nil)
                     let imageRef = self.userStorage.child("\(user.uid).jpg")
                     let data = UIImageJPEGRepresentation(self.imageView.image!, 0.5)

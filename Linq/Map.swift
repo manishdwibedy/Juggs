@@ -44,7 +44,7 @@ class Map: UIViewController {
         super.viewDidLoad()
         self.tabBarController?.tabBar.barTintColor = UIColor.black
         handleLocation()
-     //   fetchAddress()
+        fetchAddress()
         mapView.tintColor = UIColor.black
     
     }
