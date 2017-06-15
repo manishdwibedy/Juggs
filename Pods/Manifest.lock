@@ -1,4 +1,6 @@
 PODS:
+  - Firebase (4.0.2):
+    - Firebase/Core (= 4.0.2)
   - Firebase/Auth (4.0.2):
     - Firebase/Core
     - FirebaseAuth (= 4.0.0)
@@ -62,6 +64,7 @@ PODS:
   - SwiftSpinner (1.2.1)
 
 DEPENDENCIES:
+  - Firebase
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -90,6 +93,6 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SwiftSpinner: 62a28bbb4035f252a1e91b0e17fc40bdbbfa0aab
 
-PODFILE CHECKSUM: 10c64acad31f476c8217def8603f0ff402227a2e
+PODFILE CHECKSUM: 4f1739b033b4f14540a74c9cc9471b6416800e25
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.0.1

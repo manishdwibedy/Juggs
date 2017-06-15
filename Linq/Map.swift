@@ -44,7 +44,7 @@ class Map: UIViewController {
         super.viewDidLoad()
         self.tabBarController?.tabBar.barTintColor = UIColor.black
         handleLocation()
-        fetchAddress()
+       
         mapView.tintColor = UIColor.black
     
     }
@@ -163,10 +163,6 @@ class Map: UIViewController {
         mapView.delegate = self
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
-
-    
-    
-    
     }
 
     

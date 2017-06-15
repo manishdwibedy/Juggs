@@ -32,7 +32,10 @@ class Settings: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let backgroundImage = #imageLiteral(resourceName: "Backgroundloginsignup")
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
+
         self.navigationController?.navigationBar.tintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
         self.tabBarController?.tabBar.isHidden = true
     }
@@ -43,7 +46,22 @@ class Settings: UITableViewController {
     }
 
     // MARK: - Table view data source
-
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView
+//    {
+//        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 30))
+//       
+//        headerView.backgroundColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+//        
+//        let header = view as! UITableViewHeaderFooterView
+//        header.textLabel?.textColor = UIColor.white
+//
+//        return headerView
+//    }
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
+        view.tintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textColor = UIColor.white
+    }
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 3

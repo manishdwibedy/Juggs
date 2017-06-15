@@ -128,7 +128,7 @@ class MovesTable: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let moveCell = tableView.dequeueReusableCell(withIdentifier: "moveCell", for: indexPath) as! MovesTableViewCell
-        
+        moveCell.selectionStyle = .none
        // moveCell.userImageView.downloadImage(from: pathToUserImage)
         moveCell.nameLabel.text = posts[indexPath.row].author
         moveCell.likeCountLabel.text = "\(posts[indexPath.row].likes!) Likes"
@@ -143,6 +143,7 @@ class MovesTable: UITableViewController {
     
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
        performSegue(withIdentifier: "showDesc", sender: self)
     }
     

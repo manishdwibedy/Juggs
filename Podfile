@@ -4,8 +4,10 @@
 target 'Linq' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
+  
 
   # Pods for Linq
+pod 'Firebase'
 pod 'Firebase/Core'
 pod 'Firebase/Auth’
 pod 'Firebase/Database’
@@ -15,6 +17,8 @@ pod 'IQKeyboardManagerSwift'
 pod 'SDWebImage', '~>3.8'
 pod 'SwiftSpinner'
 pod 'JSQMessagesViewController'
+
+
   target 'LinqTests' do
     inherit! :search_paths
     # Pods for testing
