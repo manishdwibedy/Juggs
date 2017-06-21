@@ -25,6 +25,7 @@ class MovesTableViewCell: UITableViewCell, CLLocationManagerDelegate {
     @IBOutlet weak var likeCountLabel: UILabel!
     @IBOutlet weak var flamedBtn: UIButton!
     @IBOutlet weak var distanceAwayLabel: UILabel!
+    @IBOutlet weak var commentBtn: UIButton!
     
     var postID: String!
     var locationManager:CLLocationManager!
@@ -176,6 +177,16 @@ class MovesTableViewCell: UITableViewCell, CLLocationManagerDelegate {
         
     
     }
+    
+    @IBAction func commented(_ sender: Any) {
+
+        
+    }
+    
+    
+    
+    
+    
     
     
     

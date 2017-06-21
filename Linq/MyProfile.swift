@@ -24,39 +24,36 @@ class MyProfile: UIViewController {
     
     @IBOutlet weak var webTV: UITextView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-            fetchProfile()
+    @IBAction func showRelationships(_ sender: Any) {
+        
+        performSegue(withIdentifier: "showRelationship", sender: self)
         
     }
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+            fetchProfile()
+    }
 
     override func viewDidAppear(_ animated: Bool) {
          self.tabBarController?.tabBar.isHidden = false
     }
     
-    
     func visuals()  {
-        
         self.tabBarController?.tabBar.tintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
-        
-     
         self.profilePic.clipsToBounds = true
         self.profilePic.layer.cornerRadius = profilePic.frame.size.width/2
         self.profilePic.layer.borderWidth = 4
         let blueGreenThemeColor = UIColor.white
         self.profilePic.layer.borderColor = blueGreenThemeColor.cgColor
         self.tabBarController?.tabBar.barTintColor = UIColor.black
-        
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
         
     }
     
     func fetchProfile() {
-        
         visuals()
-        
-        
+    
         let ref = Database.database().reference()
         let uid = Auth.auth().currentUser?.uid
         
@@ -105,32 +102,20 @@ class MyProfile: UIViewController {
         })
         
         ref.removeAllObservers()
+    
     }
     
-    
-    
-    
-    
     func logout() {
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: "login")
         present(loginVC, animated: true, completion: nil)
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
         let backItem = UIBarButtonItem()
         backItem.title = ""
         navigationItem.backBarButtonItem = backItem
-    
-
     }
     
-    
-    
-   
-
 }
 

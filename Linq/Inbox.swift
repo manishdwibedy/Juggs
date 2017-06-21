@@ -19,7 +19,6 @@ class Inbox: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var sendBtn: UIButton!
     
     @IBAction func messageSent(_ sender: Any) {
-   
     sendMessage()
     
     }
@@ -33,8 +32,20 @@ class Inbox: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        visuals()
         
-       let backButton = UIButton()
+        
+        
+        
+        
+        observeMessages()
+    }
+    
+    var messages = [Message]()
+    
+    func visuals() {
+        
+        let backButton = UIButton()
         backButton.sizeToFit()
         let backImage = UIImage(named: "box")
         backButton.setImage(backImage, for: .normal)
@@ -45,12 +56,14 @@ class Inbox: UIViewController, UITableViewDelegate, UITableViewDataSource {
         spacer.width = -15
         
         self.navigationItem.leftBarButtonItems = [spacer,backBarButton]
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
         
-        observeMessages()
     }
     
-    var messages = [Message]()
-    
+    func goBack() {
+        dismiss(animated: true, completion: nil)
+    }
+           
     func observeMessages() {
         
         let ref = Database.database().reference().child("Messages")
@@ -75,26 +88,14 @@ class Inbox: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
         }, withCancel: nil )
         
-        
-    
-    
-        
     }
     
-    
-    
-    
-    
-   
-    func goBack() {
-        dismiss(animated: true, completion: nil)
-    }
     
     func sendMessage() {
         
       let ref = Database.database().reference().child("Messages")
         let childRef = ref.childByAutoId()
-        let toID = user?.userID!
+        let toID = user.userID //Empty so I used static
         let fromID = Auth.auth().currentUser!.uid
         //let time = NSNumber(value: Date().timeIntervalSinceNow)
         let time = "\(Date().timeIntervalSince1970)"
@@ -118,7 +119,7 @@ class Inbox: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
         let message = messages[indexPath.row]
-   /*     if let toId = message.toID {
+        if let toId = message.toID {
             
             let ref = Database.database().reference().child("Users").child(toId)
             ref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -133,7 +134,7 @@ class Inbox: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }, withCancel: nil)
             
             
-        } */
+        }
         
         
         
@@ -141,11 +142,5 @@ class Inbox: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
-      
     
-    
-    
-    
-    
-    
-}
+} // End Of Class

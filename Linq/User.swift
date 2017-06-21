@@ -11,7 +11,7 @@ import UIKit
 
 class User: NSObject {
     
-    var userID: String!
+    var userID: String?
     var firstName: String!
     var lastName: String!
     var age: String!

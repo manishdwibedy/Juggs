@@ -12,7 +12,7 @@ import UIKit
 import Firebase
 import FirebaseMessaging
 import IQKeyboardManagerSwift
-import CoreLocation
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -72,16 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerForRemoteNotifications()
         application.registerUserNotificationSettings(notificationSettings)
         
-        if CLLocationManager.locationServicesEnabled() {
-            switch(CLLocationManager.authorizationStatus()) {
-            case .notDetermined, .restricted, .denied:
-                print("No access")
-            case .authorizedAlways, .authorizedWhenInUse:
-                print("Access")
-            }
-        } else {
-            print("Location services are not enabled")
-        }
+        
         return true
     }
     

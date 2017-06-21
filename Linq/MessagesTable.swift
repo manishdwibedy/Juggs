@@ -13,6 +13,7 @@ class MessagesTable: UITableViewController {
 
   
      var users = [User]()
+     var messages = [Message]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,16 +35,17 @@ class MessagesTable: UITableViewController {
                 if let uid = value["UID"] as? String {
                     if uid != Auth.auth().currentUser!.uid {
                   
-                        if let userID = value["UID"] as? String,
-                        let  firstName = value["First Name"] as? String,
+                        //if let userID = value["UID"] as? String,
+                        if let  firstName = value["First Name"] as? String,
                         let lastName = value["Last Name"] as? String,
                         let imagePath = value["urlToImage"] as? String {
-                            userToShow.userID = userID
+                            userToShow.userID = uid
                             userToShow.firstName = firstName
                             userToShow.lastName = lastName
                             userToShow.imagePath = imagePath
                             self.users.append(userToShow)
-                        
+                            
+                            
                         }
                     
                     
@@ -60,11 +62,6 @@ class MessagesTable: UITableViewController {
     
     }
     
-    
-    
-    
-    
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -73,13 +70,10 @@ class MessagesTable: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return users.count
     }
     
-   
-
-        override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageCell
 
             cell.userImageView.sd_setImage(with: URL(string: "\(String(describing: users[(indexPath.row)].imagePath!))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
@@ -88,28 +82,55 @@ class MessagesTable: UITableViewController {
             let lastName = self.users[indexPath.row].lastName
             let fullName = firstName! + " " + lastName!
             cell.nameLabel?.text = fullName
-        
+            
+          //  let message = messages[indexPath.row]
+          //  cell.message = message
+        let tap = UITapGestureRecognizer(target: self, action: #selector(MessagesTable.tapGestureForPic))
+            cell.userImageView.addGestureRecognizer(tap)
+        cell.userImageView.isUserInteractionEnabled = true
+            
             return cell
     }
   
     
+    func tapGestureForPic() {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "otherVC") as! OtherUser
+        let navController = UINavigationController(rootViewController: vc)
+      //  let userIndex = self.tableView.indexPathForSelectedRow?.row
+    //    let firstName = self.users[(self.tableView.indexPathForSelectedRow?.row)!].firstName
+      //  let lastName = self.users[(self.tableView.indexPathForSelectedRow?.row)!].lastName
+       // let fullName = firstName! + " " + lastName!
+      //  vc.title = fullName
+        vc.title = "Username"
+       // vc.age = self.users[(self.tableView.indexPathForSelectedRow?.row)!].age
+        vc.discoverSwipe.isEnabled = false
+        self.present(navController, animated: true, completion: nil)
+        
+
+         // performSegue(withIdentifier: "messageToUser", sender: self)
+    }
+    
+    
     
     
    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-   
-        
+    
     let vc = self.storyboard!.instantiateViewController(withIdentifier: "messageVC") as! Inbox
     let navController = UINavigationController(rootViewController: vc)
-    //navController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "goBack")
+    
     let userIndex = tableView.indexPathForSelectedRow?.row
     let firstName = self.users[userIndex!].firstName
     let lastName = self.users[userIndex!].lastName
+    vc.user = self.users[userIndex!]
     let fullName = firstName! + " " + lastName!
     vc.title = fullName
     self.present(navController, animated: true, completion: nil)
     
     
     }
+    
+    
+    @IBAction func unwindToMessages(segue:UIStoryboardSegue) { }
     
     
     /*
@@ -151,13 +172,19 @@ class MessagesTable: UITableViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-  /*  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+ /*   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
       
-        if  segue.identifier == "myText",
-            let destination = segue.destination as? Inbox,
+        if  segue.identifier == "messageToUser" {
+            let destination = segue.destination as? OtherUser
             let userIndex = tableView.indexPathForSelectedRow?.row
-        {
-     
+            let firstName = self.users[userIndex!].firstName
+            let lastName = self.users[userIndex!].lastName
+             let fullName = firstName! + " " + lastName!
+          //  destination?.otherUserName = fullName
+            
+            
+            
+            
         }
     } */
     

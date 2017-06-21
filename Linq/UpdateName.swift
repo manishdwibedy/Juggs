@@ -8,13 +8,11 @@
 
 import UIKit
 
-class UpdateAccount: UIViewController {
+class UpdateName: UIViewController {
 
-  var fromControllerNamed = ""
-  var instructions = ""
+    
     
     @IBOutlet weak var instructionsLabel: UILabel!
-    // Name Objects
     @IBOutlet weak var firstNameTF: UITextField!
     @IBOutlet weak var lastNameTF: UITextField!
     @IBOutlet weak var saveNameBtn: UIButton!
@@ -23,24 +21,28 @@ class UpdateAccount: UIViewController {
     
     }
     
-    // Email Objects
-    @IBOutlet weak var emailLabel: UILabel!
     
-    // Bio
-    @IBOutlet weak var bioTF: UITextView!
-    
-    @IBOutlet weak var bioBtn: UIButton!
-    
-    @IBAction func saveBio(_ sender: Any) {
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       self.navigationItem.title = fromControllerNamed
-       instructionsLabel.text = instructions
+        visuals()
         
     }
+    
+    func visuals() {
+        self.title = "Name"
+        self.instructionsLabel.text = "Update your first and last name."
+        self.saveNameBtn.isEnabled = false
+        self.saveNameBtn.layer.masksToBounds = true
+        self.saveNameBtn.layer.cornerRadius = 8
+        
+        firstNameTF.text = Globals .sharedInstance.getValueFromUserDefaultsForKey("FName") as? String
+        
+        lastNameTF.text = Globals .sharedInstance.getValueFromUserDefaultsForKey("LName") as? String
 
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

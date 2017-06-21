@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class Post: NSObject {
     
@@ -27,7 +28,7 @@ class Post: NSObject {
     var peopleWhoLiked: [String] = [String]()
     var nameOfEvent: String!
     var pathToFlyer: String!
-    
-    
-    
+    var commentsForPost: [Comment]? = nil
+    var message: String!
+    var ref: DatabaseReference!
 }

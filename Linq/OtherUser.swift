@@ -11,8 +11,8 @@ import UIKit
 class OtherUser: UIViewController {
 
   
-    
-    var otherUserName = ""
+    var firstName = ""
+    var lastName = ""
     var age = ""
     var city = ""
     var gender = ""
@@ -34,10 +34,19 @@ class OtherUser: UIViewController {
     
     @IBOutlet weak var bioTV: UITextView!
     
-    @IBAction func unwind(_ sender: Any) {
+    
+    @IBOutlet var messageSwipe: UISwipeGestureRecognizer!
+    @IBAction func swiped(_ sender: Any) {
+        
+        performSegue(withIdentifier: "unwindToMessages", sender: self)
+    }
+    
+    @IBOutlet var discoverSwipe: UISwipeGestureRecognizer!
+    @IBAction func swipeToDiscover(_ sender: Any) {
+        
         performSegue(withIdentifier: "unwindToDiscover", sender: self)
     }
-  
+    
     @IBAction func settingsTapped(_ sender: Any) {
        
         
@@ -51,18 +60,25 @@ class OtherUser: UIViewController {
             print("I want to block this user")
         }
         
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+        
+        
+        let invite = UIAlertAction(title: "Invite", style: .default) { (action) in
             
             
         }
         
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            
+                }
+        
         settingsActionSheet.addAction(messageAction)
         settingsActionSheet.addAction(block)
+        settingsActionSheet.addAction(invite)
         settingsActionSheet.addAction(cancel)
         
-        let blueGreenThemeColor = UIColor(red: 93/255, green: 241/255, blue: 180/255, alpha: 1.0)
         
-        settingsActionSheet.view.tintColor = blueGreenThemeColor
+        
+        settingsActionSheet.view.tintColor = UIColor.black
         
         
         self.navigationController!.present(settingsActionSheet, animated: true, completion: nil)
@@ -71,8 +87,8 @@ class OtherUser: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupProfile()
+        visuals()
+        
     }
 
         override func didReceiveMemoryWarning() {
@@ -81,28 +97,33 @@ class OtherUser: UIViewController {
     }
     
     func setupProfile() {
-        visuals()
         
         profileImageView.sd_setImage(with: URL(string: "\(String(describing: pathToImage))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
 
       //  profileImageView.downloadImage(from: pathToImage) // not working
+        let firstName = self.firstName
+        let lastName = self.lastName
+        let fullName = firstName + lastName
+        self.navigationItem.title = fullName
         ageLabel.text = age
         let from = city + ", " + state
         fromLabel.text = from
         genderLabel.text = gender
         bioTV.text = bio
-        self.tabBarController?.tabBar.barTintColor = UIColor.black
+        
         
     }
 
     func visuals() {
         
-        self.navigationItem.title = otherUserName
+        setupProfile()
+        
         self.profileImageView.clipsToBounds = true
         self.profileImageView.layer.cornerRadius = profileImageView.frame.size.width/2
         self.profileImageView.layer.borderWidth = 4
-        let blueGreenThemeColor = UIColor(red: 93/255, green: 241/255, blue: 180/255, alpha: 1.0)
-        self.profileImageView.layer.borderColor = blueGreenThemeColor.cgColor
+        self.profileImageView.layer.borderColor = UIColor.white.cgColor
+        self.tabBarController?.tabBar.barTintColor = UIColor.black
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
         
     }
     

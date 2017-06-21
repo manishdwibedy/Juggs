@@ -57,10 +57,9 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         imageView.isUserInteractionEnabled = true
         
         let storageRef = Storage.storage().reference()
-        let urlToStorage = "gs://jugg-88ab9.appspot.com/" // gs://linq-506fb.appspot.com/
+        let urlToStorage = "gs://jugg-88ab9.appspot.com/"
         storageRef.storage.reference(forURL: urlToStorage)
         userStorage = storageRef.child("Users")
-        
         ref = Database.database().reference()
         
         delegate()

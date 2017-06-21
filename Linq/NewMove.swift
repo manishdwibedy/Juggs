@@ -114,7 +114,7 @@ class NewMove: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
                 
                 let postFeed = ["\(key)" : feed]
                 ref.child("Flyers").updateChildValues(postFeed)
-              //  AppDelegate.instance().dismissActivityIndicatos()
+              
                 
                 self.dismiss(animated: true, completion: nil)
                 

@@ -128,7 +128,7 @@ class MovesTable: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let moveCell = tableView.dequeueReusableCell(withIdentifier: "moveCell", for: indexPath) as! MovesTableViewCell
-        moveCell.selectionStyle = .none
+        moveCell.commentBtn.tag = indexPath.row
        // moveCell.userImageView.downloadImage(from: pathToUserImage)
         moveCell.nameLabel.text = posts[indexPath.row].author
         moveCell.likeCountLabel.text = "\(posts[indexPath.row].likes!) Likes"
@@ -138,28 +138,50 @@ class MovesTable: UITableViewController {
 
     //    moveCell.flyerImage.downloadImage(from: posts[(indexPath.row)].pathToImage)
         moveCell.postID = posts[indexPath.row].postID
+        moveCell.commentBtn.addTarget(self, action: #selector(MovesTable.buttonTapped(_:)), for: UIControlEvents.touchUpInside)
+
         return moveCell
     }
     
 
+    func buttonTapped(_ sender:UIButton!){
+        self.performSegue(withIdentifier: "addComment", sender: sender)
+    }
+
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
        performSegue(withIdentifier: "showDesc", sender: self)
     }
     
     
-    
-    func timer() {
+ /*
+    func setTimer() {
         
-        _ = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(MovesTable.removePostAppendArchive), userInfo: nil, repeats: true)
-        
+        // Get today's hour and mins
         
         let currentDate = NSDate()
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: currentDate as Date)
+        let minutes = calendar.component(.minute, from: currentDate as Date)
         
+        // Get hour and mins of move
+        let ref = Database.database().reference()
+        ref.child("Flyers").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
+            let posts = snapshot.value as! [String : AnyObject]
+            self.posts.removeAll()
+            for(_,value) in posts {
+                let dateStarted = value["Date"] as? String
+                let time = value["Time"] as? String
+                let amPM = value["AP"] as? String
+                
+                
+            }
+            
+            
+            
+        })
         
-        
+       ref.removeAllObservers()
     }
     
     func removePostAppendArchive() {
@@ -174,6 +196,7 @@ class MovesTable: UITableViewController {
                 let time = value["Time"] as? String
                 let amPM = value["AP"] as? String
                 
+                
             }
             
             
@@ -187,7 +210,7 @@ class MovesTable: UITableViewController {
         
     }
     
-
+ */
     
     /*
     // Override to support editing the table view.
@@ -238,11 +261,27 @@ class MovesTable: UITableViewController {
         
                 }
         
+       }else{
+        if segue.identifier == "addComment" {
+             let button: UIButton = sender as! UIButton
+            if let destination = segue.destination as? Comments {
+                let backItem = UIBarButtonItem()
+                backItem.title = ""
+                navigationItem.backBarButtonItem = backItem
+           //     let indexPath = self.tableView.indexPathForSelectedRow
+                destination.selectedPost = posts[(button.tag)]
             }
             
         }
+        
+        
+        
+        
+        }
+        
+        } // End of Prepare for Segue
             
-   }
+   } // End of class
     
 
 

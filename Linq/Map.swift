@@ -44,7 +44,7 @@ class Map: UIViewController {
         super.viewDidLoad()
         self.tabBarController?.tabBar.barTintColor = UIColor.black
         handleLocation()
-       
+        fetchAddress()
         mapView.tintColor = UIColor.black
     
     }
@@ -146,11 +146,9 @@ class Map: UIViewController {
         locationSearchTable.handleMapSearchDelegate = self
         let searchBar = resultSearchController!.searchBar
         
-        
-       
         searchBar.sizeToFit()
         
-        searchBar.placeholder = "Search for Places, People, Gender, etc"
+        searchBar.placeholder = "Search for Juggs, People, Gender, etc"
         navigationItem.titleView = resultSearchController?.searchBar
         
         resultSearchController?.hidesNavigationBarDuringPresentation = false
@@ -163,6 +161,10 @@ class Map: UIViewController {
         mapView.delegate = self
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
+
+    
+    
+    
     }
 
     

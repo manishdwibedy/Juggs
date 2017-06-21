@@ -44,18 +44,19 @@ class Description: UIViewController {
     @IBAction func share(_ sender: Any) {
    
         // image to share
-       let image = UIImage(named: "car")
+       let image = UIImage(named: pathToImage)
+        
         
         // text with it
        // let message = ""
         
         // set up activity view controller
-        let imageToShare = [ image! ]
+        let imageToShare = [ image ]
         let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
         
         // exclude some activity types from the list (optional)
-        activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook ]
+   //     activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook ]
         
         // present the view controller
         self.present(activityViewController, animated: true, completion: nil)
@@ -87,7 +88,8 @@ class Description: UIViewController {
     
     func getPostData() {
     
-        moveTitle.text = moveName
+        self.title = moveName
+       // moveTitle.text = moveName
         flyerImageView.downloadImage(from: pathToImage)
         flyerImageView.sd_setImage(with: URL(string: "\(String(describing: pathToImage))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
 

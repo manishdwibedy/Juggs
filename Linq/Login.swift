@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SDWebImage
 class Login: UIViewController {
 
     @IBOutlet weak var emailTF: UITextField!
@@ -25,16 +26,83 @@ class Login: UIViewController {
             
             if user != nil {
                 
-                
-                let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
-                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(true, key: "IS_LOGIN")
-                Globals.HideSpinner()
-                self.present(homeVC, animated: true, completion: nil)
+                self.fetchProfile()
                 
             }
         }
     }
-   
+    func fetchProfile() {
+        
+        
+        let ref = Database.database().reference()
+        let uid = Auth.auth().currentUser?.uid
+        ref.child("Users").child(uid!).queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
+            
+            if let dict = snapshot.value as? [String : AnyObject] {
+                
+                let firstName = dict["First Name"] as? String!
+                let lastName = dict["Last Name"] as? String!
+                let fullName = firstName! + " " + lastName!
+                
+                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(firstName!, key: "FName")
+
+                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(lastName!, key: "LName")
+
+                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(fullName, key: "UserName")
+                
+                let age = dict["Age"] as? String!
+                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(age!, key: "Age")
+                
+                let gender = dict["Gender"] as? String!
+                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(gender!, key: "Gender")
+                
+                let city = dict["City"] as? String!
+                
+                let state = dict["State"] as? String!
+                
+                let from = city! + ", " + state!
+                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(from, key: "Address")
+                
+                let bio = dict["Bio"] as? String!
+                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(bio!, key: "Bio")
+                
+                
+                
+//                if let profilePicURL = dict["urlToImage"] as? String {
+//                    
+//                        
+//                        let url = URL(string: profilePicURL)
+//                        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+//                            
+//                            if error != nil {
+//                                print(error!)
+//                                return
+//                                
+//                            }
+//                            
+//                            DispatchQueue.main.sync {
+//                                
+//                                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(UIImage(data: data!)!, key: "UserImage")
+//                                
+//                            }
+//                            
+//                        }).resume()
+//                }
+            }
+            Globals.HideSpinner()
+
+            let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
+            Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(true, key: "IS_LOGIN")
+            
+            self.present(homeVC, animated: true, completion: nil)
+
+        })
+        
+        ref.removeAllObservers()
+        
+
+        
+    }
     @IBAction func signUp(_ sender: Any) {
     }
     
@@ -49,8 +117,8 @@ class Login: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         let ISLOGIN :Bool? = Globals.sharedInstance.getValueFromUserDefaultsForKey_Path("IS_LOGIN") as? Bool
         if ISLOGIN! {
-            let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
-            self.present(homeVC, animated: true, completion: nil)
+             Globals.ShowSpinner(testStr: "")
+            fetchProfile()
         }
     }
     

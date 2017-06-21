@@ -23,7 +23,7 @@ class DiscoverTable: UITableViewController {
 
        self.tabBarController?.tabBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.isHidden = true
-        self.tableView.rowHeight = 350
+        self.tableView.rowHeight = 500
        retrieveUsers()
        
        /* let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
@@ -238,19 +238,15 @@ func checkFollowing(indexPath: IndexPath) {
     
        if segue.identifier == "showUser" {
             if let destination = segue.destination as? OtherUser {
-                let firstName = users[(self.tableView.indexPathForSelectedRow?.row)!].firstName
-                let lastName = users[(self.tableView.indexPathForSelectedRow?.row)!].lastName
-                let fullName = firstName! + " " + lastName!
-                destination.otherUserName = fullName
-                
-               
-                
+               destination.firstName = users[(self.tableView.indexPathForSelectedRow?.row)!].firstName
+                destination.lastName = users[(self.tableView.indexPathForSelectedRow?.row)!].lastName
                 destination.age = users[(self.tableView.indexPathForSelectedRow?.row)!].age
                 destination.city = users[(self.tableView.indexPathForSelectedRow?.row)!].city
                 destination.state = users[(self.tableView.indexPathForSelectedRow?.row)!].state
                 destination.gender = users[(self.tableView.indexPathForSelectedRow?.row)!].gender
                 destination.bio = users[(self.tableView.indexPathForSelectedRow!.row)].bio
                 destination.pathToImage = users[(self.tableView.indexPathForSelectedRow!.row)].imagePath
+                destination.messageSwipe.isEnabled = false
                 // Not Working
                 
             }

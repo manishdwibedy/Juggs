@@ -13,55 +13,73 @@ import Firebase
 
 class Settings: UITableViewController {
 
-    let instructionsArray = ["Update your first and last name.", "Here's the email you have on file.", "Enter your current password to make changes.", "Edit your bio.", "Make changes to your URL."]
+  
     
-    // Name Objects
-    var firstName = UITextField()
-    var lastName = UITextField()
-    var saveNameBtn = UIButton()
+    // Account
+    @IBOutlet weak var updateImageCell: UITableViewCell!
+    @IBOutlet weak var updateNameCell: UITableViewCell!
+    @IBOutlet weak var updateEmailCell: UITableViewCell!
+    @IBOutlet weak var updatePWCell: UITableViewCell!
+    @IBOutlet weak var updateBioCell: UITableViewCell!
+    @IBOutlet weak var updateWebsiteCell: UITableViewCell!
+    // About
+    @IBOutlet weak var privacyPolicyCell: UITableViewCell!
+    @IBOutlet weak var termsOfServiceCell: UITableViewCell!
+    @IBOutlet weak var legalCell: UITableViewCell!
+    // Actions
+    @IBOutlet weak var blockedListCell: UITableViewCell!
+    @IBOutlet weak var logOutCell: UITableViewCell!
+    @IBOutlet weak var deleteAccountCell: UITableViewCell!
     
-    // Email Objects
-    var email = UILabel()
-    
-    // Bio
-    var bio = UITextView()
-    var bioButton = UIButton()
     
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        visuals()
+        
+
+        
+    }
+
+    
+    
+    func visuals() {
+        // Background Image
         let backgroundImage = #imageLiteral(resourceName: "Backgroundloginsignup")
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
-
+        
+        // Nav & Tab Bars
         self.navigationController?.navigationBar.tintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
         self.tabBarController?.tabBar.isHidden = true
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        // Text Color
+        let purpleThemeColor = UIColor(red: 155/255, green: 89/255, blue: 182/255, alpha: 1.0)
+        self.updateImageCell.textLabel?.textColor = purpleThemeColor
+        self.updateNameCell.textLabel?.textColor = purpleThemeColor
+        self.updateEmailCell.textLabel?.textColor = purpleThemeColor
+        self.updateEmailCell.tintColor = purpleThemeColor
+        self.updatePWCell.textLabel?.textColor = purpleThemeColor
+        self.updateBioCell.textLabel?.textColor = purpleThemeColor
+        self.updateWebsiteCell.textLabel?.textColor = purpleThemeColor
+        // About
+        self.privacyPolicyCell.textLabel?.textColor = purpleThemeColor
+        self.privacyPolicyCell.tintColor = purpleThemeColor
+        self.termsOfServiceCell.textLabel?.textColor = purpleThemeColor
+        self.termsOfServiceCell.tintColor = purpleThemeColor
+        self.legalCell.textLabel?.textColor = purpleThemeColor
+        self.legalCell.tintColor = purpleThemeColor
+        // Actions
+        self.blockedListCell.textLabel?.textColor = purpleThemeColor
+        self.logOutCell.textLabel?.textColor = purpleThemeColor
+        self.deleteAccountCell.textLabel?.textColor = purpleThemeColor
     }
 
     // MARK: - Table view data source
-//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView
-//    {
-//        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 30))
-//       
-//        headerView.backgroundColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
-//        
-//        let header = view as! UITableViewHeaderFooterView
-//        header.textLabel?.textColor = UIColor.white
-//
-//        return headerView
-//    }
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
-        view.tintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
-        let header = view as! UITableViewHeaderFooterView
-        header.textLabel?.textColor = UIColor.white
-    }
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 3
@@ -272,115 +290,6 @@ class Settings: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-    
-        
-        if segue.identifier == "changeName" {
-            if let namePage = segue.destination as? UpdateAccount {
-             namePage.fromControllerNamed = "Name"
-             namePage.instructions = instructionsArray[0]
-             // Hide Email Objects
-             namePage.emailLabel = self.email
-             email.isEnabled = false
-             email.isHidden = true
-            // Hide Bio Objects
-            namePage.bioTF = self.bio
-            namePage.bioBtn = self.bioButton
-            bio.isEditable = false
-            bio.text = ""
-            bio.isHidden = true
-            }
-        }
-        
-       if segue.identifier == "updateEmail" {
-            if let emailPage = segue.destination as? UpdateAccount {
-                // Hide Name Objects
-                emailPage.fromControllerNamed = "Email"
-                emailPage.instructions = instructionsArray[1]
-                emailPage.firstNameTF = self.firstName
-                emailPage.lastNameTF = self.lastName
-                emailPage.saveNameBtn = self.saveNameBtn
-                firstName.isEnabled = false
-                firstName.isHidden = true
-                lastName.isEnabled = false
-                lastName.isHidden = true
-                saveNameBtn.isEnabled = false
-                saveNameBtn.isHidden = true
-                // Hide Bio Objects
-                emailPage.bioTF = self.bio
-                emailPage.bioBtn = self.bioButton
-                bio.isEditable = false
-                bio.text = ""
-                bio.isHidden = true
-                
-            }
-        }
-   
-        if segue.identifier == "updatePW" {
-            if let pwPage = segue.destination as? UpdateAccount {
-                pwPage.fromControllerNamed = "Password"
-                pwPage.instructions = instructionsArray[2]
-                // Hide Name Objects
-                pwPage.firstNameTF = self.firstName
-                pwPage.lastNameTF = self.lastName
-                pwPage.saveNameBtn = self.saveNameBtn
-                firstName.isEnabled = false
-                firstName.isHidden = true
-                lastName.isEnabled = false
-                lastName.isHidden = true
-                saveNameBtn.isEnabled = false
-                saveNameBtn.isHidden = true
-                // Hide Email Objects
-                pwPage.emailLabel = self.email
-                email.isEnabled = false
-                email.isHidden = true
-                // Hide Bio Objects
-                pwPage.bioTF = self.bio
-                pwPage.bioBtn = self.bioButton
-                bio.isEditable = false
-                bio.text = ""
-                bio.isHidden = true
-                
-
-            }
-        }
-        
-        if segue.identifier == "updateBio" {
-            if let bioPage = segue.destination as? UpdateAccount {
-                bioPage.fromControllerNamed = "Biography"
-                bioPage.instructions = instructionsArray[3]
-                // Hide Name Objects
-                bioPage.firstNameTF = self.firstName
-                bioPage.lastNameTF = self.lastName
-                bioPage.saveNameBtn = self.saveNameBtn
-                firstName.isEnabled = false
-                firstName.isHidden = true
-                lastName.isEnabled = false
-                lastName.isHidden = true
-                saveNameBtn.isEnabled = false
-                saveNameBtn.isHidden = true
-                // Hide Email Objects
-                bioPage.emailLabel = self.email
-                email.isEnabled = false
-                email.isHidden = true
-                
-
-            }
-        }
-
-        if segue.identifier == "updateWebsite" {
-            if let webPage = segue.destination as? UpdateAccount {
-                webPage.fromControllerNamed = "Website"
-                webPage.instructions = instructionsArray[4]
-               /* webPage.firstNameTF.isEnabled = false
-                webPage.lastNameTF.isEnabled = false
-                webPage.firstNameTF.isHidden = true
-                webPage.lastNameTF.isHidden = true
-                webPage.saveNameBtn.isEnabled = false
-                webPage.saveNameBtn.isHidden = true */
-
-            }
-        } 
-    
     
         
     }

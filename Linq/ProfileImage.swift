@@ -20,83 +20,32 @@ class ProfileImage: UIViewController,UIImagePickerControllerDelegate, UINavigati
     
     @IBAction func saved(_ sender: Any) {
     
-       // Needs to update profile image in Firebase
-    
+       
+        
+        
+        
+        
     }
 
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageView.sd_setImage(with: URL(string: "\(String(describing: Globals .sharedInstance.getValueFromUserDefaultsForKey("UserImage")))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = imageView.frame.size.width/2
+        imageView.layer.borderWidth = 4
+        let blueGreenThemeColor = UIColor.white
+        imageView.layer.borderColor = blueGreenThemeColor.cgColor
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(SignUp.tappedMe))
         imageView.addGestureRecognizer(tap)
         imageView.isUserInteractionEnabled = true
-        saveButton.isHidden = true
+        saveButton.isEnabled = false
     }
 
-
-   /* func fetchCurrentUserInfo() {
-        
-        let ref = Database.database().reference()
-        let uid = Auth.auth().currentUser?.uid
-        
-        ref.child("Users").child(uid!).queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
-            
-            if let dict = snapshot.value as? [String : AnyObject] {
-                
-              /*  let firstName = dict["First Name"] as? String!
-                let lastName = dict["Last Name"] as? String!
-                let fullName = firstName! + " " + lastName!
-                self.title = fullName
-                let age = dict["Age"] as? String!
-                self.ageLabel.text = age
-                let gender = dict["Gender"] as? String!
-                self.genderLabel.text = gender
-                let city = dict["City"] as? String!
-                let state = dict["State"] as? String!
-                let from = city! + ", " + state!
-                self.fromLabel.text = from
-                let bio = dict["Bio"] as? String!
-                self.bioTV.text = bio
-                 */
-                
-                if let profilePicURL = dict["urlToImage"] as? String {
-                    
-                    let url = URL(string: profilePicURL)
-                    URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-                        
-                        if error != nil {
-                            print(error!)
-                            return
-                            
-                        }
-                        
-                        DispatchQueue.main.sync {
-                            self.imageView.image = UIImage(data: data!)
-                            
-                        }
-                        
-                    }).resume()
-                }
-                
-            }
-            
-            
-        })
-        ref.removeAllObservers()
-        
-    } */
     
     
-    
-    
-    
-    
-    
-    
-    
-
     /////////   TAP PLACEHOLDER PHOTO TO SELECT AN IMAGE  /////////
     
     func tappedMe() {
@@ -169,11 +118,12 @@ class ProfileImage: UIViewController,UIImagePickerControllerDelegate, UINavigati
         
         imageView.image = selectedImage
         
+        saveButton.isEnabled = true
         // Dismiss the picker.
         
         dismiss(animated: true, completion: nil)
         
-        saveButton.isHidden = false
+        
         
     }
     /*

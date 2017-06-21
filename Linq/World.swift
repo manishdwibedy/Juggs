@@ -37,7 +37,7 @@ class World: UIViewController {
         segmentedControl.selectedSegmentIndex = 1
         self.tabBarController?.tabBar.tintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
           self.tabBarController?.tabBar.barTintColor = UIColor.white
-        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
 
         // Do any additional setup after loading the view.
     }

@@ -11,11 +11,11 @@
 		178741981EF1453700FB1B01 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178741971EF1453700FB1B01 /* Globals.swift */; };
 		178741A41EF17D7300FB1B01 /* Inbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178741A31EF17D7300FB1B01 /* Inbox.swift */; };
 		178741A61EF17DAB00FB1B01 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178741A51EF17DAB00FB1B01 /* Message.swift */; };
-		178741CB1EF2D1C700FB1B01 /* CommentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178741CA1EF2D1C700FB1B01 /* CommentTableViewController.swift */; };
 		7E43BB5217089F9C4EEE2E8C /* Pods_Linq.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21E4CEDE691B9F6B277FD50 /* Pods_Linq.framework */; };
 		884FDEC32C3676CE14F292D6 /* Pods_LinqUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6772CE4CE681BF3EBE99DB78 /* Pods_LinqUITests.framework */; };
 		D10420951EDBAFDF00008458 /* Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10420941EDBAFDF00008458 /* Description.swift */; };
 		D10420971EDBB2FA00008458 /* Desc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10420961EDBB2FA00008458 /* Desc.swift */; };
+		D114F19F1EF728AA00DE6AD2 /* UpdatePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = D114F19E1EF728AA00DE6AD2 /* UpdatePassword.swift */; };
 		D1177BDD1EE45B5F005C5B85 /* ArchiveTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1177BDC1EE45B5F005C5B85 /* ArchiveTable.swift */; };
 		D1177BDF1EE45B7B005C5B85 /* ArchiveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1177BDE1EE45B7B005C5B85 /* ArchiveCell.swift */; };
 		D1177BE11EE45B8F005C5B85 /* Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1177BE01EE45B8F005C5B85 /* Archive.swift */; };
@@ -24,6 +24,9 @@
 		D1177BE71EE5F24F005C5B85 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1177BE61EE5F24F005C5B85 /* ForgotPassword.swift */; };
 		D1177BE91EE61E55005C5B85 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1177BE81EE61E55005C5B85 /* MapKit.framework */; };
 		D11AFBD11EEDBE5F002CF979 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D11AFBD01EEDBE5F002CF979 /* GoogleService-Info.plist */; };
+		D12F4AFA1EFA1DE100581BBC /* FollowingTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12F4AF91EFA1DE100581BBC /* FollowingTable.swift */; };
+		D12F4AFD1EFA1EAB00581BBC /* FollowersTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12F4AFC1EFA1EAB00581BBC /* FollowersTable.swift */; };
+		D13696B51EFA116A004D87FF /* Relations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13696B41EFA1168004D87FF /* Relations.swift */; };
 		D1444CB91EE2E902004D6D11 /* OtherUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1444CB81EE2E902004D6D11 /* OtherUser.swift */; };
 		D153B27F1EDC493400C106DA /* NotificationBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D153B27E1EDC493400C106DA /* NotificationBox.swift */; };
 		D153B2831EDC50F200C106DA /* MessagesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D153B2821EDC50F200C106DA /* MessagesTable.swift */; };
@@ -31,7 +34,9 @@
 		D153B28A1EDCE29200C106DA /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = D153B2891EDCE29200C106DA /* Map.swift */; };
 		D153B28C1EDCEEFE00C106DA /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D153B28B1EDCEEFE00C106DA /* LocationSearchTable.swift */; };
 		D155D89E1EE1F3110040C153 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D155D89D1EE1F3110040C153 /* ProfileImage.swift */; };
-		D155D8A01EE2003B0040C153 /* UpdateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D155D89F1EE2003B0040C153 /* UpdateAccount.swift */; };
+		D155D8A01EE2003B0040C153 /* UpdateName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D155D89F1EE2003B0040C153 /* UpdateName.swift */; };
+		D187EDE41EF737810090E8D7 /* UpdateBio.swift in Sources */ = {isa = PBXBuildFile; fileRef = D187EDE31EF737810090E8D7 /* UpdateBio.swift */; };
+		D187EDE61EF73CBE0090E8D7 /* UpdateWebsite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D187EDE51EF73CBD0090E8D7 /* UpdateWebsite.swift */; };
 		D1A1FD181ED3C90300C8BF4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A1FD171ED3C90300C8BF4E /* AppDelegate.swift */; };
 		D1A1FD1C1ED3C90300C8BF4E /* MyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A1FD1B1ED3C90300C8BF4E /* MyProfile.swift */; };
 		D1A1FD1F1ED3C90300C8BF4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A1FD1D1ED3C90300C8BF4E /* Main.storyboard */; };
@@ -50,6 +55,10 @@
 		D1A1FD651ED651F800C8BF4E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A1FD641ED651F800C8BF4E /* Post.swift */; };
 		D1A1FD671ED929E500C8BF4E /* MovesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A1FD661ED929DA00C8BF4E /* MovesTable.swift */; };
 		D1A1FD691ED92D6700C8BF4E /* MovesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A1FD681ED92D6700C8BF4E /* MovesTableViewCell.swift */; };
+		D1AE91AB1EF8093D0057BD09 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AE91AA1EF8093D0057BD09 /* Comment.swift */; };
+		D1AE91AD1EF80F250057BD09 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AE91AC1EF80F250057BD09 /* Comments.swift */; };
+		D1AE91AF1EF835B30057BD09 /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AE91AE1EF835B30057BD09 /* CommentsCell.swift */; };
+		D1FA12A31EF72147005E7715 /* UpdateEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FA12A21EF72147005E7715 /* UpdateEmail.swift */; };
 		D1FF3AC71EE3B1D000C47640 /* Invitations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FF3AC61EE3B1D000C47640 /* Invitations.swift */; };
 		D1FF3ACA1EE3B6AC00C47640 /* InvitationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FF3AC91EE3B6AC00C47640 /* InvitationCell.swift */; };
 		D1FF3ACC1EE3B70200C47640 /* Invitation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FF3ACB1EE3B70200C47640 /* Invitation.swift */; };
@@ -77,7 +86,6 @@
 		178741971EF1453700FB1B01 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		178741A31EF17D7300FB1B01 /* Inbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Inbox.swift; sourceTree = "<group>"; };
 		178741A51EF17DAB00FB1B01 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		178741CA1EF2D1C700FB1B01 /* CommentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewController.swift; sourceTree = "<group>"; };
 		25C4DAD3AA65FAE4A7C9F089 /* Pods-LinqTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinqTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LinqTests/Pods-LinqTests.release.xcconfig"; sourceTree = "<group>"; };
 		6772CE4CE681BF3EBE99DB78 /* Pods_LinqUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinqUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A60E25F1E62E7C2B1CE1773 /* Pods-LinqUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinqUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LinqUITests/Pods-LinqUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -87,6 +95,7 @@
 		B179201C0DF2E50140BAA556 /* Pods-Linq.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Linq.release.xcconfig"; path = "Pods/Target Support Files/Pods-Linq/Pods-Linq.release.xcconfig"; sourceTree = "<group>"; };
 		D10420941EDBAFDF00008458 /* Description.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Description.swift; sourceTree = "<group>"; };
 		D10420961EDBB2FA00008458 /* Desc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Desc.swift; sourceTree = "<group>"; };
+		D114F19E1EF728AA00DE6AD2 /* UpdatePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePassword.swift; sourceTree = "<group>"; };
 		D1177BDC1EE45B5F005C5B85 /* ArchiveTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchiveTable.swift; sourceTree = "<group>"; };
 		D1177BDE1EE45B7B005C5B85 /* ArchiveCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchiveCell.swift; sourceTree = "<group>"; };
 		D1177BE01EE45B8F005C5B85 /* Archive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Archive.swift; sourceTree = "<group>"; };
@@ -96,6 +105,9 @@
 		D1177BE81EE61E55005C5B85 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D11AFBD01EEDBE5F002CF979 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D11AFBD21EEF7E0E002CF979 /* Linq.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Linq.entitlements; sourceTree = "<group>"; };
+		D12F4AF91EFA1DE100581BBC /* FollowingTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTable.swift; sourceTree = "<group>"; };
+		D12F4AFC1EFA1EAB00581BBC /* FollowersTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersTable.swift; sourceTree = "<group>"; };
+		D13696B41EFA1168004D87FF /* Relations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relations.swift; sourceTree = "<group>"; };
 		D1444CB81EE2E902004D6D11 /* OtherUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherUser.swift; sourceTree = "<group>"; };
 		D153B27E1EDC493400C106DA /* NotificationBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationBox.swift; sourceTree = "<group>"; };
 		D153B2821EDC50F200C106DA /* MessagesTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesTable.swift; sourceTree = "<group>"; };
@@ -103,7 +115,9 @@
 		D153B2891EDCE29200C106DA /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		D153B28B1EDCEEFE00C106DA /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		D155D89D1EE1F3110040C153 /* ProfileImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
-		D155D89F1EE2003B0040C153 /* UpdateAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAccount.swift; sourceTree = "<group>"; };
+		D155D89F1EE2003B0040C153 /* UpdateName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateName.swift; sourceTree = "<group>"; };
+		D187EDE31EF737810090E8D7 /* UpdateBio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBio.swift; sourceTree = "<group>"; };
+		D187EDE51EF73CBD0090E8D7 /* UpdateWebsite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateWebsite.swift; sourceTree = "<group>"; };
 		D1A1FD141ED3C90300C8BF4E /* Linq.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Linq.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1A1FD171ED3C90300C8BF4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1A1FD1B1ED3C90300C8BF4E /* MyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfile.swift; sourceTree = "<group>"; };
@@ -128,6 +142,10 @@
 		D1A1FD641ED651F800C8BF4E /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D1A1FD661ED929DA00C8BF4E /* MovesTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovesTable.swift; sourceTree = "<group>"; };
 		D1A1FD681ED92D6700C8BF4E /* MovesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovesTableViewCell.swift; sourceTree = "<group>"; };
+		D1AE91AA1EF8093D0057BD09 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		D1AE91AC1EF80F250057BD09 /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
+		D1AE91AE1EF835B30057BD09 /* CommentsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
+		D1FA12A21EF72147005E7715 /* UpdateEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEmail.swift; sourceTree = "<group>"; };
 		D1FF3AC61EE3B1D000C47640 /* Invitations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invitations.swift; sourceTree = "<group>"; };
 		D1FF3AC91EE3B6AC00C47640 /* InvitationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitationCell.swift; sourceTree = "<group>"; };
 		D1FF3ACB1EE3B70200C47640 /* Invitation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invitation.swift; sourceTree = "<group>"; };
@@ -200,6 +218,7 @@
 				D1177BE21EE46FB2005C5B85 /* Request.swift */,
 				D1177BE01EE45B8F005C5B85 /* Archive.swift */,
 				178741A51EF17DAB00FB1B01 /* Message.swift */,
+				D1AE91AA1EF8093D0057BD09 /* Comment.swift */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -209,12 +228,31 @@
 			children = (
 				D1A1FD661ED929DA00C8BF4E /* MovesTable.swift */,
 				D1A1FD681ED92D6700C8BF4E /* MovesTableViewCell.swift */,
-				178741CA1EF2D1C700FB1B01 /* CommentTableViewController.swift */,
 				D153B2881EDCE22900C106DA /* World Tab */,
-				D1A1FD1B1ED3C90300C8BF4E /* MyProfile.swift */,
 				D1FF3AC81EE3B65C00C47640 /* Box */,
+				D12F4AFB1EFA1E3F00581BBC /* Profiles */,
 			);
 			name = TABS;
+			sourceTree = "<group>";
+		};
+		D12F4AFB1EFA1E3F00581BBC /* Profiles */ = {
+			isa = PBXGroup;
+			children = (
+				D1A1FD1B1ED3C90300C8BF4E /* MyProfile.swift */,
+				D13696B41EFA1168004D87FF /* Relations.swift */,
+				D12F4AF91EFA1DE100581BBC /* FollowingTable.swift */,
+				D12F4AFC1EFA1EAB00581BBC /* FollowersTable.swift */,
+				D12F4AFE1EFA1EC400581BBC /* Other User */,
+			);
+			name = Profiles;
+			sourceTree = "<group>";
+		};
+		D12F4AFE1EFA1EC400581BBC /* Other User */ = {
+			isa = PBXGroup;
+			children = (
+				D1444CB81EE2E902004D6D11 /* OtherUser.swift */,
+			);
+			name = "Other User";
 			sourceTree = "<group>";
 		};
 		D153B2881EDCE22900C106DA /* World Tab */ = {
@@ -223,7 +261,6 @@
 				D1A1FD5B1ED5F5E400C8BF4E /* World.swift */,
 				D1A1FD5F1ED6143200C8BF4E /* DiscoverTable.swift */,
 				D1A1FD5D1ED606B000C8BF4E /* CellForDiscover.swift */,
-				D1444CB81EE2E902004D6D11 /* OtherUser.swift */,
 				D153B2891EDCE29200C106DA /* Map.swift */,
 				D153B28B1EDCEEFE00C106DA /* LocationSearchTable.swift */,
 			);
@@ -235,7 +272,11 @@
 			children = (
 				D1A1FD4D1ED4B9EF00C8BF4E /* Settings.swift */,
 				D155D89D1EE1F3110040C153 /* ProfileImage.swift */,
-				D155D89F1EE2003B0040C153 /* UpdateAccount.swift */,
+				D155D89F1EE2003B0040C153 /* UpdateName.swift */,
+				D1FA12A21EF72147005E7715 /* UpdateEmail.swift */,
+				D114F19E1EF728AA00DE6AD2 /* UpdatePassword.swift */,
+				D187EDE31EF737810090E8D7 /* UpdateBio.swift */,
+				D187EDE51EF73CBD0090E8D7 /* UpdateWebsite.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -271,6 +312,8 @@
 				D10420931EDBAF8400008458 /* TABS */,
 				D155D89C1EE1F2BC0040C153 /* Settings */,
 				D10420941EDBAFDF00008458 /* Description.swift */,
+				D1AE91AC1EF80F250057BD09 /* Comments.swift */,
+				D1AE91AE1EF835B30057BD09 /* CommentsCell.swift */,
 				D1A1FD4F1ED5154A00C8BF4E /* NewMove.swift */,
 				D1177BDE1EE45B7B005C5B85 /* ArchiveCell.swift */,
 				D1177BDC1EE45B5F005C5B85 /* ArchiveTable.swift */,
@@ -404,9 +447,8 @@
 				TargetAttributes = {
 					D1A1FD131ED3C90300C8BF4E = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = TDK2DN7W4N;
 						LastSwiftMigration = 0830;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -526,7 +568,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		3FEC3507BDBA1F55BC4A65BA /* [CP] Check Pods Manifest.lock */ = {
@@ -541,7 +583,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6B14B204C933C337BC51C9A4 /* [CP] Check Pods Manifest.lock */ = {
@@ -556,7 +598,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		84969DC8A0098C16BDE3E473 /* [CP] Embed Pods Frameworks */ = {
@@ -627,24 +669,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1FF3ACA1EE3B6AC00C47640 /* InvitationCell.swift in Sources */,
+				D187EDE41EF737810090E8D7 /* UpdateBio.swift in Sources */,
 				D153B27F1EDC493400C106DA /* NotificationBox.swift in Sources */,
-				178741CB1EF2D1C700FB1B01 /* CommentTableViewController.swift in Sources */,
 				D1A1FD4E1ED4B9EF00C8BF4E /* Settings.swift in Sources */,
 				178741A41EF17D7300FB1B01 /* Inbox.swift in Sources */,
 				D1A1FD5E1ED606B000C8BF4E /* CellForDiscover.swift in Sources */,
 				D1177BE71EE5F24F005C5B85 /* ForgotPassword.swift in Sources */,
 				D1177BE31EE46FB2005C5B85 /* Request.swift in Sources */,
+				D1AE91AB1EF8093D0057BD09 /* Comment.swift in Sources */,
 				D1A1FD1C1ED3C90300C8BF4E /* MyProfile.swift in Sources */,
+				D12F4AFA1EFA1DE100581BBC /* FollowingTable.swift in Sources */,
 				D1A1FD501ED5154A00C8BF4E /* NewMove.swift in Sources */,
+				D114F19F1EF728AA00DE6AD2 /* UpdatePassword.swift in Sources */,
 				178741981EF1453700FB1B01 /* Globals.swift in Sources */,
 				D1FF3ACE1EE3BBB700C47640 /* RequestCell.swift in Sources */,
 				D153B28C1EDCEEFE00C106DA /* LocationSearchTable.swift in Sources */,
-				D155D8A01EE2003B0040C153 /* UpdateAccount.swift in Sources */,
+				D13696B51EFA116A004D87FF /* Relations.swift in Sources */,
+				D155D8A01EE2003B0040C153 /* UpdateName.swift in Sources */,
 				D1A1FD651ED651F800C8BF4E /* Post.swift in Sources */,
+				D1AE91AD1EF80F250057BD09 /* Comments.swift in Sources */,
 				D1177BE11EE45B8F005C5B85 /* Archive.swift in Sources */,
 				D1A1FD671ED929E500C8BF4E /* MovesTable.swift in Sources */,
 				D1177BDF1EE45B7B005C5B85 /* ArchiveCell.swift in Sources */,
 				D1A1FD601ED6143200C8BF4E /* DiscoverTable.swift in Sources */,
+				D1AE91AF1EF835B30057BD09 /* CommentsCell.swift in Sources */,
 				D1A1FD5C1ED5F5E400C8BF4E /* World.swift in Sources */,
 				D153B28A1EDCE29200C106DA /* Map.swift in Sources */,
 				D153B2851EDC514E00C106DA /* MessageCell.swift in Sources */,
@@ -652,10 +700,13 @@
 				D1A1FD181ED3C90300C8BF4E /* AppDelegate.swift in Sources */,
 				D1A1FD691ED92D6700C8BF4E /* MovesTableViewCell.swift in Sources */,
 				D153B2831EDC50F200C106DA /* MessagesTable.swift in Sources */,
+				D1FA12A31EF72147005E7715 /* UpdateEmail.swift in Sources */,
+				D187EDE61EF73CBE0090E8D7 /* UpdateWebsite.swift in Sources */,
 				D10420951EDBAFDF00008458 /* Description.swift in Sources */,
 				D10420971EDBB2FA00008458 /* Desc.swift in Sources */,
 				D155D89E1EE1F3110040C153 /* ProfileImage.swift in Sources */,
 				D1A1FD4A1ED460A700C8BF4E /* Login.swift in Sources */,
+				D12F4AFD1EFA1EAB00581BBC /* FollowersTable.swift in Sources */,
 				D1444CB91EE2E902004D6D11 /* OtherUser.swift in Sources */,
 				D1177BE51EE4B429005C5B85 /* ArchiveDescription.swift in Sources */,
 				D1FF3AC71EE3B1D000C47640 /* Invitations.swift in Sources */,
@@ -819,14 +870,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Linq/Linq.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = TDK2DN7W4N;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Linq/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bruce.211;
+				PRODUCT_BUNDLE_IDENTIFIER = com.QuintonAskew.Jugg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -837,14 +889,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Linq/Linq.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = TDK2DN7W4N;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Linq/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bruce.211;
+				PRODUCT_BUNDLE_IDENTIFIER = com.QuintonAskew.Jugg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
