@@ -19,7 +19,7 @@ class Description: UIViewController {
     @IBOutlet weak var descriptionTV: UITextView!
     @IBOutlet weak var requestBtn: UIButton!
     @IBAction func request(_ sender: Any) {
-  
+        
         let notification = UNMutableNotificationContent()
         notification.title = "Request"
         notification.subtitle = "You have recieved a request to join!"
@@ -42,13 +42,13 @@ class Description: UIViewController {
     
     
     @IBAction func share(_ sender: Any) {
-   
+        
         // image to share
-       let image = UIImage(named: pathToImage)
+        let image = UIImage(named: pathToImage)
         
         
         // text with it
-       // let message = ""
+        // let message = ""
         
         // set up activity view controller
         let imageToShare = [ image ]
@@ -56,15 +56,15 @@ class Description: UIViewController {
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
         
         // exclude some activity types from the list (optional)
-   //     activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook ]
+        //     activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook ]
         
         // present the view controller
         self.present(activityViewController, animated: true, completion: nil)
         
-    
+        
     }
     
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +73,7 @@ class Description: UIViewController {
         initNotificationSetupCheck()
     }
     
-
+    
     
     func initNotificationSetupCheck() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert])
@@ -87,35 +87,35 @@ class Description: UIViewController {
     }
     
     func getPostData() {
-    
+        
         self.title = moveName
-       // moveTitle.text = moveName
+        // moveTitle.text = moveName
         flyerImageView.downloadImage(from: pathToImage)
         flyerImageView.sd_setImage(with: URL(string: "\(String(describing: pathToImage))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
-
+        
         let timePlusAMPM = time + " " + amOrPM
         timeLabel.text = timePlusAMPM
         dateLabel.text = date
         
         descriptionTV.text = descriptionText
-   /*     if(privatOrPublic == "true") {
-            
-            pOpLabel.text = "This Move is Private!"
-            
-        }else{
-            
-            pOpLabel.text = "This Move is Public!"
-            requestBtn.isHidden = true
-        }
+        /*     if(privatOrPublic == "true") {
+         
+         pOpLabel.text = "This Move is Private!"
+         
+         }else{
+         
+         pOpLabel.text = "This Move is Public!"
+         requestBtn.isHidden = true
+         }
+         
+         descriptionTV.text = descriptionText
+         
+         }   */
         
-        descriptionTV.text = descriptionText
         
-    }   */
- 
-       
     }
     
-   
+    
     func visuals() {
         
         flyerImageView.layer.masksToBounds = true
@@ -138,4 +138,4 @@ class Description: UIViewController {
     
     
     
-    }
+}

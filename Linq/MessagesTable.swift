@@ -14,6 +14,8 @@ class MessagesTable: UITableViewController {
   
      var users = [User]()
      var messages = [Message]()
+    var messagesDict = [String : Message]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +24,9 @@ class MessagesTable: UITableViewController {
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
 
-       fetchUsers()
+       //fetchUsers()
+     // tableView.register(MessageCell.self, forCellReuseIdentifier: "messageCell")
+         observeMessages()
     }
 
     func fetchUsers() {
@@ -31,7 +35,8 @@ class MessagesTable: UITableViewController {
             let users = snapshot.value as! [String : AnyObject]
             self.users.removeAll()
             for(_, value) in users {
-                let userToShow = User()
+                let dict = [String : AnyObject]()
+                let userToShow = User(dictionary: dict)
                 if let uid = value["UID"] as? String {
                     if uid != Auth.auth().currentUser!.uid {
                   
@@ -62,6 +67,40 @@ class MessagesTable: UITableViewController {
     
     }
     
+    func observeMessages() {
+        
+        let ref = Database.database().reference().child("Messages")
+        ref.observe(.childAdded, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String : AnyObject] {
+                
+                let message = Message(dictionary: dictionary)
+                message.setValuesForKeys(dictionary)
+              //  self.messages.append(message)
+                
+                if let toID = message.toID {
+                    self.messagesDict[toID] = message
+                    self.messages = Array(self.messagesDict.values)
+                    self.messages.sort(by: { (message1, message2) -> Bool in
+                        return (message1.time?.intValue)! > (message2.time?.intValue)!
+                    })
+                }
+                
+                DispatchQueue.main.async(execute: {
+                    self.tableView.reloadData()
+                    
+                })
+                
+            }
+            
+            
+            
+        }, withCancel: nil )
+        
+    }
+    
+
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -70,26 +109,15 @@ class MessagesTable: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return messages.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageCell
-
-            cell.userImageView.sd_setImage(with: URL(string: "\(String(describing: users[(indexPath.row)].imagePath!))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
         
-            let firstName = self.users[indexPath.row].firstName
-            let lastName = self.users[indexPath.row].lastName
-            let fullName = firstName! + " " + lastName!
-            cell.nameLabel?.text = fullName
-            
-          //  let message = messages[indexPath.row]
-          //  cell.message = message
-        let tap = UITapGestureRecognizer(target: self, action: #selector(MessagesTable.tapGestureForPic))
-            cell.userImageView.addGestureRecognizer(tap)
-        cell.userImageView.isUserInteractionEnabled = true
-            
-            return cell
+        let message = messages[indexPath.row]
+        cell.message = message
+        return cell
     }
   
     
@@ -114,21 +142,44 @@ class MessagesTable: UITableViewController {
     
     
    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let message = messages[indexPath.row]
     
-    let vc = self.storyboard!.instantiateViewController(withIdentifier: "messageVC") as! Inbox
-    let navController = UINavigationController(rootViewController: vc)
+    guard let chatPartnerId = message.chatPartnerId() else {
+        return
+    }
+
+    let ref = Database.database().reference().child("Users").child(chatPartnerId)
+    ref.observeSingleEvent(of: .value, with: { (snapshot) in
+        guard let dictionary = snapshot.value as? [String: AnyObject] else {
+            return
+        }
+        
+        let user = User(dictionary: dictionary)
+        user.userID = chatPartnerId
+        self.showChatControllerForUser(user)
+        
+    }, withCancel: nil)
+
     
-    let userIndex = tableView.indexPathForSelectedRow?.row
-    let firstName = self.users[userIndex!].firstName
-    let lastName = self.users[userIndex!].lastName
-    vc.user = self.users[userIndex!]
-    let fullName = firstName! + " " + lastName!
-    vc.title = fullName
-    self.present(navController, animated: true, completion: nil)
+//    let vc = self.storyboard!.instantiateViewController(withIdentifier: "messageVC") as! Inbox
+//    let navController = UINavigationController(rootViewController: vc)
+//    
+//    //let userIndex = tableView.indexPathForSelectedRow?.row
+//    //let firstName = self.messages[userIndex!]
+//    //let lastName = self.users[userIndex!].lastName
+//    //vc.user = self.users[userIndex!]
+//    //let fullName = firstName! + " " + lastName!
+//    //vc.title = fullName
+//    self.present(navController, animated: true, completion: nil)
     
     
     }
-    
+    func showChatControllerForUser(_ user: User) {
+        let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+        chatLogController.user = user
+        navigationController?.pushViewController(chatLogController, animated: true)
+    }
+
     
     @IBAction func unwindToMessages(segue:UIStoryboardSegue) { }
     
@@ -189,4 +240,11 @@ class MessagesTable: UITableViewController {
     } */
     
 
+}
+extension UIColor {
+    
+    convenience init(r: CGFloat, g: CGFloat, b: CGFloat) {
+        self.init(red: r/255, green: g/255, blue: b/255, alpha: 1)
+    }
+    
 }

@@ -20,6 +20,14 @@ class User: NSObject {
     var state: String!
     var bio: String!
     var imagePath: String!
+    
+    init(dictionary: [String: AnyObject]) {
+        userID = dictionary["id"] as? String
+        firstName = dictionary["name"] as? String
+        //self.email = dictionary["email"] as? String
+        imagePath = dictionary["profileImageUrl"] as? String
+    }
+
    // var gradientView: UIView!
     //let locationManager = CLLocationManager()
     //var userLatitude:CLLocationDegrees! = 0

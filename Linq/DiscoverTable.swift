@@ -53,7 +53,8 @@ class DiscoverTable: UITableViewController {
                 
                 if let uid = value["UID"] as? String {
                     if uid != Auth.auth().currentUser!.uid {
-                        let userToShow = User()
+                        let dict = [String : AnyObject]()
+                        let userToShow = User(dictionary:dict)
                         if let userID = value["UID"] as? String,
                             let  firstName = value["First Name"] as? String,
                             let lastName = value["Last Name"] as? String,

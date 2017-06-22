@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UpdateName: UIViewController {
+class UpdateName: UIViewController, UITextFieldDelegate {
 
     
     
@@ -25,6 +25,7 @@ class UpdateName: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        firstNameTF.delegate = self
         visuals()
         
     }
@@ -42,6 +43,9 @@ class UpdateName: UIViewController {
 
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        saveNameBtn.isEnabled = true
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -31,6 +31,7 @@ class MyProfile: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+            Globals.ShowSpinner(testStr: "")
             fetchProfile()
     }
 
@@ -98,10 +99,10 @@ class MyProfile: UIViewController {
                 
             }
             
-            
         })
         
         ref.removeAllObservers()
+        Globals.HideSpinner()
     
     }
     

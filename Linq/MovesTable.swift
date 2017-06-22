@@ -31,12 +31,18 @@ class MovesTable: UITableViewController {
         self.navigationController?.navigationBar.tintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
         self.tabBarController?.tabBar.barTintColor = UIColor.black
         self.tabBarController?.tabBar.tintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
-       self.tableView.reloadData()
+       Globals.ShowSpinner(testStr: "")
        fetchPosts()
         
         let backgroundImage = #imageLiteral(resourceName: "Backgroundloginsignup")
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
+        
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl?.addTarget(self, action: #selector(MovesTable.fetchPosts), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshControl!) // not required when using UITableViewController
+
        
     }
 
@@ -48,7 +54,7 @@ class MovesTable: UITableViewController {
     */
     
     func fetchPosts() {
-        Globals.ShowSpinner(testStr: "")
+       
         let ref = Database.database().reference()
       //  let userID : String = (Auth.auth().currentUser?.uid)!
         
@@ -112,9 +118,10 @@ class MovesTable: UITableViewController {
                         })
                           self.tableView.reloadData()
         ref.removeAllObservers()
+        refreshControl?.endRefreshing()
     }
     
-        
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

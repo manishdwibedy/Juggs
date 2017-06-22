@@ -26,10 +26,13 @@ class Inbox: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
     @IBOutlet weak var tableView: UITableView!
     
-    
-    
-    var user: User!
-    
+    var user: User? {
+        didSet {
+            navigationItem.title = user?.firstName
+            
+            observeMessages()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         visuals()
@@ -65,29 +68,50 @@ class Inbox: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
            
     func observeMessages() {
+        guard let uid = Auth.auth().currentUser?.uid, let toId = user?.userID else {
+            return
+        }
         
-        let ref = Database.database().reference().child("Messages")
-        ref.observe(.childAdded, with: { (snapshot) in
+        let userMessagesRef = Database.database().reference().child("user-messages").child(uid).child(toId)
+        userMessagesRef.observe(.childAdded, with: { (snapshot) in
             
-            if let dictionary = snapshot.value as? [String : AnyObject] {
+            let messageId = snapshot.key
+            let messagesRef = Database.database().reference().child("messages").child(messageId)
+            messagesRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 
-                let message = Message()
-                message.setValuesForKeys(dictionary)
+                guard let dictionary = snapshot.value as? [String: AnyObject] else {
+                    return
+                }
+                
+                let message = Message(dictionary: dictionary)
+                
+                //do we need to attempt filtering anymore?
                 self.messages.append(message)
-                print(message.text)
-                
-                
                 DispatchQueue.main.async(execute: {
-                    self.tableView.reloadData()
-                    
+                 //   self.collectionView?.reloadData()
                 })
                 
-            }
+            }, withCancel: nil)
             
-            
-            
-        }, withCancel: nil )
-        
+        }, withCancel: nil)
+
+//        let ref = Database.database().reference().child("Messages")
+//        ref.observe(.childAdded, with: { (snapshot) in
+//            
+//            if let dictionary = snapshot.value as? [String : AnyObject] {
+//                
+//                let message = Message()
+//                message.setValuesForKeys(dictionary)
+//                self.messages.append(message)
+//                print(message.text)
+//                
+//                
+//                DispatchQueue.main.async(execute: {
+//                    self.tableView.reloadData()
+//                    
+//                })
+//            }
+//        }, withCancel: nil )
     }
     
     
@@ -95,12 +119,25 @@ class Inbox: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
       let ref = Database.database().reference().child("Messages")
         let childRef = ref.childByAutoId()
-        let toID = user.userID //Empty so I used static
+        let toID = user!.userID! //Empty so I used static
         let fromID = Auth.auth().currentUser!.uid
         //let time = NSNumber(value: Date().timeIntervalSinceNow)
         let time = "\(Date().timeIntervalSince1970)"
-        let values = ["Text" : self.textField.text!, "toID" : toID, "fromID" : fromID, "time" : time]
-        childRef.updateChildValues(values as Any as! [AnyHashable : Any])
+        let values = ["Text" : self.textField.text!, "toID" : toID, "fromID" : fromID, "time" : time] as [String : Any]
+        childRef.updateChildValues(values) { (error, ref) in
+            if error != nil {
+                print(error ?? "")
+                return
+            }
+            
+            let userMessagesRef = Database.database().reference().child("user-messages").child(fromID)
+            
+            let messageId = childRef.key
+            userMessagesRef.updateChildValues([messageId: 1])
+            
+            let recipientUserMessagesRef = Database.database().reference().child("user-messages").child(toID)
+            recipientUserMessagesRef.updateChildValues([messageId: 1])
+        }
         
     }
     
@@ -119,26 +156,26 @@ class Inbox: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
         let message = messages[indexPath.row]
-        if let toId = message.toID {
+      //  if let toId = message.toID {
             
-            let ref = Database.database().reference().child("Users").child(toId)
-            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+      //      let ref = Database.database().reference().child("Users").child(toId)
+     //       ref.observeSingleEvent(of: .value, with: { (snapshot) in
                 
-                if let dict = snapshot.value as? [String : AnyObject] {
+      //          if let dict = snapshot.value as? [String : AnyObject] {
                     
-                    cell.textLabel?.text = dict["First Name"] as? String
+                    cell.textLabel?.text = message.toID
+                    cell.detailTextLabel?.text = message.text
                     
-                }
+             //   }
                 
                 
-            }, withCancel: nil)
+         //   }, withCancel: nil)
             
             
-        }
+   //     }
         
         
         
-        cell.textLabel?.text = message.text
         return cell
     }
 
