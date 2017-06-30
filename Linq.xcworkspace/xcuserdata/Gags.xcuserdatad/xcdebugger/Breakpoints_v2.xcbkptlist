@@ -26,7 +26,7 @@
                   moduleName = "Linq"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Gags/Desktop/Linq-master/Linq/ChatLogController.swift"
-                  timestampString = "519820551.988067"
+                  timestampString = "520516653.010986"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -41,7 +41,7 @@
                   moduleName = "Linq"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Gags/Desktop/Linq-master/Linq/ChatLogController.swift"
-                  timestampString = "519820551.99203"
+                  timestampString = "520516653.014434"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -106,11 +106,11 @@
                   moduleName = "Linq"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Gags/Desktop/Linq-master/Linq/ChatLogController.swift"
-                  timestampString = "519820552.023569"
+                  timestampString = "520516653.035339"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "281"
-                  endingLineNumber = "281"
+                  startingLineNumber = "283"
+                  endingLineNumber = "283"
                   offsetFromSymbolStart = "2820">
                </Location>
                <Location
@@ -121,11 +121,11 @@
                   moduleName = "Linq"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Gags/Desktop/Linq-master/Linq/ChatLogController.swift"
-                  timestampString = "519820552.027855"
+                  timestampString = "520516653.039029"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "282"
-                  endingLineNumber = "282"
+                  startingLineNumber = "284"
+                  endingLineNumber = "284"
                   offsetFromSymbolStart = "68">
                </Location>
             </Locations>
@@ -144,6 +144,102 @@
             startingLineNumber = "291"
             endingLineNumber = "291"
             landmarkName = "handleSend()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Linq/Comments.swift"
+            timestampString = "520516201.205416"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "fetchComments()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Linq/Comments.swift"
+            timestampString = "520516201.205416"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "fetchComments()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Linq/MovesTable.swift"
+            timestampString = "520516208.294696"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "fetchPosts()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Linq/Comments.swift"
+            timestampString = "520516649.200158"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "commented(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Linq/Comments.swift"
+            timestampString = "520516664.4438"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "commented(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Linq/Comments.swift"
+            timestampString = "520516676.407552"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "commented(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

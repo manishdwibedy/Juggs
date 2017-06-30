@@ -15,6 +15,10 @@ class CellForDiscover: UITableViewCell {
     @IBOutlet weak var fromLabel: UILabel!
     // @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var swipeView: UIView!
+    @IBOutlet weak var followingFalseImageView: UIImageView!
+    @IBOutlet weak var followMeFalseImageView: UIImageView!
+    @IBOutlet weak var followingTrueImageView: UIImageView!
+    @IBOutlet weak var followMeTrueImageView: UIImageView!
     
     var userID: String!
     

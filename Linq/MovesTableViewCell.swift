@@ -47,8 +47,6 @@ class MovesTableViewCell: UITableViewCell, CLLocationManagerDelegate {
         
         ref.child("Flyers").child(self.postID).observeSingleEvent(of: .value, with: { (snapshot) in
             
-            //if let post = snapshot.value as? [String : AnyObject] {
-
             if (snapshot.value as? [String : AnyObject]) != nil {
                 let updateLikes: [String : Any] = ["peopleWhoLiked/\(keyToPost)" : Auth.auth().currentUser!.uid]
                 ref.child("Flyers").child(self.postID).updateChildValues(updateLikes, withCompletionBlock: { (error, reff) in
@@ -180,7 +178,6 @@ class MovesTableViewCell: UITableViewCell, CLLocationManagerDelegate {
     
     @IBAction func commented(_ sender: Any) {
 
-        
     }
     
     

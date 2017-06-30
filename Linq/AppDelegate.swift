@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let color = UIColor.black
         navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         navigationBarAppearace.tintColor = color
-        var ISLOGIN :Bool? = Globals.sharedInstance.getValueFromUserDefaultsForKey_Path("IS_LOGIN") as? Bool
+        let ISLOGIN :Bool? = Globals.sharedInstance.getValueFromUserDefaultsForKey_Path("IS_LOGIN") as? Bool
         if ISLOGIN == nil {
             Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(false, key: "IS_LOGIN")
         }
@@ -102,7 +102,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
 
 }
 

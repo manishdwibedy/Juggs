@@ -31,7 +31,7 @@ class Relations: UIViewController {
         super.viewDidLoad()
         
         segmentedControl.selectedSegmentIndex = 0
-        
+        segmentChanged((Any).self)
     }
 
     

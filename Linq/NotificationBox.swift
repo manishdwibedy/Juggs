@@ -17,12 +17,9 @@ class NotificationBox: UIViewController {
     
     @IBAction func pageChanged(_ sender: Any) {
         if segmentedControl.selectedSegmentIndex == 0 {
-            
             inboxView.isHidden = false
             invitationView.isHidden = true
-        }else{
-            
-            
+        } else {
             inboxView.isHidden = true
             invitationView.isHidden = false
         }
@@ -36,7 +33,7 @@ class NotificationBox: UIViewController {
         super.viewDidLoad()
         segmentedControl.selectedSegmentIndex = 1
         self.tabBarController?.tabBar.tintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
-     self.tabBarController?.tabBar.barTintColor = UIColor.black
+        self.tabBarController?.tabBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.barTintColor = UIColor.black//UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
         segmentedControl.layer.borderWidth = 2
         segmentedControl.layer.borderColor = UIColor.black.cgColor

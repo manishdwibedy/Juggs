@@ -7,43 +7,106 @@
 //
 
 import UIKit
+import Firebase
+import SDWebImage
 
 class FollowingTable: UITableViewController {
 
+    var users = [User]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       /* let backgroundImage = #imageLiteral(resourceName: "Backgroundloginsignup")
-        let imageView = UIImageView(image: backgroundImage)
-        self.tableView.backgroundView = imageView */
+    retrieveUsers()
+       
+    
     }
 
+    
+    func retrieveUsers() {
+        Globals.ShowSpinner(testStr: "")
+        let ref = Database.database().reference()
+        
+        ref.child("Users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
+            
+            let users = snapshot.value as! [String : AnyObject]
+            self.users.removeAll()
+            for(_, value) in users {
+                
+                if let uid = value["UID"] as? String {
+                    if uid != Auth.auth().currentUser!.uid {
+                        let dict = [String : AnyObject]()
+                        let userToShow = User(dictionary:dict)
+                        if let userID = value["UID"] as? String,
+                            let  firstName = value["First Name"] as? String,
+                            let lastName = value["Last Name"] as? String,
+                            let age = value["Age"] as? String,
+                            let city = value["City"] as? String,
+                            let gender = value["Gender"] as? String,
+                            let state = value["State"] as? String,
+                            let bio = value["Bio"] as? String,
+                            let imagePath = value["urlToImage"] as? String {
+                            userToShow.userID = userID
+                            userToShow.firstName = firstName
+                            userToShow.lastName = lastName
+                            userToShow.age = age
+                            userToShow.bio = bio
+                            userToShow.city = city
+                            userToShow.gender = gender
+                            userToShow.state = state
+                            userToShow.imagePath = imagePath
+                            self.users.append(userToShow)
+                            
+                            
+                        }
+                        
+                        
+                    }
+                    
+                }
+            }
+            Globals.HideSpinner()
+            self.tableView.reloadData()
+            
+        })
+        ref.removeAllObservers()
+        
+        
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return users.count
     }
 
-    /*
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 110;
+    }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FollowingCell
+        
+        cell.followingName.text = self.users[indexPath.row].firstName + " " + self.users[indexPath.row].lastName
+        cell.followingFrom.text = self.users[indexPath.row].city + ", " + self.users[indexPath.row].state
+        cell.followingImage.sd_setImage(with: URL(string: "\(String(describing: users[(indexPath.row)].imagePath!))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
+
 
         // Configure the cell...
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

@@ -12,7 +12,9 @@ import FirebaseStorage
 import FirebaseDatabase
 import FirebaseAuth
 
-class Comments: UIViewController {
+var selectedPost: Post!
+
+class Comments: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
  
@@ -22,79 +24,109 @@ class Comments: UIViewController {
     
     var ref: DatabaseReference!
     var storageRef: StorageReference!
-    var commentsArray = [Comment]()
-    var selectedPost: Post!
+    var commentsArray = [CommentObj]()
+//    var selectedPost: Post!
    // var message: String!
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // fetchComments()
-        
+        fetchComments()
+        let backgroundImage = #imageLiteral(resourceName: "Backgroundloginsignup")
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
+
     }
 
     
     // MARK: - Table view data source
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
     
-   func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return commentsArray.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "commentsCell", for: indexPath) as! CommentsCell
         
-        cell.textLabel?.text = commentsArray[indexPath.row].username
-        cell.detailTextLabel?.text = commentsArray[indexPath.row].content
-        
-        
-        storageRef = Storage.storage().reference(forURL: commentsArray[indexPath.row].userImageStringUrl)
-        storageRef.getData(maxSize: 1 * 1024 * 1024, completion: { (data, error) in
-            
-            if error == nil {
-                DispatchQueue.main.async() {
-                    if let data = data {
-                        cell.userImageView.image = UIImage(data: data)
-                    }
-                }
-                
-                
-            }else {
-                print(error!.localizedDescription)
-                
-            }
-        })
+      //  let diction:DataSnapshot = commentsArray[indexPath.row] as! DataSnapshot
+        cell.userLbl.text = commentsArray[indexPath.row].UserName
+        cell.commentLbl.text = commentsArray[indexPath.row].Cotent
+        cell.userImageView.sd_setImage(with: URL(string: "\(String(describing: commentsArray[(indexPath.row)].UserImageUrl!))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
+
         return cell
     }
     
 
     @IBAction func commented(_ sender: Any) {
         
-        let comment = Comment(postId: selectedPost.postID, userImageStringUrl: "", content: self.commentTF.text!, username: Globals .sharedInstance.getValueFromUserDefaultsForKey("UserName") as! String)
+        if self.commentTF.text != nil {
+            
+            let ref = Database.database().reference()
+            let keyToPost = ref.child("Flyers").child(selectedPost.postID)
+            let commentsRef = keyToPost.child("post-comments").childByAutoId()
+            
+            if let uid = Auth.auth().currentUser?.uid {
+                
+                Database.database().reference().child("Users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                  
+                    if let commentField = self.commentTF.text, let user = snapshot.value as? [String : AnyObject] {
+                        
+                        let comment = [
+                            "uid": uid,
+                            "UserName" : Globals .sharedInstance.getValueFromUserDefaultsForKey("UserName"),
+                            "ImageUrl" : user["urlToImage"] ?? "",
+                            "text": commentField
+                        ]
 
-        let commentRef = selectedPost.ref.child("Comments").childByAutoId()
-        commentRef.setValue(comment.toAnyObject())
+                        commentsRef.setValue(comment)
+                        self.commentTF.text = ""
+                      
+                    }
+                })
+            }
+            
+        }
+        
     }
 
     func fetchComments() {
         
-        let commentRef = selectedPost.ref!.child("Comments")
-        commentRef.observe(.value, with: { (snapshot) in
+        let ref = Database.database().reference()
+        
+        let keyToPost = ref.child("Flyers").child(selectedPost.postID)
+        
+//        let commentsRef =
+        
+        keyToPost.child("post-comments").observe(DataEventType.value, with: { (snapshot) in
+             let posts = snapshot.value as! [String : AnyObject]
+           for(_,value) in posts {
+                 let Comments = CommentObj()
+                let UserName = value["UserName"] as? String
+                let comment = value["text"] as? String
+                let url = value["ImageUrl"] as? String
+                
+                Comments.UserName = UserName
+                Comments.Cotent = comment
+                Comments.UserImageUrl = url
             
-            var newComments = [Comment]()
-            for item in snapshot.children {
-                let newComment = Comment(snapshot: item as! DataSnapshot)
-                newComments.insert(newComment, at: 0)
+                self.commentsArray.append(Comments)
             }
-            self.commentsArray = newComments
             self.tableView.reloadData()
-        }, withCancel: nil)
-        commentRef.removeAllObservers()
+        })
+
+//        commentsRef.observe(.value, with: { (snapshot) in
+//            
+//            
+//        }, withCancel: nil)
+//        commentsRef.removeAllObservers()
     }
     
     /*

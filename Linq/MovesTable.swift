@@ -43,7 +43,6 @@ class MovesTable: UITableViewController {
         refreshControl?.addTarget(self, action: #selector(MovesTable.fetchPosts), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl!) // not required when using UITableViewController
 
-       
     }
 
     
@@ -81,7 +80,8 @@ class MovesTable: UITableViewController {
                                                let time = value["Time"] as? String
                                                let titleForEvent = value["NameOfMove"] as? String
                 
-                
+                                                print(value["post-comments"])
+                                                let comments = value["post-comments"]
                 
                                                 newPost.AP = AP
                                                 newPost.address = address
@@ -95,10 +95,14 @@ class MovesTable: UITableViewController {
                                                 newPost.postID = postID
                                                 newPost.movePrivate = movePrivate
                                                 newPost.time = time
+
+            
+                                                newPost.commentsForPost = [comments as Any]
                                                 newPost.nameOfEvent = titleForEvent
                              //Users image                   // let pathToUserImage = flyer["PathToUserImage"] as? String
                                                 // let flameCount = flyer["FlameCount"] as? Int,
                              // Linq count
+                
                                                 newPost.userID = userID
                                                 
                                                 // newPost.pathToUserImage = pathToUserImage
@@ -152,7 +156,13 @@ class MovesTable: UITableViewController {
     
 
     func buttonTapped(_ sender:UIButton!){
-        self.performSegue(withIdentifier: "addComment", sender: sender)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "Comments")
+        selectedPost = posts[(sender.tag)]
+        
+        self.navigationController?.pushViewController(controller, animated: true)
+
+//        self.performSegue(withIdentifier: "addComment", sender: sender)
     }
 
     
@@ -269,26 +279,24 @@ class MovesTable: UITableViewController {
                 }
         
        }else{
-        if segue.identifier == "addComment" {
-             let button: UIButton = sender as! UIButton
-            if let destination = segue.destination as? Comments {
-                let backItem = UIBarButtonItem()
-                backItem.title = ""
-                navigationItem.backBarButtonItem = backItem
-           //     let indexPath = self.tableView.indexPathForSelectedRow
-                destination.selectedPost = posts[(button.tag)]
-            }
-            
-        }
-        
-        
-        
+//        if segue.identifier == "addComment" {
+//             let button: UIButton = sender as! UIButton
+//            if let destination = segue.destination as? Comments {
+//                let backItem = UIBarButtonItem()
+//                backItem.title = ""
+//                navigationItem.backBarButtonItem = backItem
+//           //     let indexPath = self.tableView.indexPathForSelectedRow
+////                destination.selectedPost = posts[(button.tag)]
+//            }
         
         }
         
-        } // End of Prepare for Segue
+    }
+        
+    
+} // End of Prepare for Segue
             
-   } // End of class
+   // End of class
     
 
 

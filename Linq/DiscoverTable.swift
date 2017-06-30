@@ -121,19 +121,23 @@ class DiscoverTable: UITableViewController {
         
         cellForDiscover.userID = users[indexPath.row].userID
         
-     //   cellForDiscover.profilePic.downloadImage(from: users[(indexPath.row)].imagePath)
-       
         cellForDiscover.profilePic.sd_setImage(with: URL(string: "\(String(describing: users[(indexPath.row)].imagePath!))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
 
         return cellForDiscover
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    performSegue(withIdentifier: "showUser", sender: self)
+        
+        // DRAG FROM LEFT TO RIGHT SEGUE
+        
+        performSegue(withIdentifier: "showUser", sender: self)
         }
 
- /*   func followUser(row: Int) {
-        
+    ////// SETUP FOLLOWING ANG FOLLOWERS IMAGES IN CELL WITH FOLLOW USER FUNCTION. (DOUBLE TAP TO FOLLOW) //////
+    
+    
+    /*  func followUser(row: Int) {
+            let indexPath = tableView.indexPathForSelectedRow!.row
             
             let uid = Auth.auth().currentUser!.uid
             let ref = Database.database().reference()
@@ -161,8 +165,9 @@ class DiscoverTable: UITableViewController {
                     
                     ref.child("Users").child(uid).updateChildValues(following as Any as! [AnyHashable : Any])
                     ref.child("Users").child(self.users[indexPath.row].userID).updateChildValues(followers)
+                   
                     
-                    self.tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+                    
                 }
             })
             ref.removeAllObservers()
@@ -174,9 +179,9 @@ class DiscoverTable: UITableViewController {
      
      
      
- /*
 
-func checkFollowing(indexPath: IndexPath) {
+
+/*func checkFollowing(indexPath: IndexPath) {
     let uid = Auth.auth().currentUser!.uid
     let ref = Database.database().reference()
     
@@ -253,8 +258,8 @@ func checkFollowing(indexPath: IndexPath) {
             }
         }
     }
-}
 
+}
 
 extension UIImageView {
     

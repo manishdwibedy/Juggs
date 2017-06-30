@@ -17,21 +17,18 @@ class ForgotPassword: UIViewController {
     
     @IBAction func resetPassword(_ sender: Any) {
    
+        self.view.endEditing(true)
+        
         let email = forgotPasswordTF.text
         resetPassword(email: email)
     
     }
     
- 
-   
     @IBAction func LogIn(_ sender: Any) {
  
         self.performSegue(withIdentifier: "unwindToLogin", sender: self)
     
     }
-    
-   
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,14 +37,11 @@ class ForgotPassword: UIViewController {
         
     }
  
-    
-    
     func resetPassword(email: String!) {
         
         Auth.auth().sendPasswordReset(withEmail: email) { (error) in
             if let error = error {
-                
-            print(error)
+                print(error)
             }else{
                 self.successAlert()
             }

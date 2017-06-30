@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		04F81A3F0AC3825E1DD99A9B /* Pods_LinqTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 947853379B7843EC362EDEAD /* Pods_LinqTests.framework */; };
+		1717C81F1F066EA100569455 /* CommentObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1717C81E1F066EA100569455 /* CommentObj.swift */; };
 		176A44211EFBCA0600CCF887 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176A44201EFBCA0600CCF887 /* ChatLogController.swift */; };
 		176A44231EFBCCFF00CCF887 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176A44221EFBCCFF00CCF887 /* ChatMessageCell.swift */; };
 		178741981EF1453700FB1B01 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178741971EF1453700FB1B01 /* Globals.swift */; };
@@ -57,6 +58,8 @@
 		D1A1FD671ED929E500C8BF4E /* MovesTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A1FD661ED929DA00C8BF4E /* MovesTable.swift */; };
 		D1A1FD691ED92D6700C8BF4E /* MovesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A1FD681ED92D6700C8BF4E /* MovesTableViewCell.swift */; };
 		D1A922191EFB53270052467C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A922181EFB53250052467C /* Extensions.swift */; };
+		D1A9221D1F005F6E0052467C /* FollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A9221C1F005F6E0052467C /* FollowingCell.swift */; };
+		D1A9221F1F005F890052467C /* FollowersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A9221E1F005F890052467C /* FollowersCell.swift */; };
 		D1AE91AB1EF8093D0057BD09 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AE91AA1EF8093D0057BD09 /* Comment.swift */; };
 		D1AE91AD1EF80F250057BD09 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AE91AC1EF80F250057BD09 /* Comments.swift */; };
 		D1AE91AF1EF835B30057BD09 /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AE91AE1EF835B30057BD09 /* CommentsCell.swift */; };
@@ -85,6 +88,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1717C81E1F066EA100569455 /* CommentObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentObj.swift; sourceTree = "<group>"; };
 		176A44201EFBCA0600CCF887 /* ChatLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		176A44221EFBCCFF00CCF887 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		178741971EF1453700FB1B01 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
@@ -146,6 +150,8 @@
 		D1A1FD661ED929DA00C8BF4E /* MovesTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovesTable.swift; sourceTree = "<group>"; };
 		D1A1FD681ED92D6700C8BF4E /* MovesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovesTableViewCell.swift; sourceTree = "<group>"; };
 		D1A922181EFB53250052467C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D1A9221C1F005F6E0052467C /* FollowingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingCell.swift; sourceTree = "<group>"; };
+		D1A9221E1F005F890052467C /* FollowersCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersCell.swift; sourceTree = "<group>"; };
 		D1AE91AA1EF8093D0057BD09 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		D1AE91AC1EF80F250057BD09 /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		D1AE91AE1EF835B30057BD09 /* CommentsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
@@ -222,6 +228,7 @@
 				D1177BE21EE46FB2005C5B85 /* Request.swift */,
 				D1177BE01EE45B8F005C5B85 /* Archive.swift */,
 				178741A51EF17DAB00FB1B01 /* Message.swift */,
+				1717C81E1F066EA100569455 /* CommentObj.swift */,
 				D1AE91AA1EF8093D0057BD09 /* Comment.swift */,
 			);
 			name = Objects;
@@ -245,7 +252,9 @@
 				D1A1FD1B1ED3C90300C8BF4E /* MyProfile.swift */,
 				D13696B41EFA1168004D87FF /* Relations.swift */,
 				D12F4AF91EFA1DE100581BBC /* FollowingTable.swift */,
+				D1A9221C1F005F6E0052467C /* FollowingCell.swift */,
 				D12F4AFC1EFA1EAB00581BBC /* FollowersTable.swift */,
+				D1A9221E1F005F890052467C /* FollowersCell.swift */,
 				D12F4AFE1EFA1EC400581BBC /* Other User */,
 			);
 			name = Profiles;
@@ -262,6 +271,7 @@
 		D153B2881EDCE22900C106DA /* World Tab */ = {
 			isa = PBXGroup;
 			children = (
+				176A44221EFBCCFF00CCF887 /* ChatMessageCell.swift */,
 				D1A1FD5B1ED5F5E400C8BF4E /* World.swift */,
 				D1A1FD5F1ED6143200C8BF4E /* DiscoverTable.swift */,
 				D1A1FD5D1ED606B000C8BF4E /* CellForDiscover.swift */,
@@ -366,7 +376,6 @@
 				D153B27E1EDC493400C106DA /* NotificationBox.swift */,
 				D153B2821EDC50F200C106DA /* MessagesTable.swift */,
 				176A44201EFBCA0600CCF887 /* ChatLogController.swift */,
-				176A44221EFBCCFF00CCF887 /* ChatMessageCell.swift */,
 				D153B2841EDC514E00C106DA /* MessageCell.swift */,
 				D1A922181EFB53250052467C /* Extensions.swift */,
 				D1FF3AC61EE3B1D000C47640 /* Invitations.swift */,
@@ -453,9 +462,8 @@
 				TargetAttributes = {
 					D1A1FD131ED3C90300C8BF4E = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 8MG83XTPNG;
 						LastSwiftMigration = 0830;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -696,8 +704,10 @@
 				D1A1FD651ED651F800C8BF4E /* Post.swift in Sources */,
 				D1AE91AD1EF80F250057BD09 /* Comments.swift in Sources */,
 				D1177BE11EE45B8F005C5B85 /* Archive.swift in Sources */,
+				D1A9221F1F005F890052467C /* FollowersCell.swift in Sources */,
 				D1A1FD671ED929E500C8BF4E /* MovesTable.swift in Sources */,
 				D1177BDF1EE45B7B005C5B85 /* ArchiveCell.swift in Sources */,
+				D1A9221D1F005F6E0052467C /* FollowingCell.swift in Sources */,
 				D1A1FD601ED6143200C8BF4E /* DiscoverTable.swift in Sources */,
 				176A44211EFBCA0600CCF887 /* ChatLogController.swift in Sources */,
 				D1AE91AF1EF835B30057BD09 /* CommentsCell.swift in Sources */,
@@ -719,6 +729,7 @@
 				D1177BE51EE4B429005C5B85 /* ArchiveDescription.swift in Sources */,
 				D1FF3AC71EE3B1D000C47640 /* Invitations.swift in Sources */,
 				D1FF3ACC1EE3B70200C47640 /* Invitation.swift in Sources */,
+				1717C81F1F066EA100569455 /* CommentObj.swift in Sources */,
 				D1A922191EFB53270052467C /* Extensions.swift in Sources */,
 				D1A1FD4C1ED460D600C8BF4E /* SignUp.swift in Sources */,
 				D1A1FD5A1ED5DA5400C8BF4E /* User.swift in Sources */,
@@ -879,9 +890,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Linq/Linq.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8MG83XTPNG;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Linq/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.QuintonAskew.Jugg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -898,9 +909,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Linq/Linq.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8MG83XTPNG;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Linq/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.QuintonAskew.Jugg;
 				PRODUCT_NAME = "$(TARGET_NAME)";

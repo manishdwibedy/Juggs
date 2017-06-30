@@ -28,7 +28,7 @@ class Post: NSObject {
     var peopleWhoLiked: [String] = [String]()
     var nameOfEvent: String!
     var pathToFlyer: String!
-    var commentsForPost: [Comment]? = nil
+    var commentsForPost: [Any]?
     var message: String!
     var ref: DatabaseReference!
 }

@@ -21,7 +21,6 @@ struct Comment {
     var ref: DatabaseReference?
     var key: String!
     
-    
     init(postId: String, userImageStringUrl: String, content: String, username: String, key: String = ""){
         
         self.content = content
@@ -30,10 +29,10 @@ struct Comment {
         self.userImageStringUrl = userImageStringUrl
         self.ref = Database.database().reference()
         
-        
     }
     
-    init(snapshot: DataSnapshot){
+    init(snapshot: DataSnapshot) {
+        
         let snap = snapshot.value as! [String : AnyObject]
         self.content = snap["Content"] as! String
         self.postId = snap["PostId"] as! String
@@ -41,7 +40,6 @@ struct Comment {
         self.userImageStringUrl = snap["userImageStringUrl"] as! String
         self.key = snapshot.key
         self.ref = snapshot.ref
-        
         
     }
     

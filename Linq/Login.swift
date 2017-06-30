@@ -16,12 +16,25 @@ class Login: UIViewController {
     @IBOutlet weak var logInBtn: UIButton!
     @IBOutlet weak var signUpBtn: UIButton!
     @IBAction func loggedIn(_ sender: Any) {
+        
+        self.view.endEditing(true)
+        
         Globals.ShowSpinner(testStr: "")
         guard emailTF.text != "", pwTF.text! != "" else {return}
         Auth.auth().signIn(withEmail: emailTF.text!, password: pwTF.text!) { (user, error) in
             
             if let error = error {
                 print(error.localizedDescription)
+                let alertViewController = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+                }
+                
+                alertViewController.addAction(okAction)
+                
+                self.present(alertViewController, animated: true, completion: nil)
+                
+                Globals.HideSpinner()
             }
             
             if user != nil {

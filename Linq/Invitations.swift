@@ -21,11 +21,10 @@ class Invitations: UITableViewController {
         let backgroundImage = #imageLiteral(resourceName: "Backgroundloginsignup")
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
+        self.tableView.rowHeight = 325
+        
+        
     }
-
-    
-    
-    
     
     // MARK: - Table view data source
 
@@ -51,16 +50,12 @@ class Invitations: UITableViewController {
         }
         
         let invitationCell = tableView.dequeueReusableCell(withIdentifier: "invitationCell", for: indexPath) as! InvitationCell
-        
-
-        
-
+    
         return invitationCell
     }
     
-    
-    
     override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+        
         let accept = UITableViewRowAction(style: .normal, title: "Accept") { action, index in
             // Drop Pin on map at the address of the move.
             // Send User a notification saying I accepted.
@@ -81,7 +76,7 @@ class Invitations: UITableViewController {
     
 
         override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-            return true
+            return false
     }
   
 

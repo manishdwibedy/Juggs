@@ -24,52 +24,14 @@ class MessagesTable: UITableViewController {
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
 
-       //fetchUsers()
-     // tableView.register(MessageCell.self, forCellReuseIdentifier: "messageCell")
          observeMessages()
     }
 
-    func fetchUsers() {
-        let ref = Database.database().reference()
-        ref.child("Users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
-            let users = snapshot.value as! [String : AnyObject]
-            self.users.removeAll()
-            for(_, value) in users {
-                let dict = [String : AnyObject]()
-                let userToShow = User(dictionary: dict)
-                if let uid = value["UID"] as? String {
-                    if uid != Auth.auth().currentUser!.uid {
-                  
-                        //if let userID = value["UID"] as? String,
-                        if let  firstName = value["First Name"] as? String,
-                        let lastName = value["Last Name"] as? String,
-                        let imagePath = value["urlToImage"] as? String {
-                            userToShow.userID = uid
-                            userToShow.firstName = firstName
-                            userToShow.lastName = lastName
-                            userToShow.imagePath = imagePath
-                            self.users.append(userToShow)
-                            
-                            
-                        }
-                    
-                    
-                    }
-                    
-                }
-            }
-            
-            self.tableView.reloadData()
-            
-        })
-        
-       ref.removeAllObservers()
-    
-    }
-    
     func observeMessages() {
         
         let ref = Database.database().reference().child("Messages")
+      
+
         ref.observe(.childAdded, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String : AnyObject] {
@@ -117,6 +79,10 @@ class MessagesTable: UITableViewController {
         
         let message = messages[indexPath.row]
         cell.message = message
+        let tap = UITapGestureRecognizer(target: self, action: #selector(MessagesTable.tapGestureForPic))
+        //cell.profileImageView.addGestureRecognizer(tap)
+        cell.profileImageView.isUserInteractionEnabled = true
+        cell.viewUserBtn.addGestureRecognizer(tap)
         return cell
     }
   
@@ -161,28 +127,23 @@ class MessagesTable: UITableViewController {
     }, withCancel: nil)
 
     
-//    let vc = self.storyboard!.instantiateViewController(withIdentifier: "messageVC") as! Inbox
-//    let navController = UINavigationController(rootViewController: vc)
-//    
-//    //let userIndex = tableView.indexPathForSelectedRow?.row
-//    //let firstName = self.messages[userIndex!]
-//    //let lastName = self.users[userIndex!].lastName
-//    //vc.user = self.users[userIndex!]
-//    //let fullName = firstName! + " " + lastName!
-//    //vc.title = fullName
-//    self.present(navController, animated: true, completion: nil)
+}
     
-    
-    }
     func showChatControllerForUser(_ user: User) {
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
         chatLogController.user = user
+
+        chatLogController.title = "User Name Here"
         navigationController?.pushViewController(chatLogController, animated: true)
     }
 
     
     @IBAction func unwindToMessages(segue:UIStoryboardSegue) { }
     
+    
+    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
+        print("New message")
+    }
     
     /*
     // Override to support conditional editing of the table view.

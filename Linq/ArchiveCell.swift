@@ -19,11 +19,6 @@ class ArchiveCell: UITableViewCell {
     @IBOutlet weak var likedImage: UIImageView!
     @IBOutlet weak var likedLabelCount: UILabel!
     
-    
-    
-    
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
