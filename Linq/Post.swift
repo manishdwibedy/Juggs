@@ -30,5 +30,7 @@ class Post: NSObject {
     var pathToFlyer: String!
     var commentsForPost: [Any]?
     var message: String!
+    var city: String!
+    var state: String!
     var ref: DatabaseReference!
 }

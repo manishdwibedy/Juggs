@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Firebase
 class UpdateWebsite: UIViewController {
 
     @IBOutlet weak var websiteTF: UITextField!
@@ -22,12 +22,36 @@ class UpdateWebsite: UIViewController {
         visuals()
 
     }
+    @IBAction func UpdateRecord(_ sender: Any) {
+        
+        if websiteTF.text == nil {
+            return
+        }
+        Globals.ShowSpinner(testStr: "")
 
+        let uid = Auth.auth().currentUser?.uid
+        let Ref = "Users/" + uid!
+        Database.database().reference().root.child(Ref).updateChildValues(["Website": websiteTF.text!])
+        Globals.HideSpinner()
+        
+        let alertViewController = UIAlertController(title: "Record Successfully Updated.", message: "", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        alertViewController.addAction(okAction)
+        
+        self.present(alertViewController, animated: true, completion: nil)
+
+
+    }
     func visuals() {
         self.title = "Website"
+        websiteTF.text = Globals .sharedInstance.getValueFromUserDefaultsForKey("Website") as? String
+
         submitBtn.layer.masksToBounds = true
         submitBtn.layer.cornerRadius = 8
-        submitBtn.isEnabled = false
         
     }
     

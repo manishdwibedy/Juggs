@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseStorage
 
 class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
-
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var ageTF: UITextField!
     @IBOutlet weak var firstNameTF: UITextField!
@@ -28,30 +28,30 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     @IBOutlet weak var genderTF: UITextField!
     
     @IBAction func signedUp(_ sender: Any) {
-   self.view.endEditing(true)
+        self.view.endEditing(true)
         
-    validation()
-    
+        validation()
+        
     }
     
     @IBAction func logIn(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-    
-    
+        
+        
     }
     
-
+    
     var userStorage: StorageReference!
     var ref: DatabaseReference!
     
     
     var stateList = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN","IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND",  "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
-
+    
     var genderList = ["Female", "Male"]
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-         signInBtn.isEnabled = false
+        
+        signInBtn.isEnabled = false
         ////// TAP GESTURE FOR 'imageView'  /////
         let tap = UITapGestureRecognizer(target: self, action: #selector(SignUp.tappedMe))
         imageView.addGestureRecognizer(tap)
@@ -150,7 +150,7 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     
     
     func validation() {
-      
+        
         guard let remail = emailTF.text,let rpassword = pwTF.text,var rfirstName = firstNameTF.text, let rlastName = lastNameTF.text, let rage = ageTF.text, let rbio = bioTV.text, let rcity = cityTF.text, let rstate = stateTF.text, let rgender = genderTF.text else {
             print(" Form isnt valid")
             
@@ -171,7 +171,7 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                     alertViewController.addAction(okAction)
                     
                     self.present(alertViewController, animated: true, completion: nil)
-
+                    
                     Globals.HideSpinner()
                 }
                 
@@ -196,6 +196,7 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                                                                 "Last Name" : rlastName,
                                                                 "Age" : rage,
                                                                 "Bio" : rbio,
+                                                                "Website" : "",
                                                                 "City" : rcity,
                                                                 "Gender" : rgender,
                                                                 "State" : rstate,
@@ -223,7 +224,7 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         
     }
     
-   
+    
     
     func delegate() {
         
@@ -238,7 +239,7 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     }
     
     
-      func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         ageTF.resignFirstResponder()
         firstNameTF.resignFirstResponder()
@@ -253,7 +254,7 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     
     
     func dismissKeyboard(){
-    
+        
         ageTF.resignFirstResponder()
         firstNameTF.resignFirstResponder()
         lastNameTF.resignFirstResponder()
@@ -389,18 +390,18 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         }
         self.view.endEditing(true)
     }
-
+    
     
     
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

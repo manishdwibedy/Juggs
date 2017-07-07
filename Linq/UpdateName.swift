@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Firebase
 class UpdateName: UIViewController, UITextFieldDelegate {
 
     
@@ -18,7 +18,21 @@ class UpdateName: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var saveNameBtn: UIButton!
     @IBAction func saveName(_ sender: Any) {
     
-    
+        
+        let uid = Auth.auth().currentUser?.uid
+
+        let Ref = "Users/" + uid!
+        Database.database().reference().root.child(Ref).updateChildValues(["First Name": self.firstNameTF.text!,"Last Name": self.lastNameTF.text!])
+
+        let alertViewController = UIAlertController(title: "Record Successfully Updated.", message: "", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        alertViewController.addAction(okAction)
+        
+        self.present(alertViewController, animated: true, completion: nil)
     }
     
     

@@ -69,6 +69,8 @@ class Comments: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         if self.commentTF.text != nil {
             
+            Globals.ShowSpinner(testStr: "")
+            
             let ref = Database.database().reference()
             let keyToPost = ref.child("Flyers").child(selectedPost.postID)
             let commentsRef = keyToPost.child("post-comments").childByAutoId()
@@ -88,9 +90,13 @@ class Comments: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
                         commentsRef.setValue(comment)
                         self.commentTF.text = ""
-                      
+                      Globals.HideSpinner()
+                    } else {
+                        Globals.HideSpinner()
                     }
                 })
+            } else {
+                Globals.HideSpinner()
             }
             
         }
@@ -106,7 +112,9 @@ class Comments: UIViewController, UITableViewDataSource, UITableViewDelegate {
 //        let commentsRef =
         
         keyToPost.child("post-comments").observe(DataEventType.value, with: { (snapshot) in
-             let posts = snapshot.value as! [String : AnyObject]
+            let posts = snapshot.value as! [String : AnyObject]
+            self.commentsArray.removeAll()
+            
            for(_,value) in posts {
                  let Comments = CommentObj()
                 let UserName = value["UserName"] as? String

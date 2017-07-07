@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Firebase
 class UpdateBio: UIViewController {
 
     @IBOutlet weak var bioTextView: UITextView!
@@ -23,14 +23,36 @@ class UpdateBio: UIViewController {
         bioTextView.text = Globals .sharedInstance.getValueFromUserDefaultsForKey("Bio") as? String
 
     }
-    
+    @IBAction func UpdateRecord(_ sender: Any) {
+        
+        if bioTextView.text == nil {
+            return
+        }
+        Globals.ShowSpinner(testStr: "")
+        let uid = Auth.auth().currentUser?.uid
+        
+        let Ref = "Users/" + uid!
+        Database.database().reference().root.child(Ref).updateChildValues(["Bio": bioTextView.text!])
+        
+        Globals.HideSpinner()
+        let alertViewController = UIAlertController(title: "Record Successfully Updated.", message: "", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        alertViewController.addAction(okAction)
+        
+        self.present(alertViewController, animated: true, completion: nil)
+
+        
+    }
     func visuals() {
         self.title = "Bio"
         bioTextView.layer.masksToBounds = true
         submitBtn.layer.masksToBounds = true
         bioTextView.layer.cornerRadius = 8
         submitBtn.layer.cornerRadius = 8
-        submitBtn.isEnabled = false
     }
 
     /*

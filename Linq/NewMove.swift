@@ -96,29 +96,46 @@ class NewMove: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
        
         flyerRef.downloadURL(completion: { (url, error) in
             
-            if let url = url {
-                let feed = ["UserID" : uid!,
-                            "NameOfMove" : nameOfMove,
-                            "PathToImage" : url.absoluteString,
-                            "Time" : time,
-                            "AP" : ampm,
-                            "Date" : date,
-                            "Address" : address,
-                            "Capacity" : Int(capacity)!,
-                            "Likes" : 0,
-                            "FlameCount" : 0,
-                            "Private" : self.forSwitch(),
-                            "Description" : descriptionForMove,
-                            "Author" : Auth.auth().currentUser!.displayName!,
-                            "PostID" : key] as [String : Any]
+            if let uid = Auth.auth().currentUser?.uid {
                 
-                let postFeed = ["\(key)" : feed]
-                ref.child("Flyers").updateChildValues(postFeed)
-              
-                
-                self.dismiss(animated: true, completion: nil)
-                
+                Database.database().reference().child("Users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                   let user = snapshot.value as? [String : AnyObject]
+                    
+                    if let url = url {
+                        let feed = ["UserID" : uid,
+                                    "NameOfMove" : nameOfMove,
+                                    "PathToImage" : url.absoluteString,
+                                    "Time" : time,
+                                    "AP" : ampm,
+                                    "Date" : date,
+                                    "City" : city,
+                                    "State" : state,
+                                    "Address" : address,
+                                    "Capacity" : Int(capacity)!,
+                                    "Likes" : 0,
+                                    "FlameCount" : 0,
+                                    "Private" : self.forSwitch(),
+                                    "Description" : descriptionForMove,
+                                    "Author" : Auth.auth().currentUser!.displayName!,
+                                    "userImageUrl" : user?["urlToImage"] ?? "",
+                                    "PostID" : key] as [String : Any]
+                        
+                        let postFeed = ["\(key)" : feed]
+                        ref.child("Flyers").updateChildValues(postFeed)
+                        
+                        
+                        self.dismiss(animated: true, completion: nil)
+                        
+                    }
+
+                })
+            } else {
+//                Globals.HideSpinner()
             }
+            
+            
+            
             
         })
         
@@ -152,7 +169,7 @@ class NewMove: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
     
     var timeList = ["1:00", "2:00", "3:00", "4:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00", "11:00", "12:00"]
     
-    var amPMList = ["A.M","P.M"]
+    var amPMList = ["AM","PM"]
     
     var capacity = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "30", "40", "50", "60", "70", "80", "90", "100", "125", "150", "175", "200", "250", "300", "400", "500", "600", "700", "800", "900", "1000", "2000", "3000"]
     

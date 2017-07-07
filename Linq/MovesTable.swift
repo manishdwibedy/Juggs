@@ -15,14 +15,16 @@ var timeAsString: String!
 
 class MovesTable: UITableViewController {
 
+    @IBOutlet weak var archiveBarButtonItem: UIBarButtonItem!
+    @IBAction func goingToArchive(_ sender: Any) {
    
-    
+    }
+   
     var posts = [Post]()
+    var postsArchive = [Post]()
+    
     var following = [String]()
-    
-    
-    
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -97,19 +99,40 @@ class MovesTable: UITableViewController {
                                                 newPost.time = time
 
             
-                                                newPost.commentsForPost = [comments as Any]
+                                                newPost.commentsForPost = comments as? [Any]
                                                 newPost.nameOfEvent = titleForEvent
                              //Users image                   // let pathToUserImage = flyer["PathToUserImage"] as? String
                                                 // let flameCount = flyer["FlameCount"] as? Int,
                              // Linq count
                 
-                                                newPost.userID = userID
-                                                
+                                            let dateFormatter = DateFormatter()
+                                            dateFormatter.dateFormat = "MMM dd, yyyy hh:mm a"
+                                            let dateTime = "\(newPost.date ?? "") \(newPost.time ?? "") \(newPost.AP ?? "")"
+                                            let postdate =  dateFormatter.date(from: dateTime)
+                newPost.userID = userID
+//timeAsString = time
+                if postdate != nil {
+                    let elapsed = Date().timeIntervalSince(postdate!)
+                    let diff = self.stringFromTimeInterval(interval: elapsed)
+                    
+                    if diff.intValue <= 24
+                    {
+                        self.posts.append(newPost)
+                        //                    print(self.arrTime)
+                    }
+                }
+                
+                
+                
+                
+                
+                
                                                 // newPost.pathToUserImage = pathToUserImage
                                                 
-                                                self.posts.append(newPost)
-                                            
-                                                timeAsString = time
+                
+                
+                
+                
                                         }
                                         
                                     }
@@ -125,6 +148,18 @@ class MovesTable: UITableViewController {
         refreshControl?.endRefreshing()
     }
     
+    func stringFromTimeInterval(interval: TimeInterval) -> NSString {
+        
+        let ti = NSInteger(interval)
+        
+//        let ms = Int((interval .truncatingRemainder(dividingBy: 1)) * 1000)
+//        
+//        let seconds = ti % 60
+//        let minutes = (ti / 60) % 60
+        let hours = (ti / 3600)
+        
+        return NSString(format: "%0.2d",abs(hours))
+    }
     
     // MARK: - Table view data source
 
@@ -140,6 +175,7 @@ class MovesTable: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let moveCell = tableView.dequeueReusableCell(withIdentifier: "moveCell", for: indexPath) as! MovesTableViewCell
         moveCell.commentBtn.tag = indexPath.row
+       // moveCell.userImageView.sd_setImage(with: URL(string: "\(String(describing: posts[(indexPath.row)].pathToUserImage!))"))
        // moveCell.userImageView.downloadImage(from: pathToUserImage)
         moveCell.nameLabel.text = posts[indexPath.row].author
         moveCell.likeCountLabel.text = "\(posts[indexPath.row].likes!) Likes"
@@ -279,24 +315,50 @@ class MovesTable: UITableViewController {
                 }
         
        }else{
-//        if segue.identifier == "addComment" {
-//             let button: UIButton = sender as! UIButton
-//            if let destination = segue.destination as? Comments {
-//                let backItem = UIBarButtonItem()
-//                backItem.title = ""
-//                navigationItem.backBarButtonItem = backItem
-//           //     let indexPath = self.tableView.indexPathForSelectedRow
-////                destination.selectedPost = posts[(button.tag)]
-//            }
-        
+        if segue.identifier == "showArchive" {
+            if segue.destination is ArchiveTable {
+                let backItem = UIBarButtonItem()
+                backItem.title = ""
+                navigationItem.backBarButtonItem = backItem
+                
+                }
+            
+            }
+            
         }
         
-    }
+        
+        
+        
+        
+        } // End of Prepare for Segue
+            
+     /*
+ 
+         //        if segue.identifier == "addComment" {
+         //             let button: UIButton = sender as! UIButton
+         //            if let destination = segue.destination as? Comments {
+         //                let backItem = UIBarButtonItem()
+         //                backItem.title = ""
+         //                navigationItem.backBarButtonItem = backItem
+         //           //     let indexPath = self.tableView.indexPathForSelectedRow
+         ////                destination.selectedPost = posts[(button.tag)]
+         //            }
+         
+         //  }
+         
+ 
+ 
+     */
+    
+    
+    
+    
         
     
-} // End of Prepare for Segue
+} // End of class
             
-   // End of class
+
     
 
 

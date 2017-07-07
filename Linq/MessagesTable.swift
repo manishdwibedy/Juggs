@@ -79,7 +79,7 @@ class MessagesTable: UITableViewController {
         
         let message = messages[indexPath.row]
         cell.message = message
-        let tap = UITapGestureRecognizer(target: self, action: #selector(MessagesTable.tapGestureForPic))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(MessagesTable.tapGestureForProfile))
         //cell.profileImageView.addGestureRecognizer(tap)
         cell.profileImageView.isUserInteractionEnabled = true
         cell.viewUserBtn.addGestureRecognizer(tap)
@@ -87,21 +87,22 @@ class MessagesTable: UITableViewController {
     }
   
     
-    func tapGestureForPic() {
+    func tapGestureForProfile() {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "otherVC") as! OtherUser
         let navController = UINavigationController(rootViewController: vc)
-      //  let userIndex = self.tableView.indexPathForSelectedRow?.row
-    //    let firstName = self.users[(self.tableView.indexPathForSelectedRow?.row)!].firstName
-      //  let lastName = self.users[(self.tableView.indexPathForSelectedRow?.row)!].lastName
-       // let fullName = firstName! + " " + lastName!
+   //     let userIndex = self.tableView.indexPathForSelectedRow?.row
+    //    let firstName = self.users[userIndex!].firstName
+     //   let lastName = self.users[userIndex!].lastName
+     //   let fullName = firstName! + " " + lastName!
       //  vc.title = fullName
-        vc.title = "Username"
-       // vc.age = self.users[(self.tableView.indexPathForSelectedRow?.row)!].age
+       // vc.age = self.users[userIndex!].age
         vc.discoverSwipe.isEnabled = false
+        vc.followersSwipe.isEnabled = false
+        vc.followingSwipe.isEnabled = false
         self.present(navController, animated: true, completion: nil)
         
 
-         // performSegue(withIdentifier: "messageToUser", sender: self)
+         
     }
     
     

@@ -18,17 +18,23 @@ class RequestCell: UITableViewCell {
     
     @IBOutlet weak var messageLabel: UILabel!
     
-    @IBOutlet weak var fromLabel: UILabel!
+    @IBOutlet weak var blurrForSpec: UIVisualEffectView!
     
-        override func awakeFromNib() {
+    @IBOutlet weak var specBtn: UIButton!
+    
+    
+    override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        visuals()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func visuals() {
+        
+        blurrForSpec.layer.masksToBounds = true
+        blurrForSpec.layer.cornerRadius = 8
+        specBtn.layer.masksToBounds = true
+        specBtn.layer.cornerRadius = 8
+        
     }
 
 }

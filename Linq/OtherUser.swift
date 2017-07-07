@@ -17,9 +17,11 @@ class OtherUser: UIViewController {
     var city = ""
     var gender = ""
     var state = ""
-    var bio = ""
+    
     var pathToImage = ""
     
+    
+    @IBOutlet weak var containerForData: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var BackprofileImageView: UIImageView!
 
@@ -37,15 +39,28 @@ class OtherUser: UIViewController {
     
     @IBOutlet var messageSwipe: UISwipeGestureRecognizer!
     @IBAction func swiped(_ sender: Any) {
-        
         performSegue(withIdentifier: "unwindToMessages", sender: self)
     }
     
     @IBOutlet var discoverSwipe: UISwipeGestureRecognizer!
     @IBAction func swipeToDiscover(_ sender: Any) {
-        
         performSegue(withIdentifier: "unwindToDiscover", sender: self)
     }
+    
+    @IBOutlet var followingSwipe: UISwipeGestureRecognizer!
+    @IBAction func swipeToFollowing(_ sender: Any) {
+        performSegue(withIdentifier: "unwindToFollowing", sender: self)
+    }
+    
+    @IBOutlet var followersSwipe: UISwipeGestureRecognizer!
+    @IBAction func swipeToFollowers(_ sender: Any) {
+        performSegue(withIdentifier: "unwindToFollowers", sender: self)
+    }
+    
+    
+    
+    
+    
     
     @IBAction func settingsTapped(_ sender: Any) {
        
@@ -109,7 +124,6 @@ class OtherUser: UIViewController {
         let from = city + ", " + state
         fromLabel.text = from
         genderLabel.text = gender
-        bioTV.text = bio
         
         
     }

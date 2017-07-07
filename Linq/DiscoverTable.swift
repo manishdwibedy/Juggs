@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import SDWebImage
-class DiscoverTable: UITableViewController {
+class DiscoverTable: UITableViewController , UIGestureRecognizerDelegate {
 
     
 
@@ -21,19 +21,87 @@ class DiscoverTable: UITableViewController {
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
 
-       self.tabBarController?.tabBar.barTintColor = UIColor.black
+        self.tabBarController?.tabBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.isHidden = true
         self.tableView.rowHeight = 500
-       retrieveUsers()
+     
+        retrieveUsers()
        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped(recognizer:)))
+        tap.numberOfTapsRequired = 2
+        tap.delegate = self
+        self.tableView.addGestureRecognizer(tap)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(gesture:)))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.left
+        self.tableView.addGestureRecognizer(swipeRight)
+        
        /* let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
         tap.numberOfTapsRequired = 2
         view.addGestureRecognizer(tap) */
     }
     
-    func doubleTapped() {
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         
-       // followUser()
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.left:
+                if gesture.state == UIGestureRecognizerState.ended {
+                    
+                    
+                    
+                    let tapLocation = gesture.location(in: self.tableView)
+                    if let tapIndexPath = self.tableView.indexPathForRow(at: tapLocation) {
+                        if (self.tableView.cellForRow(at: tapIndexPath) as? CellForDiscover) != nil {
+                            
+                            tryThis(tapIndexPath.row)
+                            
+                            //do what you want to cell here
+//                            let uid = Auth.auth().currentUser!.uid
+//                            let ref = Database.database().reference()
+//                            let key = ref.child("Users").childByAutoId().key
+//                            
+//                            let userId = users[tapIndexPath.row].userID
+                            
+                            
+                        }
+                    }
+                }
+                
+                print("Swiped right")
+            case UISwipeGestureRecognizerDirection.down:
+                print("Swiped down")
+            case UISwipeGestureRecognizerDirection.left:
+                print("Swiped left")
+            case UISwipeGestureRecognizerDirection.up:
+                print("Swiped up")
+            default:
+                break
+            }
+        }
+    }
+    
+    func doubleTapped(recognizer: UITapGestureRecognizer) {
+        
+        if recognizer.state == UIGestureRecognizerState.ended {
+            let tapLocation = recognizer.location(in: self.tableView)
+            if let tapIndexPath = self.tableView.indexPathForRow(at: tapLocation) {
+                if (self.tableView.cellForRow(at: tapIndexPath) as? CellForDiscover) != nil {
+                    //do what you want to cell here
+                    let uid = Auth.auth().currentUser!.uid
+                    let ref = Database.database().reference()
+
+                    let userId = users[tapIndexPath.row].userID
+                    let keyToPost = ref.child("Users").child(uid)
+                    
+                    let commentsRef = keyToPost.child("Following").childByAutoId()
+                    
+                    commentsRef.setValue(userId)
+                    
+                }
+            }
+        }
         
     }
     
@@ -123,18 +191,42 @@ class DiscoverTable: UITableViewController {
         
         cellForDiscover.profilePic.sd_setImage(with: URL(string: "\(String(describing: users[(indexPath.row)].imagePath!))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
 
+        cellForDiscover.tag = indexPath.row
+        
         return cellForDiscover
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        // DRAG FROM LEFT TO RIGHT SEGUE
-        
-        performSegue(withIdentifier: "showUser", sender: self)
-        }
+//        tryThis()
+           // performSegue(withIdentifier: "showUser", sender: self)
+    }
 
     ////// SETUP FOLLOWING ANG FOLLOWERS IMAGES IN CELL WITH FOLLOW USER FUNCTION. (DOUBLE TAP TO FOLLOW) //////
     
+    
+    func tryThis(_ userIndex : NSInteger)
+    {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "otherVC") as! OtherUser
+        let navController = UINavigationController(rootViewController: vc)
+        //let userIndex = tableView.indexPathForSelectedRow?.row
+        let firstName = users[userIndex].firstName
+        let lastName = users[userIndex].lastName
+        
+        vc.firstName = firstName!
+        vc.lastName = lastName!
+        vc.age = users[userIndex].age
+        vc.city = users[userIndex].city
+        vc.state = users[userIndex].state
+        vc.gender = users[userIndex].gender
+        vc.pathToImage = users[userIndex].imagePath
+        
+        //vc.bioTV.text = users[userIndex!].bio
+        vc.discoverSwipe.isEnabled = true
+        vc.followersSwipe.isEnabled = false
+        vc.followingSwipe.isEnabled = false
+        
+        self.present(navController, animated: true, completion: nil)
+    }
     
     /*  func followUser(row: Int) {
             let indexPath = tableView.indexPathForSelectedRow!.row
@@ -242,20 +334,21 @@ class DiscoverTable: UITableViewController {
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
-       if segue.identifier == "showUser" {
-            if let destination = segue.destination as? OtherUser {
-               destination.firstName = users[(self.tableView.indexPathForSelectedRow?.row)!].firstName
-                destination.lastName = users[(self.tableView.indexPathForSelectedRow?.row)!].lastName
-                destination.age = users[(self.tableView.indexPathForSelectedRow?.row)!].age
-                destination.city = users[(self.tableView.indexPathForSelectedRow?.row)!].city
-                destination.state = users[(self.tableView.indexPathForSelectedRow?.row)!].state
-                destination.gender = users[(self.tableView.indexPathForSelectedRow?.row)!].gender
-                destination.bio = users[(self.tableView.indexPathForSelectedRow!.row)].bio
-                destination.pathToImage = users[(self.tableView.indexPathForSelectedRow!.row)].imagePath
-                destination.messageSwipe.isEnabled = false
-                // Not Working
-                
-            }
+        if segue.identifier == "showUser" {
+            
+            let nav = segue.destination as! UINavigationController
+            let destination = nav.topViewController as! OtherUser
+            
+            destination.firstName = users[(self.tableView.indexPathForSelectedRow?.row)!].firstName
+            destination.lastName = users[(self.tableView.indexPathForSelectedRow?.row)!].lastName
+            destination.age = users[(self.tableView.indexPathForSelectedRow?.row)!].age
+            destination.city = users[(self.tableView.indexPathForSelectedRow?.row)!].city
+            destination.state = users[(self.tableView.indexPathForSelectedRow?.row)!].state
+            destination.gender = users[(self.tableView.indexPathForSelectedRow?.row)!].gender
+            destination.bio = users[(self.tableView.indexPathForSelectedRow!.row)].bio
+            destination.pathToImage = users[(self.tableView.indexPathForSelectedRow!.row)].imagePath
+            destination.messageSwipe.isEnabled = false
+            
         }
     }
 

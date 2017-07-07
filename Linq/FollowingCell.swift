@@ -15,6 +15,7 @@ class FollowingCell: UITableViewCell {
     @IBOutlet weak var followingName: UILabel!
     @IBOutlet weak var followingFrom: UILabel!
     @IBOutlet weak var followBtn: UIButton!
+    @IBOutlet weak var unFollowBtn: UIButton!
 
     @IBAction func followed(_ sender: Any) {
    
@@ -38,6 +39,8 @@ class FollowingCell: UITableViewCell {
         
         followingImage.layer.masksToBounds = true
         followingImage.layer.cornerRadius = 24
+        unFollowBtn.layer.borderColor = UIColor.white.cgColor
+        unFollowBtn.layer.borderWidth = 2
         
     }
 

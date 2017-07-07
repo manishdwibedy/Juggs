@@ -13,6 +13,8 @@ import Firebase
 class UpdatePassword: UIViewController {
 
     @IBOutlet weak var passwordTF: UITextField!
+     @IBOutlet weak var OldpasswordTF: UITextField!
+     @IBOutlet weak var ConfirmpasswordTF: UITextField!
     @IBOutlet weak var submitBtn: UIButton!
     
     
@@ -23,7 +25,56 @@ class UpdatePassword: UIViewController {
         visuals()
     }
     
-   
+    @IBAction func saveName(_ sender: Any) {
+        
+        if OldpasswordTF.text == nil || passwordTF.text == nil || ConfirmpasswordTF.text == nil {
+            return
+        }
+     let oldPass = Globals .sharedInstance.getValueFromUserDefaultsForKey("Password") as? String
+        
+        if oldPass == OldpasswordTF.text{
+            if passwordTF.text == ConfirmpasswordTF.text {
+                Globals.ShowSpinner(testStr: "")
+                
+                Auth.auth().currentUser?.updatePassword(to: self.passwordTF.text!) { (error) in
+                    
+                    Globals.HideSpinner()
+                    // ...
+                    let alertViewController = UIAlertController(title: "Record Successfully Updated.", message: "", preferredStyle: .alert)
+                    
+                    let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    
+                    alertViewController.addAction(okAction)
+                    
+                    self.present(alertViewController, animated: true, completion: nil)
+                }
+            }else{
+                let alertViewController = UIAlertController(title: "Your Password is miss matched.", message: "", preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+                }
+                
+                alertViewController.addAction(okAction)
+                
+                self.present(alertViewController, animated: true, completion: nil)
+                
+            }
+        }else{
+            let alertViewController = UIAlertController(title: "Current Password is not matching", message: "", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+            }
+            
+            alertViewController.addAction(okAction)
+            
+            self.present(alertViewController, animated: true, completion: nil)
+            
+        }
+        
+        
+    }
     
     
     
@@ -31,7 +82,6 @@ class UpdatePassword: UIViewController {
         self.title = "Password"
         submitBtn.layer.masksToBounds = true
         submitBtn.layer.cornerRadius = 8
-        submitBtn.isEnabled = false
         
     }
     

@@ -43,8 +43,8 @@ class Invitations: UITableViewController {
        
         if indexPath.row == 0 {
             let requestCell = tableView.dequeueReusableCell(withIdentifier: "requestCell", for: indexPath) as! RequestCell
-            requestCell.nameLabel.text = "Dae'ja Askew"
-            requestCell.fromLabel.text = "Greenville, NC"
+           
+            
             return requestCell
             
         }

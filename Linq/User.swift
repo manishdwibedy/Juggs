@@ -20,6 +20,8 @@ class User: NSObject {
     var state: String!
     var bio: String!
     var imagePath: String!
+    var following: [String:AnyObject]!
+    var follower: [String:AnyObject]!
     
     init(dictionary: [String: AnyObject]) {
         userID = dictionary["id"] as? String

@@ -25,6 +25,8 @@ class InvitationCell: UITableViewCell {
     @IBOutlet weak var declineBtn: UIButton!
     @IBOutlet weak var responseLabel: UILabel!
     @IBOutlet weak var optOutBtn: UIButton!
+    @IBOutlet weak var blurrViewForSpeculation: UIVisualEffectView!
+    @IBOutlet weak var speculationBtn: UIButton!
     
     @IBAction func invitationAccepted(_ sender: Any) {
         
@@ -62,6 +64,11 @@ class InvitationCell: UITableViewCell {
         flyerImageView.layer.cornerRadius = 8
         acceptBtn.layer.cornerRadius = 8
         declineBtn.layer.cornerRadius = 8
+        blurrViewForSpeculation.layer.masksToBounds = true
+        blurrViewForSpeculation.layer.cornerRadius = 8
+        speculationBtn.layer.masksToBounds = true
+        speculationBtn.layer.cornerRadius = 8
+        
         
     }
     

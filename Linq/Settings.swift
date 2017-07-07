@@ -127,9 +127,6 @@ class Settings: UITableViewController {
             performSegue(withIdentifier: "updateWebsite", sender: self)
         }
         
-        
-        
-        
         // IF THE 'SIGN OUT' CELL IS TAPPED
         
         if indexPath.section == 2 && indexPath.row == 1 {

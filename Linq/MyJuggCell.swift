@@ -1,18 +1,20 @@
 //
-//  ArchiveCell.swift
+//  MyJuggCell.swift
 //  Linq
 //
-//  Created by Quinton Askew on 6/4/17.
+//  Created by Quinton Askew on 7/2/17.
 //  Copyright © 2017 QuintonAskew. All rights reserved.
 //
 
 import UIKit
 
-class ArchiveCell: UITableViewCell {
+class MyJuggCell: UITableViewCell {
 
-    @IBOutlet weak var flyerImageView: UIImageView!
-    @IBOutlet weak var eventNameLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
+ 
+    @IBOutlet weak var juggNameLabel: UILabel!
+    @IBOutlet weak var locationOfJuggLabel: UILabel!
+    @IBOutlet weak var juggFlyerImageView: UIImageView!
+    
     
     
     override func awakeFromNib() {

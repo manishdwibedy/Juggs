@@ -16,22 +16,50 @@ class ProfileImage: UIViewController,UIImagePickerControllerDelegate, UINavigati
   
     @IBOutlet weak var saveButton: UIButton!
     
-     var userStorage: StorageReference!
+  //   var userStorage: StorageReference!
     
     @IBAction func saved(_ sender: Any) {
-    
+        
+        Globals.ShowSpinner(testStr: "")
+        let uid = Auth.auth().currentUser!.uid
+        
+        let check:String? = uid + ".jpg"
+        var storageRef = Storage.storage().reference()
+        let urlToStorage = "gs://jugg-88ab9.appspot.com/"
+        storageRef.storage.reference(forURL: urlToStorage)
+        storageRef = storageRef.child("Users")
+
+        let imageRef = storageRef.child(check!)
+        let data = UIImageJPEGRepresentation(self.imageView.image!, 0.5)
        
-        
-        
-        
-        
+        imageRef.putData(data!, metadata: nil, completion: { (metadata, error) in
+            imageRef.downloadURL(completion: { (url, er) in
+                if er != nil {
+                    print(er!.localizedDescription)
+                }
+                //Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(url!, key: "urlToImage")
+
+                Globals.HideSpinner()
+                let alertViewController = UIAlertController(title: "Profile Image is  Successfully Updated.", message: "", preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+                    self.navigationController?.popViewController(animated: true)
+                }
+                
+                alertViewController.addAction(okAction)
+                
+                self.present(alertViewController, animated: true, completion: nil)
+            })
+        })
     }
 
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.sd_setImage(with: URL(string: "\(String(describing: Globals .sharedInstance.getValueFromUserDefaultsForKey("UserImage")))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
+        
+        let ImageUrl = Globals .sharedInstance.getValueFromUserDefaultsForKey("urlToImage") as? String!
+        imageView.sd_setImage(with: URL(string: ImageUrl!), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = imageView.frame.size.width/2
         imageView.layer.borderWidth = 4
@@ -41,7 +69,6 @@ class ProfileImage: UIViewController,UIImagePickerControllerDelegate, UINavigati
         let tap = UITapGestureRecognizer(target: self, action: #selector(SignUp.tappedMe))
         imageView.addGestureRecognizer(tap)
         imageView.isUserInteractionEnabled = true
-        saveButton.isEnabled = false
     }
 
     
@@ -112,16 +139,21 @@ class ProfileImage: UIViewController,UIImagePickerControllerDelegate, UINavigati
         
         // The info dictionary contains multiple representations of the image, and this uses the original.
         
-        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            
+            /// if user update it and already got it , just return it to 'self.imgView.image'
+            imageView.image = editedImage
+            
+            /// else if you could't find the edited image that means user select original image same is it without editing .
+        } else if let orginalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            /// if user update it and already got it , just return it to 'self.imgView.image'.
+            imageView.image = orginalImage
+        }
+        else { print ("error") }
         
-        // Set photoImageView to display the selected image.
-        
-        imageView.image = selectedImage
-        
-        saveButton.isEnabled = true
-        // Dismiss the picker.
-        
-        dismiss(animated: true, completion: nil)
+        /// if the request successfully done just dismiss
+        picker.dismiss(animated: true, completion: nil)
         
         
         
