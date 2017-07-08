@@ -58,11 +58,11 @@ class Login: UIViewController {
                 let fullName = firstName! + " " + lastName!
                 
                 Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(firstName!, key: "FName")
-                
+
                 Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(lastName!, key: "LName")
-                
+
                 Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(fullName, key: "UserName")
-                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(self.pwTF.text!, key: "Password")
+                
                 let age = dict["Age"] as? String!
                 Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(age!, key: "Age")
                 
@@ -79,45 +79,41 @@ class Login: UIViewController {
                 let bio = dict["Bio"] as? String!
                 Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(bio!, key: "Bio")
                 
-                let profilePicURL = dict["urlToImage"] as? String!
-                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(profilePicURL!, key: "urlToImage")
                 
                 
-                
-                
-                //                if let profilePicURL = dict["urlToImage"] as? String {
-                //
-                //
-                //                        let url = URL(string: profilePicURL)
-                //                        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-                //
-                //                            if error != nil {
-                //                                print(error!)
-                //                                return
-                //
-                //                            }
-                //
-                //                            DispatchQueue.main.sync {
-                //
-                //                                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(UIImage(data: data!)!, key: "UserImage")
-                //
-                //                            }
-                //
-                //                        }).resume()
-                //                }
+//                if let profilePicURL = dict["urlToImage"] as? String {
+//                    
+//                        
+//                        let url = URL(string: profilePicURL)
+//                        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+//                            
+//                            if error != nil {
+//                                print(error!)
+//                                return
+//                                
+//                            }
+//                            
+//                            DispatchQueue.main.sync {
+//                                
+//                                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(UIImage(data: data!)!, key: "UserImage")
+//                                
+//                            }
+//                            
+//                        }).resume()
+//                }
             }
             Globals.HideSpinner()
-            
+
             let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
             Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(true, key: "IS_LOGIN")
             
             self.present(homeVC, animated: true, completion: nil)
-            
+
         })
         
         ref.removeAllObservers()
         
-        
+
         
     }
     @IBAction func signUp(_ sender: Any) {

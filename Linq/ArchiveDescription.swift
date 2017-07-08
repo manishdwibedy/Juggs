@@ -59,18 +59,25 @@ class ArchiveDescription: UIViewController {
     var likes = 0
     var juggs = 0
     
+    var segueName = ""
     
-    
+    var swipeDown: UISwipeGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         visualsAndProperties()
+        swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(dismissDescription))
+        swipeDown.direction = .down
+        self.view.addGestureRecognizer(swipeDown)
+    }
+    
+    func dismissDescription(gestureRecognizer: UIGestureRecognizer) {
+        performSegue(withIdentifier: self.segueName, sender: self)
     }
 
-
     func visualsAndProperties() {
-        
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
         self.title = juggName
         // Add user image
         self.flyerImageView.sd_setImage(with: URL(string: flyerImagePath))

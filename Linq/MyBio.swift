@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MyBio: UIViewController {
 
@@ -17,19 +18,47 @@ class MyBio: UIViewController {
     var websiteText = ""
     
     
+    
+    
+    func fetchBio() {
+        
+        
+        let ref = Database.database().reference()
+        let uid = Auth.auth().currentUser?.uid
+        
+        ref.child("Users").child(uid!).queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
+            
+            if let dict = snapshot.value as? [String : AnyObject] {
+                
+                let bio = dict["Bio"] as? String!
+                
+                    self.biographyTextView.text = bio!
+            }
+            
+            
+            
+        })
+        
+        ref.removeAllObservers()
+        
+    }
+
+    
+    
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setup()
-   
+       
+        fetchBio()
+        websiteTextView.text = "Edit URL in Settings."
     }
 
-    func setup() {
-        biographyTextView.text = biographyText
-        websiteTextView.text = websiteText
-        
-        
-    }
+   
 
     /*
     // MARK: - Navigation

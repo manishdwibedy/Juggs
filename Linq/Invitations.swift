@@ -21,7 +21,7 @@ class Invitations: UITableViewController {
         let backgroundImage = #imageLiteral(resourceName: "Backgroundloginsignup")
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
-        self.tableView.rowHeight = 325
+        self.tableView.rowHeight = 400
         
         
     }

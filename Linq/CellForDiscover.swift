@@ -36,11 +36,6 @@ class CellForDiscover: UITableViewCell {
         
     }
     
-    func swipeAction(swipe: UISwipeGestureRecognizer) {
-        
-      //  performSegue(withIdentifier: "showUser", sender: self)
-        print("It's working")
-    }
     
     
     

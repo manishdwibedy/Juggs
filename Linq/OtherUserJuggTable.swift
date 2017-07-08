@@ -109,6 +109,35 @@ class OtherUserJuggTable: UITableViewController {
     }
  
 
+    func showDescription() {
+        let myJuggInArchive = self.storyboard!.instantiateViewController(withIdentifier: "ArchiveDescription") as! ArchiveDescription
+        let navController = UINavigationController(rootViewController: myJuggInArchive)
+        let userIndex = tableView.indexPathForSelectedRow?.row
+        myJuggInArchive.juggName = posts[userIndex!].nameOfEvent
+        //  myJuggInArchive.author = myJuggs[userIndex!].author
+        myJuggInArchive.flyerImagePath = posts[userIndex!].pathToImage
+        //  myJuggInArchive.juggTime = myJuggs[userIndex!].time
+        //  myJuggInArchive.juggDate = myJuggs[userIndex!].date
+        // myJuggInArchive.capacity = myJuggs[userIndex!].capacity
+        // myJuggInArchive.likes = myJuggs[userIndex!].likes
+        // myJuggInArchive.juggs = myJuggs[userIndex!].juggCount
+        // myJuggInArchive.descriptionForJugg = myJuggs[userIndex!].moveDesc
+        myJuggInArchive.segueName = "unwindToOtherUserJuggs"
+        
+        self.present(navController, animated: true, completion: nil)
+        
+        
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        showDescription()
+    }
+    
+    
+    @IBAction func unwindToOtherUserJuggs(segue:UIStoryboardSegue) { }
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

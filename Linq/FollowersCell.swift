@@ -16,26 +16,25 @@ class FollowersCell: UITableViewCell {
     @IBOutlet weak var followerFrom: UILabel!
     @IBOutlet weak var followBtn: UIButton!
     @IBOutlet weak var unfollowBtn: UIButton!
- 
     @IBAction func followed(_ sender: Any) {
-        
+       
         //        let uid = Auth.auth().currentUser!.uid
         //        let ref = Database.database().reference()
         //        let key = ref.child("Users").childByAutoId().key
         //
         
-//        let uid = Auth.auth().currentUser!.uid
-//        let ref = Database.database().reference()
-//        let userId = self.users[sender].userID
-//        let keyToPost = ref.child("Users").child(uid)
-//        let commentsRef = keyToPost.child("Following").childByAutoId()
-//        commentsRef.setValue(userId)
+        //        let uid = Auth.auth().currentUser!.uid
+        //        let ref = Database.database().reference()
+        //        let userId = self.users[sender].userID
+        //        let keyToPost = ref.child("Users").child(uid)
+        //        let commentsRef = keyToPost.child("Following").childByAutoId()
+        //        commentsRef.setValue(userId)
         
         //           _ = (sender as AnyObject).tag
     }
-    
     @IBAction func unfollowed(_ sender: Any) {
    
+    
     }
   
     
@@ -51,11 +50,16 @@ class FollowersCell: UITableViewCell {
 
     
     func visuals() {
+        let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
         
-        followerImage.layer.masksToBounds = true
-        followerImage.layer.cornerRadius = 24
+        followerImage.layer.masksToBounds = false
+        followerImage.layer.cornerRadius = followerImage.frame.height/2
+        followerImage.clipsToBounds = true
+        followerImage.layer.borderWidth = 2
+        followerImage.layer.borderColor = purp.cgColor
         followBtn.layer.borderColor = UIColor.white.cgColor
         followBtn.layer.borderWidth = 2
+        followBtn.layer.cornerRadius = 8
     }
     
         
@@ -79,7 +83,7 @@ class FollowersCell: UITableViewCell {
                         ref.child("Users").child(uid).child("Following/\(ke)").removeValue()
                         ref.child("Users").child(self.users[indexPath].userID!).child("Followers/\(ke)").removeValue()
                         
-                        self.tableView.cellForRow(at: indexPath)?.accessoryType = .none
+                        //self.tableView.cellForRow(at: indexPath)?.accessoryType = .none
                     }
                 }
             }

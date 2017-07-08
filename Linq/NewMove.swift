@@ -9,6 +9,7 @@
 
 import UIKit
 import Firebase
+import SDWebImage
 
 class NewMove: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -57,7 +58,7 @@ class NewMove: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
     }
    
     @IBAction func moveSubmitted(_ sender: Any) {
-   
+        Globals.ShowSpinner(testStr: "")
         
         if timeTF.text == "" || amfmTF.text == "" || dateTF.text == "" || timeTF.text == "" || streetAddyTF.text == "" || cityTF.text == "" || stateTF.text == "" || zipTF.text == "" || capacityTF.text == "" || descriptionTV.text == "" {
             
@@ -75,15 +76,19 @@ class NewMove: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
             return
         }
         
-        
+            if capacity == "0" {
+                invitationSwitch.isOn = false
+            }
         let address = street + ", " + city + ", "  + state + ", " + zip
-    
+        
         let uid = Auth.auth().currentUser?.uid
         let ref = Database.database().reference()
         let storage = Storage.storage().reference(forURL: "gs://jugg-88ab9.appspot.com")
         
         let key = ref.child("Flyers").childByAutoId().key
+        
         let flyerRef = storage.child("Flyers").child(uid!).child("\(key).jpg")
+       // let userImage = ref.child("Users").child(uid!).child("urlToImage")
         
         let data = UIImageJPEGRepresentation(flyer.image!, 0.6)
         
@@ -95,53 +100,49 @@ class NewMove: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
             }
        
         flyerRef.downloadURL(completion: { (url, error) in
-            
             if let uid = Auth.auth().currentUser?.uid {
                 
                 Database.database().reference().child("Users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
                     
-                   let user = snapshot.value as? [String : AnyObject]
-                    
-                    if let url = url {
-                        let feed = ["UserID" : uid,
-                                    "NameOfMove" : nameOfMove,
-                                    "PathToImage" : url.absoluteString,
-                                    "Time" : time,
-                                    "AP" : ampm,
-                                    "Date" : date,
-                                    "City" : city,
-                                    "State" : state,
-                                    "Address" : address,
-                                    "Capacity" : Int(capacity)!,
-                                    "Likes" : 0,
-                                    "FlameCount" : 0,
-                                    "Private" : self.forSwitch(),
-                                    "Description" : descriptionForMove,
-                                    "Author" : Auth.auth().currentUser!.displayName!,
-                                    "userImageUrl" : user?["urlToImage"] ?? "",
-                                    "PostID" : key] as [String : Any]
-                        
-                        let postFeed = ["\(key)" : feed]
-                        ref.child("Flyers").updateChildValues(postFeed)
-                        
-                        
-                        self.dismiss(animated: true, completion: nil)
-                        
-                    }
-
-                })
-            } else {
-//                Globals.HideSpinner()
+                    let user = snapshot.value as? [String : AnyObject]
+            if let url = url {
+                let feed = ["UserID" : uid,
+                            "NameOfMove" : nameOfMove,
+                            "PathToImage" : url.absoluteString, // Flyer for Jugg.
+                            "Time" : time,
+                            "AP" : ampm,
+                            "Date" : date,
+                            "City" : city,
+                            "State" : state,
+                            "Address" : address,
+                            "Capacity" : Int(capacity)!,
+                            "Likes" : 0,
+                            "FlameCount" : 0,
+                            "Private" : self.forSwitch(),
+                            "Description" : descriptionForMove,
+                            "Author" : Auth.auth().currentUser!.displayName!,
+                            "userImageUrl" : user?["urlToImage"] ?? "",
+                            "PostID" : key] as [String : Any]
+                
+                let postFeed = ["\(key)" : feed]
+                ref.child("Flyers").updateChildValues(postFeed)
+              
+                
+                self.dismiss(animated: true, completion: nil)
+                Globals.HideSpinner()
             }
-            
-            
-            
             
         })
         
         
         
-        }
+            }else {
+                
+            }
+            
+        })
+    
+            }
         
         
         uploadTask.resume()
@@ -169,27 +170,32 @@ class NewMove: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
     
     var timeList = ["1:00", "2:00", "3:00", "4:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00", "11:00", "12:00"]
     
-    var amPMList = ["AM","PM"]
+    var amPMList = ["A.M","P.M"]
     
     var capacity = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "30", "40", "50", "60", "70", "80", "90", "100", "125", "150", "175", "200", "250", "300", "400", "500", "600", "700", "800", "900", "1000", "2000", "3000"]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        ////// TAP GESTURE FOR 'imageView'  /////
+        
+        
+        // TAP GESTURE FOR FLYER
         let tap = UITapGestureRecognizer(target: self, action: #selector(NewMove.tappedMe))
         flyer.addGestureRecognizer(tap)
         flyer.isUserInteractionEnabled = true
         pickerViews()
         delegate()
+        
+        // Designs
         descriptionTV.layer.masksToBounds = true
         descriptionTV.layer.cornerRadius = 8
         flyer.layer.cornerRadius = 8
         flyer.layer.masksToBounds = true
         submitBtn.layer.masksToBounds = true
         submitBtn.layer.cornerRadius = 8
+        invitationSwitch.isOn = true
+        
+        
         
     
     }
@@ -511,14 +517,13 @@ class NewMove: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         performSegue(withIdentifier: "unwindToHome", sender: self)
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+       
     }
-    */
+    
 
 }

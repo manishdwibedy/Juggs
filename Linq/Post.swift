@@ -16,9 +16,9 @@ class Post: NSObject {
     var capacity: Int!
     var userID: String!
     var postID: String!
-    var flameCount: Int!
-    var pathToImage: String!
-    var pathToUserImage: String!
+    var juggCount: Int!
+    var pathToImage: String! // Flyer for Jugg.
+    var pathToUserImage: String! // Host of Jugg.
     var AP: String!
     var address: String!
     var moveDesc: String!
@@ -27,7 +27,6 @@ class Post: NSObject {
     var date: String!
     var peopleWhoLiked: [String] = [String]()
     var nameOfEvent: String!
-    var pathToFlyer: String!
     var commentsForPost: [Any]?
     var message: String!
     var city: String!

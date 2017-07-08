@@ -10,6 +10,7 @@ import UIKit
 
 class OtherUser: UIViewController {
 
+    
   
     var firstName = ""
     var lastName = ""
@@ -17,7 +18,8 @@ class OtherUser: UIViewController {
     var city = ""
     var gender = ""
     var state = ""
-    
+    var bioTextForOtherUser = ""
+    var urlTextForOtherUser = ""
     var pathToImage = ""
     
     
@@ -32,9 +34,6 @@ class OtherUser: UIViewController {
     
     @IBOutlet weak var fromLabel: UILabel!
     
-    @IBOutlet weak var webTV: UITextView!
-    
-    @IBOutlet weak var bioTV: UITextView!
     
     
     @IBOutlet var messageSwipe: UISwipeGestureRecognizer!
@@ -57,6 +56,11 @@ class OtherUser: UIViewController {
         performSegue(withIdentifier: "unwindToFollowers", sender: self)
     }
     
+    @IBAction func seeRelationships(_ sender: Any) {
+        
+        
+        
+    }
     
     
     
@@ -113,17 +117,23 @@ class OtherUser: UIViewController {
     
     func setupProfile() {
         
+        
         profileImageView.sd_setImage(with: URL(string: "\(String(describing: pathToImage))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
-
-      //  profileImageView.downloadImage(from: pathToImage) // not working
         let firstName = self.firstName
         let lastName = self.lastName
         let fullName = firstName + lastName
         self.navigationItem.title = fullName
-        ageLabel.text = age
+        ageLabel.text = age + ","
         let from = city + ", " + state
         fromLabel.text = from
         genderLabel.text = gender
+        let otherUserPV: OtherUserPageView = storyboard?.instantiateViewController(withIdentifier: "OtherUserPageView") as! OtherUserPageView
+        self.view.addSubview(otherUserPV.view)
+        self.addChildViewController(otherUserPV)
+       // let otherUserBio: OtherUserBio = storyboard?.instantiateViewController(withIdentifier: "OtherUserBio") as! OtherUserBio
+       // otherUserPV.addChildViewController(otherUserBio)
+     //   otherUserBio.bioTV.text = bioTextForOtherUser
+      //  otherUserBio.urlTV.text = urlTextForOtherUser
         
         
     }
@@ -139,17 +149,26 @@ class OtherUser: UIViewController {
         self.tabBarController?.tabBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.barTintColor = UIColor.black
         
+        
     }
     
        
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+      
+        if segue.identifier == "seeRelations" {
+            if segue.destination is Relations {
+                let backItem = UIBarButtonItem()
+                backItem.title = ""
+                navigationItem.backBarButtonItem = backItem
+            }
+        }
+        
+        
     }
-    */
+    
 
 }

@@ -66,7 +66,6 @@ class MessagesTable: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 1
     }
 
@@ -105,9 +104,7 @@ class MessagesTable: UITableViewController {
          
     }
     
-    
-    
-    
+  
    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let message = messages[indexPath.row]
     

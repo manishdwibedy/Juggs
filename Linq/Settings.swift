@@ -127,13 +127,16 @@ class Settings: UITableViewController {
             performSegue(withIdentifier: "updateWebsite", sender: self)
         }
         
+        
+        
+        
         // IF THE 'SIGN OUT' CELL IS TAPPED
         
         if indexPath.section == 2 && indexPath.row == 1 {
             let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
             
             let logout = UIAlertAction(title: "Log Out", style: .default, handler: { (ACTION) in
-                self.performSegue(withIdentifier: "signOutFromSettings", sender: self)
+                self.logMeOut()
                 Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(false, key: "IS_LOGIN")
 
                 print("Logged Out")
@@ -215,6 +218,13 @@ class Settings: UITableViewController {
         success.addAction(OK)
         self.present(success, animated: true, completion:nil)
     }
+    
+    func logMeOut() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginVC = storyboard.instantiateViewController(withIdentifier: "login")
+        present(loginVC, animated: true, completion: nil)
+    }
+    
     
     func deleteAccount() {
         

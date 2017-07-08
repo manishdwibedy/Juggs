@@ -11,7 +11,7 @@ import Firebase
 
 // This class should display past events that were within 100 miles, and ones you "Jugg'ed"
 
-// Once 24 hours af starting time has ended, Archive the event.
+// Once 24 hours af starting time has ended, Archive the event. (Completed)
 
 class ArchiveTable: UITableViewController {
 
@@ -65,7 +65,7 @@ class ArchiveTable: UITableViewController {
                     otherUserPost.pathToImage = pathToImage
                     otherUserPost.postID = postID
                     otherUserPost.nameOfEvent = titleForEvent
-                    otherUserPost.flameCount = juggCount
+                    otherUserPost.juggCount = juggCount
                     otherUserPost.likes = likeCount
                     otherUserPost.author = author
                     otherUserPost.capacity = capacity
@@ -73,6 +73,7 @@ class ArchiveTable: UITableViewController {
                     otherUserPost.moveDesc = descriptions
                     otherUserPost.AP = amOrPM
                     otherUserPost.time = time
+                    
                     
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "MMM dd, yyyy hh:mm a"
@@ -91,9 +92,6 @@ class ArchiveTable: UITableViewController {
                     
                     
                     
-                    
-                    
-                    
                 }
                 
             }
@@ -109,21 +107,18 @@ class ArchiveTable: UITableViewController {
         refreshControl?.endRefreshing()
     }
 
-
+    
+    
     func stringFromTimeInterval(interval: TimeInterval) -> NSString {
-        
         let ti = NSInteger(interval)
-        
-        //        let ms = Int((interval .truncatingRemainder(dividingBy: 1)) * 1000)
-        //
-        //        let seconds = ti % 60
-        //        let minutes = (ti / 60) % 60
+        // let ms = Int((interval .truncatingRemainder(dividingBy: 1)) * 1000)
+        // let seconds = ti % 60
+        // let minutes = (ti / 60) % 60
         let hours = (ti / 3600)
-        
         return NSString(format: "%0.2d",abs(hours))
     }
 
-    
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -142,12 +137,14 @@ class ArchiveTable: UITableViewController {
         cell.eventNameLabel.text = archivedArray[indexPath.row].nameOfEvent
         let myMoveCity = archivedArray[indexPath.row].city
         let myMoveState = archivedArray[indexPath.row].state
-        cell.locationLabel.text = "\(myMoveCity ?? "")," + "\(myMoveState ?? "")"
+        cell.locationLabel.text = "\(String(describing: myMoveCity))," + "\(String(describing: myMoveState))"
         cell.eventNameLabel.textColor = UIColor.white
         cell.locationLabel.textColor = UIColor.white
         
-        cell.flyerImageView.sd_setImage(with: URL(string: "\(archivedArray[(indexPath.row)].pathToImage ?? "")"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
+        cell.flyerImageView.sd_setImage(with: URL(string: "\(String(describing: archivedArray[(indexPath.row)].pathToImage!))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
         
+
+     
         return cell
     }
  
@@ -211,8 +208,8 @@ class ArchiveTable: UITableViewController {
             destination.descriptionForJugg = archivedArray[(self.tableView.indexPathForSelectedRow?.row)!].moveDesc
             destination.capacity = archivedArray[(self.tableView.indexPathForSelectedRow?.row)!].capacity
             destination.likes = archivedArray[(self.tableView.indexPathForSelectedRow?.row)!].likes
-            destination.juggs = archivedArray[(self.tableView.indexPathForSelectedRow?.row)!].flameCount
-            
+            destination.juggs = archivedArray[(self.tableView.indexPathForSelectedRow?.row)!].juggCount
+            destination.view.gestureRecognizers?.removeAll()
             
                 
             

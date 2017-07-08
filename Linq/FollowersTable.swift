@@ -17,26 +17,21 @@ class FollowersTable: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        retrieveUsers()
+        retrievefollowerUsers()
         
-         retrievefollowerUsers()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    
     override func viewWillAppear(_ animated: Bool) {
         retrievefollowerUsers()
     }
+    
     
     func retrievefollowerUsers(){
         Globals.ShowSpinner(testStr: "")
         
         self.users.removeAll()
-
+        
         let ref = Database.database().reference()
         let uid = Auth.auth().currentUser!.uid
         let childRef = ref.child("Users").child(uid)
@@ -63,7 +58,7 @@ class FollowersTable: UITableViewController {
                             let imagePath = dict["urlToImage"] as? String
                             let followers = dict["Followers"] as? [String: AnyObject]
                             let following = dict["Following"] as? [String: AnyObject]
-
+                            
                             userToShow.userID = value as? String
                             userToShow.firstName = firstName
                             userToShow.lastName = lastName
@@ -90,101 +85,41 @@ class FollowersTable: UITableViewController {
         
     }
     
+
     
-    func retrieveUsers() {
-        Globals.ShowSpinner(testStr: "")
+    func followed(_ sender: UIButton) {
+        
+        let uid = Auth.auth().currentUser!.uid
         let ref = Database.database().reference()
+        let userId = self.users[sender.tag].userID
+        let keyToPost = ref.child("Users").child(uid)
+        let commentsRef = keyToPost.child("Following").childByAutoId()
+        commentsRef.setValue(userId)
         
-        ref.child("Users").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
-            
-            let users = snapshot.value as! [String : AnyObject]
-            self.users.removeAll()
-            for(_, value) in users {
-                
-                if let uid = value["UID"] as? String {
-                    if uid != Auth.auth().currentUser!.uid {
-                        let dict = [String : AnyObject]()
-                        let userToShow = User(dictionary:dict)
-                        if let userID = value["UID"] as? String,
-                            let  firstName = value["First Name"] as? String,
-                            let lastName = value["Last Name"] as? String,
-                            let age = value["Age"] as? String,
-                            let city = value["City"] as? String,
-                            let gender = value["Gender"] as? String,
-                            let state = value["State"] as? String,
-                            let bio = value["Bio"] as? String,
-                            let imagePath = value["urlToImage"] as? String {
-                            userToShow.userID = userID
-                            userToShow.firstName = firstName
-                            userToShow.lastName = lastName
-                            userToShow.age = age
-                            userToShow.bio = bio
-                            userToShow.city = city
-                            userToShow.gender = gender
-                            userToShow.state = state
-                            userToShow.imagePath = imagePath
-                            self.users.append(userToShow)
-                            
-                            
-                        }
-                        
-                        
-                    }
-                    
-                }
-            }
-            Globals.HideSpinner()
-            self.tableView.reloadData()
-            
-        })
-        ref.removeAllObservers()
+        let post = ref.child("Users").child(userId!)
+        post.child("Followers").childByAutoId().setValue(uid)
         
-        
+        retrievefollowerUsers()
         
     }
     
     
-    
-  /*  func follow(row: Int) {
-     //   let indexPath = self.tableView.indexPathForSelectedRow!.row
+    func unfollowed(_ sender: UIButton) {
         
         let uid = Auth.auth().currentUser!.uid
         let ref = Database.database().reference()
-        let key = ref.child("Users").childByAutoId().key
+        let userId = self.users[sender.tag].userID
+        let keyToPost = ref.child("Users").child(uid)
+        let commentsRef = keyToPost.child("Following")
+        //        commentsRef.child(userId).key.removeAll()
         
-        var isFollower = false
+        //        commentsRef.setValue(userId)
+        //
+        //        let post = ref.child("Users").child(userId!)
+        //        post.child("Followers").childByAutoId().setValue(uid)
         
-        ref.child("Users").child(uid).child("Following").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
-            
-            if let following = snapshot.value as? [String : AnyObject] {
-                for (ke, value) in following {
-                    if value as? String == self.users[indexPath].userID {
-                        isFollower = true
-                        
-                        ref.child("Users").child(uid).child("Following/\(ke)").removeValue()
-                        ref.child("Users").child(self.users[indexPath].userID!).child("Followers/\(ke)").removeValue()
-                        
-                            //self.tableView.cellForRow(at: indexPath)?.accessoryType = .none
-                    }
-                }
-            }
-            if !isFollower {
-                let following = ["Following/\(key)" : self.users[indexPath].userID]
-                let followers = ["Followers/\(key)" : uid]
-                
-                ref.child("Users").child(uid).updateChildValues(following as Any as! [AnyHashable : Any])
-                ref.child("Users").child(self.users[indexPath].userID!).updateChildValues(followers)
-                
-                
-                
-            }
-        })
-        ref.removeAllObservers()
-        
-    } */
-    
-
-    
+        //        retrievefollowerUsers()
+    }
     
     
     
@@ -225,7 +160,7 @@ class FollowersTable: UITableViewController {
             cell.followBtn.setTitle("Follow", for: .normal)
             cell.followBtn.addTarget(self, action: #selector(followed(_:)), for: .touchUpInside)
         }
-        
+
         return cell
     }
     
@@ -234,38 +169,17 @@ class FollowersTable: UITableViewController {
             performSegue(withIdentifier: "showUserFromFollowers", sender: self)
     }
     
-    func followed(_ sender: UIButton) {
-        
-        let uid = Auth.auth().currentUser!.uid
-        let ref = Database.database().reference()
-        let userId = self.users[sender.tag].userID
-        let keyToPost = ref.child("Users").child(uid)
-        let commentsRef = keyToPost.child("Following").childByAutoId()
-        commentsRef.setValue(userId)
-        
-        let post = ref.child("Users").child(userId!)
-        post.child("Followers").childByAutoId().setValue(uid)
-        
-        retrievefollowerUsers()
-        
+    override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        let cell  = tableView.cellForRow(at: indexPath)
+        let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+        cell!.contentView.backgroundColor = purp
     }
     
-    func unfollowed(_ sender: UIButton) {
-        
-        let uid = Auth.auth().currentUser!.uid
-        let ref = Database.database().reference()
-        let userId = self.users[sender.tag].userID
-        let keyToPost = ref.child("Users").child(uid)
-        let commentsRef = keyToPost.child("Following")
-//        commentsRef.child(userId).key.removeAll()
-        
-//        commentsRef.setValue(userId)
-//        
-//        let post = ref.child("Users").child(userId!)
-//        post.child("Followers").childByAutoId().setValue(uid)
-        
-//        retrievefollowerUsers()
+    override func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        let cell  = tableView.cellForRow(at: indexPath)
+        cell!.contentView.backgroundColor = .clear
     }
+    
     
     /*
     // Override to support conditional editing of the table view.

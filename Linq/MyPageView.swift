@@ -15,7 +15,7 @@ class MyPageView: UIPageViewController, UIPageViewControllerDelegate, UIPageView
     lazy var bioAndMyJuggs: [UIViewController] = {
         
         return [self.ViewControllerInstance(name: "MyBio"),
-                self.ViewControllerInstance(name: "OtherUserJuggTable")]
+                self.ViewControllerInstance(name: "MyJuggTable")]
     }()
     
     

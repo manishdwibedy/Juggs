@@ -20,11 +20,6 @@ class MyProfile: UIViewController {
     
     @IBOutlet weak var fromLabel: UILabel!
     
-    @IBOutlet weak var bioTV: UITextView!
-    
-    @IBOutlet weak var webTV: UITextView!
-
-    
     @IBAction func showRelationships(_ sender: Any) {
         
         performSegue(withIdentifier: "showRelationship", sender: self)
@@ -55,12 +50,12 @@ class MyProfile: UIViewController {
     
     func fetchProfile() {
         visuals()
-        
+    
         let ref = Database.database().reference()
         let uid = Auth.auth().currentUser?.uid
         
         ref.child("Users").child(uid!).queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
-            
+           
             if let dict = snapshot.value as? [String : AnyObject] {
                 
                 let firstName = dict["First Name"] as? String!
@@ -68,23 +63,34 @@ class MyProfile: UIViewController {
                 let fullName = firstName! + " " + lastName!
                 self.title = fullName
                 let age = dict["Age"] as? String!
-                self.ageLabel.text = age
+                self.ageLabel.text = age! + ","
                 let gender = dict["Gender"] as? String!
                 self.genderLabel.text = gender
                 let city = dict["City"] as? String!
                 let state = dict["State"] as? String!
                 let from = city! + ", " + state!
                 self.fromLabel.text = from
-                let bio = dict["Bio"] as? String!
-                self.bioTV.text = bio
-                let WebTV = dict["Website"] as? String!
-                self.webTV.text = WebTV
+           //     let bio = dict["Bio"] as? String!
                 
-                let ImageUrl = dict["urlToImage"] as? String!
-                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(ImageUrl!, key: "urlToImage")
                 
-                //    self.profilePic.sd_setImage(with: URL(string:ImageUrl!), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
-                self.profilePic.sd_setImage(with:URL(string:ImageUrl!), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"), options:.refreshCached)
+                if let profilePicURL = dict["urlToImage"] as? String {
+                    
+                    let url = URL(string: profilePicURL)
+                    URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+                        
+                        if error != nil {
+                            print(error!)
+                            return
+                            
+                        }
+                        
+                        DispatchQueue.main.sync {
+                            self.profilePic.image = UIImage(data: data!)
+                            
+                        }
+                        
+                    }).resume()
+                }
                 
             }
             
@@ -92,7 +98,7 @@ class MyProfile: UIViewController {
         
         ref.removeAllObservers()
         Globals.HideSpinner()
-        
+    
     }
     
     func logout() {

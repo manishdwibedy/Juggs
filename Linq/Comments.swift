@@ -78,7 +78,7 @@ class Comments: UIViewController, UITableViewDataSource, UITableViewDelegate {
             if let uid = Auth.auth().currentUser?.uid {
                 
                 Database.database().reference().child("Users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-                  
+                    
                     if let commentField = self.commentTF.text, let user = snapshot.value as? [String : AnyObject] {
                         
                         let comment = [
@@ -87,10 +87,10 @@ class Comments: UIViewController, UITableViewDataSource, UITableViewDelegate {
                             "ImageUrl" : user["urlToImage"] ?? "",
                             "text": commentField
                         ]
-
+                        
                         commentsRef.setValue(comment)
                         self.commentTF.text = ""
-                      Globals.HideSpinner()
+                        Globals.HideSpinner()
                     } else {
                         Globals.HideSpinner()
                     }
@@ -100,6 +100,7 @@ class Comments: UIViewController, UITableViewDataSource, UITableViewDelegate {
             }
             
         }
+
         
     }
 
@@ -109,14 +110,14 @@ class Comments: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         let keyToPost = ref.child("Flyers").child(selectedPost.postID)
         
-//        let commentsRef =
+        //        let commentsRef =
         
         keyToPost.child("post-comments").observe(DataEventType.value, with: { (snapshot) in
             let posts = snapshot.value as! [String : AnyObject]
             self.commentsArray.removeAll()
             
-           for(_,value) in posts {
-                 let Comments = CommentObj()
+            for(_,value) in posts {
+                let Comments = CommentObj()
                 let UserName = value["UserName"] as? String
                 let comment = value["text"] as? String
                 let url = value["ImageUrl"] as? String
@@ -124,17 +125,18 @@ class Comments: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 Comments.UserName = UserName
                 Comments.Cotent = comment
                 Comments.UserImageUrl = url
-            
+                
                 self.commentsArray.append(Comments)
             }
             self.tableView.reloadData()
         })
-
-//        commentsRef.observe(.value, with: { (snapshot) in
-//            
-//            
-//        }, withCancel: nil)
-//        commentsRef.removeAllObservers()
+        
+        //        commentsRef.observe(.value, with: { (snapshot) in
+        //
+        //
+        //        }, withCancel: nil)
+        //        commentsRef.removeAllObservers()
+        
     }
     
     /*

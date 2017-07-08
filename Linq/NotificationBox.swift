@@ -35,8 +35,11 @@ class NotificationBox: UIViewController {
         self.tabBarController?.tabBar.tintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
         self.tabBarController?.tabBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.barTintColor = UIColor.black//UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+        segmentedControl.layer.cornerRadius = 15
+        segmentedControl.layer.masksToBounds = true
         segmentedControl.layer.borderWidth = 2
-        segmentedControl.layer.borderColor = UIColor.black.cgColor
+        let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+        segmentedControl.layer.borderColor = purp.cgColor
     }
     
     

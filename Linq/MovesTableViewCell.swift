@@ -150,7 +150,7 @@ class MovesTableViewCell: UITableViewCell, CLLocationManagerDelegate {
                             if let properties = snap.value as? [String : AnyObject] {
                                 if let linqs = properties["peopleWhoLinqed"] as? [String : AnyObject] {
                                     let count = linqs.count
-                                    self.flameCountLabel.text = "\(count) Linqs"
+                                    self.flameCountLabel.text = "\(count)"
                                     
                                     let update = ["FlameCount" : count]
                                     ref.child("Flyers").child(self.postID).updateChildValues(update)

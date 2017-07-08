@@ -20,11 +20,14 @@ class MovesTable: UITableViewController {
    
     }
    
+    
     var posts = [Post]()
     var postsArchive = [Post]()
-    
     var following = [String]()
-   
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -92,25 +95,28 @@ class MovesTable: UITableViewController {
                                                 newPost.date = date
                                                 newPost.moveDesc = description
                                                 newPost.likes = likes
-                                                newPost.flameCount = flameCount
+                                                newPost.juggCount = flameCount
                                                 newPost.pathToImage = pathToImage
                                                 newPost.postID = postID
                                                 newPost.movePrivate = movePrivate
                                                 newPost.time = time
 
             
-                                                newPost.commentsForPost = comments as? [Any]
+                                                newPost.commentsForPost = [comments as Any]
                                                 newPost.nameOfEvent = titleForEvent
-                             //Users image                   // let pathToUserImage = flyer["PathToUserImage"] as? String
-                                                // let flameCount = flyer["FlameCount"] as? Int,
-                             // Linq count
+                             //Users image      // let pathToUserImage = flyer["PathToUserImage"] as? String
+                                //Jugg Count             // let flameCount = flyer["FlameCount"] as? Int,
                 
-                                            let dateFormatter = DateFormatter()
-                                            dateFormatter.dateFormat = "MMM dd, yyyy hh:mm a"
-                                            let dateTime = "\(newPost.date ?? "") \(newPost.time ?? "") \(newPost.AP ?? "")"
-                                            let postdate =  dateFormatter.date(from: dateTime)
-                newPost.userID = userID
-//timeAsString = time
+                                                newPost.userID = userID
+                                                
+                                                // newPost.pathToUserImage = pathToUserImage
+                
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MMM dd, yyyy hh:mm a"
+                let dateTime = "\(newPost.date ?? "") \(newPost.time ?? "") \(newPost.AP ?? "")"
+                let postdate =  dateFormatter.date(from: dateTime)
+
                 if postdate != nil {
                     let elapsed = Date().timeIntervalSince(postdate!)
                     let diff = self.stringFromTimeInterval(interval: elapsed)
@@ -118,21 +124,8 @@ class MovesTable: UITableViewController {
                     if diff.intValue <= 24
                     {
                         self.posts.append(newPost)
-                        //                    print(self.arrTime)
                     }
                 }
-                
-                
-                
-                
-                
-                
-                                                // newPost.pathToUserImage = pathToUserImage
-                                                
-                
-                
-                
-                
                                         }
                                         
                                     }
@@ -148,18 +141,14 @@ class MovesTable: UITableViewController {
         refreshControl?.endRefreshing()
     }
     
+    
+    // Move Jugg to Archive after 24 Hrs
     func stringFromTimeInterval(interval: TimeInterval) -> NSString {
-        
         let ti = NSInteger(interval)
-        
-//        let ms = Int((interval .truncatingRemainder(dividingBy: 1)) * 1000)
-//        
-//        let seconds = ti % 60
-//        let minutes = (ti / 60) % 60
         let hours = (ti / 3600)
-        
         return NSString(format: "%0.2d",abs(hours))
     }
+
     
     // MARK: - Table view data source
 
@@ -180,13 +169,13 @@ class MovesTable: UITableViewController {
         moveCell.nameLabel.text = posts[indexPath.row].author
         moveCell.likeCountLabel.text = "\(posts[indexPath.row].likes!) Likes"
         moveCell.capacityLabel.text = "Capacity: 0 of \(posts[indexPath.row].capacity!)"
-        moveCell.flameCountLabel.text = "\(posts[indexPath.row].flameCount!) Juggs"
+        moveCell.flameCountLabel.text = "\(posts[indexPath.row].juggCount!) Juggs"
         moveCell.flyerImage.sd_setImage(with: URL(string: "\(String(describing: posts[(indexPath.row)].pathToImage!))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
 
     //    moveCell.flyerImage.downloadImage(from: posts[(indexPath.row)].pathToImage)
         moveCell.postID = posts[indexPath.row].postID
         moveCell.commentBtn.addTarget(self, action: #selector(MovesTable.buttonTapped(_:)), for: UIControlEvents.touchUpInside)
-
+        
         return moveCell
     }
     
@@ -208,36 +197,7 @@ class MovesTable: UITableViewController {
     
     
  /*
-    func setTimer() {
-        
-        // Get today's hour and mins
-        
-        let currentDate = NSDate()
-        let calendar = Calendar.current
-        let hour = calendar.component(.hour, from: currentDate as Date)
-        let minutes = calendar.component(.minute, from: currentDate as Date)
-        
-        // Get hour and mins of move
-        let ref = Database.database().reference()
-        ref.child("Flyers").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
-            let posts = snapshot.value as! [String : AnyObject]
-            self.posts.removeAll()
-            for(_,value) in posts {
-                let dateStarted = value["Date"] as? String
-                let time = value["Time"] as? String
-                let amPM = value["AP"] as? String
-                
-                
-            }
-            
-            
-            
-        })
-        
-       ref.removeAllObservers()
-    }
-    
-    func removePostAppendArchive() {
+        func removePostAppendArchive() {
         
         // Do something...
         let ref = Database.database().reference()
@@ -309,6 +269,7 @@ class MovesTable: UITableViewController {
             destination.amOrPM = posts[(self.tableView.indexPathForSelectedRow?.row)!].AP
             destination.time = posts[(self.tableView.indexPathForSelectedRow?.row)!].time
             destination.descriptionText = posts[(self.tableView.indexPathForSelectedRow?.row)!].moveDesc
+         //   destination.privateOrPublic = posts[(self.tableView.indexPathForSelectedRow?.row)!].movePrivate
         //    destination.privateOrPublic = posts[(self.tableView.indexPathForSelectedRow?.row)!].movePrivate // Need to send the data
             
         

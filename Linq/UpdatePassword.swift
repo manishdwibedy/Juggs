@@ -12,35 +12,26 @@ import Firebase
 
 class UpdatePassword: UIViewController {
 
-    @IBOutlet weak var passwordTF: UITextField!
-     @IBOutlet weak var OldpasswordTF: UITextField!
-     @IBOutlet weak var ConfirmpasswordTF: UITextField!
-    @IBOutlet weak var submitBtn: UIButton!
-    
-    
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        visuals()
-    }
-    
-    @IBAction func saveName(_ sender: Any) {
-        
-        if OldpasswordTF.text == nil || passwordTF.text == nil || ConfirmpasswordTF.text == nil {
+    @IBOutlet weak var passwordTF: UITextField!  // Current Password
+    @IBOutlet weak var newPasswordTF: UITextField!
+    @IBOutlet weak var confirmPassword: UITextField!
+    @IBOutlet weak var submitBtn: UIButton!        // Save Btn
+    @IBAction func passwordUpdated(_ sender: Any) {
+   
+        if passwordTF.text == nil || newPasswordTF.text == nil || confirmPassword.text == nil {
             return
         }
-     let oldPass = Globals .sharedInstance.getValueFromUserDefaultsForKey("Password") as? String
+        let oldPass = Globals .sharedInstance.getValueFromUserDefaultsForKey("Password") as? String
         
-        if oldPass == OldpasswordTF.text{
-            if passwordTF.text == ConfirmpasswordTF.text {
+        if oldPass == passwordTF.text{
+            if newPasswordTF.text == confirmPassword.text {
                 Globals.ShowSpinner(testStr: "")
                 
                 Auth.auth().currentUser?.updatePassword(to: self.passwordTF.text!) { (error) in
                     
                     Globals.HideSpinner()
                     // ...
-                    let alertViewController = UIAlertController(title: "Record Successfully Updated.", message: "", preferredStyle: .alert)
+                    let alertViewController = UIAlertController(title: "Password Updated Successfully!", message: "", preferredStyle: .alert)
                     
                     let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
                         self.navigationController?.popViewController(animated: true)
@@ -72,9 +63,20 @@ class UpdatePassword: UIViewController {
             self.present(alertViewController, animated: true, completion: nil)
             
         }
-        
+    
         
     }
+    
+    
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        visuals()
+    }
+    
+   
     
     
     
@@ -82,15 +84,26 @@ class UpdatePassword: UIViewController {
         self.title = "Password"
         submitBtn.layer.masksToBounds = true
         submitBtn.layer.cornerRadius = 8
+        submitBtn.isEnabled = false
         
+        passwordTF.layer.masksToBounds = true
+        passwordTF.layer.cornerRadius = 6
+        passwordTF.layer.borderWidth = 1
+        passwordTF.layer.borderColor = UIColor.black.cgColor
+        
+        newPasswordTF.layer.masksToBounds = true
+        newPasswordTF.layer.cornerRadius = 6
+        newPasswordTF.layer.borderWidth = 1
+        newPasswordTF.layer.borderColor = UIColor.black.cgColor
+        
+        confirmPassword.layer.masksToBounds = true
+        confirmPassword.layer.cornerRadius = 6
+        confirmPassword.layer.borderWidth = 1
+        confirmPassword.layer.borderColor = UIColor.black.cgColor
     }
     
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+  
 
     /*
     // MARK: - Navigation

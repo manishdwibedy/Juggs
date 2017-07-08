@@ -36,10 +36,11 @@ class Description: UIViewController {
     var date = ""
     var amOrPM = ""
     var time = ""
-    var privateOrPublic = ""
+    var privateOrPublic = "false"
     var descriptionText = ""
     var pathToImage = ""
     
+    @IBOutlet weak var publicLabel: UILabel!
     
     @IBAction func share(_ sender: Any) {
         
@@ -117,9 +118,13 @@ class Description: UIViewController {
     
     
     func visuals() {
-        
+        if privateOrPublic == "false" {
+            requestBtn.isHidden = true
+        }
         flyerImageView.layer.masksToBounds = true
         requestBtn.layer.cornerRadius = 8
+        publicLabel.layer.cornerRadius = 8
+        publicLabel.layer.masksToBounds = true
         flyerImageView.layer.cornerRadius = 8
         
         
