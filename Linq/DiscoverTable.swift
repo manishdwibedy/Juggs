@@ -98,7 +98,8 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
                     
                     commentsRef.setValue(userId)
                     
-                    
+                    let post = ref.child("Users").child(userId!)
+                    post.child("Followers").childByAutoId().setValue(uid)
                     
                 }
             }
@@ -122,15 +123,19 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
                     if uid != Auth.auth().currentUser!.uid {
                         let dict = [String : AnyObject]()
                         let userToShow = User(dictionary:dict)
-                        if let userID = value["UID"] as? String,
-                            let  firstName = value["First Name"] as? String,
-                            let lastName = value["Last Name"] as? String,
-                            let age = value["Age"] as? String,
-                            let city = value["City"] as? String,
-                            let gender = value["Gender"] as? String,
-                            let state = value["State"] as? String,
-                            let bio = value["Bio"] as? String,
-                            let imagePath = value["urlToImage"] as? String {
+                        if let userID = value["UID"] as? String {
+                            
+                            let  firstName = value["First Name"] as? String
+                            let lastName = value["Last Name"] as? String
+                            let age = value["Age"] as? String
+                            let city = value["City"] as? String
+                            let gender = value["Gender"] as? String
+                            let state = value["State"] as? String
+                            let bio = value["Bio"] as? String
+                            let followers = value["Followers"] as? [String: AnyObject]
+                            let following = value["Following"] as? [String: AnyObject]
+                            let imagePath = value["urlToImage"] as? String
+                            
                             userToShow.userID = userID
                             userToShow.firstName = firstName
                             userToShow.lastName = lastName
@@ -140,6 +145,10 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
                             userToShow.gender = gender
                             userToShow.state = state
                             userToShow.imagePath = imagePath
+                            userToShow.follower = followers
+                            userToShow.following = following
+
+                            
                             self.users.append(userToShow)
                             
                             
@@ -187,7 +196,42 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
         
         cellForDiscover.profilePic.sd_setImage(with: URL(string: "\(String(describing: users[(indexPath.row)].imagePath!))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
 
-         cellForDiscover.tag = indexPath.row
+        cellForDiscover.tag = indexPath.row
+        
+        let uid = Auth.auth().currentUser!.uid
+        
+        if ((self.users[indexPath.row].follower) != nil) {
+            let dict  : [String:AnyObject] =  self.users[indexPath.row].follower
+            
+            let values = Array(dict.values) as! [String]
+            
+            //cellForDiscover.followBtn.tag = indexPath.row
+            
+            if values.contains(uid) {
+                cellForDiscover.followingTrueImageView.isHidden = false
+            } else {
+                cellForDiscover.followingTrueImageView.isHidden = true
+            }
+        } else {
+            cellForDiscover.followingTrueImageView.isHidden = true
+        }
+
+        if ((self.users[indexPath.row].following) != nil) {
+            let dict  : [String:AnyObject] =  self.users[indexPath.row].follower
+            
+            let values = Array(dict.values) as! [String]
+            
+            //cellForDiscover.followBtn.tag = indexPath.row
+            
+            if values.contains(uid) {
+                cellForDiscover.followMeTrueImageView.isHidden = false
+            } else {
+                cellForDiscover.followMeTrueImageView.isHidden = true
+            }
+        } else {
+            cellForDiscover.followMeTrueImageView.isHidden = true
+        }
+
         
         return cellForDiscover
     }
@@ -204,6 +248,7 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "otherVC") as! OtherUser
         let navController = UINavigationController(rootViewController: vc)
        //  let userIndex = tableView.indexPathForSelectedRow?.row
+         vc.UserID = users[userIndex].userID!
          let firstName = users[userIndex].firstName
          let lastName = users[userIndex].lastName
          vc.firstName = firstName!

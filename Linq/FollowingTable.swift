@@ -17,9 +17,6 @@ class FollowingTable: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-    retrievefollowingUsers()
-       
-    
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -27,7 +24,7 @@ class FollowingTable: UITableViewController {
     }
     
     func retrievefollowingUsers(){
-        Globals.ShowSpinner(testStr: "")
+        
         let ref = Database.database().reference()
         let uid = Auth.auth().currentUser!.uid
         let childRef = ref.child("Users").child(uid)
@@ -35,6 +32,9 @@ class FollowingTable: UITableViewController {
         childRef.child("Following").observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let users = snapshot.value as? [String : AnyObject] {
+                
+                Globals.ShowSpinner(testStr: "")
+                
                 for(_, value) in users {
                     print(value)
                     //let childfor = ref.child("Users").child("value")
@@ -81,15 +81,16 @@ class FollowingTable: UITableViewController {
         
     }
     
-    
-    
     func unfollowing(_ sender: UIButton) {
         
         let uid = Auth.auth().currentUser!.uid
         let ref = Database.database().reference()
         let userId = self.users[sender.tag].userID
-        let keyToPost = ref.child("Users").child(uid)
-        let commentsRef = keyToPost.child("Following")
+        let keyToPost = ref.child("Users").child(uid).child("Following").child(userId!).key
+        
+        let Valu = ref.child("Users").child(uid).child("Following").child(keyToPost)
+
+        Valu.removeValue()
         
         //        commentsRef.removeValue()
     }
@@ -119,7 +120,10 @@ class FollowingTable: UITableViewController {
         cell.followingName.text = self.users[indexPath.row].firstName + " " + self.users[indexPath.row].lastName
         cell.followingFrom.text = self.users[indexPath.row].city + ", " + self.users[indexPath.row].state
         cell.followingImage.sd_setImage(with: URL(string: "\(String(describing: users[(indexPath.row)].imagePath!))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
-        
+   
+//        cell.followBtn.tag = indexPath.row
+        cell.unFollowBtn.tag = indexPath.row
+        cell.unFollowBtn.addTarget(self, action: #selector(unfollowing(_:)), for: .touchUpInside)
         cell.selectionStyle = .none
 
         // Configure the cell...

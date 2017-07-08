@@ -213,7 +213,7 @@ extension Map : CLLocationManagerDelegate {
          
             locationManager.stopUpdatingLocation()
             
-              Database.database().reference().child("Location").child(Auth.auth().currentUser!.uid).setValue(["Latitude": locationManager.location!.coordinate.latitude, "Longitude": locationManager.location!.coordinate.longitude])
+              Database.database().reference().child("Location").child(Auth.auth().currentUser!.uid).setValue(["Latitude": locationManager.location?.coordinate.latitude, "Longitude": locationManager.location?.coordinate.longitude])
             
             
         }

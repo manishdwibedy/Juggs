@@ -28,7 +28,7 @@ class FollowersTable: UITableViewController {
     
     
     func retrievefollowerUsers(){
-        Globals.ShowSpinner(testStr: "")
+//        Globals.ShowSpinner(testStr: "")
         
         self.users.removeAll()
         
@@ -39,6 +39,9 @@ class FollowersTable: UITableViewController {
         childRef.child("Followers").observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let users = snapshot.value as? [String : AnyObject] {
+                
+                Globals.ShowSpinner(testStr: "")
+                
                 for(_, value) in users {
                     print(value)
                     //let childfor = ref.child("Users").child("value")
@@ -148,14 +151,21 @@ class FollowersTable: UITableViewController {
         
         let uid = Auth.auth().currentUser!.uid
         
-        let dict  : [String:AnyObject] =  self.users[indexPath.row].following
-        let values = Array(dict.values) as! [String]
         
-        cell.followBtn.tag = indexPath.row
-        
-        if values.contains(uid) {
-            cell.followBtn.setTitle("Unfollow", for: .normal)
-            cell.followBtn.addTarget(self, action: #selector(unfollowed(_:)), for: .touchUpInside)
+        if ((self.users[indexPath.row].follower) != nil) {
+            let dict  : [String:AnyObject] =  self.users[indexPath.row].follower
+            
+            let values = Array(dict.values) as! [String]
+            
+            cell.followBtn.tag = indexPath.row
+            
+            if values.contains(uid) {
+                cell.followBtn.setTitle("Unfollow", for: .normal)
+                cell.followBtn.addTarget(self, action: #selector(unfollowed(_:)), for: .touchUpInside)
+            } else {
+                cell.followBtn.setTitle("Follow", for: .normal)
+                cell.followBtn.addTarget(self, action: #selector(followed(_:)), for: .touchUpInside)
+            }
         } else {
             cell.followBtn.setTitle("Follow", for: .normal)
             cell.followBtn.addTarget(self, action: #selector(followed(_:)), for: .touchUpInside)

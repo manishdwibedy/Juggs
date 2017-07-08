@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Firebase
 class OtherUser: UIViewController {
 
     
@@ -21,6 +21,7 @@ class OtherUser: UIViewController {
     var bioTextForOtherUser = ""
     var urlTextForOtherUser = ""
     var pathToImage = ""
+    var UserID = ""
     
     
     @IBOutlet weak var containerForData: UIView!
@@ -34,7 +35,19 @@ class OtherUser: UIViewController {
     
     @IBOutlet weak var fromLabel: UILabel!
     
-    
+    @IBAction func Follow_Unfollow(_ sender: Any) {
+        let uid = Auth.auth().currentUser!.uid
+        let ref = Database.database().reference()
+        let userId = UserID
+        let keyToPost = ref.child("Users").child(uid)
+        let commentsRef = keyToPost.child("Following").childByAutoId()
+        commentsRef.setValue(userId)
+        
+        let post = ref.child("Users").child(userId)
+        post.child("Followers").childByAutoId().setValue(uid)
+        
+        
+    }
     
     @IBOutlet var messageSwipe: UISwipeGestureRecognizer!
     @IBAction func swiped(_ sender: Any) {
