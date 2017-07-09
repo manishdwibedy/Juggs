@@ -90,7 +90,45 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
                         //cellForDiscover.followBtn.tag = indexPath.row
                         
                         if values.contains(uid) {
-                            // unfollow user
+//                            let uid = Auth.auth().currentUser!.uid
+//                            let ref = Database.database().reference()
+                            let userId = self.users[tapIndexPath.row].userID
+                            
+                            let profile = ref.child("Users").child(uid).child("Following")
+                            profile.observe(.value, with: { (snapshot) -> Void in
+                                
+                                let posts = snapshot.value as? [String : AnyObject]
+                                
+                                if posts != nil {
+                                    for(key ,value) in posts! {
+                                        
+                                        if value as! String == userId!{
+                                            profile.child(key).removeValue()
+                                            
+                                            let profile1 = ref.child("Users").child(userId!).child("Followers")
+                                            
+                                            profile1.observe(.value, with: { (snapshot) -> Void in
+                                                
+                                                let posts1 = snapshot.value as? [String : AnyObject]
+                                                
+                                                if posts1 != nil {
+                                                    for(key1,value1) in posts1! {
+                                                        
+                                                        if value1 as! String == uid {
+                                                            profile1.child(key1).removeValue()
+                                                        }
+                                                    }
+                                                    
+                                                    profile.removeAllObservers()
+                                                    profile1.removeAllObservers()
+                                                    
+                                                    self.retrieveUsers()
+                                                }
+                                            })
+                                        }
+                                    }
+                                }
+                            })
                         } else {
                             let userId = users[tapIndexPath.row].userID
                             
@@ -130,6 +168,8 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
     
     
     func retrieveUsers() {
+        
+        
         Globals.ShowSpinner(testStr: "")
         let ref = Database.database().reference()
         

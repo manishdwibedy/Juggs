@@ -106,15 +106,15 @@ class OtherUser: UIViewController {
         }
         
         
-        let follow = UIAlertAction(title: "Follow", style: .default) { (action) in
-            
-            self.Follow()
-        }
-        
-        let unfollow = UIAlertAction(title: "Unfollow", style: .default) { (action) in
-            
-            self.UnFollow()
-        }
+//        let follow = UIAlertAction(title: "Follow", style: .default) { (action) in
+//            
+//            self.Follow()
+//        }
+//        
+//        let unfollow = UIAlertAction(title: "Unfollow", style: .default) { (action) in
+//            
+//            self.UnFollow()
+//        }
 
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             

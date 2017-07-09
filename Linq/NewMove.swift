@@ -58,7 +58,6 @@ class NewMove: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
     }
    
     @IBAction func moveSubmitted(_ sender: Any) {
-        Globals.ShowSpinner(testStr: "")
         
         if timeTF.text == "" || amfmTF.text == "" || dateTF.text == "" || timeTF.text == "" || streetAddyTF.text == "" || cityTF.text == "" || stateTF.text == "" || zipTF.text == "" || capacityTF.text == "" || descriptionTV.text == "" {
             
@@ -67,18 +66,18 @@ class NewMove: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
         }else{
         
         
-        
-        
-        
         guard let time = timeTF.text,let ampm = amfmTF.text, let date = dateTF.text, let street = streetAddyTF.text, let city = cityTF.text, let state = stateTF.text, let zip = zipTF.text, let capacity = capacityTF.text, let descriptionForMove = descriptionTV.text, let nameOfMove = nameOfMoveTF.text else{
             print(" Form isnt valid")
             
             return
         }
-        
             if capacity == "0" {
+        
                 invitationSwitch.isOn = false
             }
+            
+            Globals.ShowSpinner(testStr: "")
+            
         let address = street + ", " + city + ", "  + state + ", " + zip
         
         let uid = Auth.auth().currentUser?.uid
@@ -120,7 +119,7 @@ class NewMove: UIViewController, UINavigationControllerDelegate, UIImagePickerCo
                             "FlameCount" : 0,
                             "Private" : self.forSwitch(),
                             "Description" : descriptionForMove,
-                            "Author" : Auth.auth().currentUser!.displayName!,
+                            "Author" : Auth.auth().currentUser!.displayName ?? "",
                             "userImageUrl" : user?["urlToImage"] ?? "",
                             "PostID" : key] as [String : Any]
                 

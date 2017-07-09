@@ -83,7 +83,7 @@ class Map: UIViewController {
                         
                         print("The address's coordinates are " + "Lat: \(lat), Lon: \(lon)")
                         let eventLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat, lon)
-                        let location: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: (self.locationManager.location?.coordinate.latitude)!, longitude: (self.locationManager.location?.coordinate.longitude)!)
+                        let location: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: self.locationManager.location!.coordinate.latitude, longitude: self.locationManager.location!.coordinate.longitude)
                          let annotation = MKPointAnnotation()
                         annotation.title = eventName
                         annotation.coordinate = eventLocation

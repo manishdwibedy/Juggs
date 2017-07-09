@@ -110,16 +110,42 @@ class FollowersTable: UITableViewController {
         let uid = Auth.auth().currentUser!.uid
         let ref = Database.database().reference()
         let userId = self.users[sender.tag].userID
-        let keyToPost = ref.child("Users").child(uid)
-        let commentsRef = keyToPost.child("Following")
-        //        commentsRef.child(userId).key.removeAll()
         
-        //        commentsRef.setValue(userId)
-        //
-        //        let post = ref.child("Users").child(userId!)
-        //        post.child("Followers").childByAutoId().setValue(uid)
-        
-        //        retrievefollowerUsers()
+        let profile = ref.child("Users").child(uid).child("Following")
+        profile.observe(.value, with: { (snapshot) -> Void in
+            
+            let posts = snapshot.value as? [String : AnyObject]
+            
+            if posts != nil {
+                for(key ,value) in posts! {
+                    
+                    if value as! String == userId!{
+                        profile.child(key).removeValue()
+                        
+                        let profile1 = ref.child("Users").child(userId!).child("Followers")
+                        
+                        profile1.observe(.value, with: { (snapshot) -> Void in
+                            
+                            let posts1 = snapshot.value as? [String : AnyObject]
+                            
+                            if posts1 != nil {
+                                for(key1,value1) in posts1! {
+                                    
+                                    if value1 as! String == uid {
+                                        profile1.child(key1).removeValue()
+                                    }
+                                }
+                                
+                                profile.removeAllObservers()
+                                profile1.removeAllObservers()
+                                
+                                self.retrievefollowerUsers()
+                            }
+                        })
+                    }
+                }
+            }
+        })
     }
     
     

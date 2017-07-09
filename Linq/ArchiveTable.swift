@@ -137,7 +137,7 @@ class ArchiveTable: UITableViewController {
         cell.eventNameLabel.text = archivedArray[indexPath.row].nameOfEvent
         let myMoveCity = archivedArray[indexPath.row].city
         let myMoveState = archivedArray[indexPath.row].state
-        cell.locationLabel.text = "\(myMoveCity ?? ""))," + "\(myMoveState ?? "")"
+        cell.locationLabel.text = "\(myMoveCity ?? "")" + "\(myMoveState ?? "")"
         cell.eventNameLabel.textColor = UIColor.white
         cell.locationLabel.textColor = UIColor.white
         
