@@ -8,8 +8,11 @@
 
 import UIKit
 
+var UserIdRelations = ""
+
 class Relations: UIViewController {
 
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var followingView: UIView!
     @IBOutlet weak var followersView: UIView!

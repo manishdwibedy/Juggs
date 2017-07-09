@@ -90,7 +90,7 @@ class Description: UIViewController {
     func getPostData() {
         
         self.title = moveName
-        // moveTitle.text = moveName
+        
         flyerImageView.downloadImage(from: pathToImage)
         flyerImageView.sd_setImage(with: URL(string: "\(String(describing: pathToImage))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
         
@@ -99,6 +99,7 @@ class Description: UIViewController {
         dateLabel.text = date
         
         descriptionTV.text = descriptionText
+        
         /*     if(privatOrPublic == "true") {
          
          pOpLabel.text = "This Move is Private!"
@@ -113,9 +114,7 @@ class Description: UIViewController {
          
          }   */
         
-        
     }
-    
     
     func visuals() {
         if privateOrPublic == "false" {
@@ -127,20 +126,6 @@ class Description: UIViewController {
         publicLabel.layer.masksToBounds = true
         flyerImageView.layer.cornerRadius = 8
         
-        
-        
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }

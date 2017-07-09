@@ -24,7 +24,6 @@
 		D1177BE31EE46FB2005C5B85 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1177BE21EE46FB2005C5B85 /* Request.swift */; };
 		D1177BE51EE4B429005C5B85 /* ArchiveDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1177BE41EE4B429005C5B85 /* ArchiveDescription.swift */; };
 		D1177BE71EE5F24F005C5B85 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1177BE61EE5F24F005C5B85 /* ForgotPassword.swift */; };
-		D1177BE91EE61E55005C5B85 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1177BE81EE61E55005C5B85 /* MapKit.framework */; };
 		D11AFBD11EEDBE5F002CF979 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D11AFBD01EEDBE5F002CF979 /* GoogleService-Info.plist */; };
 		D12F4AFA1EFA1DE100581BBC /* FollowingTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12F4AF91EFA1DE100581BBC /* FollowingTable.swift */; };
 		D12F4AFD1EFA1EAB00581BBC /* FollowersTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12F4AFC1EFA1EAB00581BBC /* FollowersTable.swift */; };
@@ -119,7 +118,6 @@
 		D1177BE21EE46FB2005C5B85 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		D1177BE41EE4B429005C5B85 /* ArchiveDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchiveDescription.swift; sourceTree = "<group>"; };
 		D1177BE61EE5F24F005C5B85 /* ForgotPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
-		D1177BE81EE61E55005C5B85 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D11AFBD01EEDBE5F002CF979 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D11AFBD21EEF7E0E002CF979 /* Linq.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Linq.entitlements; sourceTree = "<group>"; };
 		D12F4AF91EFA1DE100581BBC /* FollowingTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingTable.swift; sourceTree = "<group>"; };
@@ -189,7 +187,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1177BE91EE61E55005C5B85 /* MapKit.framework in Frameworks */,
 				7E43BB5217089F9C4EEE2E8C /* Pods_Linq.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,7 +213,6 @@
 		189DA139ACB0D2FE6895D861 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D1177BE81EE61E55005C5B85 /* MapKit.framework */,
 				E21E4CEDE691B9F6B277FD50 /* Pods_Linq.framework */,
 				947853379B7843EC362EDEAD /* Pods_LinqTests.framework */,
 				6772CE4CE681BF3EBE99DB78 /* Pods_LinqUITests.framework */,
@@ -500,18 +496,17 @@
 				TargetAttributes = {
 					D1A1FD131ED3C90300C8BF4E = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 8MG83XTPNG;
 						LastSwiftMigration = 0830;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
 							com.apple.Maps.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Push = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -937,9 +932,8 @@
 			baseConfigurationReference = D9BA6E562DB4F8128D06994B /* Pods-Linq.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Linq/Linq.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8MG83XTPNG;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Linq/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -956,9 +950,8 @@
 			baseConfigurationReference = B179201C0DF2E50140BAA556 /* Pods-Linq.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Linq/Linq.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8MG83XTPNG;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Linq/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

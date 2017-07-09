@@ -22,6 +22,7 @@ class MyProfile: UIViewController {
     
     @IBAction func showRelationships(_ sender: Any) {
         
+        UserIdRelations = Auth.auth().currentUser!.uid
         performSegue(withIdentifier: "showRelationship", sender: self)
         
     }

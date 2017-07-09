@@ -27,6 +27,8 @@ class MovesTableViewCell: UITableViewCell, CLLocationManagerDelegate {
     @IBOutlet weak var distanceAwayLabel: UILabel!
     @IBOutlet weak var commentBtn: UIButton!
     
+    @IBOutlet weak var comments: UITextView!
+    @IBOutlet weak var commentCount: UILabel!
     var postID: String!
     var locationManager:CLLocationManager!
     

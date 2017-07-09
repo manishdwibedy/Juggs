@@ -26,8 +26,8 @@ class FollowingTable: UITableViewController {
     func retrievefollowingUsers(){
         
         let ref = Database.database().reference()
-        let uid = Auth.auth().currentUser!.uid
-        let childRef = ref.child("Users").child(uid)
+        //let uid = Auth.auth().currentUser!.uid
+        let childRef = ref.child("Users").child(UserIdRelations)
         
         childRef.child("Following").observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -86,13 +86,57 @@ class FollowingTable: UITableViewController {
         let uid = Auth.auth().currentUser!.uid
         let ref = Database.database().reference()
         let userId = self.users[sender.tag].userID
-        let keyToPost = ref.child("Users").child(uid).child("Following").child(userId!).key
+      
+        let profile = ref.child("Users").child(uid).child("Following")
+        profile.observe(.value, with: { (snapshot) -> Void in
+            
+            let posts = snapshot.value as? [String : AnyObject]
+            
+            if posts != nil {
+                for(key ,value) in posts! {
+                    
+                    if value as! String == userId!{
+//                        print(value)
+                        profile.child(key).removeValue()
+                        
+                        let profile1 = ref.child("Users").child(userId!).child("Followers")
+                        
+                        profile1.observe(.value, with: { (snapshot) -> Void in
+                            
+                            let posts = snapshot.value as? [String : AnyObject]
+                            
+                            if posts != nil {
+                                for(key ,value) in posts! {
+                                    
+                                    if value as! String == uid {
+                                        profile.child(key).removeValue()
+                                    }
+                                }
+                                
+                                self.users.remove(at: sender.tag)
+                                
+                                self.tableView.reloadData()
+                                
+                                profile.removeAllObservers()
+                                profile1.removeAllObservers()
+                            }
+                            
+                            
+                        })
+                        
+                        
+                        
+                    }
+                }
+            }
+            
+            
+            
+        })
         
-        let Valu = ref.child("Users").child(uid).child("Following").child(keyToPost)
 
-        Valu.removeValue()
         
-        //        commentsRef.removeValue()
+        
     }
    
     

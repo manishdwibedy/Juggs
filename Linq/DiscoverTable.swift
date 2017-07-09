@@ -21,12 +21,14 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
 
-       self.tabBarController?.tabBar.barTintColor = UIColor.black
+        self.tabBarController?.tabBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.isHidden = true
         self.tableView.rowHeight = 550
       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         retrieveUsers()
-       
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped(recognizer:)))
         tap.numberOfTapsRequired = 2
@@ -34,10 +36,9 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
         self.tableView.addGestureRecognizer(tap)
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(gesture:)))
-        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        swipeRight.direction = UISwipeGestureRecognizerDirection.left
         self.tableView.addGestureRecognizer(swipeRight)
 
-       
     }
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -45,34 +46,23 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             
             switch swipeGesture.direction {
-            case UISwipeGestureRecognizerDirection.right:
+            case UISwipeGestureRecognizerDirection.left:
                 if gesture.state == UIGestureRecognizerState.ended {
-                    
-                    
                     
                     let tapLocation = gesture.location(in: self.tableView)
                     if let tapIndexPath = self.tableView.indexPathForRow(at: tapLocation) {
                         if (self.tableView.cellForRow(at: tapIndexPath) as? CellForDiscover) != nil {
                             
                             tryThis(tapIndexPath.row)
-                            
-                            //do what you want to cell here
-                            //                            let uid = Auth.auth().currentUser!.uid
-                            //                            let ref = Database.database().reference()
-                            //                            let key = ref.child("Users").childByAutoId().key
-                            //
-                            //                            let userId = users[tapIndexPath.row].userID
-                            
-                            
                         }
                     }
                 }
                 
-                print("Swiped right")
+                print("Swiped left")
             case UISwipeGestureRecognizerDirection.down:
                 print("Swiped down")
-            case UISwipeGestureRecognizerDirection.left:
-                print("Swiped left")
+            case UISwipeGestureRecognizerDirection.right:
+                print("Swiped right")
             case UISwipeGestureRecognizerDirection.up:
                 print("Swiped up")
             default:
@@ -91,15 +81,45 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
                     let uid = Auth.auth().currentUser!.uid
                     let ref = Database.database().reference()
                     
-                    let userId = users[tapIndexPath.row].userID
-                    let keyToPost = ref.child("Users").child(uid)
                     
-                    let commentsRef = keyToPost.child("Following").childByAutoId()
-                    
-                    commentsRef.setValue(userId)
-                    
-                    let post = ref.child("Users").child(userId!)
-                    post.child("Followers").childByAutoId().setValue(uid)
+                    if ((self.users[tapIndexPath.row].follower) != nil) {
+                        let dict  : [String:AnyObject] =  self.users[tapIndexPath.row].follower
+                        
+                        let values = Array(dict.values) as! [String]
+                        
+                        //cellForDiscover.followBtn.tag = indexPath.row
+                        
+                        if values.contains(uid) {
+                            // unfollow user
+                        } else {
+                            let userId = users[tapIndexPath.row].userID
+                            
+                            let keyToPost = ref.child("Users").child(uid)
+                            
+                            let commentsRef = keyToPost.child("Following").childByAutoId()
+                            
+                            commentsRef.setValue(userId)
+                            
+                            let post = ref.child("Users").child(userId!)
+                            post.child("Followers").childByAutoId().setValue(uid)
+                            
+                            retrieveUsers()
+                        }
+                    } else {
+                        let userId = users[tapIndexPath.row].userID
+                        
+                        let keyToPost = ref.child("Users").child(uid)
+                        
+                        let commentsRef = keyToPost.child("Following").childByAutoId()
+                        
+                        commentsRef.setValue(userId)
+                        
+                        let post = ref.child("Users").child(userId!)
+                        post.child("Followers").childByAutoId().setValue(uid)
+                        
+                        retrieveUsers()
+                    }
+
                     
                 }
             }
@@ -148,13 +168,9 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
                             userToShow.follower = followers
                             userToShow.following = following
 
-                            
                             self.users.append(userToShow)
                             
-                            
                         }
-                        
-                        
                     }
                     
                 }
@@ -259,6 +275,7 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
          vc.gender = users[userIndex].gender
          vc.pathToImage = users[userIndex].imagePath
          vc.bioTextForOtherUser = users[userIndex].bio
+        
          vc.urlTextForOtherUser = "No URL Available."
          vc.discoverSwipe.isEnabled = true
          vc.followersSwipe.isEnabled = false

@@ -16,8 +16,6 @@ class FollowersTable: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        retrievefollowerUsers()
         
     }
 
@@ -33,8 +31,8 @@ class FollowersTable: UITableViewController {
         self.users.removeAll()
         
         let ref = Database.database().reference()
-        let uid = Auth.auth().currentUser!.uid
-        let childRef = ref.child("Users").child(uid)
+//        let uid = Auth.auth().currentUser!.uid
+        let childRef = ref.child("Users").child(UserIdRelations)
         
         childRef.child("Followers").observeSingleEvent(of: .value, with: { (snapshot) in
             

@@ -10,8 +10,6 @@ import UIKit
 import Firebase
 class OtherUser: UIViewController {
 
-    
-  
     var firstName = ""
     var lastName = ""
     var age = ""
@@ -22,7 +20,6 @@ class OtherUser: UIViewController {
     var urlTextForOtherUser = ""
     var pathToImage = ""
     var UserID = ""
-    
     
     @IBOutlet weak var containerForData: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -35,7 +32,8 @@ class OtherUser: UIViewController {
     
     @IBOutlet weak var fromLabel: UILabel!
     
-    @IBAction func Follow_Unfollow(_ sender: Any) {
+    func Follow() {
+        
         let uid = Auth.auth().currentUser!.uid
         let ref = Database.database().reference()
         let userId = UserID
@@ -46,8 +44,22 @@ class OtherUser: UIViewController {
         let post = ref.child("Users").child(userId)
         post.child("Followers").childByAutoId().setValue(uid)
         
+    }
+    
+    func UnFollow() {
+        
+        let uid = Auth.auth().currentUser!.uid
+        let ref = Database.database().reference()
+        let userId = UserID
+        let keyToPost = ref.child("Users").child(uid)
+        let commentsRef = keyToPost.child("Following").childByAutoId()
+        commentsRef.setValue(userId)
+        
+        let post = ref.child("Users").child(userId)
+        post.child("Followers").childByAutoId().setValue(uid)
         
     }
+    
     
     @IBOutlet var messageSwipe: UISwipeGestureRecognizer!
     @IBAction func swiped(_ sender: Any) {
@@ -71,12 +83,7 @@ class OtherUser: UIViewController {
     
     @IBAction func seeRelationships(_ sender: Any) {
         
-        
-        
     }
-    
-    
-    
     
     
     @IBAction func settingsTapped(_ sender: Any) {
@@ -96,24 +103,45 @@ class OtherUser: UIViewController {
         
         let invite = UIAlertAction(title: "Invite", style: .default) { (action) in
             
-            
         }
         
+        
+        let follow = UIAlertAction(title: "Follow", style: .default) { (action) in
+            
+            self.Follow()
+        }
+        
+        let unfollow = UIAlertAction(title: "Unfollow", style: .default) { (action) in
+            
+            self.UnFollow()
+        }
+
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             
-                }
+        }
         
         settingsActionSheet.addAction(messageAction)
         settingsActionSheet.addAction(block)
         settingsActionSheet.addAction(invite)
-        settingsActionSheet.addAction(cancel)
         
+       // let uid = Auth.auth().currentUser!.uid
         
+//        if uid != UserID {
+//            let ref = Database.database().reference()
+//            ref.child("Users").child(UserID).child("Following").observe(DataEventType.value, with: { (snapshot) in
+//               // print(snapshot.value(forKey: uid))
+//            })
+//            
+//           // settingsActionSheet.addAction(follow)
+//        } else {
+            settingsActionSheet.addAction(cancel)
+            
+            settingsActionSheet.view.tintColor = UIColor.black
+            
+            self.navigationController!.present(settingsActionSheet, animated: true, completion: nil)
+//        }
+      
         
-        settingsActionSheet.view.tintColor = UIColor.black
-        
-        
-        self.navigationController!.present(settingsActionSheet, animated: true, completion: nil)
         
     }
     
@@ -176,6 +204,7 @@ class OtherUser: UIViewController {
             if segue.destination is Relations {
                 let backItem = UIBarButtonItem()
                 backItem.title = ""
+                UserIdRelations = UserID
                 navigationItem.backBarButtonItem = backItem
             }
         }
