@@ -55,7 +55,7 @@ class ProfileImage: UIViewController,UIImagePickerControllerDelegate, UINavigati
        
         
     }
-
+    
    
     
     override func viewDidLoad() {

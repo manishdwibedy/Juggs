@@ -7,7 +7,7 @@
 //  Why it crashed
 // It wasnt crashint until you put those breakpoints. Ill log in
 // nute@gmail.com | qwerty1
-
+//its 10:05 commiti
 import UIKit
 import Firebase
 import FirebaseMessaging
