@@ -1680,6 +1680,14 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="172"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IeV-Fp-KFA">
+                                <rect key="frame" x="110" y="72" width="100" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="YBJ-bR-pDg"/>
+                                    <constraint firstAttribute="height" constant="100" id="nVX-pv-zgT"/>
+                                </constraints>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transparent" translatesAutoresizingMaskIntoConstraints="NO" id="rHi-LH-Nba">
                                 <rect key="frame" x="0.0" y="236" width="320" height="42"/>
                             </imageView>
@@ -1735,6 +1743,7 @@
                             <constraint firstItem="rHi-LH-Nba" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="sRS-lf-uTF"/>
                             <constraint firstItem="iU9-iN-ZUJ" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="10" id="vZG-w1-4aG"/>
                             <constraint firstAttribute="trailing" secondItem="3VZ-oI-9fA" secondAttribute="trailing" id="xk1-CW-ZYw"/>
+                            <constraint firstItem="Y09-Ib-Ryd" firstAttribute="bottom" secondItem="Djb-ko-YwX" secondAttribute="top" id="zjA-o0-c0u"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="User Name" id="SFu-9P-vlJ">

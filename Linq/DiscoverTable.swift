@@ -54,7 +54,7 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
                     if let tapIndexPath = self.tableView.indexPathForRow(at: tapLocation) {
                         if (self.tableView.cellForRow(at: tapIndexPath) as? CellForDiscover) != nil {
                             
-                            showUsersProfile(tapIndexPath.row)
+                            tryThis(tapIndexPath.row)
                         }
                     }
                 }

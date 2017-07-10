@@ -81,7 +81,9 @@ class OtherUser: UIViewController {
         performSegue(withIdentifier: "unwindToFollowers", sender: self)
     }
     
- 
+    @IBAction func seeRelationships(_ sender: Any) {
+        
+    }
     
     
     @IBAction func settingsTapped(_ sender: Any) {
@@ -143,6 +145,8 @@ class OtherUser: UIViewController {
             settingsActionSheet.addAction(cancel)
             let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
             settingsActionSheet.view.tintColor = purp
+            
+            settingsActionSheet.view.tintColor = UIColor.black
             
             self.navigationController!.present(settingsActionSheet, animated: true, completion: nil)
 //        }
