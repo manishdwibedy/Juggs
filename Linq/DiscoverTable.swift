@@ -37,7 +37,7 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
         self.tableView.addGestureRecognizer(tap)
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(gesture:)))
-        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        swipeRight.direction = UISwipeGestureRecognizerDirection.left
         self.tableView.addGestureRecognizer(swipeRight)
 
     }
@@ -47,7 +47,7 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             
             switch swipeGesture.direction {
-            case UISwipeGestureRecognizerDirection.right:
+            case UISwipeGestureRecognizerDirection.left:
                 if gesture.state == UIGestureRecognizerState.ended {
                     
                     let tapLocation = gesture.location(in: self.tableView)
@@ -59,11 +59,11 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
                     }
                 }
                 
-                print("Swiped right")
+                print("Swiped left")
             case UISwipeGestureRecognizerDirection.down:
                 print("Swiped down")
-            case UISwipeGestureRecognizerDirection.left:
-                print("Swiped left")
+            case UISwipeGestureRecognizerDirection.right:
+                print("Swiped right")
             case UISwipeGestureRecognizerDirection.up:
                 print("Swiped up")
             default:
