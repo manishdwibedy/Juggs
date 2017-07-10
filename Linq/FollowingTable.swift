@@ -25,9 +25,11 @@ class FollowingTable: UITableViewController {
     
     func retrievefollowingUsers(){
         
+        self.users.removeAll()
+        self.tableView.reloadData()
         let ref = Database.database().reference()
-        let uid = Auth.auth().currentUser!.uid
-        let childRef = ref.child("Users").child(uid)
+        //let uid = Auth.auth().currentUser!.uid
+        let childRef = ref.child("Users").child(UserIdRelations)
         
         childRef.child("Following").observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -86,18 +88,63 @@ class FollowingTable: UITableViewController {
         let uid = Auth.auth().currentUser!.uid
         let ref = Database.database().reference()
         let userId = self.users[sender.tag].userID
-        let keyToPost = ref.child("Users").child(uid).child("Following").child(userId!).key
-        
-        let Valu = ref.child("Users").child(uid).child("Following").child(keyToPost)
-
-        Valu.removeValue()
-        
-        //        commentsRef.removeValue()
+      
+        let profile = ref.child("Users").child(uid).child("Following")
+        profile.observe(.value, with: { (snapshot) -> Void in
+            
+            let posts = snapshot.value as? [String : AnyObject]
+            
+            if posts != nil {
+                for(key ,value) in posts! {
+                    
+                    if value as! String == userId!{
+                        profile.child(key).removeValue()
+                        
+                        let profile1 = ref.child("Users").child(userId!).child("Followers")
+                        
+                        profile1.observe(.value, with: { (snapshot) -> Void in
+                            
+                            let posts1 = snapshot.value as? [String : AnyObject]
+                            
+                            if posts1 != nil {
+                                for(key1,value1) in posts1! {
+                                    
+                                    if value1 as! String == uid {
+                                        profile1.child(key1).removeValue()
+                                    }
+                                }
+                                
+                                //self.users.remove(at: sender.tag)
+                                
+                                profile.removeAllObservers()
+                                profile1.removeAllObservers()
+                                
+                                self.retrievefollowingUsers()
+                            }
+                        })
+                    }
+                }
+            }
+        })
     }
    
     
     
-    
+    func followed(_ sender: UIButton) {
+        
+        let uid = Auth.auth().currentUser!.uid
+        let ref = Database.database().reference()
+        let userId = self.users[sender.tag].userID
+        let keyToPost = ref.child("Users").child(uid)
+        let commentsRef = keyToPost.child("Following").childByAutoId()
+        commentsRef.setValue(userId)
+        
+        let post = ref.child("Users").child(userId!)
+        post.child("Followers").childByAutoId().setValue(uid)
+        
+        retrievefollowingUsers()
+        
+    }
     
     
     // MARK: - Table view data source
@@ -121,9 +168,33 @@ class FollowingTable: UITableViewController {
         cell.followingFrom.text = self.users[indexPath.row].city + ", " + self.users[indexPath.row].state
         cell.followingImage.sd_setImage(with: URL(string: "\(String(describing: users[(indexPath.row)].imagePath!))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
    
-//        cell.followBtn.tag = indexPath.row
         cell.unFollowBtn.tag = indexPath.row
-        cell.unFollowBtn.addTarget(self, action: #selector(unfollowing(_:)), for: .touchUpInside)
+        
+        let uid = Auth.auth().currentUser!.uid
+        
+        if ((self.users[indexPath.row].follower) != nil) {
+            let dict  : [String:AnyObject] =  self.users[indexPath.row].follower
+            
+            let values = Array(dict.values) as! [String]
+            
+            //cell.followBtn.tag = indexPath.row
+            
+            if values.contains(uid) {
+                cell.unFollowBtn.setTitle("Unfollow", for: .normal)
+                cell.unFollowBtn.addTarget(self, action: #selector(unfollowing(_:)), for: .touchUpInside)
+            } else {
+                cell.unFollowBtn.setTitle("Follow", for: .normal)
+                cell.unFollowBtn.addTarget(self, action: #selector(followed(_:)), for: .touchUpInside)
+            }
+        } else {
+            cell.unFollowBtn.setTitle("Follow", for: .normal)
+            cell.unFollowBtn.addTarget(self, action: #selector(followed(_:)), for: .touchUpInside)
+        }
+
+        
+//        cell.followBtn.tag = indexPath.row
+//        cell.unFollowBtn.tag = indexPath.row
+//        cell.unFollowBtn.addTarget(self, action: #selector(unfollowing(_:)), for: .touchUpInside)
         cell.selectionStyle = .none
 
         // Configure the cell...

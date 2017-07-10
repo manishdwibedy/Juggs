@@ -14,11 +14,31 @@ class CommentsCell: UITableViewCell {
     @IBOutlet weak var commentLbl: UITextView!
     @IBOutlet weak var userLbl : UILabel!
     
+    
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        visuals()
     }
 
+    func visuals() {
+        
+        let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+        
+        userImageView.layer.masksToBounds = false
+        userImageView.layer.cornerRadius = userImageView.frame.height/2
+        userImageView.clipsToBounds = true
+        userImageView.layer.borderWidth = 2
+        userImageView.layer.borderColor = purp.cgColor
+       
+    }
+
+    
+    
+    
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

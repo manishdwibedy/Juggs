@@ -99,7 +99,7 @@ class OtherUserJuggTable: UITableViewController {
         cell.juggTitle.text = posts[indexPath.row].nameOfEvent
         let myMoveCity = posts[indexPath.row].city
         let myMoveState = posts[indexPath.row].state
-        cell.locationLabel.text = "\(String(describing: myMoveCity))," + "\(String(describing: myMoveState))"
+        cell.locationLabel.text = "\(myMoveCity ?? "")" + "\(myMoveState ?? "")"
         cell.juggTitle.textColor = UIColor.white
         cell.locationLabel.textColor = UIColor.white
         

@@ -46,9 +46,12 @@ class Login: UIViewController {
     }
     func fetchProfile() {
         
-        
         let ref = Database.database().reference()
         let uid = Auth.auth().currentUser?.uid
+        if uid == nil {
+            Globals.HideSpinner()
+            return
+        }
         ref.child("Users").child(uid!).queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
             
             if let dict = snapshot.value as? [String : AnyObject] {

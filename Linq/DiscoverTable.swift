@@ -21,12 +21,15 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
 
-       self.tabBarController?.tabBar.barTintColor = UIColor.black
+        self.tabBarController?.tabBar.barTintColor = UIColor.black
         self.navigationController?.navigationBar.isHidden = true
         self.tableView.rowHeight = 550
+        self.tableView.allowsSelection = false
       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         retrieveUsers()
-       
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped(recognizer:)))
         tap.numberOfTapsRequired = 2
@@ -37,7 +40,6 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.tableView.addGestureRecognizer(swipeRight)
 
-       
     }
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -48,22 +50,11 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
             case UISwipeGestureRecognizerDirection.right:
                 if gesture.state == UIGestureRecognizerState.ended {
                     
-                    
-                    
                     let tapLocation = gesture.location(in: self.tableView)
                     if let tapIndexPath = self.tableView.indexPathForRow(at: tapLocation) {
                         if (self.tableView.cellForRow(at: tapIndexPath) as? CellForDiscover) != nil {
                             
-                            tryThis(tapIndexPath.row)
-                            
-                            //do what you want to cell here
-                            //                            let uid = Auth.auth().currentUser!.uid
-                            //                            let ref = Database.database().reference()
-                            //                            let key = ref.child("Users").childByAutoId().key
-                            //
-                            //                            let userId = users[tapIndexPath.row].userID
-                            
-                            
+                            showUsersProfile(tapIndexPath.row)
                         }
                     }
                 }
@@ -91,15 +82,83 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
                     let uid = Auth.auth().currentUser!.uid
                     let ref = Database.database().reference()
                     
-                    let userId = users[tapIndexPath.row].userID
-                    let keyToPost = ref.child("Users").child(uid)
                     
-                    let commentsRef = keyToPost.child("Following").childByAutoId()
-                    
-                    commentsRef.setValue(userId)
-                    
-                    let post = ref.child("Users").child(userId!)
-                    post.child("Followers").childByAutoId().setValue(uid)
+                    if ((self.users[tapIndexPath.row].follower) != nil) {
+                        let dict  : [String:AnyObject] =  self.users[tapIndexPath.row].follower
+                        
+                        let values = Array(dict.values) as! [String]
+                        
+                        //cellForDiscover.followBtn.tag = indexPath.row
+                        
+                        if values.contains(uid) {
+//                            let uid = Auth.auth().currentUser!.uid
+//                            let ref = Database.database().reference()
+                            let userId = self.users[tapIndexPath.row].userID
+                            
+                            let profile = ref.child("Users").child(uid).child("Following")
+                            profile.observe(.value, with: { (snapshot) -> Void in
+                                
+                                let posts = snapshot.value as? [String : AnyObject]
+                                
+                                if posts != nil {
+                                    for(key ,value) in posts! {
+                                        
+                                        if value as! String == userId!{
+                                            profile.child(key).removeValue()
+                                            
+                                            let profile1 = ref.child("Users").child(userId!).child("Followers")
+                                            
+                                            profile1.observe(.value, with: { (snapshot) -> Void in
+                                                
+                                                let posts1 = snapshot.value as? [String : AnyObject]
+                                                
+                                                if posts1 != nil {
+                                                    for(key1,value1) in posts1! {
+                                                        
+                                                        if value1 as! String == uid {
+                                                            profile1.child(key1).removeValue()
+                                                        }
+                                                    }
+                                                    
+                                                    profile.removeAllObservers()
+                                                    profile1.removeAllObservers()
+                                                    
+                                                    self.retrieveUsers()
+                                                }
+                                            })
+                                        }
+                                    }
+                                }
+                            })
+                        } else {
+                            let userId = users[tapIndexPath.row].userID
+                            
+                            let keyToPost = ref.child("Users").child(uid)
+                            
+                            let commentsRef = keyToPost.child("Following").childByAutoId()
+                            
+                            commentsRef.setValue(userId)
+                            
+                            let post = ref.child("Users").child(userId!)
+                            post.child("Followers").childByAutoId().setValue(uid)
+                            
+                            retrieveUsers()
+                        }
+                    } else {
+                        let userId = users[tapIndexPath.row].userID
+                        
+                        let keyToPost = ref.child("Users").child(uid)
+                        
+                        let commentsRef = keyToPost.child("Following").childByAutoId()
+                        
+                        commentsRef.setValue(userId)
+                        
+                        let post = ref.child("Users").child(userId!)
+                        post.child("Followers").childByAutoId().setValue(uid)
+                        
+                        retrieveUsers()
+                    }
+
                     
                 }
             }
@@ -110,6 +169,8 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
     
     
     func retrieveUsers() {
+        
+        
         Globals.ShowSpinner(testStr: "")
         let ref = Database.database().reference()
         
@@ -148,13 +209,9 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
                             userToShow.follower = followers
                             userToShow.following = following
 
-                            
                             self.users.append(userToShow)
                             
-                            
                         }
-                        
-                        
                     }
                     
                 }
@@ -244,7 +301,7 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
     ////// SETUP FOLLOWING ANG FOLLOWERS IMAGES IN CELL WITH FOLLOW USER FUNCTION. (DOUBLE TAP TO FOLLOW) //////
     
     
-    func tryThis(_ userIndex : NSInteger) {
+    func showUsersProfile(_ userIndex : NSInteger) {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "otherVC") as! OtherUser
         let navController = UINavigationController(rootViewController: vc)
        //  let userIndex = tableView.indexPathForSelectedRow?.row
@@ -259,6 +316,7 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate {
          vc.gender = users[userIndex].gender
          vc.pathToImage = users[userIndex].imagePath
          vc.bioTextForOtherUser = users[userIndex].bio
+        
          vc.urlTextForOtherUser = "No URL Available."
          vc.discoverSwipe.isEnabled = true
          vc.followersSwipe.isEnabled = false

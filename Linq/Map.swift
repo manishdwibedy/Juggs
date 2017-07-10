@@ -227,6 +227,7 @@ extension Map : CLLocationManagerDelegate {
         
          if locations.first != nil {
            // print("location:: (location)")
+             fetchAddress()
         }
         
     }

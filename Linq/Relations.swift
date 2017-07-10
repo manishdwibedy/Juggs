@@ -8,8 +8,11 @@
 
 import UIKit
 
+var UserIdRelations = ""
+
 class Relations: UIViewController {
 
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var followingView: UIView!
     @IBOutlet weak var followersView: UIView!
@@ -30,16 +33,20 @@ class Relations: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        visual()
+    }
+
+    func visual() {
+        let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
         segmentedControl.selectedSegmentIndex = 0
         segmentChanged((Any).self)
         segmentedControl.layer.masksToBounds = true
         segmentedControl.layer.borderWidth = 2
         segmentedControl.layer.cornerRadius = 15
-        let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
         segmentedControl.layer.borderColor = purp.cgColor
+        segmentedControl.setWidth(190, forSegmentAt: 0)
+        segmentedControl.setWidth(190, forSegmentAt: 1)
     }
-
-    
     
     /*
     // MARK: - Navigation

@@ -40,6 +40,13 @@ class Comments: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+//        let txtfield  = UITextField()
+//        txtfield.text = commentsArray[indexPath.row].Cotent
+//        txtfield.font = UIFont.systemFont(ofSize: 14.0)
+//        let size : CGSize = txtfield.sizeThatFits(CGSize.init(width: self.view.frame.size.width-74, height: self.view.frame.size.height))
+//        
+//        print(size.height)
         return 70
     }
     
@@ -110,24 +117,27 @@ class Comments: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         let keyToPost = ref.child("Flyers").child(selectedPost.postID)
         
-        //        let commentsRef =
-        
         keyToPost.child("post-comments").observe(DataEventType.value, with: { (snapshot) in
-            let posts = snapshot.value as! [String : AnyObject]
+            
+            let posts = snapshot.value as? [String : AnyObject]
             self.commentsArray.removeAll()
             
-            for(_,value) in posts {
-                let Comments = CommentObj()
-                let UserName = value["UserName"] as? String
-                let comment = value["text"] as? String
-                let url = value["ImageUrl"] as? String
-                
-                Comments.UserName = UserName
-                Comments.Cotent = comment
-                Comments.UserImageUrl = url
-                
-                self.commentsArray.append(Comments)
+            if posts != nil {
+                for(_,value) in posts! {
+                    
+                    let Comments = CommentObj()
+                    let UserName = value["UserName"] as? String
+                    let comment = value["text"] as? String
+                    let url = value["ImageUrl"] as? String
+                    
+                    Comments.UserName = UserName
+                    Comments.Cotent = comment
+                    Comments.UserImageUrl = url
+                    
+                    self.commentsArray.append(Comments)
+                }
             }
+            
             self.tableView.reloadData()
         })
         

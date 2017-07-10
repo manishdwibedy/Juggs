@@ -147,6 +147,10 @@ class Settings: UITableViewController {
             
             alert.addAction(logout)
             alert.addAction(cancel)
+            
+            let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+            alert.view.tintColor = purp
+            
             self.present(alert, animated: true, completion:nil)
             
         }
@@ -183,6 +187,9 @@ class Settings: UITableViewController {
         
         areYouSure.addAction(Delete)
         areYouSure.addAction(Cancel)
+        
+        let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+        areYouSure.view.tintColor = purp
         self.present(areYouSure, animated: true, completion:nil)
         
         
@@ -200,7 +207,8 @@ class Settings: UITableViewController {
         
         error.addAction(errorOK)
         
-        
+        let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+        error.view.tintColor = purp
         self.present(error, animated: true, completion:nil)
     }
     
@@ -216,6 +224,8 @@ class Settings: UITableViewController {
         }
     
         success.addAction(OK)
+        let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+        success.view.tintColor = purp
         self.present(success, animated: true, completion:nil)
     }
     

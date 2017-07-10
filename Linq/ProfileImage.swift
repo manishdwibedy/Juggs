@@ -47,7 +47,8 @@ class ProfileImage: UIViewController,UIImagePickerControllerDelegate, UINavigati
                 }
                 
                 alertViewController.addAction(okAction)
-                
+                let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+                alertViewController.view.tintColor = purp
                 self.present(alertViewController, animated: true, completion: nil)
             })
         })
@@ -61,8 +62,9 @@ class ProfileImage: UIViewController,UIImagePickerControllerDelegate, UINavigati
         super.viewDidLoad()
         let ImageUrl = Globals .sharedInstance.getValueFromUserDefaultsForKey("urlToImage") as? String!
         imageView.sd_setImage(with: URL(string: ImageUrl!), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = imageView.frame.size.width/2
+        //imageView.clipsToBounds = true
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = imageView.frame.size.height/2
         imageView.layer.borderWidth = 4
         imageView.layer.borderColor = UIColor.white.cgColor
 
@@ -110,6 +112,8 @@ class ProfileImage: UIViewController,UIImagePickerControllerDelegate, UINavigati
         alert.addAction(camera)
         alert.addAction(photoLibrary)
         alert.addAction(cancel)
+        let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+        alert.view.tintColor = purp
         self.present(alert, animated: true, completion:nil)
         
     }

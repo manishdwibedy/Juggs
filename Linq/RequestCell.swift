@@ -22,6 +22,10 @@ class RequestCell: UITableViewCell {
     
     @IBOutlet weak var specBtn: UIButton!
     
+    @IBOutlet weak var acceptButton: UIButton!
+    
+    @IBOutlet weak var declineButton: UIButton!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,8 +36,14 @@ class RequestCell: UITableViewCell {
         
         blurrForSpec.layer.masksToBounds = true
         blurrForSpec.layer.cornerRadius = 8
+        
         specBtn.layer.masksToBounds = true
         specBtn.layer.cornerRadius = 8
+        
+        acceptButton.layer.masksToBounds = true
+        acceptButton.layer.cornerRadius = 8
+        declineButton.layer.masksToBounds = true
+        declineButton.layer.cornerRadius = 8
         
     }
 

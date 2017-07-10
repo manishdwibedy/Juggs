@@ -33,18 +33,9 @@ class World: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.tabBar.barTintColor = UIColor.black
-        segmentedControl.selectedSegmentIndex = 1
-        self.tabBarController?.tabBar.tintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
-          self.tabBarController?.tabBar.barTintColor = UIColor.white
-        self.navigationController?.navigationBar.barTintColor = UIColor.black
-        segmentedControl.layer.cornerRadius = 15
-        segmentedControl.layer.masksToBounds = true
-        segmentedControl.layer.borderWidth = 2
-        let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
-        segmentedControl.layer.borderColor = purp.cgColor
+        
+        setupSegmentedControl()
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,6 +44,22 @@ class World: UIViewController {
     }
     
 
+    func setupSegmentedControl() {
+        
+        let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+        self.tabBarController?.tabBar.barTintColor = UIColor.black
+        segmentedControl.selectedSegmentIndex = 1
+        self.tabBarController?.tabBar.tintColor = purp
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
+        segmentedControl.layer.cornerRadius = 15
+        segmentedControl.layer.masksToBounds = true
+        segmentedControl.layer.borderWidth = 2
+        segmentedControl.layer.borderColor = purp.cgColor
+        segmentedControl.setWidth(190, forSegmentAt: 0)
+        segmentedControl.setWidth(190, forSegmentAt: 1)
+        
+        
+    }
     /*
     // MARK: - Navigation
 

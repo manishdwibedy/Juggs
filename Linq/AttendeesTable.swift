@@ -27,8 +27,47 @@ class AttendeesTable: UITableViewController {
        self.navigationController?.navigationBar.barTintColor = UIColor.black
         tableView.rowHeight = 550
         
-        retrieveAcceptedUsers() // Needs query
+         // Needs query
         
+    }
+
+    
+    override func viewWillAppear(_ animated: Bool) {
+        retrieveAcceptedUsers()
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(gesture:)))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.tableView.addGestureRecognizer(swipeRight)
+    }
+    
+    
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.right:
+                if gesture.state == UIGestureRecognizerState.ended {
+                    
+                    let tapLocation = gesture.location(in: self.tableView)
+                    if let tapIndexPath = self.tableView.indexPathForRow(at: tapLocation) {
+                        if (self.tableView.cellForRow(at: tapIndexPath) as? AttendeesCell) != nil {
+                            
+                            showUsersProfile(tapIndexPath.row)
+                        }
+                    }
+                }
+                
+                print("Swiped right")
+            case UISwipeGestureRecognizerDirection.down:
+                print("Swiped down")
+            case UISwipeGestureRecognizerDirection.left:
+                print("Swiped left")
+            case UISwipeGestureRecognizerDirection.up:
+                print("Swiped up")
+            default:
+                break
+            }
+        }
     }
 
     
@@ -84,7 +123,28 @@ class AttendeesTable: UITableViewController {
         
     }
     
-
+    
+    func showUsersProfile(_ userIndex : NSInteger) {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "otherVC") as! OtherUser
+        let navController = UINavigationController(rootViewController: vc)
+        vc.UserID = acceptedUsers[userIndex].userID!
+        let firstName = acceptedUsers[userIndex].firstName
+        let lastName = acceptedUsers[userIndex].lastName
+        vc.firstName = firstName!
+        vc.lastName = lastName!
+        vc.age = acceptedUsers[userIndex].age
+        vc.city = acceptedUsers[userIndex].city
+        vc.state = acceptedUsers[userIndex].state
+        vc.gender = acceptedUsers[userIndex].gender
+        vc.pathToImage = acceptedUsers[userIndex].imagePath
+        vc.bioTextForOtherUser = acceptedUsers[userIndex].bio
+        vc.urlTextForOtherUser = "No URL Available."
+        vc.discoverSwipe.isEnabled = true
+        vc.followersSwipe.isEnabled = false
+        vc.followingSwipe.isEnabled = false
+        self.present(navController, animated: true, completion: nil)
+    
+    }
     
     
     // MARK: - Table view data source

@@ -31,6 +31,8 @@ class UpdateName: UIViewController, UITextFieldDelegate {
         }
         
         alertViewController.addAction(okAction)
+        let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+        alertViewController.view.tintColor = purp
         
         self.present(alertViewController, animated: true, completion: nil)
     

@@ -27,6 +27,8 @@ class MovesTableViewCell: UITableViewCell, CLLocationManagerDelegate {
     @IBOutlet weak var distanceAwayLabel: UILabel!
     @IBOutlet weak var commentBtn: UIButton!
     
+    @IBOutlet weak var comments: UITextView!
+    @IBOutlet weak var commentCount: UILabel!
     var postID: String!
     var locationManager:CLLocationManager!
     
@@ -34,8 +36,8 @@ class MovesTableViewCell: UITableViewCell, CLLocationManagerDelegate {
         super.awakeFromNib()
         // Initialization code
        // retrieveAddress()
-        self.unlikeBtn.isHidden = true
-        self.flamedBtn.isHidden = true
+        startUp()
+        
     }
 
     
@@ -182,11 +184,6 @@ class MovesTableViewCell: UITableViewCell, CLLocationManagerDelegate {
     
     
     
-    
-    
-    
-    
-    
     func retrieveAddress() {
         
       
@@ -246,8 +243,6 @@ class MovesTableViewCell: UITableViewCell, CLLocationManagerDelegate {
         }
         
 
-   
-        
         
     }
     
@@ -257,7 +252,18 @@ class MovesTableViewCell: UITableViewCell, CLLocationManagerDelegate {
     }
 
 
-    
+    func startUp() {
+        self.unlikeBtn.isHidden = true
+        self.flamedBtn.isHidden = true
+        
+        comments.layer.masksToBounds = true
+        comments.layer.cornerRadius = 8
+        comments.layer.borderWidth = 2.5
+        comments.layer.borderColor = UIColor.white.cgColor
+        
+        
+        
+    }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
