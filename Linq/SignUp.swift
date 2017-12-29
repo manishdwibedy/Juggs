@@ -28,10 +28,8 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     @IBOutlet weak var genderTF: UITextField!
     
     @IBAction func signedUp(_ sender: Any) {
-   self.view.endEditing(true)
-        
-    validation()
-    
+        self.view.endEditing(true)
+        validation()
     }
     
     @IBAction func logIn(_ sender: Any) {
@@ -40,32 +38,47 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     
     }
     
-
+    func doneAction() {
+        self.view.endEditing(true)
+    }
     var userStorage: StorageReference!
     var ref: DatabaseReference!
     
     
-    var stateList = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN","IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND",  "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
+    var stateList = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN","IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND",  "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY", "Foreign"]
 
-    var genderList = ["Female", "Male"]
+    var genderList = ["Female", "Male", "Other"]
     override func viewDidLoad() {
         super.viewDidLoad()
        
-         signInBtn.isEnabled = false
-        ////// TAP GESTURE FOR 'imageView'  /////
-        let tap = UITapGestureRecognizer(target: self, action: #selector(SignUp.tappedMe))
-        imageView.addGestureRecognizer(tap)
-        imageView.isUserInteractionEnabled = true
-        
         let storageRef = Storage.storage().reference()
         let urlToStorage = "gs://jugg-88ab9.appspot.com/"
         storageRef.storage.reference(forURL: urlToStorage)
         userStorage = storageRef.child("Users")
         ref = Database.database().reference()
-        
+        visuals()
         delegate()
         pickerViews()
+        
     }
+    
+    
+    
+    func visuals() {
+        let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+        signInBtn.isEnabled = false
+        ////// TAP GESTURE FOR 'imageView'  /////
+        let tap = UITapGestureRecognizer(target: self, action: #selector(SignUp.tappedMe))
+        imageView.addGestureRecognizer(tap)
+        imageView.isUserInteractionEnabled = true
+        imageView.layer.cornerRadius = imageView.frame.size.width/2
+        imageView.clipsToBounds = true
+        imageView.layer.borderWidth = 6
+        imageView.layer.borderColor = purp.cgColor
+        
+    }
+    
+    
     
     
     /////////   TAP PLACEHOLDER PHOTO TO SELECT AN IMAGE  /////////
@@ -73,9 +86,12 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     func tappedMe() {
         
         // ACTION SHEET FOR PHOTO SELECTION
+        var alert = UIAlertController(title: "Choose an Image", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         
-        let alert = UIAlertController(title: "Choose an Image", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            alert = UIAlertController(title: "Choose an Image", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+        }
+      
         let camera = UIAlertAction(title: "Camera", style: .default, handler: { (ACTION) in
             
             let image = UIImagePickerController()
@@ -139,13 +155,13 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         // Set photoImageView to display the selected image.
-        
         imageView.image = selectedImage
         
         // Dismiss the picker.
         
         dismiss(animated: true, completion: nil)
         
+
         signInBtn.isEnabled = true
         
     }
@@ -153,7 +169,7 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     
     func validation() {
       
-        guard let remail = emailTF.text,let rpassword = pwTF.text,var rfirstName = firstNameTF.text, let rlastName = lastNameTF.text, let rage = ageTF.text, let rbio = bioTV.text, let rcity = cityTF.text, let rstate = stateTF.text, let rgender = genderTF.text else {
+        guard let remail = emailTF.text?.trim(),let rpassword = pwTF.text?.trim(),let rfirstName = firstNameTF.text?.trim(), let rlastName = lastNameTF.text?.trim(), let rage = ageTF.text?.trim(), let rbio = bioTV.text?.trim(), let rcity = cityTF.text?.trim(), let rstate = stateTF.text else {
             print(" Form isnt valid")
             
             return
@@ -179,9 +195,8 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                 }
                 
                 if let user = user {
-                    
+                    let rgender = self.genderTF.text
                     let changeRequest = Auth.auth().currentUser!.createProfileChangeRequest()
-                    rfirstName = rfirstName + " "
                     changeRequest.commitChanges(completion: nil)
                     let imageRef = self.userStorage.child("\(user.uid).jpg")
                     let data = UIImageJPEGRepresentation(self.imageView.image!, 0.5)
@@ -195,18 +210,37 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                             if let url = url {
                                 
                                 let userInfo: [String : Any] = ["UID" : user.uid,
-                                                                "First Name" : rfirstName,
-                                                                "Last Name" : rlastName,
+                                                                "FirstName" : rfirstName,
+                                                                "LastName" : rlastName,
                                                                 "Age" : rage,
                                                                 "Bio" : rbio,
                                                                 "City" : rcity,
-                                                                "Gender" : rgender,
+                                                                "Gender" : rgender ?? "Rather Not",
                                                                 "State" : rstate,
                                                                 "urlToImage" : url.absoluteString,
                                                                 
                                                                 ]
                                 
                                 self.ref.child("Users").child(user.uid).setValue(userInfo)
+                                
+                                let juggTeamRef = self.ref.child("Users").child(user.uid).child("Following")
+                                let followUs = ["Q" : "BZqQBnmgWkbMxFZ2yqlFcG3bKB82", "JuggTeam" : "Qr37LzryqIZIxPoymnwgVoSpCqq1"]
+                                juggTeamRef.setValue(followUs)
+                                
+//
+//                                let keyToPost = ref.child("Users").child(uid)
+//
+//                                let commentsRef = keyToPost.child("Following").childByAutoId()
+//
+//                                commentsRef.setValue(userId as Any)
+//
+//                                let post = ref.child("Users").child(userId!)
+//                                post.child("Followers").childByAutoId().setValue(uid)
+                                
+                                if let token = Messaging.messaging().fcmToken {
+                                    let refchild = self.ref.child("Users").child(user.uid).child("fcmToken")
+                                    refchild.setValue(token)
+                                }
                                 
                                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
                                 Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(true, key: "IS_LOGIN")
@@ -390,7 +424,7 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         }else if(pickerView.tag == 1) {
             genderTF.text = genderList[row]
         }
-        self.view.endEditing(true)
+//        self.view.endEditing(true)
     }
 
     

@@ -22,6 +22,8 @@ class User: NSObject {
     var imagePath: String!
     var following: [String:AnyObject]!
     var follower: [String:AnyObject]!
+    var friendrequest: [String:AnyObject]!
+    var privateUser : Bool!
     
     init(dictionary: [String: AnyObject]) {
         userID = dictionary["id"] as? String

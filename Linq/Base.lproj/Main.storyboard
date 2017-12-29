@@ -2631,7 +2631,7 @@
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JaI-N7-aOd">
                                             <rect key="frame" x="0.0" y="0.0" width="376.33333333333331" height="71"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="UHh-hJ-Oxq">
-                                                <rect key="frame" x="0.0" y="0.0" width="376.33333333333331" height="71"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="376" height="71"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z19-1g-NTF">
@@ -3827,11 +3827,19 @@
                                     <action selector="shareMyJuggID:" destination="3uR-oG-Pxf" eventType="touchUpInside" id="yVc-ca-HYi"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LI6-2Y-C8F">
+                                <rect key="frame" x="107" y="281" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="1uT-ct-VH7"/>
+                                    <constraint firstAttribute="width" constant="200" id="wm4-gL-o7n"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="U4o-FN-WS6" firstAttribute="leading" secondItem="nfW-r0-7fM" secondAttribute="leadingMargin" constant="79" id="0Rv-tQ-BF3"/>
                             <constraint firstItem="qTt-aQ-888" firstAttribute="top" secondItem="bYJ-KL-pB0" secondAttribute="top" id="10q-UO-P72"/>
+                            <constraint firstItem="LI6-2Y-C8F" firstAttribute="top" secondItem="U4o-FN-WS6" secondAttribute="bottom" constant="30" id="5pl-8p-k7i"/>
                             <constraint firstItem="Jzz-rq-9Yp" firstAttribute="centerX" secondItem="U4o-FN-WS6" secondAttribute="centerX" id="A0z-u0-1hH"/>
                             <constraint firstItem="FPd-CQ-wxQ" firstAttribute="top" secondItem="bYJ-KL-pB0" secondAttribute="bottom" id="EM1-Xd-1qd"/>
                             <constraint firstItem="U4o-FN-WS6" firstAttribute="top" secondItem="FPd-CQ-wxQ" secondAttribute="bottom" constant="51" id="FK7-o9-Ff1"/>
@@ -3846,11 +3854,13 @@
                             <constraint firstItem="qTt-aQ-888" firstAttribute="trailing" secondItem="bYJ-KL-pB0" secondAttribute="trailing" id="eR7-0U-k63"/>
                             <constraint firstItem="qTt-aQ-888" firstAttribute="bottom" secondItem="Lnu-zz-J07" secondAttribute="top" id="u7N-bb-dAZ"/>
                             <constraint firstItem="bYJ-KL-pB0" firstAttribute="leading" secondItem="nfW-r0-7fM" secondAttribute="leading" id="ue8-gh-os0"/>
+                            <constraint firstItem="LI6-2Y-C8F" firstAttribute="centerX" secondItem="nfW-r0-7fM" secondAttribute="centerX" id="wht-ZB-OEG"/>
                             <constraint firstAttribute="trailing" secondItem="bYJ-KL-pB0" secondAttribute="trailing" id="yIl-YO-CMp"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="myJuggIDTF" destination="Jzz-rq-9Yp" id="FPC-yT-VY1"/>
+                        <outlet property="qrCodeView" destination="LI6-2Y-C8F" id="jcA-6f-pf3"/>
                         <outlet property="searchBar" destination="bYJ-KL-pB0" id="hqE-5t-096"/>
                         <outlet property="shareBtn" destination="U4o-FN-WS6" id="yUz-9a-Qjo"/>
                     </connections>

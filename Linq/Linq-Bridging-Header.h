@@ -8,6 +8,6 @@
 
 #ifndef Linq_Bridging_Header_h
 #define Linq_Bridging_Header_h
-
-
+#import <TwitterKit/TwitterKit.h>
+#import "GAI.h"
 #endif /* Linq_Bridging_Header_h */

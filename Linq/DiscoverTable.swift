@@ -404,9 +404,16 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate, GADNati
             let tapLocation = recognizer.location(in: self.tableView)
             if let tapIndexPath = self.tableView.indexPathForRow(at: tapLocation) {
                 if (self.tableView.cellForRow(at: tapIndexPath) as? CellForDiscover) != nil {
-
-                    showUsersProfile(tapIndexPath.row)
-
+                    let selectUser = self.users[tapIndexPath.row] as! User
+                    showUsersProfile(selectUser)
+                }
+                else{
+                    if (self.tableView.cellForRow(at: tapIndexPath)) != nil {
+                        if loadTableView == "searchUser" {
+                            let selectUser = self.usersListForSearch[tapIndexPath.row] as! User
+                            showUsersProfile(selectUser)
+                        }
+                    }
                 }
             }
         }
@@ -656,24 +663,16 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate, GADNati
     }
     
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if loadTableView == "searchUser" {
-            let selectInt = self.usersListForSearch[indexPath.row] as! NSInteger
-            self.showUsersProfile(selectInt)
-        }
-    }
-   
+  
     
     ////// SETUP FOLLOWING ANG FOLLOWERS IMAGES IN CELL WITH FOLLOW USER FUNCTION. (DOUBLE TAP TO FOLLOW) //////
     ////// SINGLE TAP - 12/13/17 3:20 A.M
     
     
-    func showUsersProfile(_ userIndex : NSInteger) {
+    func showUsersProfile(_ userItem : User) {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "otherVC") as! OtherUser
         let navController = UINavigationController(rootViewController: vc)
         
-        if let userItem = users[userIndex] as? User {
-            
             UserID = userItem.userID!
             let firstName = userItem.firstName
             let lastName = userItem.lastName
@@ -691,7 +690,7 @@ class DiscoverTable: UITableViewController, UIGestureRecognizerDelegate, GADNati
             vc.followersSwipe.isEnabled = false
             vc.followingSwipe.isEnabled = false
             self.present(navController, animated: true, completion: nil)
-        }
+        
     }
     
 

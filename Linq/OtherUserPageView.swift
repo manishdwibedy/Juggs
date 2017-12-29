@@ -10,8 +10,6 @@ import UIKit
 
 class OtherUserPageView: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
-    
-    
     lazy var bioAndMyJuggs: [UIViewController] = {
         
         return [self.ViewControllerInstance(name: "OtherUserBio"),

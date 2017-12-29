@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class CellForDiscover: UITableViewCell {
 
@@ -20,20 +21,13 @@ class CellForDiscover: UITableViewCell {
     @IBOutlet weak var followingTrueImageView: UIImageView!
     @IBOutlet weak var followMeTrueImageView: UIImageView!
     
+//    @IBOutlet weak var mapView: MKMapView!
+    
     var userID: String!
-    
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-       // self.swipeView.isHidden = true
-       // self.swipeView.isUserInteractionEnabled = true
-        
-//        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
-//        swipe.direction = UISwipeGestureRecognizerDirection.left
-//        self.swipeView.addGestureRecognizer(swipe)
-        
+                
     }
     
     

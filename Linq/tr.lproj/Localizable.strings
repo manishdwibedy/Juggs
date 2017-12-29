@@ -5,3 +5,110 @@
   Created by Quinton Askew on 12/9/17.
   Copyright © 2017 QuintonAskew. All rights reserved.
 */
+"restart" = "Dili değiştirmek için uygulamanın yeniden başlatılması gerekir.";
+"restartTitle" = "Uygulama yeniden başlatma gerekli";
+"cancel" = "İptal";
+"close" = "Şimdi Kapat";
+
+// Feed - (Cell Labels)
+"likes" = "Seviyor";
+"comments" = "Yorumlar";
+"juggs" = "Anlaşmak";
+"capacity" = "Kapasite";
+"public" = "Kamu";
+"private" = "Özel";
+"miles" = "Miles";
+"viewAll" = "Hepsini gör";
+"of" = "nin";
+
+// Description - (Action Sheet)
+"delete" = "Etkinliği Sil";
+"share" = "Pay";
+
+// Discover -(Segments & Alerts)
+"map" = "Harita";
+"discover" = "Keşfedin";
+"followRequest" = "Takip etmeni istediniz ";
+
+// Profile & OtherUser Profile - (Action Sheets)
+"message" = "Mesaj";
+"relations" = "İlişkiler";
+"report" = "Rapor";
+"block" = "Blok";
+"unblock" = "Engeli Kaldırmak";
+"invite" = "Davet et";
+"privacyTitle" = "Gizlilik Etkinleştirildi!";
+"privacyMessage" = "Profiliniz yalnızca takipçileriniz tarafından görülebilir. Takip İsteklerinizi buradan yönetin.";
+"ok" = "Tamam";
+"pt" = "Kamuya Açık Olmak!";
+"publicMessage" = "Herkesin görebilmesi için profiliniz artık görünür durumda. Bekleyen tüm Takip Talebi kabul edildi.";
+"inviteSent1" = "Için davetiniz ";
+"inviteSent2" = " gönderildi!";
+"inviteAlready1" = "Için zaten bir davet gönderdiniz ";
+"inviteAlready2" = " bu kullanıcıya.";
+"requestAlready" = " için zaten bir istek gönderdi ";
+"Male" = "Erkek";
+"Female" = "Kadın";
+"Other" = "Belirtilmemiş";
+"followers" = "İzleyiciler";
+"following" = "Takip Etme";
+
+// Settings - (Navigation Controllers & Alert)
+"name" = "Isim";
+"updatename" = "Adınızı ve Soyadınızı Güncelleyin.";
+"password" = "Parola";
+"updatepword" = "Şifreyi Güncelle";
+"pus" = "Şifre başarıyla güncellendi";
+"pdm" = "Şifreleriniz uyuşmuyor.";
+"cpdm" = "Mevcut şifreniz doğru değildir.";
+"ncs" = "Ad Başarıyla Değiştirildi!";
+"biography" = "Biyografi";
+"bsu" = "Biyografi Başarıyla Güncellendi!";
+"websites" = "Web Siteleri";
+"cf" = "Facebook ile devam";
+"ct" = "Twitter ile devam";
+"ci" = "Instagram ile devam";
+"cs" = "Snapchat ile devam";
+"cg" = "Google+ ile devam";
+"un" = "Kullanıcı adınızı giriniz.";
+"lof" = "Facebook'ta Oturumu Kapat";
+"lot" = "Twitter'ta Oturumu Kapat";
+"loi" = "Instagram'ta Oturumu Kapat";
+"log" = "Google+'ta Oturumu Kapat";
+"un" = "Kullanıcı adınızı giriniz.";
+"scum" = "Snapchat Kullanıcı Adı";
+"save" = "Kayıt Etmek";
+"ays" = "Emin misiniz?";
+"logout" = "Çıkış Yap";
+"warn" = "Uyarı!";
+"deleteAcct" = "Silmek";
+
+// Discover
+"privacy" = "Gizlilik";
+"search" = "Arama";
+"areYouSure" = "Emin misiniz?";
+"warning" = "Uyarı";
+"areYouSure2" = "Hesabınızı silmek istediğinizden emin misiniz?";
+"delete" = "Silmek";
+"sryM" = "İsteğiniz işlenirken bir hata oluştu.";
+"dsm" = "Hesabınız silinmiştir.";
+
+// Box
+"inbox" = "Gelen Kutusu";
+"invitations" = "Davetiyeler";
+"ni" = "Yeni Davetiye";
+"nm" = "Yeni Mesaj";
+"confirm" = "Onaylamak";
+"rq" = "İstek";
+"rs" = "İstek (Gönderilen)";
+"ins" = "Davetiyeler (Gönderilen)";
+
+// New Jugg
+"cm" = "Kamera";
+"pl" = "Fotoğraf Kütüphanesi";
+"slf" = "Bir Afiş Seç";
+"flyr" = "Bir Flyer Gereklidir.";
+"future" = "Etkinlik için gelecek zamanı girin.";
+"req" = "Tüm alanların harekete geçmesi gerekir.";
+
+

@@ -14,4 +14,5 @@ class CommentObj: NSObject {
     var UserImageUrl: String!
     var Cotent: String!
     var ref: DatabaseReference!
+    var timestamp : Double!
 }

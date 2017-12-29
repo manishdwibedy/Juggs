@@ -8,11 +8,13 @@
 
 import UIKit
 import Firebase
+import QRCode
 
 class searchJuggers: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     
+    @IBOutlet weak var qrCodeView: UIImageView!
     @IBOutlet weak var myJuggIDTF: UITextField!
     @IBOutlet weak var shareBtn: UIButton!
     let UIpurp = UIColor(red: 155/255, green: 89/255, blue: 182/255, alpha: 1.0)
@@ -43,6 +45,13 @@ class searchJuggers: UIViewController, UISearchBarDelegate {
         self.shareBtn.layer.borderWidth = 2
         self.shareBtn.layer.borderColor = purp
         
+        qrCodeView.image = {
+            var qrCode = QRCode(myJuggID!)!
+            qrCode.size = self.qrCodeView.bounds.size
+            qrCode.color = CIColor(rgba: "c0392b")
+            qrCode.backgroundColor = CIColor(rgba: "f1c40f")
+            return qrCode.image
+        }()
     }
     
 

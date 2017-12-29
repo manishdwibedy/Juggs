@@ -28,12 +28,36 @@ class MyProfile: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-            Globals.ShowSpinner(testStr: "")
-            fetchProfile()
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        Globals.ShowSpinner(testStr: "")
+        fetchProfile()
+    }
+    @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
+        let imageView = sender.view as! UIImageView
+        let newImageView = UIImageView(image: imageView.image)
+        newImageView.frame = UIScreen.main.bounds
+        newImageView.backgroundColor = .black
+        newImageView.contentMode = .scaleAspectFit
+        newImageView.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
+        newImageView.addGestureRecognizer(tap) 
+        newImageView.isUserInteractionEnabled = true
+        
+        self.view.addSubview(newImageView)
+        self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
          self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    func dismissFullscreenImage(_ sender: UITapGestureRecognizer) {
+        self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = false
+        sender.view?.removeFromSuperview()
     }
     
     func visuals()  {
@@ -59,14 +83,14 @@ class MyProfile: UIViewController {
            
             if let dict = snapshot.value as? [String : AnyObject] {
                 
-                let firstName = dict["First Name"] as? String!
-                let lastName = dict["Last Name"] as? String!
+                let firstName = dict["FirstName"] as? String!
+                let lastName = dict["LastName"] as? String!
                 let fullName = firstName! + " " + lastName!
                 self.title = fullName
                 let age = dict["Age"] as? String!
                 self.ageLabel.text = age! + ","
                 let gender = dict["Gender"] as? String!
-                self.genderLabel.text = gender
+                self.genderLabel.text = (NSLocalizedString(gender!, comment: ""))
                 let city = dict["City"] as? String!
                 let state = dict["State"] as? String!
                 let from = city! + ", " + state!
