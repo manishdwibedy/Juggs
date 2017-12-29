@@ -13,6 +13,7 @@
 		176A44231EFBCCFF00CCF887 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176A44221EFBCCFF00CCF887 /* ChatMessageCell.swift */; };
 		178741981EF1453700FB1B01 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178741971EF1453700FB1B01 /* Globals.swift */; };
 		178741A61EF17DAB00FB1B01 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178741A51EF17DAB00FB1B01 /* Message.swift */; };
+		5BE19B0A1FF5F8FA009DA206 /* ScanQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE19B091FF5F8FA009DA206 /* ScanQRViewController.swift */; };
 		7E43BB5217089F9C4EEE2E8C /* Pods_Linq.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21E4CEDE691B9F6B277FD50 /* Pods_Linq.framework */; };
 		884FDEC32C3676CE14F292D6 /* Pods_LinqUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6772CE4CE681BF3EBE99DB78 /* Pods_LinqUITests.framework */; };
 		BA0B116F1F77FEDE0009B77D /* iosTone.caf in Resources */ = {isa = PBXBuildFile; fileRef = BA0B116E1F77FEDE0009B77D /* iosTone.caf */; };
@@ -123,6 +124,7 @@
 		178741971EF1453700FB1B01 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		178741A51EF17DAB00FB1B01 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		25C4DAD3AA65FAE4A7C9F089 /* Pods-LinqTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinqTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LinqTests/Pods-LinqTests.release.xcconfig"; sourceTree = "<group>"; };
+		5BE19B091FF5F8FA009DA206 /* ScanQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRViewController.swift; sourceTree = "<group>"; };
 		6772CE4CE681BF3EBE99DB78 /* Pods_LinqUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinqUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A60E25F1E62E7C2B1CE1773 /* Pods-LinqUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LinqUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LinqUITests/Pods-LinqUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		947853379B7843EC362EDEAD /* Pods_LinqTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LinqTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -448,6 +450,7 @@
 				D1BED2841F4DBCEC00FFBDAB /* BlockedTable.swift */,
 				D1BED2861F4DBD7B00FFBDAB /* BlockedCell.swift */,
 				D178D8B01F5D0CCA0030D6F8 /* searchJuggers.swift */,
+				5BE19B091FF5F8FA009DA206 /* ScanQRViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -863,6 +866,7 @@
 				"${BUILT_PRODUCTS_DIR}/QRCode/QRCode.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SimpleOAuth2/SimpleOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftQRCode/SwiftQRCode.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSpinner/SwiftSpinner.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -888,6 +892,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCode.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftQRCode.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSpinner.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -950,6 +955,7 @@
 				D1371FFD1F06DC4E00C9E298 /* OtherUserBio.swift in Sources */,
 				D1A1FD4E1ED4B9EF00C8BF4E /* Settings.swift in Sources */,
 				176A44231EFBCCFF00CCF887 /* ChatMessageCell.swift in Sources */,
+				5BE19B0A1FF5F8FA009DA206 /* ScanQRViewController.swift in Sources */,
 				D1A1FD5E1ED606B000C8BF4E /* CellForDiscover.swift in Sources */,
 				D1177BE71EE5F24F005C5B85 /* ForgotPassword.swift in Sources */,
 				D137599E1FF45AC700C762BD /* DiscoverTable.swift in Sources */,

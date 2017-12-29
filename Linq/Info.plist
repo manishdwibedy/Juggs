@@ -77,7 +77,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>We need your help customizing your profile.</string>
+	<string>We need your help customizing your profile along with QR codes support.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Your location will help us find you Juggs.</string>
 	<key>NSLocationUsageDescription</key>

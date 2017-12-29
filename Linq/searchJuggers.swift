@@ -9,8 +9,10 @@
 import UIKit
 import Firebase
 import QRCode
+import AVFoundation
+import SwiftQRCode
 
-class searchJuggers: UIViewController, UISearchBarDelegate {
+class searchJuggers: UIViewController, UISearchBarDelegate, AVCaptureMetadataOutputObjectsDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -18,6 +20,8 @@ class searchJuggers: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var myJuggIDTF: UITextField!
     @IBOutlet weak var shareBtn: UIButton!
     let UIpurp = UIColor(red: 155/255, green: 89/255, blue: 182/255, alpha: 1.0)
+    let scanner = QRCode()
+
     
     @IBAction func shareMyJuggID(_ sender: Any) {
         actionSheet()
@@ -29,6 +33,7 @@ class searchJuggers: UIViewController, UISearchBarDelegate {
         super.viewDidLoad()
 //        searchBar.text = "BZqQBnmgWkbMxFZ2yqlFcG3bKB82";
         visuals()
+        
         
     }
 
@@ -45,6 +50,8 @@ class searchJuggers: UIViewController, UISearchBarDelegate {
         self.shareBtn.layer.borderWidth = 2
         self.shareBtn.layer.borderColor = purp
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Scan QR", style: .plain, target: self, action: #selector(scanQR))
+
         qrCodeView.image = {
             var qrCode = QRCode(myJuggID!)!
             qrCode.size = self.qrCodeView.bounds.size
@@ -54,7 +61,11 @@ class searchJuggers: UIViewController, UISearchBarDelegate {
         }()
     }
     
-
+    func scanQR(_ sender:UIBarButtonItem!){
+        print("scanning...")
+        
+        self.performSegue(withIdentifier: "scanQR", sender: nil)
+    }
     
     func actionSheet()
     {

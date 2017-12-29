@@ -28,6 +28,8 @@ target 'Linq' do
     pod 'SDWebImage', '~>3.8'
     pod 'Google/Analytics'
     pod 'QRCode'
+    pod 'SwiftQRCode'
+
 
     target 'LinqTests' do
         inherit! :search_paths

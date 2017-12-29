@@ -158,12 +158,19 @@
 			<key>orderHint</key>
 			<integer>23</integer>
 		</dict>
-		<key>SwiftSpinner.xcscheme</key>
+		<key>SwiftQRCode.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>24</integer>
+		</dict>
+		<key>SwiftSpinner.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>25</integer>
 		</dict>
 		<key>leveldb-library.xcscheme</key>
 		<dict>
