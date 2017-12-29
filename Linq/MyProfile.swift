@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SimpleImageViewer
 
 class MyProfile: UIViewController {
 
@@ -19,6 +20,7 @@ class MyProfile: UIViewController {
     @IBOutlet weak var genderLabel: UILabel!
     
     @IBOutlet weak var fromLabel: UILabel!
+    
     
     @IBAction func showRelationships(_ sender: Any) {
         
@@ -34,20 +36,29 @@ class MyProfile: UIViewController {
         Globals.ShowSpinner(testStr: "")
         fetchProfile()
     }
+    
     @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
         let imageView = sender.view as! UIImageView
-        let newImageView = UIImageView(image: imageView.image)
-        newImageView.frame = UIScreen.main.bounds
-        newImageView.backgroundColor = .black
-        newImageView.contentMode = .scaleAspectFit
-        newImageView.isUserInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
-        newImageView.addGestureRecognizer(tap) 
-        newImageView.isUserInteractionEnabled = true
         
-        self.view.addSubview(newImageView)
-        self.navigationController?.isNavigationBarHidden = true
-        self.tabBarController?.tabBar.isHidden = true
+        let configuration = ImageViewerConfiguration { config in
+            config.imageView = self.profilePic
+        }
+        
+        let imageViewerController = ImageViewerController(configuration: configuration)
+        
+        present(imageViewerController, animated: true)
+//        let newImageView = UIImageView(image: imageView.image)
+//        newImageView.frame = UIScreen.main.bounds
+//        newImageView.backgroundColor = .black
+//        newImageView.contentMode = .scaleAspectFit
+//        newImageView.isUserInteractionEnabled = true
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
+//        newImageView.addGestureRecognizer(tap)
+//        newImageView.isUserInteractionEnabled = true
+//
+//        self.view.addSubview(newImageView)
+//        self.navigationController?.isNavigationBarHidden = true
+//        self.tabBarController?.tabBar.isHidden = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -111,7 +122,6 @@ class MyProfile: UIViewController {
                         
                         DispatchQueue.main.sync {
                             self.profilePic.image = UIImage(data: data!)
-                            
                         }
                         
                     }).resume()

@@ -151,26 +151,33 @@
 			<key>orderHint</key>
 			<integer>22</integer>
 		</dict>
-		<key>SimpleOAuth2.xcscheme</key>
+		<key>SimpleImageViewer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>23</integer>
 		</dict>
-		<key>SwiftQRCode.xcscheme</key>
+		<key>SimpleOAuth2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>24</integer>
 		</dict>
-		<key>SwiftSpinner.xcscheme</key>
+		<key>SwiftQRCode.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>25</integer>
+		</dict>
+		<key>SwiftSpinner.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>26</integer>
 		</dict>
 		<key>leveldb-library.xcscheme</key>
 		<dict>

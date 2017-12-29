@@ -29,7 +29,7 @@ target 'Linq' do
     pod 'Google/Analytics'
     pod 'QRCode'
     pod 'SwiftQRCode'
-
+    pod 'SimpleImageViewer'
 
     target 'LinqTests' do
         inherit! :search_paths

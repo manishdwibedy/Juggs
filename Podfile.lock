@@ -130,6 +130,7 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
+  - SimpleImageViewer (1.1)
   - SimpleOAuth2 (0.1.3):
     - AFNetworking (>= 3.0.0)
   - SwiftQRCode (3.0.2)
@@ -157,6 +158,7 @@ DEPENDENCIES:
   - KVNProgress
   - QRCode
   - SDWebImage (~> 3.8)
+  - SimpleImageViewer
   - SwiftQRCode
   - SwiftSpinner
   - TwitterCore (~> 3.0.0)
@@ -199,12 +201,13 @@ SPEC CHECKSUMS:
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   QRCode: f98a1886c8f37523704a7512a4c0cd45b34c18a4
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SimpleImageViewer: 293698047ffaf41e79c0c6b052ed38b218583453
   SimpleOAuth2: e46d598313902f6a1fed3031058276e43d929ac9
   SwiftQRCode: 280589699d84195c2c573011aa52f2c015c31c34
   SwiftSpinner: 4c058c7a1d6b444dd2e1d70988ead40783097133
   TwitterCore: 549c74ed5f3d6134392dc944c6d215e233e50ad8
   TwitterKit: b9feccfc70bef86fe389c06a63a72fed9f020b9c
 
-PODFILE CHECKSUM: f1560f252657208be5a911064c99ea075009fa99
+PODFILE CHECKSUM: aa61045f1e53f57d8ed5639fb2791104d15b4cf6
 
 COCOAPODS: 1.4.0.rc.1
