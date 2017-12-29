@@ -151,15 +151,15 @@ class Settings: UITableViewController {
         }
         
         if indexPath.section == 1 && indexPath.row == 0 {
-            showJuggWebsite("http://juggapp.com/privacy.pdf")
+            showJuggWebsite("https://jugg-88ab9.firebaseapp.com/privacy.pdf")
         }
         
         if indexPath.section == 1 && indexPath.row == 1 {
-            showJuggWebsite("http://juggapp.com/JuggTerms.pdf")
+            showJuggWebsite("https://jugg-88ab9.firebaseapp.com/JuggTerms.pdf")
         }
         
         if indexPath.section == 1 && indexPath.row == 2 {
-            showJuggWebsite("http://juggapp.com/disclaimer.pdf")
+            showJuggWebsite("https://jugg-88ab9.firebaseapp.com/disclaimer.pdf")
         }
         if indexPath.section == 2 && indexPath.row == 0 {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
