@@ -9,7 +9,9 @@
 import UIKit
 import Firebase
 import SDWebImage
-class Login: UIViewController {
+import FirebaseMessaging
+
+class Login: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var pwTF: UITextField!
@@ -18,13 +20,14 @@ class Login: UIViewController {
     @IBAction func loggedIn(_ sender: Any) {
         
         self.view.endEditing(true)
+        //let websiteVC: UpdateWebsite = UpdateWebsite()
         
         Globals.ShowSpinner(testStr: "")
         guard emailTF.text != "", pwTF.text! != "" else {return}
         Auth.auth().signIn(withEmail: emailTF.text!, password: pwTF.text!) { (user, error) in
             
             if let error = error {
-                print(error.localizedDescription)
+//                print(error.localizedDescription)
                 let alertViewController = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
                 
                 let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
@@ -44,20 +47,34 @@ class Login: UIViewController {
             }
         }
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    
     func fetchProfile() {
         
         let ref = Database.database().reference()
         let uid = Auth.auth().currentUser?.uid
+        
         if uid == nil {
             Globals.HideSpinner()
             return
         }
+        
+        if let token = Messaging.messaging().fcmToken {
+            let refchild = ref.child("Users").child(uid!).child("fcmToken")
+            refchild.setValue(token)
+        }
+        
+        
         ref.child("Users").child(uid!).queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
             
             if let dict = snapshot.value as? [String : AnyObject] {
                 
-                let firstName = dict["First Name"] as? String!
-                let lastName = dict["Last Name"] as? String!
+                let firstName = dict["FirstName"] as? String!
+                let lastName = dict["LastName"] as? String!
                 let fullName = firstName! + " " + lastName!
                 
                 Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(firstName!, key: "FName")
@@ -81,6 +98,9 @@ class Login: UIViewController {
                 
                 let bio = dict["Bio"] as? String!
                 Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(bio!, key: "Bio")
+                
+                let userImageURL = dict["urlToImage"] as? String!
+                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(userImageURL!, key: "urlToImage")
                 
                 
                 
@@ -128,8 +148,22 @@ class Login: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        displayWalkThrough()
+        
     }
+    
+    func displayWalkThrough()
+    {
+        let userDefaults = UserDefaults.standard
+        let displayedWalkThrough = userDefaults.bool(forKey: "DisplayedWalkThrough")
+
+        if !displayedWalkThrough {
+            if let pageVC = storyboard?.instantiateViewController(withIdentifier: "LingoVC") {
+                self.present(pageVC, animated: true, completion: nil)
+            }
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         let ISLOGIN :Bool? = Globals.sharedInstance.getValueFromUserDefaultsForKey_Path("IS_LOGIN") as? Bool
         if ISLOGIN! {

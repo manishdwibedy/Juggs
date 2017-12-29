@@ -1,0 +1,114 @@
+/* 
+  Localizable.strings
+  Linq
+
+  Created by Quinton Askew on 12/9/17.
+  Copyright © 2017 QuintonAskew. All rights reserved.
+*/
+"restart" = "言語を変更するには、アプリケーションを再起動する必要があります。";
+"restartTitle" = "アプリケーションの再起動が必要です";
+"cancel" = "キャンセル";
+"close" = "今すぐ閉じる";
+
+// Feed - (Cell Labels)
+"likes" = "好き";
+"comments" = "コメント";
+"juggs" = "同意する";
+"capacity" = "容量";
+"public" = "パブリック";
+"private" = "プライベート";
+"miles" = "マイル";
+"viewAll" = "すべて見る";
+"of" = "の";
+
+// Description - (Action Sheet)
+"delete" = "イベントの削除";
+"share" = "シェア";
+
+// Discover -(Segments & Alerts)
+"map" = "地図";
+"discover" = "発見";
+"followRequest" = "あなたはフォローするように要求しました ";
+
+// Profile & OtherUser Profile - (Action Sheets)
+"message" = "メッセージ";
+"relations" = "関係";
+"report" = "報告する";
+"block" = "ブロック";
+"unblock" = "ブロック解除する";
+"invite" = "招待";
+"privacyTitle" = "プライバシーが有効になりました！";
+"privacyMessage" = "あなたのプロフィールはあなたのフォロワーだけに見えます。 あなたのフォローリクエストをここで管理してください。";
+"ok" = "はい";
+"pt" = "一般公開！";
+"publicMessage" = "誰もがあなたのプロフィールを見ることができるようになりました。 すべての保留中のフォローリクエストが受け入れられました。";
+"inviteSent1" = "あなたの招待状 ";
+"inviteSent2" = " 送られた！";
+"inviteAlready1" = "あなたは既に招待状を送っています ";
+"inviteAlready2" = " このユーザーに.";
+"requestAlready" = " は既に ";
+"Male" = "男性";
+"Female" = "女性";
+"Other" = "指定されていない";
+"followers" = "フォロワー";
+"following" = "以下";
+
+// Settings - (Navigation Controllers & Alert)
+"name" = "名";
+"updatename" = "姓名を更新してください。";
+"password" = "パスワード";
+"updatepword" = "パスワードの更新";
+"pus" = "パスワードが正常に更新されました";
+"pdm" = "あなたのパスワードは一致しません。";
+"cpdm" = "現在のパスワードが正しくありません。";
+"ncs" = "名前は正常に変更されました！";
+"biography" = "バイオグラフィー";
+"bsu" = "バイオグラフィーが更新されました！";
+"websites" = "ウェブサイト";
+"cf" = "Facebookで続ける";
+"ct" = "Twitterで続ける";
+"ci" = "Instagramで続ける";
+"cs" = "Snapchatで続ける";
+"cg" = "Google+で続ける";
+"un" = "ユーザー名を入力して下さい。";
+"lof" = "Facebookからログアウトする";
+"lot" = "Twitterからログアウトする";
+"loi" = "Instagramからログアウトする";
+"log" = "Google+からログアウトする";
+"un" = "ユーザー名を入力して下さい。";
+"scum" = "Snapchatユーザー名";
+"save" = "セーブ";
+"ays" = "本気ですか？";
+"logout" = "ログアウト";
+"warn" = "警告！";
+"deleteAcct" = "削除";
+
+// Discover
+"privacy" = "プライバシー";
+"search" = "サーチ";
+"areYouSure" = "本気ですか？";
+"warning" = "警告";
+"areYouSure2" = "アカウントを削除してもよろしいですか？";
+"delete" = "削除";
+"sryM" = "リクエストの処理中にエラーが発生しました。";
+"dsm" = "あなたのアカウントは削除されました。";
+
+// Box
+"inbox" = "受信トレイ";
+"invitations" = "招待状";
+"ni" = "新しい招待状";
+"nm" = "新しいメッセージ";
+"confirm" = "確認";
+"rq" = "要求";
+"rs" = "要求 (送信済み)";
+"ins" = "招待状 (送信済み)";
+
+// New Jugg
+"cm" = "カメラ";
+"pl" = "フォトライブラリ";
+"slf" = "フライヤーを選択";
+"flyr" = "フライヤーが必要です。";
+"future" = "イベントの今後の時間を入力します。";
+"req" = "すべてのフィールドにはアクションが必要です。";
+
+

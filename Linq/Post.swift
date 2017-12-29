@@ -8,12 +8,13 @@
 
 import UIKit
 import FirebaseDatabase
-
+import GoogleMobileAds
 class Post: NSObject {
     
     var author: String!
     var likes: Int!
     var capacity: Int!
+    var CapacityCount: Int!
     var userID: String!
     var postID: String!
     var juggCount: Int!
@@ -22,14 +23,26 @@ class Post: NSObject {
     var AP: String!
     var address: String!
     var moveDesc: String!
-    var movePrivate: String!
+    var movePrivate: Bool!
     var time: String!
     var date: String!
     var peopleWhoLiked: [String] = [String]()
+    var peopleWhoLinked: [String] = [String]()
+    var distance : String!
+    
     var nameOfEvent: String!
     var commentsForPost: [Any]?
     var message: String!
-    var city: String!
-    var state: String!
-    var ref: DatabaseReference!
+//    var city: String!
+//    var state: String!
+    var ref: Database!
+    var requests : [String:Any]?
+    var invites : [String:Any]?
+    var adViewObject: GADNativeExpressAdView!
+    
+    
+     var latitudePost: Double!
+     var longitudePost: Double!
+    
+    
 }

@@ -17,6 +17,7 @@ class ChatMessageCell: UICollectionViewCell {
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.backgroundColor = UIColor.clear
         tv.textColor = .white
+        tv.isUserInteractionEnabled = false
         return tv
     }()
     
@@ -34,7 +35,7 @@ class ChatMessageCell: UICollectionViewCell {
     
     let profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "nedstark")
+        imageView.image = UIImage(named: "")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 16
         imageView.layer.masksToBounds = true
@@ -42,9 +43,39 @@ class ChatMessageCell: UICollectionViewCell {
         return imageView
     }()
     
+    let btnProfile: UIButton = {
+        let buttonView = UIButton()
+        buttonView.backgroundColor = UIColor.clear
+        buttonView.setTitle("", for: .normal)
+        return buttonView
+    }()
+    
+    
+    let chatImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 16
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
+    let btnView: UIButton = {
+        let btnView = UIButton()
+        btnView.isUserInteractionEnabled = true
+        btnView.setTitle("", for: .normal)
+        return btnView
+    }()
+    
     var bubbleWidthAnchor: NSLayoutConstraint?
     var bubbleViewRightAnchor: NSLayoutConstraint?
     var bubbleViewLeftAnchor: NSLayoutConstraint?
+    
+    
+    var chatWidthAnchor: NSLayoutConstraint?
+    var chatViewRightAnchor: NSLayoutConstraint?
+    var chatViewLeftAnchor: NSLayoutConstraint?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,6 +83,10 @@ class ChatMessageCell: UICollectionViewCell {
         addSubview(bubbleView)
         addSubview(textView)
         addSubview(profileImageView)
+        addSubview(chatImageView)
+//        profileImageView.addSubview(btnProfile)
+        chatImageView.addSubview(btnView)
+        
         
         //x,y,w,h
         profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
@@ -61,7 +96,7 @@ class ChatMessageCell: UICollectionViewCell {
         
         //x,y,w,h
         
-            bubbleViewRightAnchor = bubbleView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)
+        bubbleViewRightAnchor = bubbleView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)
             
         bubbleViewRightAnchor?.isActive = true
         
@@ -76,9 +111,49 @@ class ChatMessageCell: UICollectionViewCell {
         
         bubbleView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         
+        bubbleViewRightAnchor = bubbleView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)
+        
+        bubbleViewRightAnchor?.isActive = true
+        
+        bubbleViewLeftAnchor = bubbleView.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 8)
+        //        bubbleViewLeftAnchor?.active = false
+        
+        
+        bubbleView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        
+        bubbleWidthAnchor = bubbleView.widthAnchor.constraint(equalToConstant: 200)
+        bubbleWidthAnchor?.isActive = true
+        
+        bubbleView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         //ios 9 constraints
+        chatViewRightAnchor = chatImageView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)
+        
+        chatViewRightAnchor?.isActive = true
+        
+        chatViewLeftAnchor = chatImageView.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 8)
+        //        bubbleViewLeftAnchor?.active = false
+        
+        
+//        bubbleView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        
+        chatWidthAnchor = chatImageView.widthAnchor.constraint(equalToConstant: 200)
+        chatWidthAnchor?.isActive = true
+        
+        chatImageView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+        
         //x,y,w,h
-//        textView.rightAnchor.constraintEqualToAnchor(self.rightAnchor).active = true
+        
+        btnView.topAnchor.constraint(equalTo: chatImageView.topAnchor).isActive = true
+        btnView.bottomAnchor.constraint(equalTo: chatImageView.bottomAnchor).isActive = true
+        btnView.rightAnchor.constraint(equalTo: chatImageView.rightAnchor).isActive = true
+        btnView.leftAnchor.constraint(equalTo: chatImageView.leftAnchor).isActive = true
+        
+//        btnProfile.topAnchor.constraint(equalTo: chatImageView.topAnchor).isActive = true
+//        btnProfile.bottomAnchor.constraint(equalTo: chatImageView.bottomAnchor).isActive = true
+//        btnProfile.rightAnchor.constraint(equalTo: chatImageView.rightAnchor).isActive = true
+//        btnProfile.leftAnchor.constraint(equalTo: chatImageView.leftAnchor).isActive = true
+        
+        //        textView.rightAnchor.constraintEqualToAnchor(self.rightAnchor).active = true
         textView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor, constant: 8).isActive = true
         textView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         

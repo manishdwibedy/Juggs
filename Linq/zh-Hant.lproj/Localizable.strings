@@ -1,0 +1,114 @@
+/* 
+  Localizable.strings
+  Linq
+
+  Created by Quinton Askew on 12/9/17.
+  Copyright © 2017 QuintonAskew. All rights reserved.
+*/
+"restart" = "要更改語言，應用程序必須重新啟動";
+"restartTitle" = "需要重新啟動應用程序";
+"cancel" = "取消";
+"close" = "關閉";
+
+// Feed - (Cell Labels)
+"likes" = "喜歡";
+"comments" = "註釋";
+"juggs" = "同意";
+"capacity" = "容量";
+"public" = "上市";
+"private" = "私人的";
+"miles" = "萬里";
+"viewAll" = "查看全部";
+"of" = "的";
+
+// Description - (Action Sheet)
+"delete" = "刪除事件";
+"share" = "分享";
+
+// Discover -(Segments & Alerts)
+"map" = "地圖";
+"discover" = "發現";
+"followRequest" = "你有要求關注 ";
+
+// Profile & OtherUser Profile - (Action Sheets)
+"message" = "信息";
+"relations" = "關係";
+"report" = "報告";
+"block" = "塊";
+"unblock" = "解除封鎖";
+"invite" = "邀請";
+"privacyTitle" = "隱私已激活！";
+"privacyMessage" = "只有您的關注者才能看到您的個人資料。在這裡管理你的關注請求。";
+"ok" = "好";
+"pt" = "上市！";
+"publicMessage" = "您的個人資料現在可以看到，供所有人查看。所有未決的Follow Request都被接受。";
+"inviteSent1" = "你的邀請 ";
+"inviteSent2" = " 已發送！";
+"inviteAlready1" = "您已經發送了邀請 ";
+"inviteAlready2" = " 給這個用戶。";
+"requestAlready" = " 已經發出請求了 ";
+"Male" = "男";
+"Female" = "女";
+"Other" = "未標明";
+"followers" = "關注";
+"following" = "以下";
+
+// Settings - (Navigation Controllers & Alert)
+"name" = "名稱";
+"updatename" = "更新你的名字和姓氏。";
+"password" = "密碼";
+"updatepword" = "更新密碼";
+"pus" = "密碼已成功更新";
+"pdm" = "你的密碼不匹配。";
+"cpdm" = "您當前的密碼不正確。";
+"ncs" = "名稱更改成功！";
+"biography" = "傳";
+"bsu" = "傳記成功更新！";
+"websites" = "網站";
+"cf" = "繼續與Facebook";
+"ct" = "繼續使用Twitter";
+"ci" = "繼續與Instagram";
+"cs" = "繼續使用Snapchat";
+"cg" = "繼續使用Google+";
+"un" = "輸入你的用戶名。";
+"lof" = "從Facebook註銷";
+"lot" = "從Twitter註銷";
+"loi" = "從Instagram註銷";
+"log" = "從Google+註銷";
+"un" = "輸入你的用戶名。";
+"scum" = "Snapchat用戶名";
+"save" = "保存";
+"ays" = "你確定？";
+"logout" = "登出";
+"warn" = "警告！";
+"deleteAcct" = "刪除";
+
+// Discover
+"privacy" = "隱私";
+"search" = "搜索";
+"areYouSure" = "你確定？";
+"warning" = "警告";
+"areYouSure2" = "您確定要刪除您的帳戶嗎？";
+"delete" = "刪除";
+"sryM" = "處理您的請求時發生錯誤。";
+"dsm" = "您的帳戶已被刪除。";
+
+// Box
+"inbox" = "收件箱";
+"invitations" = "邀請";
+"ni" = "新的邀請";
+"nm" = "新消息";
+"confirm" = "確認";
+"rq" = "請求";
+"rs" = "請求（已發送）";
+"ins" = "邀請（已發送）";
+
+// New Jugg
+"cm" = "相機";
+"pl" = "照片庫";
+"slf" = "選擇一個傳單";
+"flyr" = "傳單是必需的";
+"future" = "輸入事件的未來時間。";
+"req" = "所有的領域需要採取行";
+
+

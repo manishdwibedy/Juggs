@@ -1,0 +1,6 @@
+framework module InstagramSimpleOAuth {
+  umbrella header "InstagramSimpleOAuth-umbrella.h"
+
+  export *
+  module * { export * }
+}

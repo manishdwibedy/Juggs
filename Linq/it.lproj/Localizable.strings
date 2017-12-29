@@ -1,0 +1,114 @@
+/* 
+  Localizable.strings
+  Linq
+
+  Created by Quinton Askew on 12/9/17.
+  Copyright © 2017 QuintonAskew. All rights reserved.
+*/
+"restart" = "Per cambiare la lingua, è necessario riavviare l'app.";
+"restartTitle" = "Riavvio dell'app richiesto";
+"cancel" = "Annulla";
+"close" = "Chiudi ora";
+
+// Feed - (Cell Labels)
+"likes" = "Piace";
+"comments" = "Commenti";
+"juggs" = "Concordare";
+"capacity" = "Capacità";
+"public" = "Pubblico";
+"private" = "Privato";
+"miles" = "Miglia";
+"viewAll" = "Guarda tutto";
+"of" = "di";
+
+// Description - (Action Sheet)
+"delete" = "Elimina Evento";
+"share" = "Condividere";
+
+// Discover -(Segments & Alerts)
+"map" = "Mappa";
+"discover" = "Scoprire";
+"followRequest" = "Hai richiesto di seguire ";
+
+// Profile & OtherUser Profile - (Action Sheets)
+"message" = "Messaggio";
+"relations" = "Relazioni";
+"report" = "Rapporto";
+"block" = "Bloccare";
+"unblock" = "Sbloccare";
+"invite" = "Invitare";
+"privacyTitle" = "Privacy Attivata!";
+"privacyMessage" = "Il tuo profilo è visibile solo ai tuoi follower. Gestisci le tue richieste di follow qui.";
+"ok" = "OK";
+"pt" = "Uscire allo scoperto!";
+"publicMessage" = "Il tuo profilo è ora visibile a tutti. Sono state accettate tutte le richieste di follow in sospeso.";
+"inviteSent1" = "Il tuo invito per ";
+"inviteSent2" = " è stato inviato!";
+"inviteAlready1" = "Hai già inviato un invito per ";
+"inviteAlready2" = " a questo utente.";
+"requestAlready" = " ha già inviato una richiesta per ";
+"Male" = "Maschio";
+"Female" = "Femmina";
+"Other" = "Non specificato";
+"followers" = "Seguaci";
+"following" = "A seguire";
+
+// Settings - (Navigation Controllers & Alert)
+"name" = "Nome";
+"updatename" = "Aggiorna il tuo nome e cognome.";
+"password" = "Password";
+"updatepword" = "Aggiorna Password";
+"pus" = "Password aggiornata correttamente!";
+"pdm" = "Le tue password non corrispondono.";
+"cpdm" = "La tua password attuale non è corretta.";
+"ncs" = "Nome cambiato con successo!";
+"biography" = "Biografia";
+"bsu" = "Biografia Aggiornato con successo!";
+"websites" = "Siti Web";
+"cf" = "Continua con Facebook";
+"ct" = "Continua con Twitter";
+"ci" = "Continua con Instagram";
+"cs" = "Continua con Snapchat";
+"cg" = "Continua con Google+";
+"un" = "Inserisci il tuo nome utente.";
+"lof" = "Esci da Facebook";
+"lot" = "Esci da Twitter";
+"loi" = "Esci da Instagram";
+"log" = "Esci da Google+";
+"un" = "Inserisci il tuo nome utente.";
+"scum" = "Nome utente Snapchat";
+"save" = "Salvare";
+"ays" = "Sei sicuro?";
+"logout" = "Disconnettersi";
+"warn" = "Avvertimento!";
+"deleteAcct" = "Elimina";
+
+// Discover
+"privacy" = "Vita Privata";
+"search" = "Ricerca";
+"areYouSure" = "Sei sicuro?";
+"warning" = "Avvertimento";
+"areYouSure2" = "Sei sicuro di voler cancellare il tuo account?";
+"delete" = "Elimina";
+"sryM" = "Si è verificato un errore durante l'elaborazione della richiesta.";
+"dsm" = "Il tuo account è stato cancellato.";
+
+// Box
+"inbox" = "Posta in Arrivo";
+"invitations" = "Inviti";
+"ni" = "Nuovo Inviti";
+"nm" = "Nuovo Messaggio";
+"confirm" = "Confermare";
+"rq" = "Richiesta";
+"rs" = "Richiesta (Inviato)";
+"ins" = "Inviti (Inviato)";
+
+// New Jugg
+"cm" = "Telecamera";
+"pl" = "Libreria Fotografica";
+"slf" = "Seleziona un Volantino";
+"flyr" = "È richiesto un Volantino.";
+"future" = "Inserisci l'ora futura per l'evento.";
+"req" = "Tutti i campi richiedono un'azione.";
+
+

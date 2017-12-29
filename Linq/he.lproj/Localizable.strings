@@ -1,0 +1,114 @@
+/* 
+  Localizable.strings
+  Linq
+
+  Created by Quinton Askew on 12/9/17.
+  Copyright © 2017 QuintonAskew. All rights reserved.
+*/
+"restart" = "כדי לשנות את השפה, יש להפעיל מחדש את האפליקציה.";
+"restartTitle" = "נדרשת הפעלה מחדש של אפליקציה";
+"cancel" = "לְבַטֵל";
+"close"= "סגור עכשיו";
+
+// Feed - (Cell Labels)
+"likes" = "אוהב";
+"comments" = "הערות";
+"juggs" = "לְהַסכִּים";
+"capacity" = "קיבולת";
+"public" = "פּוּמְבֵּי";
+"private" = "פְּרָטִי";
+"miles" = "מיילס";
+"viewAll" = "צפה בהכל";
+"of" = "שֶׁל";
+
+// Description - (Action Sheet)
+"delete" = "מחיקת אירועים";
+"share" = "לַחֲלוֹק";
+
+// Discover -(Segments & Alerts)
+"map" = "מַפָּה";
+"discover" = "לְגַלוֹת";
+"followRequest" = "ביקשת לבצע ";
+
+// Profile & OtherUser Profile - (Action Sheets)
+"message" = "הוֹדָעָה";
+"relations" = "יחסים";
+"report" = "להגיש תלונה";
+"block" = "לַחסוֹם";
+"unblock" = "ביטול נעילה";
+"invite" = "להזמין";
+"privacyTitle" = "פרטיות הופעלה!";
+"privacyMessage" = "הפרופיל שלך גלוי לעוקבים שלך בלבד. נהל את הבקשות למעקב שלך כאן.";
+"ok" = "בסדר";
+"pt" = "הולך ציבורית!";
+"publicMessage" = "הפרופיל שלך גלוי כעת לכולם. כל בקשת ההמתנה הממתינה התקבלה.";
+"inviteSent1" = "ההזמנה שלך עבור ";
+"inviteSent2" = " נשלח!";
+"inviteAlready1" = "כבר שלחת הזמנה עבור ";
+"inviteAlready2" = " למשתמש זה.";
+"requestAlready" = " כבר שלח בקשה ";
+"Male" = "זָכָר";
+"Female" = "נְקֵבָה";
+"Other" = "לא מוגדר";
+"followers" = "עוקבים";
+"following" = "הבא";
+
+// Settings - (Navigation Controllers & Alert)
+"name" = "שֵׁם";
+"updatename" = "עדכן את השם הפרטי ושם המשפחה שלך.";
+"password" = "סיסמה";
+"updatepword" = "עדכן סיסמה";
+"pus" = "הסיסמא עודכנה בהצלחה";
+"pdm" = "הסיסמאות שלך אינן תואמות.";
+"cpdm" = "הסיסמה הנוכחית שלך שגויה.";
+"ncs" = "השם השתנה בהצלחה!";
+"biography" = "ביוגרפיה";
+"bsu" = "ביוגרפיה עודכן בהצלחה!";
+"websites" = "אתרי אינטרנט";
+"cf" = "המשך עם פייסבוק";
+"ct" = "המשך לצפצף";
+"ci" = "המשך עם Instagram";
+"cs" = "המשך עם Snapchat";
+"cg" = "המשך עם Google+";
+"un" = "הכנס שם משתמש.";
+"lof" = "צא מפייסבוק";
+"lot" = "צא מ- Twitter";
+"loi" = "יציאה מ Instagram";
+"log" = "צא מ- Google+";
+"un" = "הכנס שם משתמש.";
+"scum" = "שם משתמש של Snapchat";
+"save" = "להציל";
+"ays" = "האם אתה בטוח?";
+"logout" = "להתנתק";
+"warn" = "אַזהָרָה!";
+"deleteAcct" = "לִמְחוֹק";
+
+// Discover
+"privacy" = "פְּרָטִיוּת";
+"search" = "לחפש";
+"areYouSure" = "האם אתה בטוח?";
+"warning" = "אַזהָרָה";
+"areYouSure2" = "האם אתה בטוח שברצונך למחוק את חשבונך?";
+"delete" = "לִמְחוֹק";
+"sryM" = "ארעה שגיאה בתהליך העיבוד של הבקשה.";
+"dsm" = "החשבון שלך נמחק.";
+
+// Box
+"inbox" = "תיבת הדואר הנכנס";
+"invitations" = "הזמנות";
+"ni" = "הזמנות חדשות";
+"nm" = "הודעה חדשה";
+"confirm" = "לְאַשֵׁר";
+"rq" = "בַּקָשָׁה";
+"rs" = "בקש ( נשלחה)";
+"ins" = "הזמנות (נשלחו)";
+
+// New Jugg
+"cm" = "מַצלֵמָה";
+"pl" = "ספריית תמונות";
+"slf" = "בחר פלייר";
+"flyr" = "עלון נדרש.";
+"future" = "הזן זמן עתידי לאירוע.";
+"req" = "כל השדות דורשים פעולה.";
+
+

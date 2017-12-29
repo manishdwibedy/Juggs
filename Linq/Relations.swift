@@ -21,11 +21,10 @@ class Relations: UIViewController {
         if(segmentedControl.selectedSegmentIndex == 0) {
             followingView.isHidden = false
             followersView.isHidden = true
-        }else{
+        } else {
             followingView.isHidden = true
             followersView.isHidden = false
         }
-        
         
     }
     
@@ -36,7 +35,43 @@ class Relations: UIViewController {
         visual()
     }
 
-    func visual() {
+    
+    func folllowersUpdate(_ notification: NSNotification)
+    {
+        if let followersCount = notification.userInfo?["userCount"] as? Int {
+            // do something with your image
+            if followersCount == 0 {
+                segmentedControl.setTitle((NSLocalizedString("followers", comment: "")), forSegmentAt: 1)
+            } else {
+                segmentedControl.setTitle("\(NSLocalizedString("followers", comment: ""))(\(followersCount))", forSegmentAt: 1)
+            }
+            
+        } else {
+            segmentedControl.setTitle("\(NSLocalizedString("followers", comment: ""))", forSegmentAt: 1)
+        }
+//        NotificationCenter.default.removeObserver(self)
+        
+    }
+    
+    func folllowingUpdate(_ notification: NSNotification)
+    {
+        if let followingCount = notification.userInfo?["userCount"] as? Int {
+            // do something with your image
+            if followingCount == 0 {
+                segmentedControl.setTitle("\(NSLocalizedString("following", comment: ""))", forSegmentAt: 0)
+            } else {
+                segmentedControl.setTitle("\(NSLocalizedString("following", comment: ""))(\(followingCount))", forSegmentAt: 0)
+            }
+
+        } else {
+            segmentedControl.setTitle((NSLocalizedString("following", comment: "")), forSegmentAt: 0)
+        }
+    }
+    
+    
+    
+    func visual()
+    {
         let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
         segmentedControl.selectedSegmentIndex = 0
         segmentChanged((Any).self)
@@ -44,9 +79,24 @@ class Relations: UIViewController {
         segmentedControl.layer.borderWidth = 2
         segmentedControl.layer.cornerRadius = 15
         segmentedControl.layer.borderColor = purp.cgColor
-        segmentedControl.setWidth(190, forSegmentAt: 0)
-        segmentedControl.setWidth(190, forSegmentAt: 1)
+        
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.folllowersUpdate(_:)),
+            name: NSNotification.Name(rawValue: "followers"),
+            object: nil)
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.folllowingUpdate(_:)),
+            name: NSNotification.Name(rawValue: "following"),
+            object: nil)
+
+        
     }
+    
+   
     
     /*
     // MARK: - Navigation
