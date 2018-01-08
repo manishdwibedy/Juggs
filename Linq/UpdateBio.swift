@@ -26,9 +26,9 @@ class UpdateBio: UIViewController {
         Database.database().reference().root.child(Ref).updateChildValues(["Bio": bioTextView.text!])
         
         Globals.HideSpinner()
-        let alertViewController = UIAlertController(title: "Bio Updated Successfully!", message: "", preferredStyle: .alert)
+        let alertViewController = UIAlertController(title:(NSLocalizedString("bsu", comment: "")), message: "", preferredStyle: .alert)
         
-        let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+        let okAction = UIAlertAction(title:(NSLocalizedString("ok", comment: "")), style: .default) { (action) -> Void in
             self.navigationController?.popViewController(animated: true)
         }
         
@@ -50,16 +50,18 @@ class UpdateBio: UIViewController {
     }
     
     func visuals() {
-        self.title = "Bio"
+        self.title = (NSLocalizedString("biography", comment: ""))
         submitBtn.layer.masksToBounds = true
         submitBtn.layer.cornerRadius = 8
-        submitBtn.isEnabled = false
+        submitBtn.isEnabled = true
+        submitBtn.layer.borderWidth = 2
+        submitBtn.layer.borderColor = purp
         
         
         bioTextView.layer.masksToBounds = true
         bioTextView.layer.cornerRadius = 8
         bioTextView.layer.borderWidth = 1
-        bioTextView.layer.borderColor = UIColor.black.cgColor
+        bioTextView.layer.borderColor = purp
         
         
     }

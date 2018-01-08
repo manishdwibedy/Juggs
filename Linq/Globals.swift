@@ -8,8 +8,10 @@
 
 import UIKit
 import SwiftSpinner
+
 @objc class Globals: NSObject {
     
+        
     // MARK:============== Singleton Object=======
     static let sharedInstance: Globals = {
         let instance = Globals()

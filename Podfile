@@ -15,6 +15,18 @@ pod 'IQKeyboardManagerSwift'
 pod 'SDWebImage', '~>3.8'
 pod 'SwiftSpinner'
 pod 'JSQMessagesViewController'
+pod 'Google-Mobile-Ads-SDK'
+pod 'FBSDKCoreKit'
+pod 'FBSDKShareKit'
+pod 'FBSDKLoginKit'
+pod 'GoogleSignIn'
+pod 'TwitterCore', '~>3.0.0'
+pod 'TwitterKit', '~>3.2.1'
+pod 'JPSThumbnailAnnotation'
+pod 'KVNProgress'
+pod 'InstagramSimpleOAuth'
+pod 'SDWebImage', '~>3.8'
+pod 'Google/Analytics'
   target 'LinqTests' do
     inherit! :search_paths
     # Pods for testing

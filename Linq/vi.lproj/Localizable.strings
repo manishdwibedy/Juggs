@@ -1,0 +1,114 @@
+/* 
+  Localizable.strings
+  Linq
+
+  Created by Quinton Askew on 12/9/17.
+  Copyright © 2017 QuintonAskew. All rights reserved.
+*/
+"restart" = "Để thay đổi ngôn ngữ, ứng dụng phải được khởi động lại.";
+"restartTitle" = "Cần khởi động lại ứng dụng";
+"cancel" = "Hủy";
+"close" = "Close Now";
+
+// Feed - (Cell Labels)
+"likes" = "Thích";
+"comments" = "Bình luận";
+"juggs" = "Đồng ý";
+"capacity" = "Sức chứa";
+"public" = "Công cộng";
+"private" = "Riêng tư";
+"miles" = "Miles";
+"viewAll" = "Xem tất cả";
+"of" = "của";
+
+// Description - (Action Sheet)
+"delete" = "Xóa sự kiện";
+"share" = "Chia sẻ";
+
+// Discover -(Segments & Alerts)
+"map" = "Bản đồ";
+"discover" = "Khám phá";
+"followRequest" = "Bạn đã yêu cầu để làm theo ";
+
+// Profile & OtherUser Profile - (Action Sheets)
+"message" = "Thông điệp";
+"relations" = "Quan hệ";
+"report" = "Bài báo cáo";
+"block" = "Khối";
+"unblock" = "Mở khóa";
+"invite" = "Mời gọi";
+"privacyTitle" = "Đã kích hoạt tính riêng tư!";
+"privacyMessage" = "Tiểu sử của bạn chỉ hiển thị đối với người theo dõi của bạn. Quản lý yêu cầu theo dõi của bạn ở đây.";
+"ok" = "được";
+"pt" = "Đi công cộng!";
+"publicMessage" = "Hồ sơ của bạn bây giờ đã hiển thị cho mọi người xem. Tất cả Yêu cầu theo dõi đang chờ xử lý đều được chấp nhận.";
+"inviteSent1" = "Lời mời của bạn cho ";
+"inviteSent2" = " đã được gửi đi!";
+"inviteAlready1" = "Bạn đã gửi lời mời cho ";
+"inviteAlready2" = " cho người dùng này.";
+"requestAlready" = " đã gửi yêu cầu ";
+"Male" = "Nam giới";
+"Female" = "Giống cái";
+"Other" = "Chưa được xác định";
+"followers" = "Người theo dõi";
+"following" = "Tiếp theo";
+
+// Settings - (Navigation Controllers & Alert)
+"name" = "Tên";
+"updatename" = "Cập nhật Tên và Họ của bạn.";
+"password" = "Mật khẩu";
+"updatepword" = "Cập nhật Mật khẩu";
+"pus" = "Đã cập nhật mật khẩu thành công";
+"pdm" = "Mật khẩu của bạn không khớp.";
+"cpdm" = "Mật khẩu hiện tại của bạn không chính xác.";
+"ncs" = "Tên đã thay đổi thành công!";
+"biography" = "Tiểu sử";
+"bsu" = "Tiểu sử được cập nhật thành công!";
+"websites" = "Trang Web";
+"cf" = "Tiếp tục với Facebook";
+"ct" = "Tiếp tục với Twitter";
+"ci" = "Tiếp tục với Instagram";
+"cs" = "Tiếp tục với Snapchat";
+"cg" = "Tiếp tục với Google+";
+"un" = "Nhập tên người dùng của bạn.";
+"lof" = "Đăng xuất khỏi Facebook";
+"lot" = "Đăng xuất khỏi Twitter";
+"loi" = "Đăng xuất khỏi Instagram";
+"log" = "Đăng xuất khỏi Google+";
+"un" = "Nhập tên người dùng của bạn.";
+"scum" = "Tên đăng nhập Snapchat";
+"save" = "Tiết kiệm";
+"ays" = "Bạn có chắc không?";
+"logout" = "Đăng xuất";
+"warn" = "Cảnh báo!";
+"deleteAcct" = "Xóa bỏ";
+
+// Discover
+"privacy" = "Riêng tư";
+"search" = "Tìm kiếm";
+"areYouSure" = "Bạn có chắc không?";
+"warning" = "Cảnh báo";
+"areYouSure2" = "Bạn có chắc chắn muốn xóa tài khoản của mình không?";
+"delete" = "Xóa bỏ";
+"sryM" = "Có lỗi khi xử lý yêu cầu của bạn.";
+"dsm" = "Tài khoản của bạn đã bị xóa.";
+
+// Box
+"inbox" = "Hộp thư đến";
+"invitations" = "Lời mời";
+"ni" = "Lời mời mới";
+"nm" = "Tin nhắn mới";
+"confirm" = "Xác nhận";
+"rq" = "Yêu cầu";
+"rs" = "Yêu cầu (Gởi)";
+"ins" = "Lời mời (Gởi)";
+
+// New Jugg
+"cm" = "Máy ảnh";
+"pl" = "Thư viện ảnh";
+"slf" = "Chọn một tờ rơi";
+"flyr" = "Một tờ rơi là bắt buộc.";
+"future" = "Nhập thời gian tương lai cho sự kiện.";
+"req" = "Tất cả các lĩnh vực đòi hỏi hành động.";
+
+

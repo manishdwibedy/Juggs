@@ -12,19 +12,20 @@ import Firebase
 class Message: NSObject {
     
     
-    var toID: String!
-    var fromID: String!
+    var toId: String!
+    var fromId: String!
     var text: String!
-    var time: NSNumber!
+    var timestamp: NSNumber!
+    var imageUrl: String!
     
-    init(dictionary: [String: Any]) {
-        self.fromID = dictionary["fromId"] as? String
-        self.text = dictionary["text"] as? String
-        self.toID = dictionary["toId"] as? String
-        self.time = dictionary["timestamp"] as? NSNumber
-    }
+//    init(dictionary: [String: Any]) {
+//        self.fromID = dictionary["fromId"] as? String
+//        self.text = dictionary["text"] as? String
+//        self.toID = dictionary["toId"] as? String
+//        self.time = dictionary["timestamp"] as? NSNumber
+//    }
     
     func chatPartnerId() -> String? {
-        return fromID == Auth.auth().currentUser?.uid ? toID : fromID
+        return fromId == Auth.auth().currentUser?.uid ? toId : fromId
     }
 }

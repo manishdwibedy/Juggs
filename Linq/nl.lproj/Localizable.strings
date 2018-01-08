@@ -1,0 +1,112 @@
+/* 
+  Localizable.strings
+  Linq
+
+  Created by Quinton Askew on 12/9/17.
+  Copyright © 2017 QuintonAskew. All rights reserved.
+*/
+"restart" = "Om de taal te wijzigen, moet de app opnieuw worden opgestart.";
+"restartTitle" = "App opnieuw opstarten vereist";
+"cancel" = "Annuleren";
+"close" = "Nu sluiten";
+
+// Feed - (Cell Labels)
+"likes" = "Sympathieën";
+"comments" = "Comments";
+"juggs" = "Mee eens";
+"capacity" = "Capaciteit";
+"public" = "Openbaar";
+"private" = "Privaat";
+"miles" = "Mijlen";
+"viewAll" = "Bekijk Alles";
+"of" = "van";
+
+// Description - (Action Sheet)
+"delete" = "Evenement Verwijderen";
+"share" = "Delen";
+
+// Discover -(Segments & Alerts)
+"map" = "Kaart";
+"discover" = "Ontdekken";
+"followRequest" = "U hebt gevraagd om te volgen ";
+
+// Profile & OtherUser Profile - (Action Sheets)
+"message" = "Bericht";
+"relations" = "Relaties";
+"report" = "Rapport";
+"block" = "Blok";
+"unblock" = "Deblokkeren";
+"invite" = "Nodig uit";
+"privacyTitle" = "Privacy Geactiveerd!";
+"privacyMessage" = "Je profiel is alleen zichtbaar voor je volgers. Beheer uw volgverzoeken hier.";
+"ok" = "OK";
+"pt" = "Publiek Gaan!";
+"publicMessage" = "Je profiel is nu zichtbaar voor iedereen om te zien. Alle in behandeling zijnde Follow Request werden geaccepteerd.";
+"inviteSent1" = "Uw uitnodiging voor ";
+"inviteSent2" = " is verzonden!";
+"inviteAlready1" = "U hebt al een uitnodiging verzonden voor ";
+"inviteAlready2" = " voor deze gebruiker.";
+"requestAlready" = " heeft al een aanvraag voor verzonden ";
+"Male" = "Mannetje";
+"Female" = "Vrouw";
+"Other" = "Niet Gespecificeerd";
+"followers" = "Volgers";
+"following" = "Als Vervolg Op";
+
+// Settings - (Navigation Controllers & Alert)
+"name" = "Naam";
+"updatename" = "Update uw voor- en achternaam.";
+"password" = "Paswoord";
+"updatepword" = "Vernieuw Paswoord";
+"pus" = "Paswoord Succesvol Geupdatet";
+"pdm" = "Je wachtwoorden komen niet overeen.";
+"cpdm" = "Uw huidige wachtwoord is onjuist.";
+"ncs" = "Naam is succesvol gewijzigd!";
+"biography" = "Biografie";
+"bsu" = "Biografie succesvol bijgewerkt!";
+"websites" = "Websites";
+"cf" = "Ga verder met Facebook";
+"ct" = "Ga verder met Twitter";
+"ci" = "Ga verder met Instagram";
+"cs" = "Ga verder met Snapchat";
+"cg" = "Ga verder met Google+";
+"un" = "Typ je gebruikersnaam.";
+"lof" = "Uitloggen uit Facebook";
+"lot" = "Uitloggen uit Twitter";
+"loi" = "Uitloggen uit Instagram";
+"log" = "Uitloggen uit Google+";
+"un" = "Typ je gebruikersnaam.";
+"scum" = "Snapchat Gebruikersnaam";
+"save" = "Opslaan";
+"ays" = "Weet je het zeker?";
+"logout" = "Uitloggen";
+"warn" = "Waarschuwing!";
+"deleteAcct" = "Verwijder";
+
+// Discover
+"privacy" = "Privacy";
+"search" = "Zoeken";
+"areYouSure" = "Weet je het zeker?";
+"warning" = "Waarschuwing";
+"areYouSure2" = "Weet je zeker dat je je account wilt verwijderen?";
+"delete" = "Verwijder";
+"sryM" = "Er is een fout opgetreden tijdens het behandelen van uw verzoek.";
+"dsm" = "Uw account is verwijderd.";
+
+// Box
+"inbox" = "Postvak IN";
+"invitations" = "Uitnodigingen";
+"ni" = "Nieuwe Uitnodiging";
+"nm" = "Nieuw Bericht";
+"confirm" = "Bevestigen";
+"rq" = "Verzoek";
+"rs" = "Verzoek (Verzonden)";
+"ins" = "Uitnodigingen (Verzonden)";
+
+// New Jugg
+"cm" = "Camera";
+"pl" = "Fotogalerij";
+"slf" = "Selecteer een Flyer";
+"flyr" = "Een Flyer is Vereist.";
+"future" = "Voer de toekomstige tijd in voor het evenement.";
+"req" = "Alle velden vereisen actie.";

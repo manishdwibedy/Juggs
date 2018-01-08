@@ -1,0 +1,123 @@
+/* 
+  Localizable.strings
+  Linq
+
+  Created by Quinton Askew on 12/9/17.
+  Copyright © 2017 QuintonAskew. All rights reserved.
+*/
+// Change Language (Done)
+"restart" = "要更改语言，应用程序必须重新启动";
+"restartTitle" = "需要重新启动应用程序";
+"cancel" = "取消";
+"close" = "关闭";
+
+// Feed (Done)
+"likes" = "喜欢";
+"comments" = "注释";
+"juggs" = "同意";
+"capacity" = "容量";
+"public" = "上市";
+"private" = "私人的";
+"miles" = "万里";
+"viewAll" = "查看全部";
+"of" = "的";
+
+// Description (Done)
+"deleteJugg" = "删除事件";
+"share" = "分享";
+
+// Discover -(Segments & Alerts)
+"map" = "地图";
+"discover" = "发现";
+"followRequest" = "你有要求关注 ";
+
+// Profile & OtherUser Profile
+"message" = "信息";
+"relations" = "关系";
+"report" = "报告";
+"block" = "块";
+"unblock" = "解除封锁";
+"invite" = "邀请";
+"privacyTitle" = "隐私已激活！";
+"privacyMessage" = "只有您的关注者才能看到您的个人资料。 在这里管理你的关注请求。";
+"ok" = "好";
+"pt" = "上市！";
+"publicMessage" = "您的个人资料现在可以看到，供所有人查看。 所有未决的跟进请求被接受。";
+"inviteSent1" = "你的邀请 ";
+"inviteSent2" = " 已发送！";
+"inviteAlready1" = "您已经发送了邀请 ";
+"inviteAlready2" = " 给这个用户。";
+"requestAlready" = " 已经发出请求了 ";
+"Male" = "男";
+"Female" = "女";
+"Other" = "其他";
+"followers" = "关注";
+"following" = "以下";
+
+
+// Settings - (Navigation Controllers & Alert)
+"name" = "名称";
+"updatename" = "更新你的名字和姓氏。";
+"password" = "密码";
+"updatepword" = "更新密码";
+"pus" = "密码已成功更新";
+"pdm" = "你的密码不匹配。";
+"cpdm" = "您当前的密码不正确。";
+"ncs" = "名称更改成功！";
+"biography" = "传";
+"bsu" = "传记更新成功！";
+"websites" = "网站";
+"cf" = "继续与Facebook";
+"ct" = "继续使用Twitter";
+"ci" = "继续与Instagram";
+"cs" = "继续使用Snapchat";
+"cg" = "继续使用Google+";
+"lof" = "从Facebook注销";
+"lot" = "从Twitter注销";
+"loi" = "从Instagram注销";
+"log" = "从Google+注销";
+"un" = "输入你的用户名。";
+"scum" = "Snapchat用户名";
+"save" = "保存";
+"ays" = "你确定？";
+"logout" = "登出";
+"warn" = "警告";
+"deleteAcct" = "删除";
+
+
+// Discover
+"privacy" = "隐私";
+"search" = "搜索";
+"logout" = "登出";
+"areYouSure" = "你确定？";
+"warning" = "警告";
+"areYouSure2" = "您确定要删除您的帐户吗？";
+"delete" = "删除";
+"sryM" = "处理您的请求时发生错误。";
+"dsm" = "您的帐户已被删除。";
+
+
+// Box
+"inbox" = "收件箱";
+"invitations" = "邀请";
+"ni" = "新的邀请";
+"nm" = "新消息";
+"confirm" = "确认";
+"rq" = "请求";
+"rs" = "请求（已发送）";
+"ins" = "邀请（已发送）";
+
+// New Jugg
+"cm" = "相机";
+"pl" = "照片库";
+"slf" = "选择一个传单";
+"flyr" = "传单是必需的。";
+"future" = "输入事件的未来时间。";
+"req" = "所有的领域需要采取行";
+
+
+
+
+
+
+

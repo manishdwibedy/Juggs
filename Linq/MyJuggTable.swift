@@ -18,43 +18,65 @@ class MyJuggTable: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-     //   fetchPosts()
+       fetchPosts()
         
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: "Searching for my Juggs...")
         refreshControl?.addTarget(self, action: #selector(MovesTable.fetchPosts), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl!) // not required when using UITableViewController
-        self.tableView.rowHeight = 390
+        self.tableView.rowHeight = 400
         
     }
 
     func fetchPosts() {
         
         let ref = Database.database().reference()
-        let UID = Auth.auth().currentUser?.uid
         
-        ref.child("Flyers").child("UserID").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
+        let uID : String = (Auth.auth().currentUser?.uid)!
+        
+        ref.child("Flyers").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
             let posts = snapshot.value as! [String : AnyObject]
             self.myJuggs.removeAll()
             
             for(_,value) in posts {
-                if let userID = value["UserID"] as? String {
-                    
+                if let postID = value["PostID"] as? String {
                     let otherUserPost = Post()
-                    let city = value["City"] as? String
-                    let state = value["State"] as? String
+//                    let city = value["City"] as? String
+//                    let state = value["State"] as? String
                     let pathToImage = value["PathToImage"] as? String
                     let titleForEvent = value["NameOfMove"] as? String
-                    let postID = value["PostID"] as? String
-                    otherUserPost.city = city
-                    otherUserPost.state = state
+                    let likeCount = value["Likes"] as? Int
+                    let juggCount = value["FlameCount"] as? Int
+                    let capacity = value["Capacity"] as? Int
+                    let author = value["Author"] as? String
+                    let date = value["Date"] as? String
+                    let descriptions = value["Description"] as? String
+                    let amOrPM = value["AP"] as? String
+                    let time = value["Time"] as? String
+                    let pathToUserImage = value["userImageUrl"] as? String
+                    let userID = value["UserID"] as? String
+                    
+//                    otherUserPost.city = city
+//                    otherUserPost.state = state
                     otherUserPost.pathToImage = pathToImage
-                    otherUserPost.userID = userID
-                    otherUserPost.nameOfEvent = titleForEvent
                     otherUserPost.postID = postID
+                    otherUserPost.nameOfEvent = titleForEvent
+                    otherUserPost.juggCount = juggCount
+                    otherUserPost.likes = likeCount
+                    otherUserPost.author = author
+                    otherUserPost.capacity = capacity
+                    otherUserPost.date = date
+                    otherUserPost.moveDesc = descriptions
+                    otherUserPost.AP = amOrPM
+                    otherUserPost.time = time
+                    otherUserPost.pathToUserImage = pathToUserImage
+                    otherUserPost.userID = userID
+                    
+                    if otherUserPost.userID == uID {
+                        self.myJuggs.append(otherUserPost)
+                    }
                     
                     
-                    self.myJuggs.append(otherUserPost)
                     
                     
                 }
@@ -64,14 +86,14 @@ class MyJuggTable: UITableViewController {
             self.tableView.reloadData()
             
             Globals.HideSpinner()
-            
-            
+            //      }
+            //      }
         })
         self.tableView.reloadData()
         ref.removeAllObservers()
         refreshControl?.endRefreshing()
     }
-
+    
    
     // MARK: - Table view data source
 
@@ -86,12 +108,13 @@ class MyJuggTable: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myJuggCell", for: indexPath) as! MyJuggCell
-        
-        
-        let city = myJuggs[indexPath.row].city
-        let state = myJuggs[indexPath.row].state
+
+//        let city = myJuggs[indexPath.row].city
+        let state = myJuggs[indexPath.row].address
         cell.juggNameLabel.text = myJuggs[indexPath.row].nameOfEvent
-        cell.locationOfJuggLabel.text = "\(String(describing: city)), \(String(describing: state))"
+        cell.locationOfJuggLabel.text = "\(state ?? "")"
+        
+//        cell.locationOfJuggLabel.text = "\(String(describing: city!)), \(String(describing: state!))"
         cell.juggFlyerImageView.sd_setImage(with: URL(string: "\(String(describing: myJuggs[(indexPath.row)].pathToImage!))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
         
 
@@ -100,31 +123,10 @@ class MyJuggTable: UITableViewController {
         return cell
     }
     
-    func showDescription() {
-        let myJuggInArchive = self.storyboard!.instantiateViewController(withIdentifier: "ArchiveDescription") as! ArchiveDescription
-        let navController = UINavigationController(rootViewController: myJuggInArchive)
-        let userIndex = tableView.indexPathForSelectedRow?.row
-        myJuggInArchive.juggName = myJuggs[userIndex!].nameOfEvent
-      //  myJuggInArchive.author = myJuggs[userIndex!].author
-        myJuggInArchive.flyerImagePath = myJuggs[userIndex!].pathToImage
-      //  myJuggInArchive.juggTime = myJuggs[userIndex!].time
-      //  myJuggInArchive.juggDate = myJuggs[userIndex!].date
-       // myJuggInArchive.capacity = myJuggs[userIndex!].capacity
-       // myJuggInArchive.likes = myJuggs[userIndex!].likes
-       // myJuggInArchive.juggs = myJuggs[userIndex!].juggCount
-       // myJuggInArchive.descriptionForJugg = myJuggs[userIndex!].moveDesc
-        myJuggInArchive.segueName = "unwindToMyJuggs"
-        
-                
-       
-        self.present(navController, animated: true, completion: nil)
-        
-        
-    }
 
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        showDescription()
+            self.performSegue(withIdentifier: "showDescFromMyProfile", sender: self)
     }
     
     @IBAction func unwindToMyJuggs(segue:UIStoryboardSegue) { }
@@ -167,11 +169,39 @@ class MyJuggTable: UITableViewController {
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-  /*  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDescFromMyProfile" {
+            if let destination = segue.destination as? ArchiveDescription {
+                let backItem = UIBarButtonItem()
+                backItem.title = ""
+                navigationItem.backBarButtonItem = backItem
         
+                destination.postID = myJuggs[(self.tableView.indexPathForSelectedRow?.row)!].postID
+                destination.juggName = myJuggs[(self.tableView.indexPathForSelectedRow?.row)!].nameOfEvent
+                destination.author = myJuggs[(self.tableView.indexPathForSelectedRow?.row)!].author
+                destination.flyerImagePath = myJuggs[(self.tableView.indexPathForSelectedRow?.row)!].pathToImage
+                destination.userImagePath = myJuggs[(self.tableView.indexPathForSelectedRow?.row)!].pathToUserImage
+                destination.juggTime = myJuggs[(self.tableView.indexPathForSelectedRow?.row)!].time
+                destination.amOrPm = myJuggs[(self.tableView.indexPathForSelectedRow?.row)!].AP
+                destination.juggDate = myJuggs[(self.tableView.indexPathForSelectedRow?.row)!].date
+                destination.descriptionForJugg = myJuggs[(self.tableView.indexPathForSelectedRow?.row)!].moveDesc
+                destination.capacity = myJuggs[(self.tableView.indexPathForSelectedRow?.row)!].capacity
+                destination.likes = myJuggs[(self.tableView.indexPathForSelectedRow?.row)!].likes
+                destination.juggs = myJuggs[(self.tableView.indexPathForSelectedRow?.row)!].juggCount
+                destination.likedPosts = myJuggs[(self.tableView.indexPathForSelectedRow?.row)!].peopleWhoLiked
+                destination.JuggsPosts = myJuggs[(self.tableView.indexPathForSelectedRow?.row)!].peopleWhoLinked
+              //  destination.commentsForPost = myJuggs[(self.tableView.indexPathForSelectedRow?.row)!].commentsForPost as! [CommentObj]
+                
+                destination.view.gestureRecognizers?.removeAll()
+                
+                
+                
+                
+            }
+        }
+
     
     }
-        */
+    
 
 }

@@ -12,6 +12,7 @@ import UIKit
 import Firebase
 
 class MessageCell: UITableViewCell {
+   
     @IBOutlet weak var UserImage: UIImageView!
     @IBOutlet weak var Title: UILabel!
     @IBOutlet weak var SubTitle: UILabel!
@@ -19,24 +20,34 @@ class MessageCell: UITableViewCell {
 
     var message: Message? {
         didSet {
-            if let toId = message?.toID {
-                let ref = Database.database().reference().child("Users").child(toId)
+            
+            let uid = Auth.auth().currentUser?.uid
+            var userToFetch = ""
+            if message?.fromId == uid {
+                userToFetch = (message?.toId)!
+            } else {
+                userToFetch = (message?.fromId)!
+            }
+            
+
+                let ref = Database.database().reference().child("Users").child(userToFetch)
                 ref.observeSingleEvent(of: .value, with: { (snapshot) in
                     
                     if let dict = snapshot.value as? [String: AnyObject] {
-                        let firstName = dict["First Name"] as? String
-                        let lastName = dict["Last Name"] as? String
+                        let firstName = dict["FirstName"] as? String
+                        let lastName = dict["LastName"] as? String
                         let fullName = firstName! + " " + lastName!
                         self.Title?.text = fullName
-                        self.Title?.textColor = UIColor.white
+                        self.Title?.textColor = UIColor.black
                         
                         
                         if let profilePicURL = dict["urlToImage"] as? String {
                             self.UserImage.loadImageUsingCacheWithUrlString(profilePicURL)
-                            self.UserImage.translatesAutoresizingMaskIntoConstraints = false
-                            self.UserImage.layer.cornerRadius = 24
-                            self.UserImage.layer.masksToBounds = true
+                            self.UserImage.translatesAutoresizingMaskIntoConstraints = true
+                            self.UserImage.layer.cornerRadius = self.UserImage.frame.size.width/2
+                            self.UserImage.clipsToBounds = true
                             self.UserImage.contentMode = .scaleAspectFill
+                            
 
 
                         }
@@ -44,13 +55,17 @@ class MessageCell: UITableViewCell {
                     }
                     
                 }, withCancel: nil)
+            
+            
+            if self.message?.text == nil {
+                self.SubTitle?.text = "Attachment: 1 Image"
+            } else {
+                self.SubTitle?.text = self.message?.text
             }
             
+            self.SubTitle?.textColor = UIColor.black
             
-            self.SubTitle?.text = self.message?.text
-            self.SubTitle?.textColor = UIColor.white
-            
-            if let seconds = self.message?.time.doubleValue {
+            if let seconds = self.message?.timestamp.doubleValue {
                 let timestampDate = Date(timeIntervalSince1970: seconds)
                 
                 let dateFormatter = DateFormatter()
@@ -63,10 +78,7 @@ class MessageCell: UITableViewCell {
     }
     
     
-  //  override func awakeFromNib() {
-    //    super.awakeFromNib()
-   //         visuals()
-  //  }
+
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -89,21 +101,13 @@ class MessageCell: UITableViewCell {
         let label = UILabel()
         label.text = "HH:MM:SS"
         label.font = UIFont.systemFont(ofSize: 13)
-        label.textColor = UIColor.darkGray
+        label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     
-     func visuals() {
-     self.profileImageView.translatesAutoresizingMaskIntoConstraints = true
-     self.profileImageView.clipsToBounds = true
-     self.profileImageView.layer.cornerRadius = profileImageView.frame.size.width/2
-     self.profileImageView.layer.borderWidth = 4
-     let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
-     self.profileImageView.layer.borderColor = purp.cgColor
-     }
-     
+    
     
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

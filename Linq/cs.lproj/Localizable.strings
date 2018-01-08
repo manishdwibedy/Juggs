@@ -1,0 +1,113 @@
+/* 
+  Localizable.strings
+  Linq
+
+  Created by Quinton Askew on 12/9/17.
+  Copyright © 2017 QuintonAskew. All rights reserved.
+*/
+"restart" = "Chcete-li změnit jazyk, musí být restartována.";
+"restartTitle" = "Je vyžadován restart aplikace";
+"cancel" = "Zrušení";
+"close"= "Zavřete Teď";
+
+
+// Feed - (Cell Labels)
+"likes" = "Líbí se";
+"comments" = "Komentáře";
+"juggs" = "Souhlasit";
+"capacity" = "Kapacita";
+"public" = "Veřejnost";
+"private" = "Soukromé";
+"miles" = "Miles";
+"viewAll" = "Zobrazit vše";
+"of" = "z";
+
+// Description - (Action Sheet)
+"delete" = "Smazat Událost";
+"share" = "Podíl";
+
+// Discover -(Segments & Alerts)
+"map" = "Mapa";
+"discover" = "Objevit";
+"followRequest" = "Požádali jste, abyste ji následovali ";
+
+// Profile & OtherUser Profile - (Action Sheets)
+"message" = "Zpráva";
+"relations" = "Vztahy";
+"report" = "Zpráva";
+"block" = "Blok";
+"unblock" = "Odblokovat";
+"invite" = "Pozvat";
+"privacyTitle" = "Ochrana soukromí je aktivována!";
+"privacyMessage" = "Váš profil je viditelný pouze vašim stoupencům. Spravujte své žádosti sledujte zde.";
+"ok" = "OK";
+"pt" = "Chystáte se veřejně!";
+"publicMessage" = "Váš profil je nyní viditelný pro všechny, aby se mohli podívat. Všechny nevyřízené požadavky na sledování byly přijaty.";
+"inviteSent1" = "Vaše pozvání pro ";
+"inviteSent2" = " byla odeslána!";
+"inviteAlready1" = "Už jste odeslali pozvánku ";
+"inviteAlready2" = " k tomuto uživateli.";
+"requestAlready" = " již zaslala žádost ";
+"Male" = "mužský";
+"Female" = "ženský";
+"Other" = "nespecifikováno";
+"followers" = "Následovníci";
+"following" = "Následující";
+
+// Settings - (Navigation Controllers & Alert)
+"name" = "Název";
+"updatename" = "Aktualizujte své jméno a příjmení.";
+"password" = "Heslo";
+"updatepword" = "Aktualizovat heslo";
+"pus" = "Heslo bylo úspěšně aktualizováno";
+"pdm" = "Vaše hesla neodpovídají.";
+"cpdm" = "Vaše současné heslo je nesprávné.";
+"ncs" = "Název změněn úspěšně!";
+"biography" = "Životopis";
+"bsu" = "Životopis byl úspěšně aktualizován!";
+"websites" = "Webové Stránky";
+"cf" = "Pokračujte v Facebook";
+"ct" = "Pokračujte v Twitter";
+"ci" = "Pokračujte v Instagram";
+"cs" = "Pokračujte v Snapchat";
+"cg" = "Pokračujte v Google+";
+"un" = "Vložte svoji přezdívku.";
+"lof" = "Odhlásit se z Facebook";
+"lot" = "Odhlásit se z Twitter";
+"loi" = "Odhlásit se z Instagram";
+"log" = "Odhlásit se z Google+";
+"un" = "Vložte svoji přezdívku.";
+"scum" = "Snapchat uživatelské jméno";
+"save" = "Uložit";
+"ays" = "Jsi si jistá?";
+"logout" = "Odhlásit se";
+"warn" = "Varování!";
+"deleteAcct" = "Vymazat";
+
+// Discover
+"privacy" = "Soukromí";
+"search" = "Vyhledávání";
+"areYouSure" = "Jsi si jistá?";
+"warning" = "Varování";
+"areYouSure2" = "Opravdu chcete smazat svůj účet?";
+"delete" = "Vymazat";
+"sryM" = "Při zpracování vaší žádosti došlo k chybě.";
+"dsm" = "Váš účet byl smazán.";
+
+// Box
+"inbox" = "Doručená pošta";
+"invitations" = "Pozvánky";
+"ni" = "Nová Pozvánka";
+"nm" = "Nová Zpráva";
+"confirm" = "Potvrdit";
+"rq" = "Žádost";
+"rs" = "Žádost (odeslána)";
+"ins" = "Pozvánky (Odeslané)";
+
+// New Jugg
+"cm" = "Fotoaparát";
+"pl" = "Fotografická knihovna";
+"slf" = "Vyberte leták";
+"flyr" = "Je požadován leták.";
+"future" = "Zadejte budoucí čas události.";
+"req" = "Všechna pole vyžadují akci.";

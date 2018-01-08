@@ -17,14 +17,20 @@ class ProfileImage: UIViewController,UIImagePickerControllerDelegate, UINavigati
     @IBOutlet weak var saveButton: UIButton!
     
      //var userStorage: StorageReference!
-    
+      
     @IBAction func saved(_ sender: Any) {
     
         Globals.ShowSpinner(testStr: "")
         let uid = Auth.auth().currentUser!.uid
         
         let check:String? = uid + ".jpg"
-        var storageRef = Storage.storage().reference()
+        
+        // Get a reference to the storage service using the default Firebase App
+        let storage = Storage.storage()
+        
+        // Create a storage reference from our storage service
+        var storageRef = storage.reference()
+        
         let urlToStorage = "gs://jugg-88ab9.appspot.com/"
         storageRef.storage.reference(forURL: urlToStorage)
         storageRef = storageRef.child("Users")
@@ -40,7 +46,7 @@ class ProfileImage: UIViewController,UIImagePickerControllerDelegate, UINavigati
                 //Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(url!, key: "urlToImage")
                 
                 Globals.HideSpinner()
-                let alertViewController = UIAlertController(title: "Profile Image is  Successfully Updated.", message: "", preferredStyle: .alert)
+                let alertViewController = UIAlertController(title: "Profile Image Updated.", message: "", preferredStyle: .alert)
                 
                 let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
                     self.navigationController?.popViewController(animated: true)
@@ -53,25 +59,31 @@ class ProfileImage: UIViewController,UIImagePickerControllerDelegate, UINavigati
             })
         })
        
-        
     }
-    
-   
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let ImageUrl = Globals .sharedInstance.getValueFromUserDefaultsForKey("urlToImage") as? String!
         imageView.sd_setImage(with: URL(string: ImageUrl!), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
-        //imageView.clipsToBounds = true
-        imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = imageView.frame.size.height/2
-        imageView.layer.borderWidth = 4
         imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.layer.cornerRadius = imageView.frame.width/2
+        imageView.layer.masksToBounds = false
+        imageView.clipsToBounds = true
+        imageView.layer.borderWidth = 4
+        imageView.contentMode = UIViewContentMode.scaleAspectFill
+
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(SignUp.tappedMe))
         imageView.addGestureRecognizer(tap)
         imageView.isUserInteractionEnabled = true
+        
         saveButton.isEnabled = false
+        saveButton.layer.masksToBounds = true
+        saveButton.layer.cornerRadius = 8
+        saveButton.backgroundColor = UIColor.clear
+        saveButton.layer.borderWidth = 2
+        saveButton.layer.borderColor = purp
+        
     }
 
     
@@ -82,7 +94,11 @@ class ProfileImage: UIViewController,UIImagePickerControllerDelegate, UINavigati
         
         // ACTION SHEET FOR PHOTO SELECTION
         
-        let alert = UIAlertController(title: "Choose an Image", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        var alert = UIAlertController(title: "Choose an Image", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            alert = UIAlertController(title: "Choose an Image", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+        }
         
         let camera = UIAlertAction(title: "Camera", style: .default, handler: { (ACTION) in
             
@@ -144,7 +160,7 @@ class ProfileImage: UIViewController,UIImagePickerControllerDelegate, UINavigati
         
         // The info dictionary contains multiple representations of the image, and this uses the original.
         
-        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let selectedImage = info[UIImagePickerControllerEditedImage] as! UIImage
         
         // Set photoImageView to display the selected image.
         
@@ -169,3 +185,4 @@ class ProfileImage: UIViewController,UIImagePickerControllerDelegate, UINavigati
     */
 
 }
+

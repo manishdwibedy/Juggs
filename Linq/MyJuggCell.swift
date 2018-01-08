@@ -19,7 +19,7 @@ class MyJuggCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        locationOfJuggLabel.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

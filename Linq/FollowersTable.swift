@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SDWebImage
+import KVNProgress
 
 class FollowersTable: UITableViewController {
 
@@ -29,6 +30,7 @@ class FollowersTable: UITableViewController {
 //        Globals.ShowSpinner(testStr: "")
         
         self.users.removeAll()
+        self.tableView.reloadData()
         
         let ref = Database.database().reference()
 //        let uid = Auth.auth().currentUser!.uid
@@ -36,12 +38,14 @@ class FollowersTable: UITableViewController {
         
         childRef.child("Followers").observeSingleEvent(of: .value, with: { (snapshot) in
             
-            if let users = snapshot.value as? [String : AnyObject] {
+            if let userFollow = snapshot.value as? [String : AnyObject] {
+                
+//                var follower = Array(Set(userFollow))
                 
                 Globals.ShowSpinner(testStr: "")
                 
-                for(_, value) in users {
-                    print(value)
+                for(_, value) in userFollow {
+//                    print(value)
                     //let childfor = ref.child("Users").child("value")
                     ref.child("Users").child(value as! String).queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
                         
@@ -49,8 +53,8 @@ class FollowersTable: UITableViewController {
                             
                             let userToShow = User(dictionary:dict)
                             
-                            let firstName = dict["First Name"] as? String
-                            let lastName = dict["Last Name"] as? String
+                            let firstName = dict["FirstName"] as? String
+                            let lastName = dict["LastName"] as? String
                             let age = dict["Age"] as? String
                             let city = dict["City"] as? String
                             let gender = dict["Gender"] as? String
@@ -59,6 +63,8 @@ class FollowersTable: UITableViewController {
                             let imagePath = dict["urlToImage"] as? String
                             let followers = dict["Followers"] as? [String: AnyObject]
                             let following = dict["Following"] as? [String: AnyObject]
+                            let friendRequest = value["FriendRequest"] as? [String:AnyObject]
+                            let userPrivate = value["UserPrivate"] as? Bool
                             
                             userToShow.userID = value as? String
                             userToShow.firstName = firstName
@@ -71,11 +77,21 @@ class FollowersTable: UITableViewController {
                             userToShow.imagePath = imagePath
                             userToShow.following = following
                             userToShow.follower = followers
+                            userToShow.friendrequest = friendRequest
+                            userToShow.privateUser = userPrivate
                             
                             self.users.append(userToShow)
                         }
+                        
+                        
+                        self.users = Array(Set(self.users))
+                        
                         Globals.HideSpinner()
+                        let Dict:[String: Int] = ["userCount": self.users.count]
+                        NotificationCenter.default.post(name: Notification.Name("followers"), object: nil, userInfo: Dict)
+                        
                         self.tableView.reloadData()
+                        
                     })
                 }
                 
@@ -90,15 +106,85 @@ class FollowersTable: UITableViewController {
     
     func followed(_ sender: UIButton) {
         
-        let uid = Auth.auth().currentUser!.uid
-        let ref = Database.database().reference()
-        let userId = self.users[sender.tag].userID
-        let keyToPost = ref.child("Users").child(uid)
-        let commentsRef = keyToPost.child("Following").childByAutoId()
-        commentsRef.setValue(userId)
+//        KVNProgress.show(0.50, status: "Updating..")
+        if let value = self.users[sender.tag].privateUser {
+            if value == true {
+                if self.users[sender.tag].friendrequest == nil {
+                    let uid = Auth.auth().currentUser!.uid
+                    let ref = Database.database().reference()
+                    
+                    let keyToPost = ref.child("Users").child(self.users[sender.tag].userID!)
+                    let commentsRef = keyToPost.child("FriendRequest").childByAutoId()
+                    
+                    let friendRequest = [
+                        "FromUserImage" : Globals.sharedInstance.getValueFromUserDefaultsForKey_Path("urlToImage"),
+                        "fromUser" : uid,
+                        "fromName" : Globals.sharedInstance.getValueFromUserDefaultsForKey_Path("UserName")
+                        ] as [String : Any]
+                    
+                    commentsRef.setValue(friendRequest)
+                } else {
+                    let reportArray  : [String:AnyObject] =  self.users[sender.tag].friendrequest
+                    let uid = Auth.auth().currentUser!.uid
+                    let ref = Database.database().reference()
+                    
+                    for(_,value) in reportArray  {
+                        if value["fromUser"] as! String == uid  {
+                            let alert = UIAlertController(title: "You have requested to follow \(self.users[sender.tag].firstName ?? "")", message: nil, preferredStyle: .alert)
+                            let confirm = UIAlertAction(title: "OK", style: .default) { (action) in
+                                
+                            }
+                            
+                            alert.addAction(confirm)
+                            let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+                            alert.view.tintColor = purp
+                            self.navigationController!.present(alert, animated: true, completion: nil)
+                            return;
+                        }
+                    }
+                    
+                    
+                    
+                    let keyToPost = ref.child("Users").child(self.users[sender.tag].userID!)
+                    let commentsRef = keyToPost.child("FriendRequest").childByAutoId()
+                    
+                    let friendRequest = [
+                        "FromUserImage" : Globals.sharedInstance.getValueFromUserDefaultsForKey_Path("urlToImage"),
+                        "fromUser" : uid,
+                        "fromName" : Globals.sharedInstance.getValueFromUserDefaultsForKey_Path("UserName")
+                        ] as [String : Any]
+                    
+                    commentsRef.setValue(friendRequest)
+                }
+
+
+            }
+            else {
+                let uid = Auth.auth().currentUser!.uid
+                let ref = Database.database().reference()
+                let userId = self.users[sender.tag].userID
+                let keyToPost = ref.child("Users").child(uid)
+                let commentsRef = keyToPost.child("Following").childByAutoId()
+                commentsRef.setValue(userId)
+                
+                let post = ref.child("Users").child(userId!)
+                post.child("Followers").childByAutoId().setValue(uid)
+            }
+        } else {
+            let uid = Auth.auth().currentUser!.uid
+            let ref = Database.database().reference()
+            let userId = self.users[sender.tag].userID
+            let keyToPost = ref.child("Users").child(uid)
+            let commentsRef = keyToPost.child("Following").childByAutoId()
+            commentsRef.setValue(userId)
+            
+            let post = ref.child("Users").child(userId!)
+            post.child("Followers").childByAutoId().setValue(uid)
+        }
         
-        let post = ref.child("Users").child(userId!)
-        post.child("Followers").childByAutoId().setValue(uid)
+        
+        
+//        KVNProgress.showSuccess()
         
         retrievefollowerUsers()
         
@@ -111,8 +197,10 @@ class FollowersTable: UITableViewController {
         let ref = Database.database().reference()
         let userId = self.users[sender.tag].userID
         
+//        KVNProgress.show(0.50, status: "Updating..")
+        
         let profile = ref.child("Users").child(uid).child("Following")
-        profile.observe(.value, with: { (snapshot) -> Void in
+        profile.observeSingleEvent(of: .value, with: { (snapshot) in
             
             let posts = snapshot.value as? [String : AnyObject]
             
@@ -134,16 +222,25 @@ class FollowersTable: UITableViewController {
                                     if value1 as! String == uid {
                                         profile1.child(key1).removeValue()
                                     }
+                                    
+//                                    KVNProgress.showSuccess()
+                
                                 }
                                 
                                 profile.removeAllObservers()
                                 profile1.removeAllObservers()
                                 
-                                self.retrievefollowerUsers()
+                            } else {
+//                                KVNProgress.showError()
                             }
                         })
+                    } else {
+//                        KVNProgress.showError()
                     }
                 }
+                self.retrievefollowerUsers()
+            } else {
+//                KVNProgress.showError()
             }
         })
     }
@@ -169,8 +266,8 @@ class FollowersTable: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FollowersCell
-        cell.followerName.text = self.users[indexPath.row].firstName + " " + self.users[indexPath.row].lastName
-        cell.followerFrom.text = self.users[indexPath.row].city + ", " + self.users[indexPath.row].state
+        cell.followerName.text = self.users[indexPath.row].firstName! + " " + self.users[indexPath.row].lastName!
+        cell.followerFrom.text = self.users[indexPath.row].city! + ", " + self.users[indexPath.row].state!
         cell.followerImage.sd_setImage(with: URL(string: "\(String(describing: users[(indexPath.row)].imagePath!))"), placeholderImage: #imageLiteral(resourceName: "danceplaceholder"))
         
         let uid = Auth.auth().currentUser!.uid
@@ -195,6 +292,22 @@ class FollowersTable: UITableViewController {
             cell.followBtn.addTarget(self, action: #selector(followed(_:)), for: .touchUpInside)
         }
 
+        if self.users[indexPath.row].userID == uid {
+            cell.followBtn.isEnabled = false
+        }
+        
+        if ((self.users[indexPath.row].friendrequest) != nil) {
+            let dict : [String:AnyObject] =  self.users[indexPath.row].friendrequest
+            for(_,value) in dict {
+                if value["fromUser"] as! String == uid  {
+                    cell.followBtn.isHidden = false
+                    cell.followBtn.setTitle("Pending", for: .normal)
+                    cell.followBtn.isEnabled = false
+                }
+            }
+        }
+
+        
         return cell
     }
     
@@ -260,12 +373,13 @@ class FollowersTable: UITableViewController {
         if segue.identifier == "showUserFromFollowers" {
             if let destination = segue.destination as? OtherUser {
                 let indexPath = tableView.indexPathForSelectedRow?.row
-                destination.firstName = users[indexPath!].firstName
-                destination.lastName = users[indexPath!].lastName
-                destination.age = users[indexPath!].age
-                destination.city = users[indexPath!].city
-                destination.state = users[indexPath!].state
-                destination.gender = users[indexPath!].gender
+                UserID = users[indexPath!].userID!
+                destination.firstName = users[indexPath!].firstName!
+                destination.lastName = users[indexPath!].lastName!
+                destination.age = users[indexPath!].age!
+                destination.city = users[indexPath!].city!
+                destination.state = users[indexPath!].state!
+                destination.gender = users[indexPath!].gender!
                 destination.pathToImage = users[indexPath!].imagePath
                 destination.messageSwipe.isEnabled = false
                 destination.discoverSwipe.isEnabled = false

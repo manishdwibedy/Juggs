@@ -1,0 +1,114 @@
+/* 
+  Localizable.strings
+  Linq
+
+  Created by Quinton Askew on 12/9/17.
+  Copyright © 2017 QuintonAskew. All rights reserved.
+*/
+"restart" = "Para alterar o idioma, o aplicativo deve ser reiniciado.";
+"restartTitle" = "Reinício do aplicativo necessário";
+"cancel" = "Cancelar";
+"close" = "Fechar agora";
+
+// Feed - (Cell Labels)
+"likes" = "Gostar";
+"comments" = "Comentários";
+"juggs" = "Aceita";
+"capacity" = "Capacidade";
+"public" = "Público";
+"private" = "Privado";
+"miles" = "Milhas";
+"viewAll" = "Ver Tudo";
+"of" = "do";
+
+// Description - (Action Sheet)
+"delete" = "Eliminar Evento";
+"share" = "Compartilhar";
+
+// Discover -(Segments & Alerts)
+"map" = "Mapa";
+"discover" = "Descobrir";
+"followRequest" = "Você solicitou seguir ";
+
+// Profile & OtherUser Profile - (Action Sheets)
+"message" = "Mensagem";
+"relations" = "Relações";
+"report" = "Relatório";
+"block" = "Quadra";
+"unblock" = "Desbloquear";
+"invite" = "Convite";
+"privacyTitle" = "Privacidade Ativada!";
+"privacyMessage" = "Seu perfil é visível somente para seus seguidores. Gerencie suas solicitações de acompanhamento aqui.";
+"ok" = "OK";
+"pt" = "Indo a Público!";
+"publicMessage" = "Seu perfil agora está visível para todos verem. Todos os pedidos de acompanhamento pendentes foram aceitos.";
+"inviteSent1" = "Seu convite para ";
+"inviteSent2" = " foi enviado!";
+"inviteAlready1" = "Você já enviou um convite para ";
+"inviteAlready2" = " para este usuário.";
+"requestAlready" = " já enviou um pedido de ";
+"Male" = "Masculino";
+"Female" = "Fêmea";
+"Other" = "Não especificado";
+"followers" = "Seguidores";
+"following" = "Segue";
+
+// Settings - (Navigation Controllers & Alert)
+"name" = "Nome";
+"updatename" = "Atualize seu primeiro e último nome.";
+"password" = "Senha";
+"updatepword" = "Atualizar senha";
+"pus" = "Senha atualizada com sucesso!";
+"pdm" = "Suas senhas não coincidem.";
+"cpdm" = "Sua senha atual está incorreta.";
+"ncs" = "O nome mudou com sucesso!";
+"biography" = "Biografia";
+"bsu" = "Biografia atualizada com sucesso!";
+"websites" = "Sites";
+"cf" = "Continue com o Facebook";
+"ct" = "Continue com o Twitter";
+"ci" = "Continue com o Instagram";
+"cs" = "Continue com o Snapchat";
+"cg" = "Continue com o Google+";
+"un" = "Entre com seu nome de usuário.";
+"lof" = "Sair do Facebook";
+"lot" = "Sair do Twitter";
+"loi" = "Sair do Instagram";
+"log" = "Sair do Google+";
+"un" = "Entre com seu nome de usuário.";
+"scum" = "Nome de usuário Snapchat";
+"save" = "Salve";
+"ays" = "Você tem certeza?";
+"logout" = "Sair";
+"warn" = "Atenção!";
+"deleteAcct" = "Excluir";
+
+// Discover
+"privacy" = "Privacidade";
+"search" = "Pesquisa";
+"areYouSure" = "Você tem certeza?";
+"warning" = "Atenção";
+"areYouSure2" = "Tem certeza de que deseja excluir sua conta?";
+"delete" = "Excluir";
+"sryM" = "Houve um erro ao processar seu pedido.";
+"dsm" = "Sua conta foi deletada.";
+
+// Box
+"inbox" = "Caixa de Entrada";
+"invitations" = "Convites";
+"ni" = "Novo Convite";
+"nm" = "Nova Mensagem";
+"confirm" = "Confirme";
+"rq" = "Pedido";
+"rs" = "Pedido (Enviei)";
+"ins" = "Convites (Enviei)";
+
+// New Jugg
+"cm" = "Câmera";
+"pl" = "Biblioteca de Fotos";
+"slf" = "Selecione um Flyer";
+"flyr" = "Um Flyer é obrigatório.";
+"future" = "Insira o tempo futuro para o evento.";
+"req" = "Todos os campos requerem ação.";
+
+

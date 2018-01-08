@@ -22,11 +22,14 @@ class UpdateName: UIViewController, UITextFieldDelegate {
         let uid = Auth.auth().currentUser?.uid
         
         let Ref = "Users/" + uid!
-        Database.database().reference().root.child(Ref).updateChildValues(["First Name": self.firstNameTF.text!,"Last Name": self.lastNameTF.text!])
+        Database.database().reference().root.child(Ref).updateChildValues(["FirstName": self.firstNameTF.text!,"LastName": self.lastNameTF.text!])
         
-        let alertViewController = UIAlertController(title: "Named Changed Successfully!", message: "", preferredStyle: .alert)
+        Globals.sharedInstance.saveValuetoUserDefaultsWithKeyandValue(firstNameTF.text ?? "", key: "FName")
+        Globals.sharedInstance.saveValuetoUserDefaultsWithKeyandValue(lastNameTF.text ?? "", key: "LName")
         
-        let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+        let alertViewController = UIAlertController(title:(NSLocalizedString("ncs", comment: "")), message: "", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title:(NSLocalizedString("ok", comment: "")), style: .default) { (action) -> Void in
             self.navigationController?.popViewController(animated: true)
         }
         
@@ -48,8 +51,8 @@ class UpdateName: UIViewController, UITextFieldDelegate {
     }
     
     func visuals() {
-        self.title = "Name"
-        self.instructionsLabel.text = "Update your first and last name."
+        self.title = (NSLocalizedString("name", comment: ""))
+        self.instructionsLabel.text = (NSLocalizedString("updatename", comment: ""))
         
        
         // Loading Names.....
@@ -60,13 +63,16 @@ class UpdateName: UIViewController, UITextFieldDelegate {
         firstNameTF.layer.masksToBounds = true
         firstNameTF.layer.borderWidth = 1
         firstNameTF.layer.cornerRadius = 6
-        firstNameTF.layer.borderColor = UIColor.black.cgColor
+        firstNameTF.layer.borderColor = purp
         lastNameTF.layer.masksToBounds = true
         lastNameTF.layer.borderWidth = 1
         lastNameTF.layer.cornerRadius = 6
-        lastNameTF.layer.borderColor = UIColor.black.cgColor
+        lastNameTF.layer.borderColor = purp
+        
         saveNameBtn.layer.masksToBounds = true
         saveNameBtn.layer.cornerRadius = 8
+        saveNameBtn.layer.borderWidth = 2
+        saveNameBtn.layer.borderColor = purp
         
         // Disable Save Button
         self.saveNameBtn.isEnabled = false

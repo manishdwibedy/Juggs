@@ -10,101 +10,275 @@ import UIKit
 import MapKit
 import CoreLocation
 import Firebase
-
+import JPSThumbnailAnnotation
+import SDWebImage
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 
 protocol HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark)
 }
 
-class Map: UIViewController {
-    
+class Map: UIViewController,MKMapViewDelegate,UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var mapView: MKMapView!
     
-   
-     let locationManager = CLLocationManager()
+    @IBOutlet weak var searchBar: UISearchBar!
     
+    @IBOutlet weak var tbPosts: UITableView!
+    let locationManager = CLLocationManager()
     
-    var resultSearchController:UISearchController? = nil
-    
-    
+    //    var resultSearchController:UISearchController? = nil
     var selectedPin:MKPlacemark? = nil
     
     var posts = [Post]()
-    var address = [AnyObject]() // Add address coordinates if we have to go that route
-  
     
+    var tempPosts = [Post]()
+    
+    var address = [AnyObject]() // Add address coordinates if we have to go that route
+    var followers = [String]()
     //////   ADDS  RADIUS  CIRCLE   //////
     
     let addRadiusCircle = CLLocation()
     var circle: MKCircle?
-
+    var city : String?
+    var country : String?
+    var getFacebookEvents = [FacebookEvents]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.barTintColor = UIColor.black
-        handleLocation()
-        fetchAddress()
+        
         mapView.tintColor = UIColor.black
-    
+        
+        if let location = locationManager.location{
+            self.fetchCountryAndCity(location: location) { country, city in
+                self.country = "country = \(country)"
+                self.city = "city = \(city)"
+                self.fetchDataFromFacebook()
+            }
+        }
+        
     }
-
-   // Fetch Move Name and Address
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.navigationController?.navigationBar.isHidden = true
+        
+        handleLocation()
+        fetchFollowers()
+    }
+    
+    func fetchCountryAndCity(location: CLLocation, completion: @escaping (String, String) -> ()) {
+        CLGeocoder().reverseGeocodeLocation(location) { placemarks, error in
+            if let error = error {
+                print(error)
+            } else if let country = placemarks?.first?.country,
+                let city = placemarks?.first?.locality {
+                completion(country, city)
+            }
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        tbPosts.isHidden = true
+        self.view.endEditing(true)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        
+        if  (searchBar.text?.characters.count)! > 0 {
+            
+            tempPosts = self.posts.filter() {
+                if let type = ($0 as Post).nameOfEvent {
+                    return type.localizedCaseInsensitiveContains(searchBar.text!)
+                } else {
+                    return false
+                }
+            }
+            
+            self.tbPosts.reloadData()
+            self.tbPosts.isHidden = false
+            
+        }
+        
+        return true
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        tempPosts = self.posts.filter() {
+            if let type = ($0 as Post).nameOfEvent {
+                return type.localizedCaseInsensitiveContains(searchText)
+            } else {
+                return false
+            }
+        }
+        
+        self.tbPosts.reloadData()
+        self.tbPosts.isHidden = false
+        
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+    }
+    
+    func fetchFollowers() {
+        
+        let ref = Database.database().reference()
+        let userID : String = (Auth.auth().currentUser?.uid)!
+        
+        let childRef = ref.child("Users").child(userID)
+        
+        childRef.child("Following").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let followingUsers = snapshot.value as? [String : AnyObject] {
+                for(_, value) in followingUsers {
+                    //                    print(value)
+                    self.followers.append(value as! String)
+                }
+            }
+            self.fetchAddress()
+            
+        })
+    }
+    
+    
+    // Fetch Move Name and Address
     func fetchAddress() {
         
         let ref = Database.database().reference()
         
-        ref.child("Flyers").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
-           
-        let posts = snapshot.value as! [String : AnyObject]
-          
-        self.posts.removeAll()
+        let uID : String = (Auth.auth().currentUser?.uid)!
         
+        ref.child("Flyers").queryOrderedByKey().observeSingleEvent(of: .value, with: { snapshot in
+            
+            let posts = snapshot.value as! [String : AnyObject]
+            
+            self.posts.removeAll()
+            
             for(_,value) in posts {
                 if let userID = value["UserID"] as? String {
-                let newPost = Post()
-                let eventName = value["NameOfMove"] as? String
-                let address = value["Address"] as? String
-                let movePrivate = value["Private"] as? String
-                newPost.nameOfEvent = eventName
-                newPost.address = address
-                newPost.movePrivate = movePrivate
-                newPost.userID = userID
-                
-                print(address!)
+                    let newPost = Post()
+                    let eventName = value["NameOfMove"] as? String
+                    let address = value["Address"] as? String
+                    let movePrivate = value["Private"] as? Bool
+                    let description = value["Description"] as? String
+                    let pathToImage = value["PathToImage"] as? String
                     
-                let geocoder = CLGeocoder()
+                    let requests = value["Requests"] as? [String:AnyObject]
+                    let invites = value["Invites"] as? [String:AnyObject]
+                    let AP = value["AP"] as? String
+                    let date = value["Date"] as? String
+                    let time = value["Time"] as? String
+                    
+                    newPost.AP = AP
+                    newPost.date = date
+                    newPost.time = time
+                    
+                    newPost.nameOfEvent = eventName
+                    newPost.address = address
+                    newPost.movePrivate = movePrivate
+                    newPost.userID = userID
+                    newPost.pathToImage = pathToImage
+                    newPost.moveDesc = description
+                    
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "MMM dd, yyyy hh:mm a"
+                    let dateTime = "\(newPost.date ?? "") \(newPost.time ?? "") \(newPost.AP ?? "")"
+                    let postdate =  dateFormatter.date(from: dateTime)
+                    if postdate != nil {
+                        let elapsed = Date().timeIntervalSince(postdate!)
+                        let diff = self.stringFromTimeInterval(interval: elapsed)
+                        
+                        if diff.intValue >= 24
+                        {
+                            continue
+                        }
+                    }
+                    
+                    let geocoder = CLGeocoder()
                     geocoder.geocodeAddressString(address!) {
                         placemarks, error in
+                        
                         let placemark = placemarks?.first
-                        let lat = placemark!.location!.coordinate.latitude
-                        let lon = placemark!.location!.coordinate.longitude
+                        let lat = placemark?.location!.coordinate.latitude
+                        let lon = placemark?.location!.coordinate.longitude
                         
-                        print("The address's coordinates are " + "Lat: \(lat), Lon: \(lon)")
-                        let eventLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat, lon)
+                        let eventLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat ?? 0.00, lon ?? 0.00)
+                        
                         let location: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: self.locationManager.location!.coordinate.latitude, longitude: self.locationManager.location!.coordinate.longitude)
-                         let annotation = MKPointAnnotation()
-                        annotation.title = eventName
+                        
+                        let annotation = JPSThumbnail()
+                        annotation.title = newPost.nameOfEvent
+                        annotation.subtitle = newPost.moveDesc
                         annotation.coordinate = eventLocation
-                        self.mapView.addAnnotation(annotation)
-                       // let twoDLoction: CLLocation =
-                        print(self.getDistance(from: location, to: eventLocation))
                         
-                        if(self.getDistance(from: location, to: eventLocation)) > 160934 {
+                        let manager = SDWebImageManager()
+                        manager.downloadImage(with: URL.init(string: newPost.pathToImage!), options: SDWebImageOptions(rawValue: 0), progress: { (receivedSize, expectedSize) in
                             
-                            self.mapView.removeAnnotation(annotation)
+                        }, completed: { (downloadImage , error , cacheType, finished, url ) in
+                            annotation.image = downloadImage
+                        })
+                        
+                        annotation.disclosureBlock = {() -> Void in
+                            self.selectedPin = MKPlacemark.init(coordinate: annotation.coordinate)
+                            self.getDirections()
                         }
+                        
+                        
+                        if let isPrivate = newPost.movePrivate {
+                            if requests != nil {
 
-                        // Looks like it should work but doesnt
-                      if(movePrivate == "true") {
-                            
-                            self.mapView.removeAnnotation(annotation)
-                        }
+                                for(_,values) in requests! {
+                                    if values["from"] as! String == uID {
+                                        if values["status"] as! String == "1" || values["status"] as! String == "3" {
+                                            self.posts.append(newPost)
+                                            self.mapView.addAnnotation(JPSThumbnailAnnotation.init(thumbnail: annotation))
+                                        }
+                                    }
+                                }
+
+                            }
+
+                  
                         
+                            
+                            if invites != nil {
+                                
+                                for(_,values) in invites! {
+                                    if values["touserID"] as! String == uID {
+                                        if values["status"] as! String == "1" || values["status"] as! String == "3" {
+                                            self.posts.append(newPost)
+                                            self.mapView.addAnnotation(JPSThumbnailAnnotation.init(thumbnail: annotation))
+                                        }
+                                    }
+                                }
+                                
+                            }
+                            
+                        } else {
+                            // 100 mi = 160934 meters
+                            // 500 mi = 804672 meters
+                            // Changing to 500 miles: Jan 1, 2018
+                            if(self.getDistance(from: location, to: eventLocation)) < 804672 {
+                                self.posts.append(newPost)
+                                self.mapView.addAnnotation(JPSThumbnailAnnotation.init(thumbnail: annotation))
+                            } else {
+                                if self.followers.contains(userID) {
+                                    self.posts.append(newPost)
+                                    self.mapView.addAnnotation(JPSThumbnailAnnotation.init(thumbnail: annotation))
+                                }
+                            }
+                        }
                     }
-                   
-                
                 }
             }
             
@@ -113,14 +287,94 @@ class Map: UIViewController {
         ref.removeAllObservers()
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tempPosts.count
+    }
     
-  
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let searchResult = tempPosts[indexPath.row]
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        cell.textLabel?.text = searchResult.nameOfEvent
+        cell.detailTextLabel?.text = searchResult.moveDesc
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        self.tbPosts.isHidden = true
+        self.view.endEditing(true)
+        let searchResult = tempPosts[indexPath.row]
+        
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(searchResult.address) { (placemarks, error ) in
+            
+            if error  == nil {
+                let placemark = placemarks?.first
+                let lat = placemark?.location!.coordinate.latitude
+                let lon = placemark?.location!.coordinate.longitude
+                
+                let eventLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat ?? 0.00, lon ?? 0.00)
+                
+                self.mapView.setCenter(eventLocation, animated: true)
+            } else {
+                print(error?.localizedDescription as Any)
+            }
+            
+        }
+        
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if view.conforms(to: JPSThumbnailAnnotationViewProtocol.self) {
+            (view as! JPSThumbnailAnnotationViewProtocol).didSelectAnnotationView(inMap: mapView)
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        if view.conforms(to: JPSThumbnailAnnotationViewProtocol.self) {
+            (view as! JPSThumbnailAnnotationViewProtocol).didDeselectAnnotationView(inMap: mapView)
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if annotation is MKUserLocation {
+            //return nil so map view draws "blue dot" for standard user location
+            return nil
+        }
+        
+        if annotation.conforms(to: JPSThumbnailAnnotationProtocol.self) {
+            return (annotation as! JPSThumbnailAnnotationProtocol).annotationView(inMap: mapView)
+        }
+        
+        //        if ([annotation conformsToProtocol:@protocol(JPSThumbnailAnnotationProtocol)]) {
+        //            return [((NSObject<JPSThumbnailAnnotationProtocol> *)annotation) annotationViewInMap:mapView];
+        //        }
+        //
+        //        let reuseId = "pin"
+        //        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+        //        pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+        //        pinView?.pinTintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+        //        // black - Color for private pins
+        //        pinView?.canShowCallout = true
+        //        let smallSquare = CGSize(width: 30, height: 30)
+        //        let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
+        //        button.setBackgroundImage(UIImage(named: "car"), for: .normal)
+        //        button.addTarget(self, action: #selector(Map.getDirections), for: .touchUpInside)
+        //        pinView?.leftCalloutAccessoryView = button
+        //        return pinView
+        
+        return nil
+    }
+    
     func getDistance(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) -> CLLocationDistance {
         let from = CLLocation(latitude: from.latitude, longitude: from.longitude)
         let to = CLLocation(latitude: to.latitude, longitude: to.longitude)
         return from.distance(from: to)
     }
-
+    
     
     func getDirections(){
         if let selectedPin = selectedPin {
@@ -131,67 +385,77 @@ class Map: UIViewController {
         
     }
     
-
- 
+    
+    func stringFromTimeInterval(interval: TimeInterval) -> NSString {
+        let ti = NSInteger(interval)
+        let hours = (ti / 3600)
+        return NSString(format: "%0.2d",hours)
+    }
+    
     func handleLocation() {
         
         locationManager.delegate = (self as CLLocationManagerDelegate)
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
-       // locationManager.startUpdatingLocation()
-        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
-        resultSearchController?.searchResultsUpdater = locationSearchTable
-        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
-        locationSearchTable.handleMapSearchDelegate = self
-        let searchBar = resultSearchController!.searchBar
         
-        searchBar.sizeToFit()
+        // locationManager.startUpdatingLocation()
+        //        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
+        //        resultSearchController?.searchResultsUpdater = locationSearchTable
+        //        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        //        locationSearchTable.handleMapSearchDelegate = self
         
-        searchBar.placeholder = "Search for Juggs, People, Gender, etc"
-        navigationItem.titleView = resultSearchController?.searchBar
+        //        resultSearchController = UISearchController()
+        //        let searchBar = resultSearchController!.searchBar
+        //
+        //        searchBar.sizeToFit()
+        //
+        //        searchBar.placeholder = "Search for Juggs"
         
-        resultSearchController?.hidesNavigationBarDuringPresentation = false
-        resultSearchController?.dimsBackgroundDuringPresentation = true
-        definesPresentationContext = true
+        //      People, Gender, etc
         
-        locationSearchTable.mapView = mapView
+        //        navigationItem.titleView = resultSearchController?.searchBar
+        
+        //        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        //        resultSearchController?.dimsBackgroundDuringPresentation = true
+        //        definesPresentationContext = true
+        
+        //        locationSearchTable.mapView = mapView
         
         
         mapView.delegate = self
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
-
-    
-    
-    
-    }
-
-    
-  /*  func convertAddress(address: String) {
         
+        
+        
+        
+    }
+    
+    /*  func convertAddress(address: String) {
+     
      /////IF I NEED TO CONVERT ADDRESS TO COORDINATES//////
      
      
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString("143 W Modlin Rd, Ahoskie, NC, 27910") {
-            placemarks, error in
-            let placemark = placemarks?.first
-            let lat = placemark!.location!.coordinate.latitude
-            let lon = placemark!.location!.coordinate.longitude
-            
-            print("The address's coordinates are " + "Lat: \(lat), Lon: \(lon)")
-            
-           
-        
-        }
-        
-        
-    }  */
-
-
-
-    }
+     let geocoder = CLGeocoder()
+     geocoder.geocodeAddressString("143 W Modlin Rd, Ahoskie, NC, 27910") {
+     placemarks, error in
+     let placemark = placemarks?.first
+     let lat = placemark!.location!.coordinate.latitude
+     let lon = placemark!.location!.coordinate.longitude
+     
+     print("The address's coordinates are " + "Lat: \(lat), Lon: \(lon)")
+     
+     
+     
+     }
+     
+     
+     }  */
+    
+    
+    
+}
 
 extension Map : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -208,61 +472,64 @@ extension Map : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if locations.first != nil {
             
-           // print("target position : =  \(location.coordinate)")
-           // print(locationManager.location!.coordinate.latitude)
-         
+            // print("target position : =  \(location.coordinate)")
+            // print(locationManager.location!.coordinate.latitude)
             locationManager.stopUpdatingLocation()
-            
-              Database.database().reference().child("Location").child(Auth.auth().currentUser!.uid).setValue(["Latitude": locationManager.location?.coordinate.latitude, "Longitude": locationManager.location?.coordinate.longitude])
-            
+            let uID : String = (Auth.auth().currentUser?.uid)!
+            Database.database().reference().child("Users").child(uID).child("Location").setValue(["Latitude": locationManager.location?.coordinate.latitude, "Longitude": locationManager.location?.coordinate.longitude])
             
         }
         
         let location = CLLocation(latitude: locationManager.location!.coordinate.latitude, longitude: locationManager.location!.coordinate.longitude)
         addRadiusCircle(location)
         self.mapView.delegate = self
-        circle = MKCircle(center: location.coordinate, radius: 160934 as CLLocationDistance)
+        circle = MKCircle(center: location.coordinate, radius: 804672 as CLLocationDistance)
         self.mapView.add(circle!)
-        print(location)
+        //        print(location)
         
-         if locations.first != nil {
-           // print("location:: (location)")
-             fetchAddress()
+        let center = CLLocationCoordinate2DMake( locationManager.location!.coordinate.latitude, locationManager.location!.coordinate.longitude)
+        let span: MKCoordinateSpan = MKCoordinateSpanMake(5.0, 5.0)
+        let regionToDisplay: MKCoordinateRegion = MKCoordinateRegionMake(center, span)
+        self.mapView.setRegion(regionToDisplay, animated: false)
+        
+        if locations.first != nil {
+            // print("location:: (location)")
+            fetchFollowers()
         }
         
     }
     
     @objc(mapView:rendererForOverlay:) public func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-    
+        
         let circleRenderer = MKCircleRenderer(overlay: overlay)
         circleRenderer.strokeColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
         circleRenderer.lineWidth = 3.0
         return circleRenderer
     }
-
-
+    
+    
     func addRadiusCircle(_ location: CLLocation){
         self.mapView.delegate = self
         
         self.mapView.removeOverlays(self.mapView.overlays)
         
     }
-
-/*
-    func centerMapOnLocation(location: CLLocation) {
-        
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 10000, 10000)
-        mapView.setRegion(coordinateRegion, animated: true)
-        
-        
-    } */
-
-
-
-
-
-
-
+    
+    /*
+     func centerMapOnLocation(location: CLLocation) {
+     
+     let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 10000, 10000)
+     mapView.setRegion(coordinateRegion, animated: true)
+     
+     
+     } */
+    
+    
+    
+    
+    
+    
+    
 }
 
 extension Map: HandleMapSearch {
@@ -279,30 +546,108 @@ extension Map: HandleMapSearch {
             annotation.subtitle = "\(city) \(state)"
         }
         mapView.addAnnotation(annotation)
-        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let span = MKCoordinateSpanMake(100.0, 100.0)
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
         mapView.setRegion(region, animated: true)
     }
 }
 
-extension Map : MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
-        if annotation is MKUserLocation {
-            //return nil so map view draws "blue dot" for standard user location
-            return nil
+//extension Map : MKMapViewDelegate {
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?{
+//        if annotation is MKUserLocation {
+//            //return nil so map view draws "blue dot" for standard user location
+//            return nil
+//        }
+//        let reuseId = "pin"
+//        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+//        pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+//        pinView?.pinTintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+//        // black - Color for private pins
+//        pinView?.canShowCallout = true
+//        let smallSquare = CGSize(width: 30, height: 30)
+//        let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
+//        button.setBackgroundImage(UIImage(named: "car"), for: .normal)
+//        button.addTarget(self, action: #selector(Map.getDirections), for: .touchUpInside)
+//        pinView?.leftCalloutAccessoryView = button
+//        return pinView
+//    }
+//}
+extension Map{
+    
+    func fetchDataFromFacebook() {
+        if (FBSDKAccessToken.current() != nil) {
+            self.facebookGetData()
+            return
         }
-        let reuseId = "pin"
-        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
-        pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-        pinView?.pinTintColor = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
-         // black - Color for private pins
-        pinView?.canShowCallout = true
-        let smallSquare = CGSize(width: 30, height: 30)
-        let button = UIButton(frame: CGRect(origin: CGPoint.zero, size: smallSquare))
-        button.setBackgroundImage(UIImage(named: "car"), for: .normal)
-        button.addTarget(self, action: #selector(Map.getDirections), for: .touchUpInside)
-        pinView?.leftCalloutAccessoryView = button
-        return pinView
+        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
+        fbLoginManager.logIn(withReadPermissions: ["email","user_events"], from: self) { (result, error) in
+            if (error == nil){
+                let fbloginresult : FBSDKLoginManagerLoginResult = result!
+                if fbloginresult.grantedPermissions != nil {
+                    if(fbloginresult.grantedPermissions.contains("email"))
+                    {
+                        self.facebookGetData();
+                    }
+                }
+            }else{
+                print(error.debugDescription)
+            }
+        }
+    }
+    
+    //
+    //MARK FETCH EVENT FROM FACEBOOK
+    //
+    func facebookGetData(){
+        let nextMonth = Calendar.current.date(byAdding: .month, value: 1, to: Date())?.description ?? ""
+        let currentDate = Calendar.current.date(byAdding: .month, value: 0, to: Date())?.description ?? ""
+        
+       // let params = ["type":"event","q":"city = \(self.city ?? "")","center":"26.822134,75.774353","fields" : "cover,place,id,description,start_time,end_time,name","distance":"10","since":currentDate,"until": nextMonth,"limit" :"100"]
+        
+        let params = ["type":"event","q":"city = \(self.city ?? "")", "a":"country = \(self.country ?? "")","fields" : "cover,place,id,description,start_time,end_time,name,type,event_times,attending_count,owner","since":currentDate,"until": nextMonth,"limit" :"100"]
+        
+        FBSDKGraphRequest.init(graphPath: "/search", parameters: params, tokenString: FBSDKAccessToken.current().tokenString, version: "v2.10", httpMethod: "GET").start { (connection, result, error) -> Void in
+            if ((error) != nil)
+            {
+                print("Graph Request Error: \(error.debugDescription )")
+            }
+            else
+            {
+                guard let getdata = result as? [String : Any], let getresult = getdata["data"] as? [[String : Any]] else{
+                    return
+                }
+                print("Graph Request response: \(result.debugDescription )")
+                
+                for info in getresult{
+                    let data = FacebookEvents(info)
+                    self.getFacebookEvents.append(data)
+                    
+                    let annotation = JPSThumbnail()
+                    annotation.title = data.name
+                    annotation.subtitle = data.fbdescription
+                    if let lat = data.place?.latitude,let long = data.place?.longitude {
+                        let placemark = MKPlacemark.init(coordinate: CLLocationCoordinate2D.init(latitude: lat, longitude: long))
+                        annotation.coordinate = placemark.coordinate
+                    }
+                    
+                    if let makeURL = URL.init(string: data.coverImage!){
+                        let manager = SDWebImageManager()
+                        manager.downloadImage(with: makeURL, options: SDWebImageOptions(rawValue: 0), progress: { (receivedSize, expectedSize) in
+                            
+                        }, completed: { (downloadImage, error, cacheType, finished, url) in
+                            if downloadImage != nil{
+                                print("image")
+                            }else{
+                                print("no image")
+                            }
+                            annotation.image = downloadImage
+                        })
+                    }
+                    self.mapView.addAnnotation(JPSThumbnailAnnotation.init(thumbnail: annotation))
+                }
+                print("Graph Request Response: \(result.debugDescription )")
+            }
+        }
     }
 }
 

@@ -14,6 +14,7 @@ class ArchiveCell: UITableViewCell {
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     
+    @IBOutlet weak var btnProfile: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

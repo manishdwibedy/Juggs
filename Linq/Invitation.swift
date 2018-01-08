@@ -11,10 +11,15 @@ import UIKit
 
 class Invitation: NSObject {
     
-    var imagePath: String!
-    var sender: String!
-    var message: String!
-    var moveName: String!
-    
-    
+    var flyerImagePath: String!
+    var touserImagePath: String!
+    var touserID: String!
+    var touserName: String!
+    var eventName: String!
+    var from: String!
+    var fromName : String!
+    var fromuserImagePath: String!
+    var postID: String!
+    var status: String!
+    var date : String!
 }
