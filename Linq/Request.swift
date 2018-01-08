@@ -11,14 +11,15 @@ import UIKit
 
 class Request: NSObject {
     
-    var userImagePath: String!
+    var flyerImagePath: String!
+    var touserImagePath: String!
+    var touserID: String!
+    var touserName: String!
     var eventName: String!
-    var message: String!
-    var from: String = ""
+    var from: String!
+    var fromName : String!
+    var fromuserImagePath: String!
     var postID: String!
-    var userID: String!
-    
-    
-    
-    
+    var status: String!
+    var date : String!
 }

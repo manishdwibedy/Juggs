@@ -1,0 +1,114 @@
+/* 
+  Localizable.strings
+  Linq
+
+  Created by Quinton Askew on 12/9/17.
+  Copyright © 2017 QuintonAskew. All rights reserved.
+*/
+"restart" = "Untuk mengubah bahasa, aplikasi harus dimulai ulang.";
+"restartTitle" = "App restart diperlukan";
+"cancel" = "Membatalkan";
+"close"= "Tutup Sekarang";
+
+// Feed - (Cell Labels)
+"likes" = "Suka";
+"comments" = "Komentar";
+"juggs" = "Setuju";
+"capacity" = "Kapasitas";
+"public" = "Publik";
+"private" = "Pribadi";
+"miles" = "Mil";
+"viewAll" = "Lihat semua";
+"of" = "dari";
+
+// Description - (Action Sheet)
+"delete" = "Hapus Acara";
+"share" = "Bagikan";
+
+// Discover -(Segments & Alerts)
+"map" = "Peta";
+"discover" = "Menemukan";
+"followRequest" = "Anda telah meminta untuk mengikuti ";
+
+// Profile & OtherUser Profile - (Action Sheets)
+"message" = "Pesan";
+"relations" = "Hubungan";
+"report" = "Melaporkan";
+"block" = "Blok";
+"unblock" = "UnBlock";
+"invite" = "Undang";
+"privacyTitle" = "Privasi Diaktifkan!";
+"privacyMessage" = "Profil Anda hanya terlihat oleh pengikut Anda. Kelola Permintaan Ikuti Anda di sini.";
+"ok" = "Baik";
+"pt" = "Menjadi Publik!";
+"publicMessage" = "Profil Anda sekarang terlihat oleh semua orang untuk dilihat. Semua Permintaan Ikuti yang Ditunda diterima.";
+"inviteSent1" = "Undangan anda ";
+"inviteSent2" = " telah dikirim!";
+"inviteAlready1" = "Anda telah mengirim undangan untuk ";
+"inviteAlready2" = " untuk pengguna ini.";
+"requestAlready" = " telah mengirimkan permintaan ";
+"Male" = "Pria";
+"Female" = "Wanita";
+"Other" = "Tidak Ditentukan";
+"followers" = "Pengikutnya";
+"following" = "Berikut";
+
+// Settings - (Navigation Controllers & Alert)
+"name" = "Nama";
+"updatename" = "Perbarui Nama Pertama dan Terakhir Anda.";
+"password" = "Kata Sandi";
+"updatepword" = "Perbarui Kata Sandi";
+"pus" = "Password Diperbarui Berhasil";
+"pdm" = "Kata sandi anda tidak cocok.";
+"cpdm" = "Kata sandi Anda saat ini salah";
+"ncs" = "Kata sandi anda saat ini salah!";
+"biography" = "Biografi";
+"bsu" = "Biografi Berhasil Diperbarui!";
+"websites" = "Situs Web";
+"cf" = "Lanjutkan dengan Facebook";
+"ct" = "Lanjutkan denganh Twitter";
+"ci" = "Lanjutkan dengan Instagram";
+"cs" = "Lanjutkan dengan Snapchat";
+"cg" = "Lanjutkan dengan Google+";
+"un" = "Masukkan nama pengguna anda.";
+"lof" = "Keluar dari Facebook";
+"lot" = "Keluar dari Twitter";
+"loi" = "Keluar dari Instagram";
+"log" = "Keluar dari Google+";
+"un" = "Masukkan nama pengguna anda.";
+"scum" = "Snapchat Username";
+"save" = "Menyimpan";
+"ays" = "Apakah kamu yakin?";
+"logout" = "Keluar";
+"warn" = "PERINGATAN!";
+"deleteAcct" = "Menghapus";
+
+// Discover
+"privacy" = "Pribadi";
+"search" = "Pencarian";
+"areYouSure" = "Apakah kamu yakin?";
+"warning" = "PERINGATAN";
+"areYouSure2" = "Yakin ingin menghapus akun Anda?";
+"delete" = "Menghapus";
+"sryM" = "Terdapat kesalahan dalam memproses permintaan anda.";
+"dsm" = "Akun anda telah dihapus.";
+
+// Box
+"inbox" = "Kotak Masuk";
+"invitations" = "Undangans";
+"ni" = "Baru Undangan";
+"nm" = "Baru Pesan";
+"confirm" = "Memastikan";
+"rq" = "Permintaan";
+"rs" = "Permintaan (Dikirim)";
+"ins" = "Undangans (Dikirim)";
+
+// New Jugg
+"cm" = "Kamera";
+"pl" = "Perpustakaan Foto";
+"slf" = "Pilih Flyer";
+"flyr" = "Flyer Adalah Aajib.";
+"future" = "Masukkan waktu masa depan untuk acara tersebut.";
+"req" = "Semua bidang membutuhkan tindakan.";
+
+

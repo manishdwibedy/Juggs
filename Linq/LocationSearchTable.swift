@@ -48,16 +48,9 @@ extension LocationSearchTable : UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
     
        
-        
-        
-        
-        
-        
-        
-        
-        
-         guard let mapView = mapView,
+        guard let mapView = mapView,
             let searchBarText = searchController.searchBar.text else { return }
+        
         let request = MKLocalSearchRequest()
         request.naturalLanguageQuery = searchBarText
         request.region = mapView.region
@@ -87,13 +80,6 @@ extension LocationSearchTable {
     }
     
 }
-
-
-
-
-
-
-
 
 extension LocationSearchTable {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

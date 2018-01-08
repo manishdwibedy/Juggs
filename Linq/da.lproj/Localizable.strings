@@ -1,0 +1,114 @@
+/* 
+  Localizable.strings
+  Linq
+
+  Created by Quinton Askew on 12/9/17.
+  Copyright © 2017 QuintonAskew. All rights reserved.
+*/
+"restart" = "For at ændre sproget skal appen genstartes.";
+"restartTitle" = "App genstart kræves";
+"cancel" = "Annuller";
+"close" = "Luk nu";
+
+// Feed - (Cell Labels)
+"likes" = "Kan lide";
+"comments" = "Kommentarer";
+"juggs" = "Enig";
+"capacity" = "Kapacitet";
+"public" = "Offentlig";
+"private" = "Privat";
+"miles" = "Miles";
+"viewAll" = "Se Alt";
+"of" = "af";
+
+// Description - (Action Sheet)
+"delete" = "Slet Begivenhed";
+"share" = "Del";
+
+// Discover -(Segments & Alerts)
+"map" = "Kort";
+"discover" = "Opdage";
+"followRequest" = "Du har bedt om at følge ";
+
+// Profile & OtherUser Profile - (Action Sheets)
+"message" = "Besked";
+"relations" = "Forbindelser";
+"report" = "Rapport";
+"block" = "Blok";
+"unblock" = "UnBlok";
+"invite" = "Invitere";
+"privacyTitle" = "Privatliv Aktiveret!";
+"privacyMessage" = "Din profil er kun synlig for dine tilhængere. Administrer dine følgesøgninger her.";
+"ok" = "Okay";
+"pt" = "Går offentligt!";
+"publicMessage" = "Din profil er nu synlig for alle at se. Alle ventende følgesøgninger blev accepteret.";
+"inviteSent1" = "Din invitation til ";
+"inviteSent2" = " er blevet sendt!";
+"inviteAlready1" = "Du har allerede sendt en invitation til ";
+"inviteAlready2" = " til denne bruger.";
+"requestAlready" = " har allerede sendt en anmodning om ";
+"Male" = "Han";
+"Female" = "Kvinde";
+"Other" = "Ikke Specificeret";
+"followers" = "Abonnenter";
+"following" = "Følge";
+
+// Settings - (Navigation Controllers & Alert)
+"name" = "Navn";
+"updatename" = "Opdater dit for- og efternavn.";
+"password" = "Adgangskode";
+"updatepword" = "Opdater Adgangskode";
+"pus" = "Adgangskode Opdateret Succesfuldt";
+"pdm" = "Dine adgangskoder stemmer ikke overens.";
+"cpdm" = "Din nuværende adgangskode er forkert.";
+"ncs" = "Navn ændret succes!";
+"biography" = "Biografi";
+"bsu" = "Biografi succesfuldt opdateret!";
+"websites" = "Websteder";
+"cf" = "Fortsæt med Facebook";
+"ct" = "Fortsæt med Twitter";
+"ci" = "Fortsæt med Instagram";
+"cs" = "Fortsæt med Snapchat";
+"cg" = "Fortsæt med Google+";
+"un" = "Skriv dit brugernavn.";
+"lof" = "Log ud fra Facebook";
+"lot" = "Log ud fra Twitter";
+"loi" = "Log ud fra Instagram";
+"log" = "Log ud fra Google+";
+"un" = "Skriv dit brugernavn.";
+"scum" = "Snapchat Brugernavn";
+"save" = "Gemme";
+"ays" = "Er du sikker?";
+"logout" = "Log Ud";
+"warn" = "Advarsel!";
+"deleteAcct" = "Slet";
+
+// Discover
+"privacy" = "Privatliv";
+"search" = "Søg";
+"areYouSure" = "Er du sikker?";
+"warning" = "Advarsel";
+"areYouSure2" = "Er du sikker på, at du vil slette din konto?";
+"delete" = "Slet";
+"sryM" = "Der opstod en fejl under behandlingen af din anmodning.";
+"dsm" = "Din konto er blevet slettet.";
+
+// Box
+"inbox" = "Indbakke";
+"invitations" = "Invitationer";
+"ni" = "Ny Invitation";
+"nm" = "Ny Besked";
+"confirm" = "Bekræfte";
+"rq" = "Anmodning";
+"rs" = "Anmodning (Sendt)";
+"ins" = "Invitationer (Sendt)";
+
+// New Jugg
+"cm" = "Kamera";
+"pl" = "Foto Bibliotek";
+"slf" = "Vælg en Flyer";
+"flyr" = "En flyer er påkrævet.";
+"future" = "Indtast fremtidig tid for arrangementet.";
+"req" = "Alle felter kræver handling.";
+
+

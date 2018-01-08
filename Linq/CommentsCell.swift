@@ -13,10 +13,9 @@ class CommentsCell: UITableViewCell {
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var commentLbl: UITextView!
     @IBOutlet weak var userLbl : UILabel!
+    @IBOutlet weak var dateLbl : UILabel!
     
-    
-    
-    
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()

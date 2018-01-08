@@ -1,0 +1,113 @@
+/* 
+  Localizable.strings
+  Linq
+
+  Created by Quinton Askew on 12/9/17.
+  Copyright © 2017 QuintonAskew. All rights reserved.
+*/
+"restart" = "Kielen vaihtaminen edellyttää, että sovellus on käynnistettävä uudelleen.";
+"restartTitle" = "Sovelluksen käynnistys vaaditaan";
+"cancel" = "Peruuta";
+"close" = "Sulje nyt";
+
+// Feed - (Cell Labels)
+"likes" = "Tykkää";
+"comments" = "Kommentit";
+"juggs" = "Suostua";
+"capacity" = "Kapasiteetti";
+"public" = "Julkinen";
+"private" = "Yksityinen";
+"miles" = "mailia";
+"viewAll" = "Näytä Kaikki";
+"of" = "of";
+
+// Description - (Action Sheet)
+"delete" = "Poista Tapahtuma";
+"share" = "Jaa";
+
+// Discover -(Segments & Alerts)
+"map" = "Kartta";
+"discover" = "Tutustu";
+"followRequest" = "Olet pyytänyt seuraamaan ";
+
+// Profile & OtherUser Profile - (Action Sheets)
+"message" = "Viesti";
+"relations" = "Suhteet";
+"report" = "Raportti";
+"block" = "Lohko";
+"unblock" = "Pura Esto";
+"invite" = "Kutsu";
+"privacyTitle" = "Yksityisyys on Aktivoitu!";
+"privacyMessage" = "Profiili näkyy vain seuraajille. Hallitse seuraamispyyntösi täällä.";
+"ok" = "OK";
+"pt" = "Julkaista!";
+"publicMessage" = "Profiilisi on nyt näkyvissä kaikkien nähtävissä. Kaikki vireillä olevat seurauspyynnöt hyväksyttiin.";
+"inviteSent1" = "Sinun kutsusi ";
+"inviteSent2" = " on lähetetty!";
+"inviteAlready1" = "Olet jo lähettänyt kutsun ";
+"inviteAlready2" = " käyttäjälle.";
+"requestAlready" = " on jo lähettänyt pyynnön ";
+"Male" = "Uros";
+"Female" = "Nainen";
+"Other" = "Ei Määritelty";
+"followers" = "Seuraajaa";
+"following" = "Seurata";
+
+// Settings - (Navigation Controllers & Alert)
+"name" = "Nimi";
+"updatename" = "Päivitä etu- ja sukunimi.";
+"password" = "Salasana";
+"updatepword" = "Päivitä Salasana";
+"pus" = "Salasana on päivitetty onnistuneesti";
+"pdm" = "Salasanasi eivät täsmää.";
+"cpdm" = "Nykyinen salasanasi on virheellinen.";
+"ncs" = "Nimi muuttui onnistuneesti!";
+"biography" = "Elämäkerta";
+"bsu" = "Elämäkerta on onnistuneesti päivitetty!";
+"websites" = "Sivustot";
+"cf" = "Jatka Facebook";
+"ct" = "Jatka Twitter";
+"ci" = "Jatka Instagram";
+"cs" = "Jatka Snapchat";
+"cg" = "Jatka Google+";
+"un" = "Syötä käyttäjänimesi.";
+"lof" = "Kirjaudu ulos Facebook";
+"lot" = "Kirjaudu ulos Twitter";
+"loi" = "Kirjaudu ulos Instagram";
+"log" = "Kirjaudu ulos Google+";
+"un" = "Syötä käyttäjänimesi.";
+"scum" = "Snapchat Käyttäjätunnus";
+"save" = "Tallentaa";
+"ays" = "Oletko varma?";
+"logout" = "Kirjautua Ulos";
+"warn" = "Varoitus!";
+"deleteAcct" = "Poistaa";
+
+// Discover
+"privacy" = "Yksityisyys";
+"search" = "Hae";
+"areYouSure" = "Oletko varma?";
+"warning" = "Varoitus";
+"areYouSure2" = "Haluatko varmasti poistaa tilin?";
+"delete" = "Poistaa";
+"sryM" = "Pyyntösi käsittely epäonnistui.";
+"dsm" = "Tilisi on poistettu.";
+
+// Box
+"inbox" = "Saapuneet";
+"invitations" = "Kutsut";
+"ni" = "Uusi Kutsu";
+"nm" = "Uusi Viesti";
+"confirm" = "Vahvistaa";
+"rq" = "Pyyntö";
+"rs" = "Pyyntö (Lähetetty)";
+"ins" = "Kutsut (Lähetetty)";
+
+// New Jugg
+"cm" = "Kamera";
+"pl" = "Valokuvakirjasto";
+"slf" = "Valitse Flyer";
+"flyr" = "Flyer on pakollinen.";
+"future" = "Anna tulevaa aikaa tapahtumalle.";
+"req" = "Kaikki kentät edellyttävät toimenpiteitä.";
+

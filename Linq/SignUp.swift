@@ -11,27 +11,23 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 
-class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var ageTF: UITextField!
-    @IBOutlet weak var firstNameTF: UITextField!
-    @IBOutlet weak var lastNameTF: UITextField!
+  
+    @IBOutlet weak var usernameTF: UITextField!
+    
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var pwTF: UITextField!
-    @IBOutlet weak var confirmPWTF: UITextField!
-    @IBOutlet weak var bioTV: UITextView!
+
+
     @IBOutlet weak var signInBtn: UIButton!
     @IBOutlet weak var logInBtn: UIButton!
-    @IBOutlet weak var cityTF: UITextField!
-    @IBOutlet weak var stateTF: UITextField!
-    @IBOutlet weak var genderTF: UITextField!
+   
     
     @IBAction func signedUp(_ sender: Any) {
-   self.view.endEditing(true)
-        
-    validation()
-    
+        self.view.endEditing(true)
+        newValidation()
     }
     
     @IBAction func logIn(_ sender: Any) {
@@ -40,32 +36,45 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     
     }
     
-
+    func doneAction() {
+        self.view.endEditing(true)
+    }
     var userStorage: StorageReference!
     var ref: DatabaseReference!
     
     
-    var stateList = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN","IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND",  "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
-
-    var genderList = ["Female", "Male"]
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
-         signInBtn.isEnabled = false
-        ////// TAP GESTURE FOR 'imageView'  /////
-        let tap = UITapGestureRecognizer(target: self, action: #selector(SignUp.tappedMe))
-        imageView.addGestureRecognizer(tap)
-        imageView.isUserInteractionEnabled = true
-        
         let storageRef = Storage.storage().reference()
         let urlToStorage = "gs://jugg-88ab9.appspot.com/"
         storageRef.storage.reference(forURL: urlToStorage)
         userStorage = storageRef.child("Users")
         ref = Database.database().reference()
-        
+        visuals()
         delegate()
-        pickerViews()
+        
     }
+    
+    
+    
+    func visuals() {
+        let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+        signInBtn.isEnabled = false
+        ////// TAP GESTURE FOR 'imageView'  /////
+        let tap = UITapGestureRecognizer(target: self, action: #selector(SignUp.tappedMe))
+        imageView.addGestureRecognizer(tap)
+        imageView.isUserInteractionEnabled = true
+        imageView.layer.cornerRadius = imageView.frame.size.width/2
+        imageView.clipsToBounds = true
+//        imageView.layer.borderWidth = 6
+//        imageView.layer.borderColor = purp.cgColor
+        
+    }
+    
+    
     
     
     /////////   TAP PLACEHOLDER PHOTO TO SELECT AN IMAGE  /////////
@@ -73,9 +82,12 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     func tappedMe() {
         
         // ACTION SHEET FOR PHOTO SELECTION
+        var alert = UIAlertController(title: "Choose an Image", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         
-        let alert = UIAlertController(title: "Choose an Image", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            alert = UIAlertController(title: "Choose an Image", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+        }
+      
         let camera = UIAlertAction(title: "Camera", style: .default, handler: { (ACTION) in
             
             let image = UIImagePickerController()
@@ -139,162 +151,144 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         
         // Set photoImageView to display the selected image.
-        
         imageView.image = selectedImage
         
         // Dismiss the picker.
         
         dismiss(animated: true, completion: nil)
         
+
         signInBtn.isEnabled = true
         
     }
     
+ 
+//    func validation() {
+//
+//        guard let remail = emailTF.text?.trim(),let rpassword = pwTF.text?.trim(),let rfirstName = firstNameTF.text?.trim(), let rlastName = lastNameTF.text?.trim(), let rage = ageTF.text?.trim(), let rbio = bioTV.text?.trim(), let rcity = cityTF.text?.trim(), let rstate = stateTF.text else {
+//            print(" Form isnt valid")
+//
+//            return
+//        }
+//
+//        if rpassword == confirmPWTF.text {
+//            Globals.ShowSpinner(testStr: "")
+//            Auth.auth().createUser(withEmail: remail, password: rpassword, completion: {(user,error)in
+//
+//                if let error = error {
+//                    print(error.localizedDescription)
+//                    let alertViewController = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
+//
+//                    let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+//                    }
+//
+//                    alertViewController.addAction(okAction)
+//                    let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+//                    alertViewController.view.tintColor = purp
+//                    self.present(alertViewController, animated: true, completion: nil)
+//
+//                    Globals.HideSpinner()
+//                }
+//
+//                if let user = user {
+//                    let rgender = self.genderTF.text
+//                    let changeRequest = Auth.auth().currentUser!.createProfileChangeRequest()
+//                    changeRequest.commitChanges(completion: nil)
+//                    let imageRef = self.userStorage.child("\(user.uid).jpg")
+//                    let data = UIImageJPEGRepresentation(self.imageView.image!, 0.5)
+//                    let uploadTask = imageRef.putData(data!, metadata: nil, completion: { (metadata, error) in
+//                        imageRef.downloadURL(completion: { (url, er) in
+//                            if er != nil {
+//                                print(er!.localizedDescription)
+//
+//                            }
+//
+//                            if let url = url {
+//
+//                                let userInfo: [String : Any] = ["UID" : user.uid,
+//                                                                "FirstName" : rfirstName,
+//                                                                "LastName" : rlastName,
+//                                                                "Age" : rage,
+//                                                                "Bio" : rbio,
+//                                                                "City" : rcity,
+//                                                                "Gender" : rgender ?? "Rather Not",
+//                                                                "State" : rstate,
+//                                                                "urlToImage" : url.absoluteString,
+//
+//                                                                ]
+//
+//                                self.ref.child("Users").child(user.uid).setValue(userInfo)
+//
+//                                let juggTeamRef = self.ref.child("Users").child(user.uid).child("Following")
+//                                let followUs = ["Q" : "BZqQBnmgWkbMxFZ2yqlFcG3bKB82", "JuggTeam" : "Qr37LzryqIZIxPoymnwgVoSpCqq1"]
+//                                juggTeamRef.setValue(followUs)
+//
+//
+//
+//                                if let token = Messaging.messaging().fcmToken {
+//                                    let refchild = self.ref.child("Users").child(user.uid).child("fcmToken")
+//                                    refchild.setValue(token)
+//                                }
+//
+//                                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
+//                                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(true, key: "IS_LOGIN")
+//                                Globals.HideSpinner()
+//                                self.present(vc, animated: true, completion: nil)
+//                            }
+//
+//                        })
+//
+//                    })
+//                    uploadTask.resume()
+//                }
+//            })
+//
+//        }else{
+//        }
+//
+//    }
     
-    func validation() {
-      
-        guard let remail = emailTF.text,let rpassword = pwTF.text,var rfirstName = firstNameTF.text, let rlastName = lastNameTF.text, let rage = ageTF.text, let rbio = bioTV.text, let rcity = cityTF.text, let rstate = stateTF.text, let rgender = genderTF.text else {
-            print(" Form isnt valid")
-            
-            return
-        }
-        
-        if rpassword == confirmPWTF.text {
-            Globals.ShowSpinner(testStr: "")
-            Auth.auth().createUser(withEmail: remail, password: rpassword, completion: {(user,error)in
-                
-                if let error = error {
-                    print(error.localizedDescription)
-                    let alertViewController = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
-                    
-                    let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
-                    }
-                    
-                    alertViewController.addAction(okAction)
-                    let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
-                    alertViewController.view.tintColor = purp
-                    self.present(alertViewController, animated: true, completion: nil)
-
-                    Globals.HideSpinner()
-                }
-                
-                if let user = user {
-                    
-                    let changeRequest = Auth.auth().currentUser!.createProfileChangeRequest()
-                    rfirstName = rfirstName + " "
-                    changeRequest.commitChanges(completion: nil)
-                    let imageRef = self.userStorage.child("\(user.uid).jpg")
-                    let data = UIImageJPEGRepresentation(self.imageView.image!, 0.5)
-                    let uploadTask = imageRef.putData(data!, metadata: nil, completion: { (metadata, error) in
-                        imageRef.downloadURL(completion: { (url, er) in
-                            if er != nil {
-                                print(er!.localizedDescription)
-                                
-                            }
-                            
-                            if let url = url {
-                                
-                                let userInfo: [String : Any] = ["UID" : user.uid,
-                                                                "First Name" : rfirstName,
-                                                                "Last Name" : rlastName,
-                                                                "Age" : rage,
-                                                                "Bio" : rbio,
-                                                                "City" : rcity,
-                                                                "Gender" : rgender,
-                                                                "State" : rstate,
-                                                                "urlToImage" : url.absoluteString,
-                                                                
-                                                                ]
-                                
-                                self.ref.child("Users").child(user.uid).setValue(userInfo)
-                                
-                                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
-                                Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(true, key: "IS_LOGIN")
-                                Globals.HideSpinner()
-                                self.present(vc, animated: true, completion: nil)
-                            }
-                            
-                        })
-                        
-                    })
-                    uploadTask.resume()
-                }
-            })
-            
-        }else{
-        }
-        
-    }
     
-   
+    
     
     func delegate() {
-        
-        ageTF.delegate = self
-        firstNameTF.delegate = self
-        lastNameTF.delegate = self
+        usernameTF.delegate = self
         emailTF.delegate = self
         pwTF.delegate = self
-        confirmPWTF.delegate = self
-        bioTV.delegate = self
-        
     }
     
     
       func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        ageTF.resignFirstResponder()
-        firstNameTF.resignFirstResponder()
-        lastNameTF.resignFirstResponder()
+        usernameTF.resignFirstResponder
         emailTF.resignFirstResponder()
         pwTF.resignFirstResponder()
-        confirmPWTF.resignFirstResponder()
-        
+       
         return true
         
     }
     
     
     func dismissKeyboard(){
-    
-        ageTF.resignFirstResponder()
-        firstNameTF.resignFirstResponder()
-        lastNameTF.resignFirstResponder()
+        usernameTF.resignFirstResponder()
         emailTF.resignFirstResponder()
         pwTF.resignFirstResponder()
-        confirmPWTF.resignFirstResponder()
-        bioTV.resignFirstResponder()
+       
     }
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if (text == "\n") {
-            bioTV.resignFirstResponder()
-        }
-        return true
-    }
-    
+//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+//        if (text == "\n") {
+//            bioTV.resignFirstResponder()
+//        }
+//        return true
+//    }
+//
     func textField(_ textFieldToChange: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        
-        
+    
         let startingLength = textFieldToChange.text?.characters.count ?? 0
         
-        if textFieldToChange == ageTF {
+        if textFieldToChange == usernameTF {
             
-            let characterCountLimit = 2;
-            
-            let lengthToAdd = string.characters.count
-            let lengthToReplace = range.length
-            
-            let newLength = startingLength + lengthToAdd - lengthToReplace
-            
-            return newLength <= characterCountLimit
-            
-            
-            
-        }else if textFieldToChange == cityTF {
-            
-            let characterCountLimit = 21;
+            let characterCountLimit = 25;
             
             let lengthToAdd = string.characters.count
             let lengthToReplace = range.length
@@ -302,100 +296,90 @@ class SignUp: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             let newLength = startingLength + lengthToAdd - lengthToReplace
             
             return newLength <= characterCountLimit
-            
-            
-            
-        }else if textFieldToChange == firstNameTF {
-            
-            let characterCountLimit = 20;
-            
-            let lengthToAdd = string.characters.count
-            let lengthToReplace = range.length
-            
-            let newLength = startingLength + lengthToAdd - lengthToReplace
-            
-            return newLength <= characterCountLimit
-            
-            
-        }else if textFieldToChange == lastNameTF {
-            
-            let characterCountLimit = 20;
-            
-            let lengthToAdd = string.characters.count
-            let lengthToReplace = range.length
-            
-            let newLength = startingLength + lengthToAdd - lengthToReplace
-            
-            return newLength <= characterCountLimit
-            
             
         }
         
         return true
     }
     
-    
-    func pickerViews() {
+    func newValidation() {
         
-        let pickerView = UIPickerView()
-        
-        pickerView.delegate = self
-        pickerView.dataSource = self
-        //pickerView.backgroundColor = UIColor.white
-        pickerView.tag = 0
-        pickerView.showsSelectionIndicator = true
-        pickerView.backgroundColor = UIColor.clear
-        
-        stateTF.inputView = pickerView
-        
-        
-        let pickerView2 = UIPickerView()
-        
-        pickerView2.delegate = self
-        pickerView2.dataSource = self
-        pickerView.backgroundColor = UIColor.clear
-        pickerView2.tag = 1
-        pickerView2.showsSelectionIndicator = true
-        genderTF.inputView = pickerView2
-        
-        
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
-        if(pickerView.tag == 0) {
-            return stateList.count
-        }else if(pickerView.tag == 1) {
-            return genderList.count
+        guard let username = usernameTF.text?.trim(), let remail = emailTF.text?.trim(), let rpassword = pwTF.text?.trim() else {
+            print(" Form isnt valid")
+            
+            return
         }
-        return 1
+        
+        
+        
+        Auth.auth().createUser(withEmail: remail, password: rpassword, completion: {(user,error)in
+            
+            if let error = error {
+                print(error.localizedDescription)
+                let alertViewController = UIAlertController(title: "", message: error.localizedDescription, preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+                }
+                
+                alertViewController.addAction(okAction)
+                let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
+                alertViewController.view.tintColor = purp
+                self.present(alertViewController, animated: true, completion: nil)
+            }
+            
+            
+            
+            if let user = user {
+                let changeRequest = Auth.auth().currentUser!.createProfileChangeRequest()
+                changeRequest.commitChanges(completion: nil)
+                let imageRef = self.userStorage.child("\(user.uid).jpg")
+                let data = UIImageJPEGRepresentation(self.imageView.image!, 0.5)
+                let uploadTask = imageRef.putData(data!, metadata: nil, completion: { (metadata, error) in
+                    imageRef.downloadURL(completion: { (url, er) in
+                        if er != nil {
+                            print(er!.localizedDescription)
+                            
+                        }
+                        
+                        if let url = url {
+                            
+                            let userInfo: [String : Any] = ["UID" : user.uid,
+                                                            "Username" : username,
+                                                            "urlToImage" : url.absoluteString,
+                                                            
+                                                            ]
+                            
+                            self.ref.child("AllUsers").child(user.uid).setValue(userInfo)
+                            self.ref.child("Usernames").childByAutoId().setValue(username)
+                            
+                            let juggTeamRef = self.ref.child("AllUsers").child(user.uid).child("Following")
+                            let followUs = ["Q" : "BZqQBnmgWkbMxFZ2yqlFcG3bKB82", "JuggTeam" : "Qr37LzryqIZIxPoymnwgVoSpCqq1"]
+                            juggTeamRef.setValue(followUs)
+                            
+                            
+                            if let token = Messaging.messaging().fcmToken {
+                                let refchild = self.ref.child("AllUsers").child(user.uid).child("fcmToken")
+                                refchild.setValue(token)
+                            }
+                            
+                            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeVC")
+                            Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(true, key: "IS_LOGIN")
+                            Globals.HideSpinner()
+                            self.present(vc, animated: true, completion: nil)
+                        }
+                        
+                    })
+                    
+                })
+                uploadTask.resume()
+                
+            }
+        })
+        
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if(pickerView.tag == 0) {
-            return stateList[row]
-        }else if(pickerView.tag == 1) {
-            return genderList[row]
-        }
-        return ""
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if (pickerView.tag == 0) {
-            stateTF.text = stateList[row]
-        }else if(pickerView.tag == 1) {
-            genderTF.text = genderList[row]
-        }
-        self.view.endEditing(true)
-    }
-
-    
-    
-    
+ 
+   
     /*
     // MARK: - Navigation
 

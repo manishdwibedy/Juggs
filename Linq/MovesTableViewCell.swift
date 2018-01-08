@@ -9,28 +9,45 @@
 import UIKit
 import Firebase
 import CoreLocation
+import GoogleMobileAds
 var addressAfterConversion = ""
+
+
 class MovesTableViewCell: UITableViewCell, CLLocationManagerDelegate {
 
-    @IBOutlet weak var flyerImage: UIImageView!
-    @IBOutlet weak var topGradientView: UIView!
+   // Header
+     @IBOutlet weak var btnProfile: UIButton!
     @IBOutlet weak var userImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel! // Username
+    @IBOutlet weak var eventCategoryLabel: UILabel!
+    @IBOutlet weak var distanceAwayLabel: UILabel!
+    
+    // Center
+    @IBOutlet weak var titleView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var flyerImage: UIImageView!
+   
     @IBOutlet weak var bottomGradientView: UIView!
     @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var capacityLabel: UILabel!
     @IBOutlet weak var unlikeBtn: UIButton!
     @IBOutlet weak var flameButton: UIButton!
     @IBOutlet weak var flameCountLabel: UILabel!
     @IBOutlet weak var likeCountLabel: UILabel!
     @IBOutlet weak var flamedBtn: UIButton!
-    @IBOutlet weak var distanceAwayLabel: UILabel!
     @IBOutlet weak var commentBtn: UIButton!
     
     @IBOutlet weak var comments: UITextView!
     @IBOutlet weak var commentCount: UILabel!
+    @IBOutlet weak var commentViewBtn: UIButton!
+    
     var postID: String!
     var locationManager:CLLocationManager!
+    
+   
+   
+   
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,6 +55,11 @@ class MovesTableViewCell: UITableViewCell, CLLocationManagerDelegate {
        // retrieveAddress()
         startUp()
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(DiscoverTable.showUsersProfile(_:)))
+        userImageView.addGestureRecognizer(tap)
+        userImageView.isUserInteractionEnabled = true
+        
+       
     }
 
     
@@ -82,7 +104,6 @@ class MovesTableViewCell: UITableViewCell, CLLocationManagerDelegate {
     
     @IBAction func moveUnliked(_ sender: Any) {
 
-    
         self.unlikeBtn.isEnabled = false
 
         let ref = Database.database().reference()
@@ -152,7 +173,7 @@ class MovesTableViewCell: UITableViewCell, CLLocationManagerDelegate {
                             if let properties = snap.value as? [String : AnyObject] {
                                 if let linqs = properties["peopleWhoLinqed"] as? [String : AnyObject] {
                                     let count = linqs.count
-                                    self.flameCountLabel.text = "\(count)"
+                                    self.flameCountLabel.text = "\(count) Juggs"
                                     
                                     let update = ["FlameCount" : count]
                                     ref.child("Flyers").child(self.postID).updateChildValues(update)
@@ -238,8 +259,6 @@ class MovesTableViewCell: UITableViewCell, CLLocationManagerDelegate {
             
             self.distanceAwayLabel.text = "\(milesAway)mi"
             
-            
-            
         }
         
 
@@ -256,14 +275,20 @@ class MovesTableViewCell: UITableViewCell, CLLocationManagerDelegate {
         self.unlikeBtn.isHidden = true
         self.flamedBtn.isHidden = true
         
-        comments.layer.masksToBounds = true
-        comments.layer.cornerRadius = 8
-        comments.layer.borderWidth = 2.5
-        comments.layer.borderColor = UIColor.white.cgColor
+        userImageView.clipsToBounds = true
+        userImageView.layer.cornerRadius = userImageView.frame.size.width/2
         
-        
+
+        comments.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
         
     }
+    
+   
+    
+        
+   
+    
+    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

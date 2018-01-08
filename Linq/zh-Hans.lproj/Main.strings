@@ -1,0 +1,609 @@
+
+/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "0jk-Mv-sRO"; */
+"0jk-Mv-sRO.normalTitle" = "提交";
+
+/* Class = "UIButton"; normalTitle = "Unfollow"; ObjectID = "0nV-30-0jC"; */
+"0nV-30-0jC.normalTitle" = "取消关注";
+
+/* Class = "UIButton"; normalTitle = "Accept"; ObjectID = "2w5-9B-W65"; */
+"2w5-9B-W65.normalTitle" = "接受";
+
+/* Class = "UITableViewController"; title = "Guest List"; ObjectID = "3Au-a7-a3G"; */
+"3Au-a7-a3G.title" = "嘉宾名单";
+
+/* Class = "UILabel"; text = "Enter your email address associated with your account."; ObjectID = "3Ir-PD-gme"; */
+"3Ir-PD-gme.text" = "输入您的帐户相关的电子邮件地址。";
+
+/* Class = "UILabel"; text = "You have been blocked by this user."; ObjectID = "3gk-VS-FDJ"; */
+"3gk-VS-FDJ.text" = "您已被此用户阻止。";
+
+/* Class = "UIViewController"; title = "Search"; ObjectID = "3uR-oG-Pxf"; */
+"3uR-oG-Pxf.title" = "搜索";
+
+/* Class = "UIViewController"; title = "InstagramLoginVC"; ObjectID = "4ld-mG-Ps5"; */
+"4ld-mG-Ps5.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Decline"; ObjectID = "4vb-hG-ecP"; */
+"4vb-hG-ecP.normalTitle" = "下降";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "5EV-BC-kpz"; */
+"5EV-BC-kpz.text" = " ";
+
+/* Class = "UILabel"; text = "Time:"; ObjectID = "5GY-1c-Hqt"; */
+"5GY-1c-Hqt.text" = "时间：";
+
+/* Class = "UIButton"; normalTitle = "Request to Attend"; ObjectID = "5YM-hH-E4i"; */
+"5YM-hH-E4i.normalTitle" = "请求参加";
+
+/* Class = "UITextView"; text = "Comments go here!"; ObjectID = "5iw-M8-s5y"; */
+"5iw-M8-s5y.text" = "评论去这里！";
+
+/* Class = "UIButton"; normalTitle = "Decline"; ObjectID = "5j8-57-shR"; */
+"5j8-57-shR.normalTitle" = "下降";
+
+/* Class = "UILabel"; text = "Login to verify your identity."; ObjectID = "62a-Q1-qsK"; */
+"62a-Q1-qsK.text" = "登录以验证您的身份。";
+
+/* Class = "UILabel"; text = "Edit your bio."; ObjectID = "6GU-xK-hQr"; */
+"6GU-xK-hQr.text" = "编辑你的生物。";
+
+/* Class = "UIButton"; normalTitle = "Send"; ObjectID = "6IG-hq-aGI"; */
+"6IG-hq-aGI.normalTitle" = "发送";
+
+/* Class = "UISegmentedControl"; 6UO-Pn-iIo.segmentTitles[0] = "Inbox"; ObjectID = "6UO-Pn-iIo"; */
+"6UO-Pn-iIo.segmentTitles[0]" = "收件箱";
+
+/* Class = "UISegmentedControl"; 6UO-Pn-iIo.segmentTitles[1] = "Invitations"; ObjectID = "6UO-Pn-iIo"; */
+"6UO-Pn-iIo.segmentTitles[1]" = "邀请";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6ZV-Bt-lfH"; */
+"6ZV-Bt-lfH.text" = " ";
+
+/* Class = "UILabel"; text = "October 13"; ObjectID = "6cp-EB-6mf"; */
+"6cp-EB-6mf.text" = "十月十三日";
+
+/* Class = "UILabel"; text = "Websites"; ObjectID = "7PF-kH-2aD"; */
+"7PF-kH-2aD.text" = "网站";
+
+/* Class = "UILabel"; text = "Event Name Label"; ObjectID = "7gA-z0-EQf"; */
+"7gA-z0-EQf.text" = "事件名称标签";
+
+/* Class = "UISegmentedControl"; 84r-bB-bdV.segmentTitles[0] = "Following"; ObjectID = "84r-bB-bdV"; */
+"84r-bB-bdV.segmentTitles[0]" = "以下";
+
+/* Class = "UISegmentedControl"; 84r-bB-bdV.segmentTitles[1] = "Followers"; ObjectID = "84r-bB-bdV"; */
+"84r-bB-bdV.segmentTitles[1]" = "关注";
+
+/* Class = "UILabel"; text = "22"; ObjectID = "8Cg-wH-VNP"; */
+"8Cg-wH-VNP.text" = " ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "8Ki-It-4wq"; */
+"8Ki-It-4wq.text" = " ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "8nm-16-IAk"; */
+"8nm-16-IAk.text" = " ";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "9dQ-id-XYM"; */
+"9dQ-id-XYM.placeholder" = "电子邮件";
+
+/* Class = "UITextField"; placeholder = "New Password"; ObjectID = "9fO-Ui-2dw"; */
+"9fO-Ui-2dw.placeholder" = "新密码";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "9nG-4V-98K"; */
+"9nG-4V-98K.text" = " ";
+
+/* Class = "UILabel"; text = "City, State"; ObjectID = "9uM-dX-DoA"; */
+"9uM-dX-DoA.text" = "市，州";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "APt-i1-Crl"; */
+"APt-i1-Crl.text" = " ";
+
+/* Class = "UIViewController"; title = "Comments"; ObjectID = "B4j-Qb-bRh"; */
+"B4j-Qb-bRh.title" = "注释";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "B88-Qo-RqJ"; */
+"B88-Qo-RqJ.normalTitle" = "取消";
+
+/* Class = "UINavigationItem"; title = "Description"; ObjectID = "BCs-Nb-RDu"; */
+"BCs-Nb-RDu.title" = "描述";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "Bcz-pS-dIj"; */
+"Bcz-pS-dIj.normalTitle" = "保存";
+
+/* Class = "UITextView"; text = "Your biography here!"; ObjectID = "C0v-qU-Zhx"; */
+"C0v-qU-Zhx.text" = "你的传记在这里！";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu."; ObjectID = "CHF-Hn-Mtr"; */
+"CHF-Hn-Mtr.text" = " ";
+
+/* Class = "UITextField"; placeholder = "Date"; ObjectID = "CIb-Lq-WbZ"; */
+"CIb-Lq-WbZ.placeholder" = "日期";
+
+/* Class = "UILabel"; text = "Age, Gender"; ObjectID = "CN8-h2-5Iy"; */
+"CN8-h2-5Iy.text" = " ";
+
+/* Class = "UIViewController"; title = "Profile Image"; ObjectID = "CZK-eq-dNc"; */
+"CZK-eq-dNc.title" = "档案图像";
+
+/* Class = "UITextField"; placeholder = "First Name"; ObjectID = "Cbs-Cw-dSp"; */
+"Cbs-Cw-dSp.placeholder" = "名字";
+
+/* Class = "UILabel"; text = "Already a member?"; ObjectID = "DHA-F6-tcG"; */
+"DHA-F6-tcG.text" = "已经是会员？";
+
+/* Class = "UIButton"; normalTitle = "Unfollow"; ObjectID = "Dil-Pv-ROK"; */
+"Dil-Pv-ROK.normalTitle" = "取消关注";
+
+/* Class = "UITableViewSection"; headerTitle = "ACTIONS"; ObjectID = "EDH-su-Pum"; */
+"EDH-su-Pum.headerTitle" = "行动";
+
+/* Class = "UILabel"; text = "Bio"; ObjectID = "EKb-lQ-BVB"; */
+"EKb-lQ-BVB.text" = "生物";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Elb-hB-B6p"; */
+"Elb-hB-B6p.text" = " ";
+
+/* Class = "UILabel"; text = "Name of Move"; ObjectID = "EqS-iS-71k"; */
+"EqS-iS-71k.text" = "事件的名称";
+
+/* Class = "UILabel"; text = "Here's your unique Jugg ID:"; ObjectID = "FPd-CQ-wxQ"; */
+"FPd-CQ-wxQ.text" = "这是你独特的Jugg ID：";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "Fr8-3u-WO0"; */
+"Fr8-3u-WO0.text" = "名称";
+
+/* Class = "UILabel"; text = "0 Likes"; ObjectID = "GDW-Cw-Oyl"; */
+"GDW-Cw-Oyl.text" = "0喜欢";
+
+/* Class = "UILabel"; text = "This Jugg is:"; ObjectID = "Ho4-5a-tcG"; */
+"Ho4-5a-tcG.text" = "这个事件是：";
+
+/* Class = "UILabel"; text = "Biography"; ObjectID = "ILX-fp-96e"; */
+"ILX-fp-96e.text" = "传";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "Ioe-qK-6cH"; */
+"Ioe-qK-6cH.text" = "00:00";
+
+/* Class = "UITableViewSection"; headerTitle = "ACCOUNT"; ObjectID = "IuB-vU-2sI"; */
+"IuB-vU-2sI.headerTitle" = "帐户";
+
+/* Class = "UIViewController"; title = "Description"; ObjectID = "JDP-Xr-as9"; */
+"JDP-Xr-as9.title" = "描述";
+
+/* Class = "UILabel"; text = "Public"; ObjectID = "JJ4-bO-HJB"; */
+"JJ4-bO-HJB.text" = "上市";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "KCC-WP-CUI"; */
+"KCC-WP-CUI.placeholder" = "电子邮件";
+
+/* Class = "UIButton"; normalTitle = "Accept"; ObjectID = "KFv-Y9-LMB"; */
+"KFv-Y9-LMB.normalTitle" = "接受";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "KhT-X6-BzJ"; */
+"KhT-X6-BzJ.normalTitle" = "完成";
+
+/* Class = "UITextField"; placeholder = "Capacity"; ObjectID = "Luo-Qz-6Wu"; */
+"Luo-Qz-6Wu.placeholder" = "容量";
+
+/* Class = "UILabel"; text = "Control the diameter of your Discover page."; ObjectID = "M07-OG-ShX"; */
+"M07-OG-ShX.text" = "控制“发现”页面的直径。";
+
+/* Class = "UILabel"; text = "Name of Move"; ObjectID = "MDJ-KF-ddf"; */
+"MDJ-KF-ddf.text" = "移动的名称";
+
+/* Class = "UILabel"; text = "0 Comments"; ObjectID = "MYg-Sn-s5S"; */
+"MYg-Sn-s5S.text" = "0评论";
+
+/* Class = "UITableViewSection"; headerTitle = "ABOUT"; ObjectID = "MfW-nP-5Gk"; */
+"MfW-nP-5Gk.headerTitle" = "关于";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "MiX-8V-GPc"; */
+"MiX-8V-GPc.normalTitle" = "完成";
+
+/* Class = "UITextField"; placeholder = "Confirm Password"; ObjectID = "NBU-j3-8zD"; */
+"NBU-j3-8zD.placeholder" = "确认密码";
+
+/* Class = "UILabel"; text = "City, State of Event"; ObjectID = "NGe-rC-KUp"; */
+"NGe-rC-KUp.text" = "城市，事件的状态";
+
+/* Class = "UILabel"; text = "Delete Account"; ObjectID = "NL4-Mh-YNp"; */
+"NL4-Mh-YNp.text" = "删除帐户";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "NOc-20-U01"; */
+"NOc-20-U01.text" = " ";
+
+/* Class = "UILabel"; text = "00"; ObjectID = "NQ2-az-dn1"; */
+"NQ2-az-dn1.text" = "00";
+
+/* Class = "UILabel"; text = "Follow Requests"; ObjectID = "Nqh-uN-5E7"; */
+"Nqh-uN-5E7.text" = "按照请求";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "O1v-Xh-xAG"; */
+"O1v-Xh-xAG.placeholder" = "密码";
+
+/* Class = "UILabel"; text = "0 Juggs"; ObjectID = "O6i-3m-PTO"; */
+"O6i-3m-PTO.text" = "0 同意";
+
+/* Class = "UITextField"; placeholder = "Gender"; ObjectID = "OJ9-jA-Qrv"; */
+"OJ9-jA-Qrv.placeholder" = "性别";
+
+/* Class = "UINavigationItem"; title = "Attendance"; ObjectID = "ONG-td-giT"; */
+"ONG-td-giT.title" = "勤";
+
+/* Class = "UISearchBar"; placeholder = "Search for Juggs"; ObjectID = "P1O-nq-KxD"; */
+"P1O-nq-KxD.placeholder" = "搜索Juggs";
+
+/* Class = "UIButton"; normalTitle = "Unblock User"; ObjectID = "P7Y-7Z-aZZ"; */
+"P7Y-7Z-aZZ.normalTitle" = "取消阻止用户";
+
+/* Class = "UILabel"; text = "Hide your profile to recieve friend request."; ObjectID = "PAB-uI-dyN"; */
+"PAB-uI-dyN.text" = "隐藏您的个人资料以接收好友请求。";
+
+/* Class = "UILabel"; text = "For more information on how you can change your email, send \"Reset Email\" to support@JuggApp.com from your email above."; ObjectID = "PDX-cu-vYW"; */
+"PDX-cu-vYW.text" = "有关如何更改电子邮件的更多信息，请从上面的电子邮件中发送重置电子邮件至support@JuggApp.com。";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "PN5-IT-8sd"; */
+"PN5-IT-8sd.text" = "0";
+
+/* Class = "UINavigationItem"; title = "Fire Chat"; ObjectID = "PUj-1x-B9h"; */
+"PUj-1x-B9h.title" = "消防聊天";
+
+/* Class = "UITextView"; text = "COMMENTS GO HERE!!!! "; ObjectID = "Pwo-GC-2aQ"; */
+"Pwo-GC-2aQ.text" = " ";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "Pxh-Rb-g5K"; */
+"Pxh-Rb-g5K.text" = "描述";
+
+/* Class = "UILabel"; text = "First & Last Name"; ObjectID = "QB2-TU-rfQ"; */
+"QB2-TU-rfQ.text" = "名和姓";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "RhF-4g-Ssi"; */
+"RhF-4g-Ssi.normalTitle" = "保存";
+
+/* Class = "UISegmentedControl"; S8D-pX-B5z.segmentTitles[0] = "Map"; ObjectID = "S8D-pX-B5z"; */
+"S8D-pX-B5z.segmentTitles[0]" = "地图";
+
+/* Class = "UISegmentedControl"; S8D-pX-B5z.segmentTitles[1] = "Discover"; ObjectID = "S8D-pX-B5z"; */
+"S8D-pX-B5z.segmentTitles[1]" = "发现";
+
+/* Class = "UITabBarItem"; title = "World"; ObjectID = "S9K-nX-Efn"; */
+"S9K-nX-Efn.title" = "世界";
+
+/* Class = "UINavigationItem"; title = "User Name"; ObjectID = "SFu-9P-vlJ"; */
+"SFu-9P-vlJ.title" = "用户名";
+
+/* Class = "UILabel"; text = "First & Last Name"; ObjectID = "T6a-hB-8Ea"; */
+"T6a-hB-8Ea.text" = "名和姓";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "T9z-Px-TqZ"; */
+"T9z-Px-TqZ.normalTitle" = "取消";
+
+/* Class = "UITextField"; placeholder = "AM/PM"; ObjectID = "TBi-gA-yGn"; */
+"TBi-gA-yGn.placeholder" = "上午下午";
+
+/* Class = "UILabel"; text = "12:00 A.M"; ObjectID = "TLR-oM-CZ9"; */
+"TLR-oM-CZ9.text" = "12:00 AM";
+
+/* Class = "UIButton"; normalTitle = "Share ID"; ObjectID = "U4o-FN-WS6"; */
+"U4o-FN-WS6.normalTitle" = "共享ID";
+
+/* Class = "UIViewController"; title = "Map"; ObjectID = "UBh-h2-4Xz"; */
+"UBh-h2-4Xz.title" = "地图";
+
+/* Class = "UIButton"; normalTitle = "Unfollow"; ObjectID = "UMu-qa-SzC"; */
+"UMu-qa-SzC.normalTitle" = "取消关注";
+
+/* Class = "UIButton"; normalTitle = "Decline"; ObjectID = "UYS-ap-7b8"; */
+"UYS-ap-7b8.normalTitle" = "下降";
+
+/* Class = "UIButton"; normalTitle = "Follow"; ObjectID = "Vfk-Hq-xRK"; */
+"Vfk-Hq-xRK.normalTitle" = "跟随";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Vtg-CG-jsv"; */
+"Vtg-CG-jsv.text" = " ";
+
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "WEj-Wj-pgH"; */
+"WEj-Wj-pgH.normalTitle" = "登录";
+
+/* Class = "UILabel"; text = "Time"; ObjectID = "Wrx-y4-1oe"; */
+"Wrx-y4-1oe.text" = "时间";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "Wx1-az-04A"; */
+"Wx1-az-04A.normalTitle" = "注册";
+
+/* Class = "UITableViewController"; title = "Settings"; ObjectID = "Wxc-ic-VAl"; */
+"Wxc-ic-VAl.title" = "设置";
+
+/* Class = "UILabel"; text = "Profile Image"; ObjectID = "X2I-g2-mQx"; */
+"X2I-g2-mQx.text" = "档案图像";
+
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "XFO-aO-V1K"; */
+"XFO-aO-V1K.normalTitle" = "登录";
+
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "XdF-a4-Sqj"; */
+"XdF-a4-Sqj.title" = "取消";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Xvb-u9-HAN"; */
+"Xvb-u9-HAN.text" = " ";
+
+/* Class = "UINavigationItem"; title = "Select your Language"; ObjectID = "YN2-6q-m7H"; */
+"YN2-6q-m7H.title" = "选择你的语言";
+
+/* Class = "UILabel"; text = "20 Miles"; ObjectID = "ZLS-Pv-aXk"; */
+"ZLS-Pv-aXk.text" = "20英里";
+
+/* Class = "UILabel"; text = "Discover"; ObjectID = "ZYh-fy-ghc"; */
+"ZYh-fy-ghc.text" = "发现";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "aDq-rp-VD9"; */
+"aDq-rp-VD9.text" = " ";
+
+/* Class = "UINavigationItem"; title = "Reset Password"; ObjectID = "aZO-aw-YHr"; */
+"aZO-aw-YHr.title" = "重设密码";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "acW-dT-cKf"; */
+"acW-dT-cKf.title" = "家";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "azX-Xh-Oep"; */
+"azX-Xh-Oep.text" = "标题";
+
+/* Class = "UILabel"; text = "Capacity:"; ObjectID = "bAB-WU-eci"; */
+"bAB-WU-eci.text" = "容量：";
+
+/* Class = "UILabel"; text = "Websites"; ObjectID = "bGC-Q4-uQu"; */
+"bGC-Q4-uQu.text" = "网站";
+
+/* Class = "UILabel"; text = "Legal"; ObjectID = "bT3-gP-cHk"; */
+"bT3-gP-cHk.text" = "法律";
+
+/* Class = "UILabel"; text = "Websites"; ObjectID = "bU9-A2-mmS"; */
+"bU9-A2-mmS.text" = "网站";
+
+/* Class = "UISearchBar"; placeholder = "Search Jugg ID"; ObjectID = "bYJ-KL-pB0"; */
+"bYJ-KL-pB0.placeholder" = "搜索Jugg ID";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "bn9-Qr-upt"; */
+"bn9-Qr-upt.normalTitle" = "取消";
+
+/* Class = "UIViewController"; title = "Jugg Name"; ObjectID = "c1J-ey-Bm5"; */
+"c1J-ey-Bm5.title" = "杂耍的名字";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "c3K-oa-s0i"; */
+"c3K-oa-s0i.text" = " ";
+
+/* Class = "UILabel"; text = "Biography"; ObjectID = "cDk-WP-b6V"; */
+"cDk-WP-b6V.text" = "传";
+
+/* Class = "UIViewController"; title = "New Move"; ObjectID = "cIk-Hv-gNO"; */
+"cIk-Hv-gNO.title" = "新的举动";
+
+/* Class = "UITextField"; placeholder = "City"; ObjectID = "cKa-uw-K6a"; */
+"cKa-uw-K6a.placeholder" = "市";
+
+/* Class = "UILabel"; text = "Enter your current password to make changes."; ObjectID = "cOf-iz-SnA"; */
+"cOf-iz-SnA.text" = "输入您当前的密码进行更改。";
+
+/* Class = "UITabBarItem"; title = "Me"; ObjectID = "cPa-gy-q4n"; */
+"cPa-gy-q4n.title" = "我";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "cRU-IU-uBl"; */
+"cRU-IU-uBl.text" = "日期";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "cTr-Qo-o8p"; */
+"cTr-Qo-o8p.text" = "字幕";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "cwQ-9E-6Hq"; */
+"cwQ-9E-6Hq.text" = "电子邮件";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "cwh-3O-sBc"; */
+"cwh-3O-sBc.normalTitle" = "保存";
+
+/* Class = "UITextField"; placeholder = "Age"; ObjectID = "d2x-ub-ixQ"; */
+"d2x-ub-ixQ.placeholder" = "年龄";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "dA8-C5-p5Z"; */
+"dA8-C5-p5Z.text" = " ";
+
+/* Class = "UILabel"; text = "Log Out"; ObjectID = "dBL-1H-kcI"; */
+"dBL-1H-kcI.text" = "登出";
+
+/* Class = "UITabBarItem"; title = "Box"; ObjectID = "eJN-Vl-GBt"; */
+"eJN-Vl-GBt.title" = "框";
+
+/* Class = "UITextField"; placeholder = "Time"; ObjectID = "evh-fF-3dX"; */
+"evh-fF-3dX.placeholder" = "时间";
+
+/* Class = "UIViewController"; title = "Relations"; ObjectID = "f83-GG-Zqb"; */
+"f83-GG-Zqb.title" = "关系";
+
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "fN0-2K-nm1"; */
+"fN0-2K-nm1.normalTitle" = "继续";
+
+/* Class = "UITextField"; placeholder = "State"; ObjectID = "fSy-G4-Hy2"; */
+"fSy-G4-Hy2.placeholder" = "州";
+
+/* Class = "UITextField"; placeholder = "Title"; ObjectID = "ftQ-Mi-fYT"; */
+"ftQ-Mi-fYT.placeholder" = "标题";
+
+/* Class = "UIButton"; normalTitle = "Guest List"; ObjectID = "fyp-gM-ZdY"; */
+"fyp-gM-ZdY.normalTitle" = "嘉宾名单";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "gEU-6p-F49"; */
+"gEU-6p-F49.normalTitle" = "注册";
+
+/* Class = "UITextField"; placeholder = "Confirm Password"; ObjectID = "gMJ-TR-TTx"; */
+"gMJ-TR-TTx.placeholder" = "确认密码";
+
+/* Class = "UILabel"; text = "1 mi."; ObjectID = "ggr-7c-mTB"; */
+"ggr-7c-mTB.text" = "1英里";
+
+/* Class = "UIButton"; normalTitle = "Accept"; ObjectID = "gvi-Bz-IDx"; */
+"gvi-Bz-IDx.normalTitle" = "接受";
+
+/* Class = "UITextField"; placeholder = "Street Address"; ObjectID = "hbF-mk-nOV"; */
+"hbF-mk-nOV.placeholder" = "街道地址";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "hgR-We-9Kh"; */
+"hgR-We-9Kh.text" = " ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "iU9-iN-ZUJ"; */
+"iU9-iN-ZUJ.text" = " ";
+
+/* Class = "UIButton"; normalTitle = "Retrieve"; ObjectID = "ikj-rb-gOd"; */
+"ikj-rb-gOd.normalTitle" = "取回";
+
+/* Class = "UILabel"; text = "0 Juggs"; ObjectID = "ilW-uG-gRf"; */
+"ilW-uG-gRf.text" = "0 同意";
+
+/* Class = "UILabel"; text = "This account is private. Follow the user to see their bio."; ObjectID = "iwV-ck-1gj"; */
+"iwV-ck-1gj.text" = "这个帐户是私人的。 跟随用户看他们的生物。";
+
+/* Class = "UILabel"; text = "Here's the email you have on file:"; ObjectID = "jK9-uP-KBI"; */
+"jK9-uP-KBI.text" = "以下是您收到的电子邮件地址：";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "jlO-HI-xCA"; */
+"jlO-HI-xCA.text" = "描述";
+
+/* Class = "UILabel"; text = "Blocked List"; ObjectID = "kFi-ka-aVO"; */
+"kFi-ka-aVO.text" = "描述";
+
+/* Class = "UILabel"; text = "Search"; ObjectID = "kUb-ki-0R8"; */
+"kUb-ki-0R8.text" = "搜索";
+
+/* Class = "UINavigationItem"; title = "Username"; ObjectID = "kW0-N7-9S5"; */
+"kW0-N7-9S5.title" = "用户名";
+
+/* Class = "UITableViewController"; title = "Blocked List"; ObjectID = "kho-Pc-Xf9"; */
+"kho-Pc-Xf9.title" = "阻止列表";
+
+/* Class = "UILabel"; text = "100 mi."; ObjectID = "m2N-kH-p0Q"; */
+"m2N-kH-p0Q.text" = "100英里";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "mvD-0i-H7W"; */
+"mvD-0i-H7W.text" = " ";
+
+/* Class = "UILabel"; text = "M/F"; ObjectID = "mvK-f3-40T"; */
+"mvK-f3-40T.text" = "M/F";
+
+/* Class = "UILabel"; text = "Privacy Policy"; ObjectID = "nAd-rb-IIi"; */
+"nAd-rb-IIi.text" = "隐私政策";
+
+/* Class = "UILabel"; text = "/(host) has invited you to join!"; ObjectID = "nIx-Bc-ao9"; */
+"nIx-Bc-ao9.text" = "/(host) 已邀请您加入！";
+
+/* Class = "UILabel"; text = "0 Likes"; ObjectID = "nPQ-Dw-cvP"; */
+"nPQ-Dw-cvP.text" = "0喜欢";
+
+/* Class = "UILabel"; text = "Public"; ObjectID = "oQX-Xr-7hE"; */
+"oQX-Xr-7hE.text" = "上市";
+
+/* Class = "UITextField"; placeholder = "Current Password"; ObjectID = "obT-cJ-hn3"; */
+"obT-cJ-hn3.placeholder" = "当前密码";
+
+/* Class = "UIButton"; normalTitle = "Follow"; ObjectID = "oep-on-UKH"; */
+"oep-on-UKH.normalTitle" = "跟随";
+
+/* Class = "UILabel"; text = "Biography"; ObjectID = "of1-rL-wfA"; */
+"of1-rL-wfA.text" = "传";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing"; ObjectID = "ofw-vY-P6D"; */
+"ofw-vY-P6D.text" = " ";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "oiO-5h-rio"; */
+"oiO-5h-rio.placeholder" = "电子邮件";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "orh-mJ-AOU"; */
+"orh-mJ-AOU.normalTitle" = "完成";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "p0s-CW-wDy"; */
+"p0s-CW-wDy.text" = " ";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod ."; ObjectID = "pNj-Ud-JLX"; */
+"pNj-Ud-JLX.text" = " ";
+
+/* Class = "UIButton"; normalTitle = "Forgot Password?"; ObjectID = "pXx-K5-JlA"; */
+"pXx-K5-JlA.normalTitle" = "忘记密码？";
+
+/* Class = "UILabel"; text = "Terms of Service"; ObjectID = "pj5-dP-QoF"; */
+"pj5-dP-QoF.text" = "服务条款";
+
+/* Class = "UILabel"; text = "Private"; ObjectID = "qH8-PU-LBC"; */
+"qH8-PU-LBC.text" = "私人的";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "qQd-Y4-xbu"; */
+"qQd-Y4-xbu.text" = " ";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "qS1-gO-P73"; */
+"qS1-gO-P73.text" = "密码";
+
+/* Class = "UILabel"; text = "First & Last Name"; ObjectID = "qbf-0V-SD9"; */
+"qbf-0V-SD9.text" = "名和姓";
+
+/* Class = "UIButton"; normalTitle = "Comments"; ObjectID = "rQN-W7-T42"; */
+"rQN-W7-T42.normalTitle" = "注释";
+
+/* Class = "UILabel"; text = "First & Last Name"; ObjectID = "rwR-kA-ocZ"; */
+"rwR-kA-ocZ.text" = "名和姓";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "sQb-Xb-jKx"; */
+"sQb-Xb-jKx.text" = "电子邮件";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "sXQ-Wj-38t"; */
+"sXQ-Wj-38t.text" = " ";
+
+/* Class = "UILabel"; text = "22"; ObjectID = "siI-Ml-BkD"; */
+"siI-Ml-BkD.text" = "";
+
+/* Class = "UILabel"; text = "M/F"; ObjectID = "sxL-Nu-x05"; */
+"sxL-Nu-x05.text" = "";
+
+/* Class = "UIButton"; normalTitle = "Guest List"; ObjectID = "tCI-Lb-Ql3"; */
+"tCI-Lb-Ql3.normalTitle" = "嘉宾名单";
+
+/* Class = "UIButton"; normalTitle = "Share"; ObjectID = "tHP-u7-ZCp"; */
+"tHP-u7-ZCp.normalTitle" = "分享";
+
+/* Class = "UILabel"; text = "Select your Language."; ObjectID = "tYO-oo-ngA"; */
+"tYO-oo-ngA.text" = "选择你的语言。";
+
+/* Class = "UITableViewController"; title = "Archive"; ObjectID = "tYc-mi-dcv"; */
+"tYc-mi-dcv.title" = "档案";
+
+/* Class = "UILabel"; text = "/(OtherUser) has requested to join!"; ObjectID = "tsF-GR-kas"; */
+"tsF-GR-kas.text" = "/(OtherUser) 已请求加入！";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor."; ObjectID = "twx-cD-uR1"; */
+"twx-cD-uR1.text" = " ";
+
+/* Class = "UILabel"; text = "Name of Move"; ObjectID = "uj3-3c-RrZ"; */
+"uj3-3c-RrZ.text" = "事件的名称";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "vZ4-eq-OX0"; */
+"vZ4-eq-OX0.placeholder" = "密码";
+
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "vZX-IR-pCC"; */
+"vZX-IR-pCC.normalTitle" = "登录";
+
+/* Class = "UILabel"; text = "July 4, 2017"; ObjectID = "vrB-gL-whd"; */
+"vrB-gL-whd.text" = "2017年7月4日";
+
+/* Class = "UIButton"; normalTitle = "Follow"; ObjectID = "vyB-EX-V8y"; */
+"vyB-EX-V8y.normalTitle" = "跟随";
+
+/* Class = "UITextField"; placeholder = "Last Name"; ObjectID = "wu1-nL-wCU"; */
+"wu1-nL-wCU.placeholder" = "姓";
+
+/* Class = "UILabel"; text = "City, State"; ObjectID = "x5z-31-sfp"; */
+"x5z-31-sfp.text" = "市，州";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "xdf-B6-ccl"; */
+"xdf-B6-ccl.text" = "描述";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "ymv-7G-j4a"; */
+"ymv-7G-j4a.normalTitle" = "保存";
+
+/* Class = "UILabel"; text = "Date:"; ObjectID = "z0l-vr-Go3"; */
+"z0l-vr-Go3.text" = "日期：";
+
+/* Class = "UILabel"; text = "0 Comments"; ObjectID = "zhv-T4-HDY"; */
+"zhv-T4-HDY.text" = "0评论";

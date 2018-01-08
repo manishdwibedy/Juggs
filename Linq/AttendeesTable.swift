@@ -9,14 +9,18 @@
 import UIKit
 import Firebase
 import SDWebImage
+
+var attendPostID : String = ""
+
 class AttendeesTable: UITableViewController {
 
     @IBAction func doneViewingAttendees(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    
+        self.navigationController?.popViewController(animated: true)
     }
     
-   var acceptedUsers = [User]()
+    var userIds = [String]()
+    
+    var acceptedUsers = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,19 +28,19 @@ class AttendeesTable: UITableViewController {
         let backgroundImage = #imageLiteral(resourceName: "Backgroundloginsignup")
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
-       self.navigationController?.navigationBar.barTintColor = UIColor.black
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
         tableView.rowHeight = 550
-        
-         // Needs query
         
     }
 
     
     override func viewWillAppear(_ animated: Bool) {
-        retrieveAcceptedUsers()
+        
+        retrieveuserIds()
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(gesture:)))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.tableView.addGestureRecognizer(swipeRight)
+        
     }
     
     
@@ -70,8 +74,71 @@ class AttendeesTable: UITableViewController {
         }
     }
 
+    func retrieveuserIds() {
+
+        let ref = Database.database().reference()
+        
+        userIds.removeAll()
+        ref.child("Flyers").child(attendPostID).child("Requests").observe(DataEventType.value, with: { (snapshot) in
+            
+            let request = snapshot.value as? [String : AnyObject]
+
+            if request != nil {
+                for (_,values) in request! {
+                    if let user = values.value(forKey: "from") as? String {
+                        
+                        if let status = values.value(forKey: "status") as? String {
+                            
+                            if self.title == "Attendance" {
+                                if status == "3" {
+                                    self.userIds.append(user)
+                                }
+                            } else {
+                                if status == "1" {
+                                    self.userIds.append(user)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            ref.child("Flyers").child(attendPostID).child("Invites").observe(DataEventType.value, with: { (snapshot) in
+                
+                let invites = snapshot.value as? [String : AnyObject]
+                
+                if invites != nil {
+                    for (_,values) in invites! {
+                        if let user = values.value(forKey: "touserID") as? String {
+                           
+                            if let status = values.value(forKey: "status") as? String {
+                                
+                                if self.title == "Attendance" {
+                                    if status == "3" {
+                                        self.userIds.append(user)
+                                    }
+                                } else {
+                                    if status == "1" {
+                                        self.userIds.append(user)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                self.retrieveAcceptedUsers()
+            })
+        })
+        
+        ref.removeAllObservers()
+        
+    }
     
     func retrieveAcceptedUsers() {
+        
+        self.userIds = Array(Set(self.userIds))
+        
         Globals.ShowSpinner(testStr: "")
         let ref = Database.database().reference()
         
@@ -83,43 +150,52 @@ class AttendeesTable: UITableViewController {
                 
                 if let uid = value["UID"] as? String {
                     if uid != Auth.auth().currentUser!.uid {
-                        let dict = [String : AnyObject]()
-                        let userToShow = User(dictionary:dict)
-                        if let userID = value["UID"] as? String,
-                            let  firstName = value["First Name"] as? String,
-                            let lastName = value["Last Name"] as? String,
-                            let age = value["Age"] as? String,
-                            let city = value["City"] as? String,
-                            let gender = value["Gender"] as? String,
-                            let state = value["State"] as? String,
-                            let bio = value["Bio"] as? String,
-                            let imagePath = value["urlToImage"] as? String {
-                            userToShow.userID = userID
-                            userToShow.firstName = firstName
-                            userToShow.lastName = lastName
-                            userToShow.age = age
-                            userToShow.bio = bio
-                            userToShow.city = city
-                            userToShow.gender = gender
-                            userToShow.state = state
-                            userToShow.imagePath = imagePath
-                            self.acceptedUsers.append(userToShow)
-                            
-                            
+                        if self.userIds.contains(uid) {
+                            let dict = [String : AnyObject]()
+                            let userToShow = User(dictionary:dict)
+                            if let userID = value["UID"] as? String {
+                                
+                                let firstName = value["FirstName"] as? String
+                                let lastName = value["LastName"] as? String
+                                let age = value["Age"] as? String
+                                let city = value["City"] as? String
+                                let gender = value["Gender"] as? String
+                                let state = value["State"] as? String
+                                let bio = value["Bio"] as? String
+                                let imagePath = value["urlToImage"] as? String
+                                
+                                userToShow.userID = userID
+                                userToShow.firstName = firstName
+                                userToShow.lastName = lastName
+                                userToShow.age = age
+                                userToShow.bio = bio
+                                userToShow.city = city
+                                userToShow.gender = gender
+                                userToShow.state = state
+                                userToShow.imagePath = imagePath
+                                
+                                self.acceptedUsers.append(userToShow)
+                                
+                                
+                            }
                         }
-                        
-                        
                     }
                     
                 }
             }
+            
             Globals.HideSpinner()
             self.tableView.reloadData()
+            if self.title == "Attendance"
+            {
+                self.title = "Attendance \(self.acceptedUsers.count)"
+            } else {
+                self.title = "Guest List \(self.acceptedUsers.count)"
+            }
+            
             
         })
         ref.removeAllObservers()
-        
-        
         
     }
     
@@ -127,17 +203,17 @@ class AttendeesTable: UITableViewController {
     func showUsersProfile(_ userIndex : NSInteger) {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "otherVC") as! OtherUser
         let navController = UINavigationController(rootViewController: vc)
-        vc.UserID = acceptedUsers[userIndex].userID!
+        UserID = acceptedUsers[userIndex].userID!
         let firstName = acceptedUsers[userIndex].firstName
         let lastName = acceptedUsers[userIndex].lastName
         vc.firstName = firstName!
         vc.lastName = lastName!
-        vc.age = acceptedUsers[userIndex].age
-        vc.city = acceptedUsers[userIndex].city
-        vc.state = acceptedUsers[userIndex].state
-        vc.gender = acceptedUsers[userIndex].gender
+        vc.age = acceptedUsers[userIndex].age!
+        vc.city = acceptedUsers[userIndex].city!
+        vc.state = acceptedUsers[userIndex].state!
+        vc.gender = acceptedUsers[userIndex].gender!
         vc.pathToImage = acceptedUsers[userIndex].imagePath
-        vc.bioTextForOtherUser = acceptedUsers[userIndex].bio
+        vc.bioTextForOtherUser = acceptedUsers[userIndex].bio!
         vc.urlTextForOtherUser = "No URL Available."
         vc.discoverSwipe.isEnabled = true
         vc.followersSwipe.isEnabled = false

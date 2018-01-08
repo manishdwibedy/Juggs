@@ -1,0 +1,114 @@
+/* 
+  Localizable.strings
+  Linq
+
+  Created by Quinton Askew on 12/9/17.
+  Copyright © 2017 QuintonAskew. All rights reserved.
+*/
+"restart" = "Aby zmienić język, należy ponownie uruchomić aplikację.";
+"restartTitle" = "Wymagane ponowne uruchomienie aplikacji";
+"cancel" = "Anuluj";
+"close" = "Zamknij teraz";
+
+// Feed - (Cell Labels)
+"likes" = "Lubi";
+"comments" = "Komentarze";
+"juggs" = "Zgodzić się";
+"capacity" = "Pojemność";
+"public" = "Publiczny";
+"private" = "Prywatny";
+"miles" = "Miles";
+"viewAll" = "Pokaż wszystkie";
+"of" = "z";
+
+// Description - (Action Sheet)
+"delete" = "Usuń wydarzenie";
+"share" = "Dzielić";
+
+// Discover -(Segments & Alerts)
+"map" = "Mapa";
+"discover" = "Odkryć";
+"followRequest" = "Poprosiłeś o podążanie ";
+
+// Profile & OtherUser Profile - (Action Sheets)
+"message" = "Wiadomość";
+"relations" = "Relacje";
+"report" = "Raport";
+"block" = "Blok";
+"unblock" = "Unblok";
+"invite" = "Zapraszam";
+"privacyTitle" = "Prywatność aktywowana!";
+"privacyMessage" = "Twój profil jest widoczny tylko dla Twoich obserwujących. Zarządzaj swoimi Żądaniami Podążania tutaj.";
+"ok" = "OK";
+"pt" = "Going Public!";
+"publicMessage" = "Twój profil jest teraz widoczny dla wszystkich. Wszystkie oczekujące na realizację Żądania zostały zaakceptowane.";
+"inviteSent1" = "Twoje zaproszenie do ";
+"inviteSent2" = " został wysłany!";
+"inviteAlready1" = "Wysłałeś już zaproszenie do ";
+"inviteAlready2" = " do tego użytkownika.";
+"requestAlready" = " już wysłał prośbę ";
+"Male" = "Męski";
+"Female" = "Płeć żeńska";
+"Other" = "Nieokreślony";
+"followers" = "Obserwujący";
+"following" = "Następujący";
+
+// Settings - (Navigation Controllers & Alert)
+"name" = "Nazwa";
+"updatename" = "Zaktualizuj swoje imię i nazwisko.";
+"password" = "Hasło";
+"updatepword" = "Aktualizować hasło";
+"pus" = "Hasło zostało zmienione";
+"pdm" = "Twoje hasła nie pasują do siebie.";
+"cpdm" = "Twoje obecne hasło jest nieprawidłowe.";
+"ncs" = "Zmieniono nazwę!";
+"biography" = "Biografia";
+"bsu" = "Biografia została pomyślnie zaktualizowana!";
+"websites" = "Strony internetowe";
+"cf" = "Kontynuuj z Facebook";
+"ct" = "Kontynuuj z Twitter";
+"ci" = "Kontynuuj z Instagram";
+"cs" = "Kontynuuj z Snapchat";
+"cg" = "Kontynuuj z Google+";
+"un" = "Wpisz twoją nazwę użytkownika.";
+"lof" = "Wyloguj się z Facebook";
+"lot" = "Wyloguj się z Twitter";
+"loi" = "Wyloguj się z Instagram";
+"log" = "Wyloguj się z Google+";
+"un" = "Wpisz twoją nazwę użytkownika.";
+"scum" = "Nazwa użytkownika Snapchat";
+"save" = "Zapisać";
+"ays" = "Jesteś pewny?";
+"logout" = "Wyloguj";
+"warn" = "Ostrzeżenie!";
+"deleteAcct" = "Kasować";
+
+// Discover
+"privacy" = "Prywatność";
+"search" = "Szukaj";
+"areYouSure" = "Jesteś pewny?";
+"warning" = "Ostrzeżenie";
+"areYouSure2" = "Czy na pewno chcesz usunąć swoje konto?";
+"delete" = "Kasować";
+"sryM" = "Wystąpił błąd podczas przetwarzania Twojego żądania.";
+"dsm" = "Twoje konto zostało usunięte.";
+
+// Box
+"inbox" = "W pudełku";
+"invitations" = "Zaproszenia";
+"ni" = "Nowe Zaproszenie";
+"nm" = "Nowa Wiadomość";
+"confirm" = "Potwierdzać";
+"rq" = "Żądanie";
+"rs" = "Żądanie (Wysłane)";
+"ins" = "Invitations (Wysłane)";
+
+// New Jugg
+"cm" = "Kamera";
+"pl" = "Album Zdjęć";
+"slf" = "Wybierz Ulotkę";
+"flyr" = "Wymagana jest Ulotka.";
+"future" = "Wprowadź przyszły czas wydarzenia.";
+"req" = "Wszystkie pola wymagają działania.";
+
+

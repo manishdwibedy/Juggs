@@ -12,17 +12,20 @@ import UIKit
 class User: NSObject {
     
     var userID: String?
-    var firstName: String!
-    var lastName: String!
-    var age: String!
-    var city: String!
-    var gender: String!
-    var state: String!
-    var bio: String!
+    var firstName: String?
+    var lastName: String?
+    var age: String?
+    var city: String?
+    var gender: String?
+    var state: String?
+    var bio: String?
     var imagePath: String!
     var following: [String:AnyObject]!
     var follower: [String:AnyObject]!
-    
+    var friendrequest: [String:AnyObject]!
+    var privateUser : Bool!
+    // Added for Jugg v2.0
+    var username: String!
     init(dictionary: [String: AnyObject]) {
         userID = dictionary["id"] as? String
         firstName = dictionary["name"] as? String

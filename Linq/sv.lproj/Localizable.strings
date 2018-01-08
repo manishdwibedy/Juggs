@@ -1,0 +1,114 @@
+/* 
+  Localizable.strings
+  Linq
+
+  Created by Quinton Askew on 12/9/17.
+  Copyright © 2017 QuintonAskew. All rights reserved.
+*/
+"restart" = "För att ändra språket måste appen startas om.";
+"restartTitle" = "App omstart krävs";
+"cancel" = "Cancel";
+"close" = "Stäng nu";
+
+// Feed - (Cell Labels)
+"likes" = "Gillar";
+"comments" = "Kommentarer";
+"juggs" = "Hålla med";
+"capacity" = "Kapacitet";
+"public" = "Offentlig";
+"private" = "Privat";
+"miles" = "Miles";
+"viewAll" = "Visa alla";
+"of" = "av";
+
+// Description - (Action Sheet)
+"delete" = "Ta bort händelse";
+"share" = "Dela";
+
+// Discover -(Segments & Alerts)
+"map" = "Karta";
+"discover" = "Upptäck";
+"followRequest" = "Du har begärt att följa ";
+
+// Profile & OtherUser Profile - (Action Sheets)
+"message" = "Meddelande";
+"relations" = "Relationer";
+"report" = "Rapportera";
+"block" = "Blockera";
+"unblock" = "Avblockera";
+"invite" = "Inbjudan";
+"privacyTitle" = "Sekretess Aktiverad!";
+"privacyMessage" = "Din profil är bara synlig för dina följare. Hantera dina följförfrågningar här.";
+"ok" = "OK";
+"pt" = "Kommer Offentligt!";
+"publicMessage" = "Din profil är nu synlig för alla att se. Alla väntar Följande förfrågan accepterades.";
+"inviteSent1" = "Din inbjudan till ";
+"inviteSent2" = " har skickats!";
+"inviteAlready1" = "Du har redan skickat en inbjudan till ";
+"inviteAlready2" = " till den här användaren.";
+"requestAlready" = " har redan skickat en begäran om ";
+"Male" = "Manlig";
+"Female" = "Kvinna";
+"Other" = "Ej Angivet";
+"followers" = "Anhängare";
+"following" = "Följande";
+
+// Settings - (Navigation Controllers & Alert)
+"name" = "Namn";
+"updatename" = "Uppdatera ditt för- och efternamn.";
+"password" = "Lösenord";
+"updatepword" = "Uppdatera lösenord";
+"pus" = "Lösenord uppdaterat framgångsrikt";
+"pdm" = "Dina lösenord matchar inte.";
+"cpdm" = "Ditt nuvarande lösenord är felaktigt.";
+"ncs" = "Namn ändrats framgångsrikt!";
+"biography" = "Biografi";
+"bsu" = "Biografi framgångsrikt uppdaterad!";
+"websites" = "Webbplatser";
+"cf" = "Fortsätt med Facebook";
+"ct" = "Fortsätt med Twitter";
+"ci" = "Fortsätt med Instagram";
+"cs" = "Fortsätt med Snapchat";
+"cg" = "Fortsätt med Google+";
+"un" = "Skriv in ditt användarnamn.";
+"lof" = "Logga ut från Facebook";
+"lot" = "Logga ut från Twitter";
+"loi" = "Logga ut från Instagram";
+"log" = "Logga ut från Google+";
+"un" = "Skriv in ditt användarnamn.";
+"scum" = "Snapchat Användarnamn";
+"save" = "Spara";
+"ays" = "Är du säker?";
+"logout" = "Logga ut";
+"warn" = "Varning!";
+"deleteAcct" = "Radera";
+
+// Discover
+"privacy" = "Integritet";
+"search" = "Sök";
+"areYouSure" = "Är du säker?";
+"warning" = "Varning";
+"areYouSure2" = "Är du säker på att du vill ta bort ditt konto?";
+"delete" = "Radera";
+"sryM" = "Det uppstod ett fel vid behandlingen av din begäran.";
+"dsm" = "Ditt konto har tagits bort.";
+
+// Box
+"inbox" = "Inkorg";
+"invitations" = "Inbjudningar";
+"ni" = "Ny inbjudan";
+"nm" = "Nytt Meddelande";
+"confirm" = "Bekräfta";
+"rq" = "Begäran";
+"rs" = "Begäran (Sände)";
+"ins" = "Inbjudningar (Sände)";
+
+// New Jugg
+"cm" = "Kamera";
+"pl" = "Fotobibliotek";
+"slf" = "Välj en Flyer";
+"flyr" = "En flygblad är obligatorisk.";
+"future" = "Enter future time for the event.";
+"req" = "Alla fält kräver åtgärd.";
+
+

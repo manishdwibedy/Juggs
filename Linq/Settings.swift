@@ -8,20 +8,21 @@
 
 import UIKit
 import Firebase
-
+import SafariServices
 //Account deletes (Auth wise), but user still showing in app.
 
 class Settings: UITableViewController {
 
-  
-    
     // Account
     @IBOutlet weak var updateImageCell: UITableViewCell!
     @IBOutlet weak var updateNameCell: UITableViewCell!
     @IBOutlet weak var updateEmailCell: UITableViewCell!
     @IBOutlet weak var updatePWCell: UITableViewCell!
     @IBOutlet weak var updateBioCell: UITableViewCell!
-    @IBOutlet weak var updateWebsiteCell: UITableViewCell!
+    @IBOutlet weak var upateDiscoverDistanceCell: UITableViewCell!
+    @IBOutlet weak var updatePrivacy: UITableViewCell!
+    @IBOutlet weak var searchCell: UITableViewCell!
+    
     // About
     @IBOutlet weak var privacyPolicyCell: UITableViewCell!
     @IBOutlet weak var termsOfServiceCell: UITableViewCell!
@@ -57,25 +58,27 @@ class Settings: UITableViewController {
         self.tabBarController?.tabBar.isHidden = true
         
         // Text Color
-        let purpleThemeColor = UIColor(red: 155/255, green: 89/255, blue: 182/255, alpha: 1.0)
-        self.updateImageCell.textLabel?.textColor = purpleThemeColor
-        self.updateNameCell.textLabel?.textColor = purpleThemeColor
-        self.updateEmailCell.textLabel?.textColor = purpleThemeColor
-        self.updateEmailCell.tintColor = purpleThemeColor
-        self.updatePWCell.textLabel?.textColor = purpleThemeColor
-        self.updateBioCell.textLabel?.textColor = purpleThemeColor
-        self.updateWebsiteCell.textLabel?.textColor = purpleThemeColor
+        let purp = UIColor(red: 155/255, green: 89/255, blue: 182/255, alpha: 1.0)
+        self.updateImageCell.textLabel?.textColor = purp
+        self.updateNameCell.textLabel?.textColor = purp
+        self.updateEmailCell.textLabel?.textColor = purp
+        self.updateEmailCell.tintColor = purp
+        self.updatePWCell.textLabel?.textColor = purp
+        self.updateBioCell.textLabel?.textColor = purp
+        self.upateDiscoverDistanceCell.textLabel?.textColor = purp
+        self.updatePrivacy.textLabel?.textColor = purp
+        self.searchCell.textLabel?.textColor = purp
         // About
-        self.privacyPolicyCell.textLabel?.textColor = purpleThemeColor
-        self.privacyPolicyCell.tintColor = purpleThemeColor
-        self.termsOfServiceCell.textLabel?.textColor = purpleThemeColor
-        self.termsOfServiceCell.tintColor = purpleThemeColor
-        self.legalCell.textLabel?.textColor = purpleThemeColor
-        self.legalCell.tintColor = purpleThemeColor
+        self.privacyPolicyCell.textLabel?.textColor = purp
+        self.privacyPolicyCell.tintColor = purp
+        self.termsOfServiceCell.textLabel?.textColor = purp
+        self.termsOfServiceCell.tintColor = purp
+        self.legalCell.textLabel?.textColor = purp
+        self.legalCell.tintColor = purp
         // Actions
-        self.blockedListCell.textLabel?.textColor = purpleThemeColor
-        self.logOutCell.textLabel?.textColor = purpleThemeColor
-        self.deleteAccountCell.textLabel?.textColor = purpleThemeColor
+        self.blockedListCell.textLabel?.textColor = purp
+        self.logOutCell.textLabel?.textColor = purp
+        self.deleteAccountCell.textLabel?.textColor = purp
     }
 
     // MARK: - Table view data source
@@ -85,7 +88,7 @@ class Settings: UITableViewController {
         return 3
     }
     
-    let numberOfRowsAtSection: [Int] = [6, 3, 3] // ROWS IN A SECTION
+    let numberOfRowsAtSection: [Int] = [7, 3, 3] // ROWS IN A SECTION
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -107,41 +110,67 @@ class Settings: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        
+        
+        if indexPath.section == 0 && indexPath.row == 0 {
+            performSegue(withIdentifier: "changePic", sender: self)
+        }
+        
         if indexPath.section == 0 && indexPath.row == 1 {
             performSegue(withIdentifier: "changeName", sender: self)
         }
         
-        if indexPath.section == 0 && indexPath.row == 2 {
-            performSegue(withIdentifier: "updateEmail", sender: self)
-        }
         
-        if indexPath.section == 0 && indexPath.row == 3 {
+        if indexPath.section == 0 && indexPath.row == 2 {
             performSegue(withIdentifier: "updatePW", sender: self)
         }
         
-        if indexPath.section == 0 && indexPath.row == 4 {
+        if indexPath.section == 0 && indexPath.row == 3 {
             performSegue(withIdentifier: "updateBio", sender: self)
         }
         
-        if indexPath.section == 0 && indexPath.row == 5 {
-            performSegue(withIdentifier: "updateWebsite", sender: self)
+        if indexPath.section == 0 && indexPath.row == 4 {
+            performSegue(withIdentifier: "updateDistance", sender: self)
         }
         
+        if indexPath.section == 0 && indexPath.row == 5 {
+            performSegue(withIdentifier: "updatePrivacy", sender: self)
+        }
         
+        if indexPath.section == 0 && indexPath.row == 6 {
+            performSegue(withIdentifier: "showSearch", sender: self)            
+        }
+        
+        if indexPath.section == 1 && indexPath.row == 0 {
+            showJuggWebsite("http://juggapp.com/privacy.pdf")
+        }
+        
+        if indexPath.section == 1 && indexPath.row == 1 {
+            showJuggWebsite("http://juggapp.com/JuggTerms.pdf")
+        }
+        
+        if indexPath.section == 1 && indexPath.row == 2 {
+            showJuggWebsite("http://juggapp.com/disclaimer.pdf")
+        }
+        if indexPath.section == 2 && indexPath.row == 0 {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "BlockedTable")
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
         
         
         // IF THE 'SIGN OUT' CELL IS TAPPED
         
         if indexPath.section == 2 && indexPath.row == 1 {
-            let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title:(NSLocalizedString("areYouSure", comment: "")), message: nil, preferredStyle: UIAlertControllerStyle.alert)
             
-            let logout = UIAlertAction(title: "Log Out", style: .default, handler: { (ACTION) in
+            let logout = UIAlertAction(title:(NSLocalizedString("logout", comment: "")), style: .default, handler: { (ACTION) in
                 self.logMeOut()
                 Globals .sharedInstance.saveValuetoUserDefaultsWithKeyandValue(false, key: "IS_LOGIN")
 
                 print("Logged Out")
             })
-            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (ACTION) in
+            let cancel = UIAlertAction(title:(NSLocalizedString("cancel", comment: "")), style: .cancel, handler: { (ACTION) in
                 print("Sign Out Cancelled")
             })
             
@@ -167,21 +196,34 @@ class Settings: UITableViewController {
     
     }
 
-   
- 
+    
+    
+    
+    func showJuggWebsite(_ website: String) {
+        if let url = URL(string: website) {
+            let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+            present(vc, animated: true)
+        }
+    }
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        dismiss(animated: true)
+    }
+    
+    
     func areYouSureAlert() {
         
-        let areYouSure = UIAlertController(title: "Warning", message: "Are you sure you would like to delete your account?", preferredStyle: .alert)
+        let areYouSure = UIAlertController(title:(NSLocalizedString("warn", comment: "")), message:(NSLocalizedString("areYouSure2", comment: "")), preferredStyle: .alert)
         
         
-        let Delete = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+        let Delete = UIAlertAction(title:(NSLocalizedString("deleteAcct", comment: "")), style: .destructive) { (action) in
             
             self.deleteAccount()
             
             
         }
         
-        let Cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+        let Cancel = UIAlertAction(title:(NSLocalizedString("cancel", comment: "")), style: .cancel) { (action) in
             
         }
         
@@ -199,9 +241,9 @@ class Settings: UITableViewController {
     }
     
     func errorMessage() {
-        let error = UIAlertController(title: "Sorry", message: "There was an error procesing your request.", preferredStyle: .alert)
+        let error = UIAlertController(title:(NSLocalizedString("sry", comment: "")), message:(NSLocalizedString("sryM", comment: "")), preferredStyle: .alert)
         
-        let errorOK = UIAlertAction(title: "Ok", style: .default) { (action) in
+        let errorOK = UIAlertAction(title:(NSLocalizedString("ok", comment: "")), style: .default) { (action) in
         }
         
         
@@ -216,9 +258,9 @@ class Settings: UITableViewController {
     
     func deletedAlert() {
         
-        let success = UIAlertController(title: nil, message: "Your account has been deleted.", preferredStyle: .alert)
+        let success = UIAlertController(title: nil, message:(NSLocalizedString("dsm", comment: "")) , preferredStyle: .alert)
         
-        let OK = UIAlertAction(title: "Ok", style: .default) { (action) in
+        let OK = UIAlertAction(title:(NSLocalizedString("ok", comment: "")), style: .default) { (action) in
        
             self.performSegue(withIdentifier: "signOutFromSettings", sender: self)
         }
@@ -246,6 +288,10 @@ class Settings: UITableViewController {
                 self.errorMessage()
             } else {
                 // Account deleted.
+                let ref = Database.database().reference()
+                let uid = Auth.auth().currentUser?.uid
+                ref.child("Users").child(uid!).removeValue()
+                
                 self.deletedAlert()
             
             }
@@ -256,58 +302,91 @@ class Settings: UITableViewController {
     }
     
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+  
+    if segue.identifier == "changePic"
+    {
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
+    }
+    
+    if segue.identifier == "changeName"
+    {
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
+            
+    }
+    
+    
+        
+    if segue.identifier == "updatePW"
+    {
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
+            
+    }
+    
+    if segue.identifier == "updateBio"
+    {
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
+    }
         
     
+    
+        
+    if segue.identifier == "updateDistance"
+    {
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
+            
+    }
+     
+        
+    if segue.identifier == "updatePrivacy"
+    {
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
+            
+    }
+    
+    if segue.identifier == "showSearch"
+    {
+      
+            let backItem = UIBarButtonItem()
+            backItem.title = ""
+            navigationItem.backBarButtonItem = backItem
+        
+      
+        
+    }
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
     }
    

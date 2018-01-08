@@ -28,9 +28,6 @@ class World: UIViewController {
     
     }
     
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,7 +42,8 @@ class World: UIViewController {
     
 
     func setupSegmentedControl() {
-        
+        titleForSegment(_title:(NSLocalizedString("map", comment: "")), _segment: 0)
+        titleForSegment(_title:(NSLocalizedString("discover", comment: "")), _segment: 1)
         let purp = UIColor(red: 142/255, green: 68/255, blue: 173/255, alpha: 1.0)
         self.tabBarController?.tabBar.barTintColor = UIColor.black
         segmentedControl.selectedSegmentIndex = 1
@@ -55,10 +53,14 @@ class World: UIViewController {
         segmentedControl.layer.masksToBounds = true
         segmentedControl.layer.borderWidth = 2
         segmentedControl.layer.borderColor = purp.cgColor
-        segmentedControl.setWidth(190, forSegmentAt: 0)
-        segmentedControl.setWidth(190, forSegmentAt: 1)
         
         
+        
+        
+    }
+    
+    func titleForSegment(_title: String, _segment: Int) {
+        self.segmentedControl.setTitle(_title, forSegmentAt: _segment)
     }
     /*
     // MARK: - Navigation

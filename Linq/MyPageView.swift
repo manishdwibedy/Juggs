@@ -15,7 +15,9 @@ class MyPageView: UIPageViewController, UIPageViewControllerDelegate, UIPageView
     lazy var bioAndMyJuggs: [UIViewController] = {
         
         return [self.ViewControllerInstance(name: "MyBio"),
-                self.ViewControllerInstance(name: "MyJuggTable")]
+                self.ViewControllerInstance(name: "MyJuggTable"),
+                self.ViewControllerInstance(name: "relations"),
+                self.ViewControllerInstance(name: "settings")]
     }()
     
     
@@ -95,10 +97,7 @@ class MyPageView: UIPageViewController, UIPageViewControllerDelegate, UIPageView
     }
     
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
     
     
     /*

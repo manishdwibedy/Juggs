@@ -31,9 +31,9 @@ class UpdatePassword: UIViewController {
                     
                     Globals.HideSpinner()
                     // ...
-                    let alertViewController = UIAlertController(title: "Password Updated Successfully!", message: "", preferredStyle: .alert)
+                    let alertViewController = UIAlertController(title: (NSLocalizedString("pus", comment: "")), message: "", preferredStyle: .alert)
                     
-                    let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+                    let okAction = UIAlertAction(title:(NSLocalizedString("ok", comment: "")), style: .default) { (action) -> Void in
                         self.navigationController?.popViewController(animated: true)
                     }
                     
@@ -43,9 +43,9 @@ class UpdatePassword: UIViewController {
                     self.present(alertViewController, animated: true, completion: nil)
                 }
             }else{
-                let alertViewController = UIAlertController(title: "Your Password is miss matched.", message: "", preferredStyle: .alert)
+                let alertViewController = UIAlertController(title: (NSLocalizedString("pds", comment: "")), message: "", preferredStyle: .alert)
                 
-                let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+                let okAction = UIAlertAction(title:(NSLocalizedString("ok", comment: "")), style: .default) { (action) -> Void in
                 }
                 
                 alertViewController.addAction(okAction)
@@ -55,9 +55,9 @@ class UpdatePassword: UIViewController {
                 
             }
         }else{
-            let alertViewController = UIAlertController(title: "Current Password is not matching", message: "", preferredStyle: .alert)
+            let alertViewController = UIAlertController(title: (NSLocalizedString("cpdm", comment: "")), message: "", preferredStyle: .alert)
             
-            let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+            let okAction = UIAlertAction(title:(NSLocalizedString("ok", comment: "")), style: .default) { (action) -> Void in
             }
             
             alertViewController.addAction(okAction)
@@ -84,25 +84,27 @@ class UpdatePassword: UIViewController {
     
     
     func visuals() {
-        self.title = "Password"
+        self.title = (NSLocalizedString("updatepword", comment: ""))
         submitBtn.layer.masksToBounds = true
         submitBtn.layer.cornerRadius = 8
         submitBtn.isEnabled = false
+        submitBtn.layer.borderWidth = 2
+        submitBtn.layer.borderColor = purp
         
         passwordTF.layer.masksToBounds = true
         passwordTF.layer.cornerRadius = 6
         passwordTF.layer.borderWidth = 1
-        passwordTF.layer.borderColor = UIColor.black.cgColor
+        passwordTF.layer.borderColor = purp
         
         newPasswordTF.layer.masksToBounds = true
         newPasswordTF.layer.cornerRadius = 6
         newPasswordTF.layer.borderWidth = 1
-        newPasswordTF.layer.borderColor = UIColor.black.cgColor
+        newPasswordTF.layer.borderColor = purp
         
         confirmPassword.layer.masksToBounds = true
         confirmPassword.layer.cornerRadius = 6
         confirmPassword.layer.borderWidth = 1
-        confirmPassword.layer.borderColor = UIColor.black.cgColor
+        confirmPassword.layer.borderColor = purp
     }
     
     
